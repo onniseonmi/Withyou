@@ -1,5 +1,4 @@
 const { User } = require('../../models');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const bcryptSaltRounds = 12;
@@ -20,6 +19,5 @@ module.exports = async (req, res) => {
     email,
     mobile,
   });
-  //   const token = createAccessToken(userInfo);
-  //   res.status(201).json({ token, email });
+  res.status(201).json(userInfo);
 };
