@@ -1,0 +1,209 @@
+.loading-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading-page img {
+}
+@media screen and (min-width: 900px) {
+  .button {
+    cursor: pointer;
+    user-select: none;
+  }
+  .signup-left-box {
+    padding: 0 1rem 0 0.5rem;
+    width: 400px;
+    height: 620px;
+    border: 1px solid black;
+  }
+  .signup-title > img {
+    transform: scale(0.7);
+  }
+  .signup-input {
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .signup-input > div:first-child {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .signup-input-box {
+    position: relative;
+    margin: 10px 0;
+    /* border: 1px solid red; */
+    height: 60px;
+  }
+  .signup-input-box > input {
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    font-size: 15px;
+    height: 35px;
+    width: 98.3%;
+    padding-left: 0.5rem;
+  }
+  .signup-input-box > input::placeholder {
+    color: transparent;
+  }
+  .signup-input-box > label {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .signup-input-box > input:focus,
+  .signup-input-box > input:not(:placeholder-shown) {
+    border: 1px solid rgb(19, 209, 19);
+    outline: none;
+  }
+  .signup-errMsg {
+    position: absolute;
+    color: red;
+    width: 100%;
+    text-align: center;
+  }
+  .signup-button-box {
+    width: 100%;
+    height: 100px;
+    /* border: 2px solid green; */
+    margin: 3.5rem 0;
+    position: relative;
+  }
+  .signup-btn {
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 35px;
+    background-color: rgb(238, 238, 238);
+    margin: 1rem 0;
+  }
+  .signup-button-box > div:not(:first-child) {
+    /* position: absolute; */
+    /* left: 0.5rem; */
+    width: 100%;
+    height: 20px;
+    /* margin-top: 2rem; */
+    text-align: left;
+  }
+  .signup-button-box span {
+    font-size: 15px;
+  }
+  .signup-button-box span:last-child {
+    border-bottom: 1px solid black;
+    margin-left: 0.5rem;
+  }
+}
+/*--------------------------------------------------------------------*/
+@media screen and (max-width: 900px) {
+  .button {
+    cursor: pointer;
+    user-select: none;
+  }
+  .signup-left-box {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    padding: 0 0.5rem 0 0.5rem;
+    width: 400px;
+    height: 620px;
+  }
+  .signup-title > img {
+    transform: scale(0.7);
+  }
+  .signup-input {
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .signup-input > div:first-child {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .signup-input-box {
+    position: relative;
+    margin: 10px 0;
+    /* border: 1px solid red; */
+    height: 60px;
+  }
+  .signup-input-box > input {
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    font-size: 15px;
+    height: 35px;
+    width: 98.3%;
+    padding-left: 0.5rem;
+  }
+  .signup-input-box > input::placeholder {
+    color: transparent;
+  }
+  .signup-input-box > label {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .signup-input-box > input:focus,
+  .signup-input-box > input:not(:placeholder-shown) {
+    border: 1px solid rgb(19, 209, 19);
+    outline: none;
+  }
+  .signup-errMsg {
+    position: absolute;
+    color: red;
+    width: 100%;
+    text-align: center;
+  }
+  .signup-button-box {
+    width: 100%;
+    height: 100px;
+    /* border: 2px solid green; */
+    margin: 3.5rem 0;
+    position: relative;
+  }
+  .signup-btn {
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 35px;
+    background-color: rgb(238, 238, 238);
+    margin: 1rem 0;
+  }
+  .signup-button-box > div:not(:first-child) {
+    /* position: absolute; */
+    /* left: 0.5rem; */
+    width: 100%;
+    height: 20px;
+    /* margin-top: 2rem; */
+    text-align: left;
+  }
+  .signup-button-box span {
+    font-size: 15px;
+  }
+  .signup-button-box span:last-child {
+    border-bottom: 1px solid black;
+    margin-left: 0.5rem;
+  }
+}
