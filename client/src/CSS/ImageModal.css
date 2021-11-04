@@ -1,0 +1,35 @@
+#modal {
+  background-color: white;
+  position: absolute;
+  top: 59.1%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 31.6%;
+}
+#modal-nav {
+  display: flex;
+  justify-content: space-between;
+}
+#description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#close-button {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  width: 8rem;
+  height: 3rem;
+}
+
+#modal-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-add-button {
+  width: 80%;
+}
