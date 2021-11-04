@@ -7,14 +7,54 @@ import google from "../../images/google.png";
 import naver from "../../images/naver.png";
 import kakao from "../../images/kakao.png";
 import Signup from "./Signup";
-const LoginModal = () => {
+import axios from "axios";
+const LoginModal = ({ setLoginBtnOn }) => {
   const [signupBtnOn, setSignupBtnOn] = useState(false);
+  const [userInput, setUserInput] = useState({ email: "", password: "" });
+  const [loginErr, setLoginErr] = useState(false);
+  const inputChange = (e) => {
+    if (e.target.name === "email") {
+      setUserInput({
+        ...userInput,
+        email: e.target.value,
+      });
+    } else if (e.target.name === "password") {
+      setUserInput({
+        ...userInput,
+        password: e.target.value,
+      });
+    }
+  };
+  const loginHandler = async (e) => {
+    if (userInput.email.trim() === "" || userInput.password.trim() === "") {
+      setLoginErr(true);
+    } else {
+      setLoginErr(false);
+      try {
+        const data = await axios({
+          method: "POST",
+          url: "http://localhost:4000/user/signin",
+          data: userInput,
+        });
+        setLoginErr(false);
+        setLoginBtnOn(false);
+      } catch (err) {
+        setLoginErr(true);
+      }
+    }
+  };
+
   return (
     <div className="login-container">
       <div className="login-box">
-        <div className="close-btn button">X</div>
+        <div className="close-btn button" onClick={(e) => setLoginBtnOn(false)}>
+          X
+        </div>
         {signupBtnOn ? (
-          <Signup setSignupBtnOn={setSignupBtnOn} />
+          <Signup
+            setSignupBtnOn={setSignupBtnOn}
+            setLoginBtnOn={setLoginBtnOn}
+          />
         ) : (
           <div className="login-left-box">
             <div className="login-title modal-title">
@@ -28,6 +68,7 @@ const LoginModal = () => {
                   type="text"
                   name="email"
                   placeholder="이메일"
+                  onChange={inputChange}
                 ></input>
                 <label>이메일</label>
               </div>
@@ -37,15 +78,20 @@ const LoginModal = () => {
                   type="password"
                   name="password"
                   placeholder="비밀번호"
+                  onChange={inputChange}
                 ></input>
                 <label>비밀번호</label>
               </div>
-              <div className="login-errMsg">
-                <div>아이디 또는 비밀번호가 잘못 입력 되었습니다. </div>
-                <div>아이디와 비밀번호를 정확히 입력해 주세요.</div>
-              </div>
+              {loginErr ? (
+                <div className="login-errMsg">
+                  <div>아이디 또는 비밀번호가 잘못 입력 되었습니다. </div>
+                  <div>아이디와 비밀번호를 정확히 입력해 주세요.</div>
+                </div>
+              ) : null}
               <div className="login-button-box">
-                <div className="login-btn button">로그인</div>
+                <div className="login-btn button" onClick={loginHandler}>
+                  로그인
+                </div>
                 <div>
                   <div className="login-forgot-password">
                     <span className="button">암호를 잊어버리셨나요?</span>
