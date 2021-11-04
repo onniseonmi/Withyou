@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Template from "./Modals/Template";
-import Image from "./Modals/Image";
-import Elements from "./Modals/Elements";
+import Template from "./modals/Template";
+import Image from "./modals/Image";
+import Elements from "./modals/elements";
 
 export default function EditPage() {
   const [template, setTemplate] = useState(false);

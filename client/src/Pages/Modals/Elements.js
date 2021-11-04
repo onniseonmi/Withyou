@@ -26,13 +26,13 @@ export default function Elements(props) {
               () => props.onClose()
             }
           />
-          <img id="modal-add-button" src="image/Elements/sample.png" />
-          <img id="modal-add-button" src="image/Elements/sample.png" />
+          <img id="modal-add-button" src="image/elements/sample.png" />
+          <img id="modal-add-button" src="image/elements/sample.png" />
         </div>
         <div className="row">
-          <img id="modal-add-button" src="image/Elements/sample.png" />
-          <img id="modal-add-button" src="image/Elements/sample.png" />
-          <img id="modal-add-button" src="image/Elements/sample.png" />
+          <img id="modal-add-button" src="image/elements/sample.png" />
+          <img id="modal-add-button" src="image/elements/sample.png" />
+          <img id="modal-add-button" src="image/elements/sample.png" />
         </div>
       </div>
     </div>

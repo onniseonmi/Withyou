@@ -20,19 +20,19 @@ export default function Template(props) {
         <div className="row">
           <img
             id="modal-add-button"
-            src="image/Template/sample.png"
+            src="image/template/sample.png"
             onClick={
               // TODO : 누르면 템플릿 적용되도록 구현
               () => props.onClose()
             }
           />
-          <img id="modal-add-button" src="image/Template/sample.png" />
-          <img id="modal-add-button" src="image/Template/sample.png" />
+          <img id="modal-add-button" src="image/template/sample.png" />
+          <img id="modal-add-button" src="image/template/sample.png" />
         </div>
         <div className="row">
-          <img id="modal-add-button" src="image/Template/sample.png" />
-          <img id="modal-add-button" src="image/Template/sample.png" />
-          <img id="modal-add-button" src="image/Template/sample.png" />
+          <img id="modal-add-button" src="image/template/sample.png" />
+          <img id="modal-add-button" src="image/template/sample.png" />
+          <img id="modal-add-button" src="image/template/sample.png" />
         </div>
       </div>
     </div>
