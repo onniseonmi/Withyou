@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import title from "../../images/title.png";
-import loadingImg from "../../images/loading.gif";
-import "../../css/Signup.css";
+import title from "../../../images/title.png";
+import loadingImg from "../../../images/loading.gif";
+import "../../../css/Signup.css";
 import axios from "axios";
 const Signup = ({ setSignupBtnOn, setLoginBtnOn }) => {
   const [loading, setLoading] = useState(true);

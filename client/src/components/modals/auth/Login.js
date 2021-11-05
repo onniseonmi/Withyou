@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "../../css/Login.css";
-import loginModal from "../../images/loginModal.png";
-import logo from "../../images/logo.png";
-import title from "../../images/title.png";
-import google from "../../images/google.png";
-import naver from "../../images/naver.png";
-import kakao from "../../images/kakao.png";
+import "../../../css/Login.css";
+import loginModal from "../../../images/loginModal.png";
+import logo from "../../../images/logo.png";
+import title from "../../../images/title.png";
+import google from "../../../images/google.png";
+import naver from "../../../images/naver.png";
+import kakao from "../../../images/kakao.png";
 import Signup from "./Signup";
 import axios from "axios";
 const LoginModal = ({ setLoginBtnOn }) => {

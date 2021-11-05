@@ -1,6 +1,6 @@
 import React from "react";
-import "../../CSS/TemplateModal.css";
-
+import "../../../css/TemplateModal.css";
+import templateImg from "../../../images/template/sample.png";
 export default function Template(props) {
   if (!props.status) {
     return null;
@@ -20,19 +20,19 @@ export default function Template(props) {
         <div className="row">
           <img
             id="modal-add-button"
-            src="image/template/sample.png"
+            src={templateImg}
             onClick={
               // TODO : 누르면 템플릿 적용되도록 구현
               () => props.onClose()
             }
           />
-          <img id="modal-add-button" src="image/template/sample.png" />
-          <img id="modal-add-button" src="image/template/sample.png" />
+          <img id="modal-add-button" src={templateImg} />
+          <img id="modal-add-button" src={templateImg} />
         </div>
         <div className="row">
-          <img id="modal-add-button" src="image/template/sample.png" />
-          <img id="modal-add-button" src="image/template/sample.png" />
-          <img id="modal-add-button" src="image/template/sample.png" />
+          <img id="modal-add-button" src={templateImg} />
+          <img id="modal-add-button" src={templateImg} />
+          <img id="modal-add-button" src={templateImg} />
         </div>
       </div>
     </div>

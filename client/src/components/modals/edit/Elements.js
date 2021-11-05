@@ -1,5 +1,5 @@
 import React from "react";
-import "../../CSS/ElementsModal.css";
+import "../../../css/ElementsModal.css";
 
 export default function Elements(props) {
   if (!props.status) {
