@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import Template from "./modals/Template";
-import Image from "./modals/Image";
-import Elements from "./modals/elements";
-
+import Template from "../components/modals/edit/Template";
+import Image from "../components/modals/edit/Image";
+import Elements from "../components/modals/edit/Elements";
+import templateImg from "../images/template.png";
+import elementsImg from "../images/elements.png";
+import imageImg from "../images/image.png";
+import textImg from "../images/text.png";
 export default function EditPage() {
   const [template, setTemplate] = useState(false);
   const [elements, setElements] = useState(false);
@@ -29,7 +32,7 @@ export default function EditPage() {
                 setTemplate(true);
               }}
             >
-              {<img className="edit-button" src="image/template.png" />}
+              {<img className="edit-button" src={templateImg} />}
             </div>
             <Template
               status={template}
@@ -44,7 +47,7 @@ export default function EditPage() {
                 setElements(true);
               }}
             >
-              {<img className="edit-button" src="image/elements.png" />}
+              {<img className="edit-button" src={elementsImg} />}
             </div>
             <Elements
               status={elements}
@@ -59,13 +62,13 @@ export default function EditPage() {
                 setImage(true);
               }}
             >
-              {<img className="edit-button" src="image/image.png" />}
+              {<img className="edit-button" src={imageImg} />}
             </div>
             <Image status={image} onClose={() => setImage(false)} />
 
             <img
               className="edit-button"
-              src="image/text.png"
+              src={textImg}
               alt="text"
               onClick={() => {
                 // TODO : 얘는 누르면 화면에 바로 텍스트가 출력되도록 구현

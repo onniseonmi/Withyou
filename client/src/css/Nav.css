@@ -1,0 +1,24 @@
+.nav-container {
+  width: 100%;
+  height: 100px;
+  background-color: beige;
+}
+.title {
+}
+.title img {
+  height: 70px;
+}
+.nav-box {
+  display: flex;
+  position: absolute;
+  right: 0.5rem;
+  top: 1rem;
+}
+.nav-right {
+}
+.nav-right > div {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.nav-left {
+}

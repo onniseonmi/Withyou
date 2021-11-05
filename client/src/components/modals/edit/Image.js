@@ -1,5 +1,5 @@
 import React from "react";
-import "../../CSS/ImageModal.css";
+import "../../../css/ImageModal.css";
 
 export default function Image(props) {
   if (!props.status) {
