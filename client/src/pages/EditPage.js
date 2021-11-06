@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
 import Elements from "../components/modals/edit/Elements";
+import Text from "../components/modals/edit/Text";
 import templateImg from "../images/template.png";
 import elementsImg from "../images/elements.png";
 import imageImg from "../images/image.png";
@@ -70,13 +71,14 @@ export default function EditPage() {
             <Image status={image} onClose={() => setImage(false)} />
 
             <div
-              onClick={() =>
-                // TODO : 얘는 누르면 화면에 바로 텍스트가 출력되도록 구현
-                console.log("text!")
-              }
+              onClick={() => {
+                setStateAll();
+                setText(true);
+              }}
             >
-              <img className="edit-button" src={textImg} alt="text" />
+              {<img className="edit-button" src={textImg} />}
             </div>
+            <Text status={text} onClose={() => setText(false)} />
           </div>
         </div>
       </div>

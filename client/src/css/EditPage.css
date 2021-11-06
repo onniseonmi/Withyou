@@ -23,16 +23,17 @@
   }
 
   #edit-property {
-    width: 60rem;
+    border: solid 0.1rem red;
+    width: 87rem;
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: center;
   }
 
   #canvas {
     font-size: 2rem;
-    margin: 1rem;
+    margin: 0.5rem;
     border: solid 0.1rem red;
     width: 50rem;
     height: 23.5rem;
@@ -40,7 +41,7 @@
 
   #detail-propertys {
     font-size: 2rem;
-    margin: 1rem;
+    margin: 0.5rem;
     border: solid 0.1rem red;
     width: 50rem;
     height: 10rem;
@@ -61,12 +62,11 @@
   #edit-tools {
     display: flex;
     justify-content: space-around;
-    align-items: center;
     font-size: 3rem;
     margin: 0.5rem;
     border: solid 0.1rem red;
     width: 5rem;
-    height: 25rem;
+    height: 43rem;
   }
 
   .selected {
@@ -80,7 +80,7 @@
     height: 25rem;
   }
   .edit-button {
-    width: 3rem;
+    width: 2.5rem;
   }
 }
 /* 작을 때 */
