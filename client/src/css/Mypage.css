@@ -10,12 +10,12 @@
   #profile {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 70%;
     padding-bottom: 0.5rem;
     border-bottom: solid 0.1rem gray;
   }
   #photo {
-    width: 25%;
+    width: 15rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +51,7 @@
   #cards {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 70%;
     padding-top: 0.5rem;
     /* border: solid 2px green; */
     height: 16rem;
@@ -79,7 +79,7 @@
     justify-content: space-between;
     border-top: solid 0.1rem gray;
     height: 5rem;
-    width: 70%;
+    width: 67%;
     padding: 0.5rem 2rem;
   }
 
@@ -114,6 +114,8 @@
   }
 
   #profile {
+    display: flex;
+    flex-direction: column;
     padding-bottom: 0.5rem;
     border-bottom: solid 0.1rem gray;
   }
@@ -148,6 +150,8 @@
   }
 
   #cards {
+    display: flex;
+    flex-direction: column;
     padding-top: 0.5rem;
     /* border: solid 2px green; */
     height: 20rem;
@@ -163,7 +167,7 @@
     justify-content: space-around;
     align-items: center;
     /* border: solid 1px red; */
-    height: 9rem;
+    height: 8rem;
   }
   .card {
     width: 8rem;
@@ -199,5 +203,10 @@
   .footer-row {
     display: flex;
     justify-content: space-around;
+  }
+
+  #edit-button {
+    align-self: flex-end;
+    width: 3rem;
   }
 }
