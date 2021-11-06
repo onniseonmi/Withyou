@@ -1,4 +1,50 @@
 @media screen and (min-width: 900px) {
+  #text-modal {
+    background-color: grey;
+    position: absolute;
+    left: 5.7rem;
+    top: 10.2rem;
+    width: 25rem;
+    height: 44rem;
+  }
+  #text-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #text-close-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+  }
+
+  #text-modal-propertys {
+    font-size: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .property {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 0.1rem white;
+    /* border: solid 1px blue; */
+    height: 4rem;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    /* border: solid 1px red; */
+  }
+
+  .value {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    width: 19rem;
+    /* border: solid 1px red; */
+  }
 }
 @media screen and (max-width: 900px) {
   #text-modal {
