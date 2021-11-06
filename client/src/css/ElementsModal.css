@@ -1,41 +1,90 @@
-#modal {
-  background-color: white;
-  position: absolute;
-  top: 59.1%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95%;
-  height: 31.6%;
-}
-#modal-nav {
-  display: flex;
-  justify-content: space-between;
-}
-#description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media screen and (min-width: 900px) {
+  #elements-modal {
+    background-color: grey;
+    position: absolute;
+    left: 5.7rem;
+    top: 10.2rem;
+    width: 25rem;
+    height: 44rem;
+  }
+  #elements-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #elements-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #elements-close-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+  }
+
+  #elements-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+  }
+
+  .elements-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #elements-modal-add-button {
+    width: 6rem;
+  }
 }
 
-#close-button {
-  margin: 0.5rem;
-  font-size: 1.5rem;
-  width: 8rem;
-  height: 3rem;
-}
+@media screen and (max-width: 900px) {
+  #elements-modal {
+    background-color: white;
+    position: absolute;
+    top: 38rem;
+    left: 15rem;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 21rem;
+  }
+  #elements-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #elements-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-#modal-upload {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 80%;
-}
-.row {
-  display: flex;
-  justify-content: space-around;
-  width: 95%;
-}
+  #elements-close-button {
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+  }
 
-#modal-add-button {
-  margin: 1rem;
+  #elements-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+  }
+
+  .elements-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #elements-modal-add-button {
+    width: 6rem;
+  }
 }
