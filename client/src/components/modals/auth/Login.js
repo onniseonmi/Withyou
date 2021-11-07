@@ -8,8 +8,7 @@ import naver from "../../../images/naver.png";
 import kakao from "../../../images/kakao.png";
 import Signup from "./Signup";
 import axios from "axios";
-const LoginModal = ({ setLoginBtnOn }) => {
-  const [signupBtnOn, setSignupBtnOn] = useState(false);
+const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
   const [userInput, setUserInput] = useState({ email: "", password: "" });
   const [loginErr, setLoginErr] = useState(false);
   const inputChange = (e) => {
@@ -47,7 +46,13 @@ const LoginModal = ({ setLoginBtnOn }) => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <div className="close-btn button" onClick={(e) => setLoginBtnOn(false)}>
+        <div
+          className="close-btn button"
+          onClick={(e) => {
+            setLoginBtnOn(false);
+            setSignupBtnOn(false);
+          }}
+        >
           X
         </div>
         {signupBtnOn ? (
