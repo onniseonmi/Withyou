@@ -42,6 +42,8 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
       }
     }
   };
+  const naverLogin = () => {};
+  const kakaoLogin = () => {};
 
   return (
     <div className="login-container">
@@ -123,13 +125,17 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
                   <div>
                     <img id="naver-logo" src={naver} alt="naver"></img>
                   </div>
-                  <div className="oauth-name button">네이버 로그인</div>
+                  <div className="oauth-name button" onClick={naverLogin}>
+                    네이버 로그인
+                  </div>
                 </div>
                 <div className="oauth-box">
                   <div>
                     <img id="kakao-logo" src={kakao} alt="kakao"></img>
                   </div>
-                  <div className="oauth-name button">카카오 로그인</div>
+                  <div className="oauth-name button" onClick={kakaoLogin}>
+                    카카오 로그인
+                  </div>
                 </div>
               </div>
             </div>
