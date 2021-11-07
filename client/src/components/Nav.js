@@ -12,6 +12,7 @@ const Nav = ({ isLogin }) => {
     if (e.target.id === "login") {
       setLoginBtnOn(true);
     } else if (e.target.id === "join") {
+      setLoginBtnOn(true);
       setSignupBtnOn(true);
     }
   };

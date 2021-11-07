@@ -8,8 +8,7 @@ import naver from "../../../images/naver.png";
 import kakao from "../../../images/kakao.png";
 import Signup from "./Signup";
 import axios from "axios";
-const LoginModal = ({ setLoginBtnOn }) => {
-  const [signupBtnOn, setSignupBtnOn] = useState(false);
+const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
   const [userInput, setUserInput] = useState({ email: "", password: "" });
   const [loginErr, setLoginErr] = useState(false);
   const inputChange = (e) => {
@@ -43,11 +42,19 @@ const LoginModal = ({ setLoginBtnOn }) => {
       }
     }
   };
+  const naverLogin = () => {};
+  const kakaoLogin = () => {};
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <div className="close-btn button" onClick={(e) => setLoginBtnOn(false)}>
+        <div
+          className="close-btn button"
+          onClick={(e) => {
+            setLoginBtnOn(false);
+            setSignupBtnOn(false);
+          }}
+        >
           X
         </div>
         {signupBtnOn ? (
@@ -118,13 +125,17 @@ const LoginModal = ({ setLoginBtnOn }) => {
                   <div>
                     <img id="naver-logo" src={naver} alt="naver"></img>
                   </div>
-                  <div className="oauth-name button">네이버 로그인</div>
+                  <div className="oauth-name button" onClick={naverLogin}>
+                    네이버 로그인
+                  </div>
                 </div>
                 <div className="oauth-box">
                   <div>
                     <img id="kakao-logo" src={kakao} alt="kakao"></img>
                   </div>
-                  <div className="oauth-name button">카카오 로그인</div>
+                  <div className="oauth-name button" onClick={kakaoLogin}>
+                    카카오 로그인
+                  </div>
                 </div>
               </div>
             </div>

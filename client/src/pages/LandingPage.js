@@ -16,7 +16,7 @@ const LandingPage = () => {
           Moving image, gif
           <div>
             <div className="title">
-              세상에 없던 단 하나뿐인 청첩장, 쉬운 디자인과 생성을 도와드립니다.
+              세상에 없던 단 하나뿐인 <br/>청첩장, 쉬운 디자인과 생성을 도와드립니다.
             </div>
             <div className="subtitle2">
             subtitle
