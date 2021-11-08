@@ -36,10 +36,10 @@ const Nav = ({ isLogin }) => {
           </div>
         ) : (
           <div className="nav-box nav-right">
-            <div>Logout</div>
             <div>
               <Link to="/mypage">Mypage</Link>
             </div>
+            <div>Logout</div>
           </div>
         )}
         <div>
