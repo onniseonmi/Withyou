@@ -7,7 +7,16 @@ import title from "../../../images/title.png";
 import Signup from "./Signup";
 import Oauth from "./Oauth";
 import axios from "axios";
-const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
+const Login = ({
+  isLogin,
+  setIsLogin,
+  setLoginBtnOn,
+  signupBtnOn,
+  setSignupBtnOn,
+  setAccessToken,
+  userInfo,
+  setUserInfo,
+}) => {
   const [userInput, setUserInput] = useState({ email: "", password: "" });
   const [loginErr, setLoginErr] = useState(false);
   const inputChange = (e) => {
@@ -34,6 +43,19 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
           url: "http://localhost:4000/user/signin",
           data: userInput,
         });
+        const { userInfo, accessToken } = data.data;
+        setAccessToken(accessToken);
+        setUserInfo({
+          ...userInfo,
+          username: userInfo.username,
+          email: userInfo.email,
+          mobile: userInfo.mobile,
+          image: userInfo.image,
+        });
+        setIsLogin(true);
+        sessionStorage.setItem("isLoginSession", isLogin);
+        sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
+        sessionStorage.setItem("tokenSession", accessToken);
         setLoginErr(false);
         setLoginBtnOn(false);
       } catch (err) {
@@ -56,6 +78,12 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
         </div>
         {signupBtnOn ? (
           <Signup
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            accessToken={setAccessToken}
+            setAccessToken={setAccessToken}
             setSignupBtnOn={setSignupBtnOn}
             setLoginBtnOn={setLoginBtnOn}
           />
@@ -123,4 +151,4 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
   );
 };
 
-export default LoginModal;
+export default Login;
