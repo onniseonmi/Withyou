@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
 
 const LandingPage = () => {
@@ -8,6 +9,11 @@ const LandingPage = () => {
         <div background-image>
         Moving images, gif
         </div>
+         <div className="main-get-started">
+           <button className="main-get-started-btn">
+            <Link to="/editpage">시작하기</Link>
+           </button>
+        </div>
       </div>
 
 
@@ -16,7 +22,7 @@ const LandingPage = () => {
           Moving image, gif
           <div>
             <div className="title">
-              세상에 없던 단 하나뿐인 <br/>청첩장, 쉬운 디자인과 생성을 도와드립니다.
+              세상에 없던 단 하나뿐인<br/>청첩장, 쉬운 디자인과 생성을 도와드립니다.
             </div>
             <div className="subtitle2">
             subtitle
@@ -45,7 +51,7 @@ const LandingPage = () => {
 
       <div className="section3">
             <div className="title">
-              세상에 없던 단 하나뿐인 청첩장, 쉬운 디자인과 생성을 도와드립니다.
+              세상에 없던 단 하나뿐인<br/>청첩장, 쉬운 디자인과 생성을 도와드립니다.
             </div>
             <div className="subtitle3">
             subtitle
@@ -66,7 +72,7 @@ const LandingPage = () => {
     
     <div className="section4">
             <div className="title">
-              세상에 없던 단 하나뿐인 청첩장, 쉬운 디자인과 생성을 도와드립니다.
+              세상에 없던 단 하나뿐인<br/>청첩장, 쉬운 디자인과 생성을 도와드립니다.
             </div>
             <div className="subtitle4">
             subtitle

@@ -1,6 +1,6 @@
 .nav-container {
   width: 100%;
-  background-color: beige;
+  background-color: #E0E0E0;
 }
 
 .title img {
@@ -18,6 +18,8 @@
 .nav-right > div {
   margin-right: 1rem;
   cursor: pointer;
+  color: #212121 !important;
+  font-family: "Noto Sans";
 }
 
 /* @media screen and (min-width: 900px) {

@@ -42,9 +42,6 @@ const Nav = ({ isLogin }) => {
             </div>
           </div>
         )}
-        <div>
-          <Link to="/editpage">editpage</Link>
-        </div>
       </div>
       {loginBtnOn ? (
         <Login
