@@ -13,7 +13,7 @@ const Mypage = ({ userInfo, setUserInfo }) => {
           <div id="profile-title">⭐️ My Profile</div>
           <div id="profile-content">
             <div id="photo">
-              <img id="user-photo" src={cat} />
+              <img id="user-photo" src={image} />
             </div>
             <div id="userinfo">
               <div id="e-mail">💫 email : {email}</div>
