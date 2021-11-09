@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import title from "../images/title.png";
 import "../css/Nav.css";
 import Login from "./modals/auth/Login";
-import Signup from "./modals/auth/Signup";
 
 const Nav = ({
   isLogin,

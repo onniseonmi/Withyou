@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../../css/Login.css";
 import loginModal from "../../../images/loginModal.png";
-import logo from "../../../images/logo.png";
 import title from "../../../images/title.png";
 
 import Signup from "./Signup";
@@ -139,7 +138,7 @@ const Login = ({
                   </div>
                 </div>
               </div>
-              <Oauth />
+              <Oauth userInfo={userInfo} setUserInfo={setUserInfo} />
             </div>
           </div>
         )}
