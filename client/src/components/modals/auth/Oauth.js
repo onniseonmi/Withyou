@@ -17,8 +17,8 @@ const Oauth = ({ userInfo, setUserInfo }) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
     const redirect_uri = "http://localhost:3000";
     const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
-    setUserInfo({ ...userInfo, type: "kakao" });
-    sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
+    // setUserInfo({ ...userInfo, type: "kakao" });
+    // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
     sessionStorage.setItem("loginType", "kakao");
     window.location.assign(api_url);
   };
