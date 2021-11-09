@@ -16,31 +16,6 @@ export default function EditPage() {
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
-  const [clickOn, setClickOn] = useState(false); // ! 얘도 쓸모없음 -->
-  // TODO : 상태가 전달이 안되는 이유 찾기 -> useCallback() 이용?
-  
-  // 부모 상태가 바로 안 적용..
-  const addToCanvas = useCallback(
-    (e) => {
-      const a = (
-        <ImageOnCanvas
-          src={e.target.src}
-          clickOn={clickOn}
-          setClickOn={setClickOn}
-          style={{
-            width: "5rem",
-            position: "absolute",
-            // TODO : 위치 제대로 찾아서 넣기
-            top: "15rem",
-            left: "12.5rem",
-            border: "solid 0.1rem white",
-          }}
-        />
-      );
-      react.render(a, document.querySelector("#canvas"));
-    },
-    [clickOn]
-  );
 
   return (
     <div id="EditPage">
@@ -127,5 +102,22 @@ export default function EditPage() {
         el[1](false);
       }
     });
+  }
+
+  function addToCanvas(e) {
+    const a = (
+      <ImageOnCanvas
+        src={e.target.src}
+        style={{
+          width: "5rem",
+          position: "absolute",
+          // TODO : 위치 제대로 찾아서 넣기
+          top: "15rem",
+          left: "12.5rem",
+          border: "solid 0.1rem white",
+        }}
+      />
+    );
+    react.render(a, document.querySelector("#canvas"));
   }
 }
