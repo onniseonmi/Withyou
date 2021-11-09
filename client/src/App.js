@@ -93,9 +93,6 @@ export default function App() {
       image: "",
       type: "",
     };
-    // console.log(isLoginSession);
-    // console.log(accessTokenSession);
-    // console.log(userInfoSession);
     setAccessToken(accessTokenSession);
     setIsLogin(isLoginSession);
     setUserInfo(userInfoSession);
@@ -105,13 +102,11 @@ export default function App() {
     if (authorizationCode) {
       const loginType = sessionStorage.getItem("loginType");
       getAccessToken(authorizationCode, loginType);
-      // getUserInfo(loginType);
       // window.location.assign("http://localhost:3000");
     }
   }, []);
   return (
     <Router>
-      {/* {console.log(isLogin, userInfo)} */}
       <Nav
         isLogin={isLogin}
         setIsLogin={setIsLogin}
