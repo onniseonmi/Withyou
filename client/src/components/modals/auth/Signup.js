@@ -3,7 +3,16 @@ import title from "../../../images/title.png";
 import loadingImg from "../../../images/loading.gif";
 import "../../../css/Signup.css";
 import axios from "axios";
-const Signup = ({ setSignupBtnOn, setLoginBtnOn }) => {
+const Signup = ({
+  isLogin,
+  setIsLogin,
+  userInfo,
+  setUserInfo,
+  accessToken,
+  setAccessToken,
+  setSignupBtnOn,
+  setLoginBtnOn,
+}) => {
   const [loading, setLoading] = useState(true);
   const [signupErr, setSignupErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -49,16 +58,29 @@ const Signup = ({ setSignupBtnOn, setLoginBtnOn }) => {
     } else {
       setSignupErr(false);
       try {
-        const data = await axios({
+        const join = await axios({
           method: "POST",
           url: "http://localhost:4000/user/signup",
           data: userInput,
         });
-        const tokenData = await axios({
+        const data = await axios({
           method: "POST",
           url: "http://localhost:4000/user/signin",
           data: { email: userInput.email, password: userInput.password },
         });
+        const { userInfo, accessToken } = data.data;
+        setAccessToken(accessToken);
+        setUserInfo({
+          ...userInfo,
+          username: userInfo.username,
+          email: userInfo.email,
+          mobile: userInfo.mobile,
+          image: userInfo.image,
+        });
+        setIsLogin(true);
+        sessionStorage.setItem("isLoginSession", isLogin);
+        sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
+        sessionStorage.setItem("tokenSession", accessToken);
         setLoginBtnOn(false);
       } catch (err) {
         setSignupErr(true);

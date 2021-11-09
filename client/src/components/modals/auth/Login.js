@@ -3,12 +3,20 @@ import "../../../css/Login.css";
 import loginModal from "../../../images/loginModal.png";
 import logo from "../../../images/logo.png";
 import title from "../../../images/title.png";
-import google from "../../../images/google.png";
-import naver from "../../../images/naver.png";
-import kakao from "../../../images/kakao.png";
+
 import Signup from "./Signup";
+import Oauth from "./Oauth";
 import axios from "axios";
-const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
+const Login = ({
+  isLogin,
+  setIsLogin,
+  setLoginBtnOn,
+  signupBtnOn,
+  setSignupBtnOn,
+  setAccessToken,
+  userInfo,
+  setUserInfo,
+}) => {
   const [userInput, setUserInput] = useState({ email: "", password: "" });
   const [loginErr, setLoginErr] = useState(false);
   const inputChange = (e) => {
@@ -35,6 +43,19 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
           url: "http://localhost:4000/user/signin",
           data: userInput,
         });
+        const { userInfo, accessToken } = data.data;
+        setAccessToken(accessToken);
+        setUserInfo({
+          ...userInfo,
+          username: userInfo.username,
+          email: userInfo.email,
+          mobile: userInfo.mobile,
+          image: userInfo.image,
+        });
+        setIsLogin(true);
+        sessionStorage.setItem("isLoginSession", isLogin);
+        sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
+        sessionStorage.setItem("tokenSession", accessToken);
         setLoginErr(false);
         setLoginBtnOn(false);
       } catch (err) {
@@ -42,8 +63,6 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
       }
     }
   };
-  const naverLogin = () => {};
-  const kakaoLogin = () => {};
 
   return (
     <div className="login-container">
@@ -59,6 +78,12 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
         </div>
         {signupBtnOn ? (
           <Signup
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            accessToken={setAccessToken}
+            setAccessToken={setAccessToken}
             setSignupBtnOn={setSignupBtnOn}
             setLoginBtnOn={setLoginBtnOn}
           />
@@ -114,30 +139,7 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
                   </div>
                 </div>
               </div>
-              <div className="login-oauth">
-                <div className="oauth-box">
-                  <div>
-                    <img id="google-logo" src={google} alt="google"></img>
-                  </div>
-                  <div className="oauth-name button">구글 로그인</div>
-                </div>
-                <div className="oauth-box">
-                  <div>
-                    <img id="naver-logo" src={naver} alt="naver"></img>
-                  </div>
-                  <div className="oauth-name button" onClick={naverLogin}>
-                    네이버 로그인
-                  </div>
-                </div>
-                <div className="oauth-box">
-                  <div>
-                    <img id="kakao-logo" src={kakao} alt="kakao"></img>
-                  </div>
-                  <div className="oauth-name button" onClick={kakaoLogin}>
-                    카카오 로그인
-                  </div>
-                </div>
-              </div>
+              <Oauth />
             </div>
           </div>
         )}
@@ -149,4 +151,4 @@ const LoginModal = ({ setLoginBtnOn, signupBtnOn, setSignupBtnOn }) => {
   );
 };
 
-export default LoginModal;
+export default Login;
