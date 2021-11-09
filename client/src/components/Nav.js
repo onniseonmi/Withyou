@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import title from "../images/title.png";
 import "../css/Nav.css";
 import Login from "./modals/auth/Login";
-import Signup from "./modals/auth/Signup";
 
-const Nav = ({ isLogin }) => {
+const Nav = ({
+  isLogin,
+  setIsLogin,
+  userInfo,
+  setUserInfo,
+  setAccessToken,
+}) => {
   const [loginBtnOn, setLoginBtnOn] = useState(false);
   const [signupBtnOn, setSignupBtnOn] = useState(false);
   const handleClick = (e) => {
@@ -14,6 +19,17 @@ const Nav = ({ isLogin }) => {
     } else if (e.target.id === "join") {
       setLoginBtnOn(true);
       setSignupBtnOn(true);
+    } else if (e.target.id === "logout") {
+      setIsLogin(false);
+      setUserInfo({
+        username: "",
+        email: "",
+        mobile: "",
+        image: "",
+        type: "",
+      });
+      sessionStorage.clear();
+      window.location.assign("http://localhost:3000");
     }
   };
   return (
@@ -36,18 +52,25 @@ const Nav = ({ isLogin }) => {
           </div>
         ) : (
           <div className="nav-box nav-right">
-            <div>Logout</div>
             <div>
               <Link to="/mypage">Mypage</Link>
+            </div>
+            <div id="logout" onClick={handleClick}>
+              Logout
             </div>
           </div>
         )}
       </div>
       {loginBtnOn ? (
         <Login
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
           setLoginBtnOn={setLoginBtnOn}
           signupBtnOn={signupBtnOn}
           setSignupBtnOn={setSignupBtnOn}
+          setAccessToken={setAccessToken}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
         />
       ) : null}
     </>
