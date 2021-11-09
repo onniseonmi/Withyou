@@ -16,8 +16,10 @@ export default function EditPage() {
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
-  const [clickOn, setClickOn] = useState(true);
+  const [clickOn, setClickOn] = useState(false); // ! 얘도 쓸모없음 -->
   // TODO : 상태가 전달이 안되는 이유 찾기 -> useCallback() 이용?
+  
+  // 부모 상태가 바로 안 적용..
   const addToCanvas = useCallback(
     (e) => {
       const a = (
