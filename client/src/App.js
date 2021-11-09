@@ -4,7 +4,6 @@ import EditPage from './pages/EditPage';
 import LandingPage from './pages/LandingPage';
 import Mypage from './pages/Mypage';
 import Nav from './components/Nav';
-import './css/App.css';
 
 import Login from './components/modals/auth/Login';
 
@@ -25,6 +24,7 @@ export default function App() {
           <Mypage accessToken={accessToken} />
         </Route>
       </Switch>
+      <Login />
     </Router>
   );
 }
