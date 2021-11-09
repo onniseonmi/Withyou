@@ -1,7 +1,6 @@
 import React from 'react';
 import naver from '../../../images/naver.png';
 import kakao from '../../../images/kakao.png';
-import Github from '../github/Github';
 const Oauth = ({ userInfo, setUserInfo }) => {
   const naverLogin = (e) => {
     const client_id = 'uFXw6VGES6r8XT7wm80Q';
@@ -22,9 +21,27 @@ const Oauth = ({ userInfo, setUserInfo }) => {
     sessionStorage.setItem('loginType', 'kakao');
     window.location.assign(api_url);
   };
+  const githubLogin = () => {
+    const GITHUB_LOGIN_URL =
+      'https://github.com/login/oauth/authorize?client_id=5b0d60296b7af761c5d5';
+    sessionStorage.setItem('loginType', 'github');
+    window.location.assign(GITHUB_LOGIN_URL);
+  };
+
   return (
     <div className='login-oauth'>
-      <Github />
+      <div className='oauth-box'>
+        <div>
+          <img
+            id='github-logo'
+            alt='logo'
+            src='https://image.flaticon.com/icons/png/512/25/25231.png'
+          ></img>
+        </div>
+        <div onClick={githubLogin} className='oauth-name button'>
+          깃헙 로그인
+        </div>
+      </div>
       <div className='oauth-box'>
         <div>
           <img id='naver-logo' src={naver} alt='naver'></img>

@@ -24,8 +24,11 @@ export default function Text(props) {
         </div>
         <div className="property">
           <div className="title">색상</div>
-          <div className="value">HEX: #4f4f4f  RGB: 79, 79, 79</div>
+          <div className="value">HEX: #4f4f4f RGB: 79, 79, 79</div>
         </div>
+        <button id="text-apply-button" onClick={() => props.onClose()}>
+          적용하기
+        </button>
       </div>
     </div>
   );

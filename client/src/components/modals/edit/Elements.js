@@ -24,6 +24,7 @@ export default function Elements(props) {
             src={a}
             onClick={
               // TODO : 누르면 템플릿 적용되도록 구현
+              // 그 후 닫힘
               () => props.onClose()
             }
           />

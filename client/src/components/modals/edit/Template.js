@@ -21,10 +21,10 @@ export default function Template(props) {
           <img
             id="template-modal-add-button"
             src={templateImg}
-            onClick={
-              // TODO : 누르면 템플릿 적용되도록 구현
-              () => props.onClose()
-            }
+            onClick={(e) => {
+              props.addToCanvas(e);
+              props.onClose();
+            }}
           />
           <img id="template-modal-add-button" src={templateImg} />
           <img id="template-modal-add-button" src={templateImg} />

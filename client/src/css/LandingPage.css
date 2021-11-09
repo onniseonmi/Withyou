@@ -1,28 +1,163 @@
 body {
-    font-family: 'nanumsquare';
+  font-family: 'nanumsquare';
+}
+
+.ivory-nav {
+  /* background-color: #FFFDF4; */
+  width: 100%;
+  display: flex;
+  color: #212121;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.login {
+  color: #212121;
+  display: block;
+}
+
+.join {
+  color: #212121;
+  display: block;
+}
+
+.Phone-icon-image {
+  width: 45px;
+  display: block;
+}
+
+/* 
+  div {
+    border: 3px solid green;
+  } */
+
+.main-get-started {
+  display: flex;
+  justify-content: center;
+}
+
+.main-get-started-btn {
+  background-color: #a0a0a0; /* Green */
+  border-radius: 5px;
+  width: 280px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 8px 2px;
+  cursor: pointer;
+}
+
+a mypage {
+  /* mypage 찾아 */
+  text-decoration: none;
+  text-decoration-line: none;
+  color: white;
+}
+
+a {
+  /* 시작하기 따로 색상줄거 방법 찾아 */
+  text-decoration: none;
+  text-decoration-line: none;
+  color: white;
+}
+
+.section1 {
+  width: auto;
+  height: 856.14px;
+  font-size: 50px;
+  flex-direction: column;
+  padding: 15rem 3rem;
+  border: solid red 3px;
+}
+
+.section2 {
+  width: auto;
+  height: 724.8px;
+  padding: 15rem 3rem;
+  background-color: #f3f5f7;
+}
+
+.section3 {
+  width: auto;
+  height: 724.8px;
+  padding: 15rem 3rem;
+  flex-direction: column;
+}
+
+.section4 {
+  width: auto;
+  height: 724.8px;
+  background-color: #f3f5f7;
+  padding: 15rem 3rem;
+  flex-direction: column;
+}
+
+.section5 {
+  width: auto;
+  height: 724.8px;
+  padding: 15rem 3rem;
+  flex-direction: column;
+  border: 5px solid green;
+}
+
+.title {
+  font-size: 35px;
+  border: 3px solid green;
+  display: inline;
+}
+
+.subtitle5 {
+  border-bottom: solid black;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 13px;
+}
+
+.get-started-btn {
+  background-color: #a0a0a0;
+  border-radius: 5px;
+  color: white;
+  width: 140px;
+  height: 32px;
+  top: 539px;
+  left: 131px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 2px;
+  cursor: pointer;
+}
+
+.see-more-btn {
+  background-color: #a0a0a0;
+  border-radius: 5px;
+  color: white;
+  width: 140px;
+  height: 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 2px;
+  cursor: pointer;
+}
+
+@media all and (max-width: 1440px) {
+  .LandingPage {
+    padding-right: 15%;
+    padding-left: 15%;
+    /* display: none; */
   }
-  
-  .ivory-nav {
-    /* background-color: #FFFDF4; */
-    width: 100%;
-    display: flex;
-    color: #212121;
-    padding: 20px;
-    font-weight: 600;
-    font-size: 20px;
+}
+
+@media all and (max-width: 1440px) {
+  .Nav {
+    padding-right: 15%;
+    padding-left: 15%;
   }
-  
-  .login {
-    color: #212121;
-    display: block;
-  }
-  
-  .join {
-    color: #212121;
-    display: block;
-  }
-  
-  .Phone-icon-image {
-    width: 45px;
-    display: block;
-  }
+}

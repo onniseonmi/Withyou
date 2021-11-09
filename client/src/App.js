@@ -22,7 +22,10 @@ export default function App() {
       url: 'http://localhost:4000/user/callback',
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
+      console.log('object');
       const { access_token } = resp.data;
+      console.log('!!access_token');
+      console.log(access_token);
       setIsLogin(true);
       sessionStorage.setItem('isLoginSession', isLogin);
       sessionStorage.setItem('accessTokenSession', access_token);
@@ -76,6 +79,28 @@ export default function App() {
             })
           );
         });
+      } else if (loginType === 'github') {
+        axios({
+          method: 'GET',
+          url: 'http://localhost:4000/auth/github',
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }).then((res) => {
+          setUserInfo({
+            ...userInfo,
+            username: res.data.username,
+            email: res.data.email,
+          });
+          sessionStorage.setItem(
+            'userInfoSession',
+            JSON.stringify({
+              ...userInfo,
+              username: res.data.username,
+              email: res.data.email,
+            })
+          );
+        });
       }
     });
   };
@@ -105,6 +130,7 @@ export default function App() {
       // window.location.assign("http://localhost:3000");
     }
   }, []);
+
   return (
     <Router>
       <Nav
