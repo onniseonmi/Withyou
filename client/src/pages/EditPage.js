@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import react from "react-dom";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
 import Elements from "../components/modals/edit/Elements";
@@ -8,11 +9,39 @@ import elementsImg from "../images/elements.png";
 import imageImg from "../images/image.png";
 import textImg from "../images/text.png";
 import "../css/EditPage.css";
+import ImageOnCanvas from "../components/modals/edit/ImageOnCanvas";
+
 export default function EditPage() {
-  const [template, setTemplate] = useState(false);
-  const [elements, setElements] = useState(false);
-  const [image, setImage] = useState(false);
-  const [text, setText] = useState(false);
+  const [templateStatus, setTemplateStatus] = useState(false);
+  const [elementsStatus, setElementsStatus] = useState(false);
+  const [imageStatus, setImageStatus] = useState(false);
+  const [textStatus, setTextStatus] = useState(false);
+  const [clickOn, setClickOn] = useState(false); // ! 얘도 쓸모없음 -->
+  // TODO : 상태가 전달이 안되는 이유 찾기 -> useCallback() 이용?
+  
+  // 부모 상태가 바로 안 적용..
+  const addToCanvas = useCallback(
+    (e) => {
+      const a = (
+        <ImageOnCanvas
+          src={e.target.src}
+          clickOn={clickOn}
+          setClickOn={setClickOn}
+          style={{
+            width: "5rem",
+            position: "absolute",
+            // TODO : 위치 제대로 찾아서 넣기
+            top: "15rem",
+            left: "12.5rem",
+            border: "solid 0.1rem white",
+          }}
+        />
+      );
+      react.render(a, document.querySelector("#canvas"));
+    },
+    [clickOn]
+  );
+
   return (
     <div id="EditPage">
       <div id="sub-nav">
@@ -24,61 +53,61 @@ export default function EditPage() {
       </div>
       <div id="editScreen">
         <div id="edit-property">
-          <div id="canvas">Edit-Tool</div>
-          <div id="detail-propertys">Property</div>
+          <div id="canvas"></div>
+          <div id="detail-propertys"></div>
         </div>
         <div id="edit-tools">
-          {/* 이것들 누르면 모달로 안에 차도록 하면 될 듯 */}
           <div id="buttons">
             <div
               onClick={() => {
                 setStateAll();
-                setTemplate(true);
+                setTemplateStatus(true);
               }}
             >
               {<img className="edit-button" src={templateImg} />}
             </div>
             <Template
-              status={template}
+              status={templateStatus}
               onClose={() => {
-                setTemplate(false);
+                setTemplateStatus(false);
               }}
+              addToCanvas={addToCanvas}
             />
 
             <div
               onClick={() => {
                 setStateAll();
-                setElements(true);
+                setElementsStatus(true);
               }}
             >
               {<img className="edit-button" src={elementsImg} />}
             </div>
             <Elements
-              status={elements}
+              status={elementsStatus}
               onClose={() => {
-                setElements(false);
+                setElementsStatus(false);
               }}
             />
 
             <div
               onClick={() => {
                 setStateAll();
-                setImage(true);
+                setImageStatus(true);
               }}
             >
               {<img className="edit-button" src={imageImg} />}
             </div>
-            <Image status={image} onClose={() => setImage(false)} />
+            <Image status={imageStatus} onClose={() => setImageStatus(false)} />
 
             <div
               onClick={() => {
                 setStateAll();
-                setText(true);
+                setTextStatus(true);
               }}
             >
               {<img className="edit-button" src={textImg} />}
             </div>
-            <Text status={text} onClose={() => setText(false)} />
+            <Text status={textStatus} onClose={() => setTextStatus(false)} />
           </div>
         </div>
       </div>
@@ -87,10 +116,10 @@ export default function EditPage() {
   // 다른 상태들이 켜져 있으면 그 상태 끄는 함수
   function setStateAll() {
     const states = [
-      [template, setTemplate],
-      [elements, setElements],
-      [image, setImage],
-      [text, setText],
+      [templateStatus, setTemplateStatus],
+      [elementsStatus, setElementsStatus],
+      [imageStatus, setImageStatus],
+      [textStatus, setTextStatus],
     ];
 
     states.forEach((el) => {

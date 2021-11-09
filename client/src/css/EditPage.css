@@ -1,5 +1,8 @@
 /* 클때 */
 @media screen and (min-width: 900px) {
+  body {
+    background-color: #f5f5f5;
+  }
   #sub-nav {
     border-bottom: solid 0.1rem grey;
     display: flex;
@@ -23,7 +26,7 @@
   }
 
   #edit-property {
-    border: solid 0.1rem red;
+    /* border: solid 0.1rem red; */
     width: 87rem;
     display: flex;
     flex-direction: column;
@@ -32,9 +35,10 @@
   }
 
   #canvas {
+    /* Edit-tool*/
     font-size: 2rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem gray;
     width: 50rem;
     height: 23.5rem;
   }
@@ -42,7 +46,7 @@
   #detail-propertys {
     font-size: 2rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem gray;
     width: 50rem;
     height: 10rem;
   }
@@ -64,9 +68,9 @@
     justify-content: space-around;
     font-size: 3rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem gray;
     width: 5rem;
-    height: 43rem;
+    height: 25rem;
   }
 
   .selected {
@@ -85,8 +89,12 @@
 }
 /* 작을 때 */
 @media screen and (max-width: 900px) {
+  body {
+    background-color: #f5f5f5;
+  }
+
   #sub-nav {
-    border-bottom: solid 0.1rem red;
+    border-bottom: solid 0.1rem grey;
     display: flex;
     justify-content: space-between;
   }
@@ -110,7 +118,7 @@
   #canvas {
     font-size: 2rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem grey;
     width: 27rem;
     height: 20rem;
   }
@@ -118,7 +126,7 @@
   #detail-propertys {
     font-size: 2rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem grey;
     width: 27rem;
     height: 20rem;
   }
@@ -141,7 +149,7 @@
     align-items: center;
     font-size: 3rem;
     margin: 0.5rem;
-    border: solid 0.1rem red;
+    border: solid 0.1rem grey;
     width: 27rem;
     height: 5rem;
   }
