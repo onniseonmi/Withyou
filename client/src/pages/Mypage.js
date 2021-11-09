@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import sample from "../images/template/sample.png";
 import "../css/Mypage.css";
 import withyou from "../images/title.png";
 import cat from "../images/cat.png";
 
-const Mypage = ({ email, username, mobile }) => {
+const Mypage = ({ userInfo, setUserInfo }) => {
+  const { username, email, mobile, image } = userInfo;
   return (
     <div id="mypage">
       <div id="profile">
@@ -12,7 +13,7 @@ const Mypage = ({ email, username, mobile }) => {
           <div id="profile-title">⭐️ My Profile</div>
           <div id="profile-content">
             <div id="photo">
-              <img id="user-photo" src={cat} />
+              <img id="user-photo" src={image} />
             </div>
             <div id="userinfo">
               <div id="e-mail">💫 email : {email}</div>
