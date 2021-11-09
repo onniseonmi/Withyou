@@ -3,7 +3,8 @@ module.exports = {
   signup: require('./user/signup.js'),
   signout: require('./user/signout.js'),
   deleteAccount: require('./user/delete.js'),
-  github: require('./auth/github.js'),
-  // naver: require('./auth/naver.js'),
-  // kakao: require('./auth/kakao.js'),
+  github: require('./user/oauth/github.js'),
+  callback: require('./user/oauth/callback'),
+  kakao: require('./user/oauth/kakao'),
+  naver: require('./user/oauth/naver'),
 };

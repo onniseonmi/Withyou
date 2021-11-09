@@ -9,25 +9,27 @@ const REFRESHEXPIREINDAYS = process.env.REFRESHEXPIREINDAYS;
 // const bcryptSaltRounds = 12;
 
 module.exports = async (req, res) => {
-  const { email, password } = req.body;
   const userInfo = await User.findOne({
-    where: { email },
+    where: { email: req.body.email },
   });
   if (!userInfo) {
     return res.status(401).send({ message: 'Invalid email' });
   }
-  const isValidPassword = await bcrypt.compare(password, userInfo.password);
+  const isValidPassword = await bcrypt.compare(
+    req.body.password,
+    userInfo.password
+  );
   if (!isValidPassword) {
     return res.status(401).json({ message: 'Invalid password' });
   }
 
   const accessToken = createAccessToken(userInfo.email);
   const refreshToken = createRefreshToken(userInfo.email);
-
+  const { username, mobile, email, image } = userInfo.dataValues;
   res
     .status(200)
     .cookie('refreshToken', refreshToken)
-    .json({ accessToken, email });
+    .json({ accessToken, userInfo: { username, mobile, email, image } });
 };
 
 function createAccessToken(email) {
