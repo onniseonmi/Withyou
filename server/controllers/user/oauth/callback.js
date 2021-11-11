@@ -38,8 +38,6 @@ module.exports = (req, res) => {
       data: postData,
       withCredentials: true,
     }).then((resp) => {
-      console.log('resp.data');
-      console.log(resp.data);
       res.send({ access_token: resp.data.access_token });
     });
   }
