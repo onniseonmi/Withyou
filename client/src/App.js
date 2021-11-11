@@ -105,7 +105,7 @@ export default function App() {
       // window.location.assign("http://localhost:3000");
     }
   }, []);
-  
+
   return (
     <Router>
       <Nav

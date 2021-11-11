@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function ImageOnCanvas({ src, style }) {
+export default function ImageOnCanvas({ src, style, items }) {
   let clickOn = false;
-  deleteObject();
   removeClassName();
   return (
     <img
       draggable={false}
       src={src}
       style={style}
-      // 선택하면 아래 뜨도록 만들기
+      // TODO : 선택하면 아래 뜨도록 만들기
       onMouseDown={(e) => {
-        // 중앙으로 딸려오는거 해결하기
         clickOn = true;
         e.target.classList.add("selected");
         controlCursorStyle(e, "grabbing");
+        // 클릭을 하면, classIndex에 추가되도록하기
       }}
       onMouseUp={(e) => {
         clickOn = false;
@@ -57,15 +56,6 @@ export default function ImageOnCanvas({ src, style }) {
 
       if (selected && e.key === "Escape") {
         selected.classList.remove("selected");
-      }
-    });
-  }
-
-  function deleteObject() {
-    window.addEventListener("keydown", (e) => {
-      const selected = document.querySelector(".selected");
-      if (selected && (e.key === "Backspace" || e.key === "Delete")) {
-        // TODO : 리액트에서 돔을 삭제하는 방법 찾아보기
       }
     });
   }

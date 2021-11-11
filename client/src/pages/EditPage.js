@@ -16,7 +16,13 @@ export default function EditPage() {
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
+  // 생성되는 이미지를 배열에 담아둔다.
+  const [items, setItems] = useState([]);
+  const [classIndex, setClassIndex] = useState([]);
+  // 이 배열에 담긴 애들을 렌더한다.
+  deleteObject();
 
+  // 삭제할 경우, 이 배열에 담긴 내용을 삭제한다.
   return (
     <div id="EditPage">
       <div id="sub-nav">
@@ -46,7 +52,8 @@ export default function EditPage() {
               onClose={() => {
                 setTemplateStatus(false);
               }}
-              addToCanvas={addToCanvas}
+              addToItems={addToItems}
+              renderToCanvas={renderToCanvas}
             />
 
             <div
@@ -88,7 +95,6 @@ export default function EditPage() {
       </div>
     </div>
   );
-  // 다른 상태들이 켜져 있으면 그 상태 끄는 함수
   function setStateAll() {
     const states = [
       [templateStatus, setTemplateStatus],
@@ -104,7 +110,8 @@ export default function EditPage() {
     });
   }
 
-  function addToCanvas(e) {
+  function addToItems(e) {
+    console.log("addToItems");
     const a = (
       <ImageOnCanvas
         src={e.target.src}
@@ -116,8 +123,31 @@ export default function EditPage() {
           left: "12.5rem",
           border: "solid 0.1rem white",
         }}
+        items={items}
       />
     );
-    react.render(a, document.querySelector("#canvas"));
+    setItems((prevState) => {
+      return [...prevState, a];
+    });
+  }
+
+  function renderToCanvas() {
+    items.map((el) => {
+      react.render(el, document.querySelector("#canvas"));
+    });
+  }
+
+  function deleteObject() {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" || e.key === "Delete") {
+        // * 왜 여러번 반복돼서 출력이 될까? 렌더링을 여러번하나..?
+        console.log("Press Key");
+        const selected = document.querySelector(".selected");
+        if (selected) {
+          // TODO : items를 순회해서 클래스가 selected면 제거해버린다.
+          // items.map((el) => console.log(el));
+        }
+      }
+    });
   }
 }

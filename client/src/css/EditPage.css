@@ -60,7 +60,7 @@ body {
   /* 왜 아래 border가 안 먹을까? */
   border: solid 1rem black;
   /* 임시방편 */
-  padding: 0.1rem; 
+  padding: 0.1rem;
   background-color: salmon;
 }
 /* 클때 */
@@ -140,11 +140,6 @@ body {
   #edit-tools {
     width: 27rem;
     height: 5rem;
-  }
-
-  .selected {
-    border: solid 0.1rem gray;
-    background-color: grey;
   }
 
   #buttons {
