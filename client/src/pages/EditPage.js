@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import react from "react-dom";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
@@ -111,7 +111,7 @@ export default function EditPage() {
         style={{
           width: "5rem",
           position: "absolute",
-          // TODO : 위치 제대로 찾아서 넣기
+          // TODO : 위치 제대로 찾아서 넣기 -> 좀 더 고민해보기
           top: "15rem",
           left: "12.5rem",
           border: "solid 0.1rem white",
