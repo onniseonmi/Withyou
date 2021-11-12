@@ -6,4 +6,5 @@ module.exports = {
   callback: require("./user/oauth/callback"),
   kakao: require("./user/oauth/kakao"),
   naver: require("./user/oauth/naver"),
+  edit: require("./user/edit"),
 };
