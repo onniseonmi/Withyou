@@ -10,4 +10,5 @@ module.exports = {
   card: require('./cards/card.js'),
   deleteCard: require('./cards/deleteCard'),
   postCard: require('./cards/cardPost'),
+  edit: require('./user/edit'),
 };

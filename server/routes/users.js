@@ -8,6 +8,7 @@ const {
   callback,
   kakao,
   naver,
+  edit,
   github,
 } = require('../controllers');
 // const auth = require('../middelware/auth');
@@ -21,4 +22,5 @@ router.post('/callback', callback);
 router.get('/kakao', kakao);
 router.get('/naver', naver);
 router.get('/github', github);
+router.post('/edit', edit);
 module.exports = router;
