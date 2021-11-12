@@ -44,18 +44,6 @@ body {
     cursor: pointer;
   }
 
-  a mypage { /* mypage 찾아 */
-    text-decoration: none;
-    text-decoration-line: none;
-    color: white;
-  }
-
-  a { /* 시작하기 따로 색상줄거 방법 찾아 */
-    text-decoration: none;
-    text-decoration-line: none;
-    color: white;
-  }
-
   .landing_img {
     width: 100%;
     display: inline;
