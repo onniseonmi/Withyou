@@ -7,7 +7,7 @@ const fs = require('fs');
 
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.js');
-const authRouter = require('./routes/auth.js');
+const cardRouter = require('./routes/cards.js');
 
 const app = express();
 
@@ -27,6 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
 app.use('/user', usersRouter);
-app.use('/auth', authRouter);
+app.use('/mycard', cardRouter);
 
 module.exports = app;

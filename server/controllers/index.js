@@ -7,4 +7,7 @@ module.exports = {
   callback: require('./user/oauth/callback'),
   kakao: require('./user/oauth/kakao'),
   naver: require('./user/oauth/naver'),
+  card: require('./cards/card.js'),
+  deleteCard: require('./cards/deleteCard'),
+  postCard: require('./cards/cardPost'),
 };

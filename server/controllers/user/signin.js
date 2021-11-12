@@ -6,12 +6,13 @@ const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
 const ACCESSEXPIREINDAYS = process.env.ACCESSEXPIREINDAYS;
 const REFRESHEXPIREINDAYS = process.env.REFRESHEXPIREINDAYS;
-// const bcryptSaltRounds = 12;
 
 module.exports = async (req, res) => {
   const userInfo = await User.findOne({
     where: { email: req.body.email },
   });
+  console.log('userInfo');
+  console.log(userInfo);
   if (!userInfo) {
     return res.status(401).send({ message: 'Invalid email' });
   }
@@ -25,15 +26,17 @@ module.exports = async (req, res) => {
 
   const accessToken = createAccessToken(userInfo.email);
   const refreshToken = createRefreshToken(userInfo.email);
-  const { username, mobile, email, image } = userInfo.dataValues;
+  const { id, username, mobile, email, image } = userInfo.dataValues;
   res
     .status(200)
     .cookie('refreshToken', refreshToken)
-    .json({ accessToken, userInfo: { username, mobile, email, image } });
+    .json({ accessToken, userInfo: { id, username, mobile, email, image } });
 };
 
 function createAccessToken(email) {
-  return jwt.sign({ email }, ACCESS_SECRET, { expiresIn: ACCESSEXPIREINDAYS });
+  return jwt.sign({ email }, ACCESS_SECRET, {
+    expiresIn: ACCESSEXPIREINDAYS,
+  });
 }
 function createRefreshToken(email) {
   return jwt.sign({ email }, REFRESH_SECRET, {
