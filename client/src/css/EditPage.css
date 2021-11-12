@@ -1,26 +1,80 @@
+body {
+  background-color: #f5f5f5;
+}
+
+#sub-nav {
+  border-bottom: solid 0.1rem grey;
+  display: flex;
+}
+
+.sub-nav-menus {
+  display: flex;
+}
+
+.sub-nav-menu {
+  font-size: 1rem;
+}
+
+#editScreen {
+  display: flex;
+}
+
+#detail-propertys {
+  font-size: 2rem;
+  margin: 0.5rem;
+  border: solid 0.1rem grey;
+}
+
+#canvas {
+  font-size: 2rem;
+  margin: 0.5rem;
+  border: solid 0.1rem gray;
+}
+
+#details {
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-around;
+}
+
+#edit-tools {
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  margin: 0.5rem;
+  border: solid 0.1rem gray;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.selected {
+  /* 왜 아래 border가 안 먹을까? */
+  border: solid 1rem black;
+  /* 임시방편 */
+  padding: 0.1rem;
+  background-color: salmon;
+}
 /* 클때 */
 @media screen and (min-width: 900px) {
-  body {
-    background-color: #f5f5f5;
-  }
   #sub-nav {
-    border-bottom: solid 0.1rem grey;
-    display: flex;
     justify-content: flex-end;
-  }
-
-  .sub-nav-menus {
-    display: flex;
   }
 
   .sub-nav-menu {
     margin: 1rem 1rem;
-    font-size: 1rem;
     font-weight: 400;
   }
 
   #editScreen {
-    display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
   }
@@ -35,52 +89,22 @@
   }
 
   #canvas {
-    /* Edit-tool*/
-    font-size: 2rem;
-    margin: 0.5rem;
-    border: solid 0.1rem gray;
     width: 50rem;
     height: 23.5rem;
   }
 
   #detail-propertys {
-    font-size: 2rem;
-    margin: 0.5rem;
-    border: solid 0.1rem gray;
     width: 50rem;
     height: 10rem;
   }
 
-  #details {
-    height: 50rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .detail {
-    display: flex;
-    justify-content: space-around;
-  }
-
   #edit-tools {
-    display: flex;
-    justify-content: space-around;
-    font-size: 3rem;
-    margin: 0.5rem;
-    border: solid 0.1rem gray;
     width: 5rem;
     height: 25rem;
   }
 
-  .selected {
-    border: solid 0.1rem gray;
-  }
-
   #buttons {
-    display: flex;
     flex-direction: column;
-    justify-content: space-around;
     height: 25rem;
   }
   .edit-button {
@@ -89,80 +113,37 @@
 }
 /* 작을 때 */
 @media screen and (max-width: 900px) {
-  body {
-    background-color: #f5f5f5;
-  }
-
   #sub-nav {
-    border-bottom: solid 0.1rem grey;
-    display: flex;
     justify-content: space-between;
-  }
-
-  .sub-nav-menus {
-    display: flex;
   }
 
   .sub-nav-menu {
     margin: 0.5rem;
-    font-size: 1rem;
   }
 
   #editScreen {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
   #canvas {
-    font-size: 2rem;
-    margin: 0.5rem;
-    border: solid 0.1rem grey;
     width: 27rem;
     height: 20rem;
   }
 
   #detail-propertys {
-    font-size: 2rem;
-    margin: 0.5rem;
-    border: solid 0.1rem grey;
     width: 27rem;
     height: 20rem;
   }
 
-  #details {
-    height: 50rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .detail {
-    display: flex;
-    justify-content: space-around;
-  }
-
   #edit-tools {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 3rem;
-    margin: 0.5rem;
-    border: solid 0.1rem grey;
     width: 27rem;
     height: 5rem;
   }
 
-  .selected {
-    border: solid 0.1rem gray;
-    background-color: grey;
-  }
-
   #buttons {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
   }
   .edit-button {
     width: 2rem;
