@@ -22,7 +22,8 @@ export default function Template(props) {
             id="template-modal-add-button"
             src={templateImg}
             onClick={(e) => {
-              props.addToCanvas(e);
+              props.addToItems(e);
+              props.renderToCanvas();
               props.onClose();
             }}
           />

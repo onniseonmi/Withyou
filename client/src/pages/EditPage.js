@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import react from "react-dom";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
@@ -16,32 +16,13 @@ export default function EditPage() {
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
-  const [clickOn, setClickOn] = useState(false); // ! 얘도 쓸모없음 -->
-  // TODO : 상태가 전달이 안되는 이유 찾기 -> useCallback() 이용?
-  
-  // 부모 상태가 바로 안 적용..
-  const addToCanvas = useCallback(
-    (e) => {
-      const a = (
-        <ImageOnCanvas
-          src={e.target.src}
-          clickOn={clickOn}
-          setClickOn={setClickOn}
-          style={{
-            width: "5rem",
-            position: "absolute",
-            // TODO : 위치 제대로 찾아서 넣기
-            top: "15rem",
-            left: "12.5rem",
-            border: "solid 0.1rem white",
-          }}
-        />
-      );
-      react.render(a, document.querySelector("#canvas"));
-    },
-    [clickOn]
-  );
+  // 생성되는 이미지를 배열에 담아둔다.
+  const [items, setItems] = useState([]);
+  const [classIndex, setClassIndex] = useState([]);
+  // 이 배열에 담긴 애들을 렌더한다.
+  deleteObject();
 
+  // 삭제할 경우, 이 배열에 담긴 내용을 삭제한다.
   return (
     <div id="EditPage">
       <div id="sub-nav">
@@ -71,7 +52,8 @@ export default function EditPage() {
               onClose={() => {
                 setTemplateStatus(false);
               }}
-              addToCanvas={addToCanvas}
+              addToItems={addToItems}
+              renderToCanvas={renderToCanvas}
             />
 
             <div
@@ -113,7 +95,6 @@ export default function EditPage() {
       </div>
     </div>
   );
-  // 다른 상태들이 켜져 있으면 그 상태 끄는 함수
   function setStateAll() {
     const states = [
       [templateStatus, setTemplateStatus],
@@ -125,6 +106,47 @@ export default function EditPage() {
     states.forEach((el) => {
       if (el[0] === true) {
         el[1](false);
+      }
+    });
+  }
+
+  function addToItems(e) {
+    console.log("addToItems");
+    const a = (
+      <ImageOnCanvas
+        src={e.target.src}
+        style={{
+          width: "5rem",
+          position: "absolute",
+          // TODO : 위치 제대로 찾아서 넣기 -> 좀 더 고민해보기
+          top: "15rem",
+          left: "12.5rem",
+          border: "solid 0.1rem white",
+        }}
+        items={items}
+      />
+    );
+    setItems((prevState) => {
+      return [...prevState, a];
+    });
+  }
+
+  function renderToCanvas() {
+    items.map((el) => {
+      react.render(el, document.querySelector("#canvas"));
+    });
+  }
+
+  function deleteObject() {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" || e.key === "Delete") {
+        // * 왜 여러번 반복돼서 출력이 될까? 렌더링을 여러번하나..?
+        console.log("Press Key");
+        const selected = document.querySelector(".selected");
+        if (selected) {
+          // TODO : items를 순회해서 클래스가 selected면 제거해버린다.
+          // items.map((el) => console.log(el));
+        }
       }
     });
   }
