@@ -4,7 +4,8 @@
 }
 
 .title img {
-  margin-left: 2rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5%;
   height: 3rem;
 }
 
@@ -29,11 +30,18 @@
 @media screen and (max-width: 900px) {
   .nav-container {
     width: 100%;
-    height: 4rem;
-    background-color: beige;
+    height: 10%;
+    background-color: white;
+    border-bottom: black;
+  }
+
+  .nav-box {
+    display: none;
   }
 
   .title img {
-    height: 2.5rem;
+    margin-top: 0.5%;
+    margin-left: 0.5rem;
+    height: 1.8rem;
   }
 }
