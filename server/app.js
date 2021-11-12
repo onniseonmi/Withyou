@@ -7,6 +7,7 @@ const fs = require('fs');
 
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.js');
+const authRouter = require('./routes/auth.js');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
