@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import react from "react-dom";
+import React, { useEffect, useState } from "react";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
 import Elements from "../components/modals/edit/Elements";
@@ -16,13 +15,76 @@ export default function EditPage() {
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
-  // 생성되는 이미지를 배열에 담아둔다.
-  const [items, setItems] = useState([]);
-  const [classIndex, setClassIndex] = useState([]);
-  // 이 배열에 담긴 애들을 렌더한다.
-  deleteObject();
+  const [itemStates, setItemStates] = useState([]);
 
-  // 삭제할 경우, 이 배열에 담긴 내용을 삭제한다.
+  function setStateAll() {
+    const states = [
+      [templateStatus, setTemplateStatus],
+      [elementsStatus, setElementsStatus],
+      [imageStatus, setImageStatus],
+      [textStatus, setTextStatus],
+    ];
+
+    states.forEach((el) => {
+      if (el[0] === true) {
+        el[1](false);
+      }
+    });
+  }
+
+  function addToItems(src) {
+    setItemStates((prevState) => {
+      return [
+        ...prevState,
+        {
+          id: makeId(),
+          src,
+          style: {
+            position: "absolute",
+            width: "7rem",
+            top: "12rem",
+            left: "12rem",
+          },
+          isSelected: false,
+          isDragging: false,
+        },
+      ];
+    });
+  }
+
+  function removeObject() {
+    window.onkeydown = (e) => {
+      if (e.key === "Backspace" || e.key === "Delete") {
+        // el.isSelected가 true일 경우, 해당 el을 제외한 itemStates를 만든다.
+        const removedItems = itemStates.filter((el) => el.isSelected !== true);
+        setItemStates(removedItems);
+      }
+    };
+  }
+
+  function makeId() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+
+  function onSelect(index) {
+    const nextState = [...itemStates];
+    nextState[index].isSelected = true;
+    setItemStates(nextState);
+  }
+
+  function onDeselect(index) {
+    const nextState = [...itemStates];
+    nextState[index].isSelected = false;
+    setItemStates(nextState);
+  }
+
+  removeObject();
+
   return (
     <div id="EditPage">
       <div id="sub-nav">
@@ -34,7 +96,39 @@ export default function EditPage() {
       </div>
       <div id="editScreen">
         <div id="edit-property">
-          <div id="canvas"></div>
+          <div id="canvas">
+            {itemStates.map((el, i) => {
+              return (
+                <ImageOnCanvas
+                  key={el.id}
+                  src={el.src}
+                  style={el.style}
+                  isSelected={el.isSelected}
+                  isDragging={el.isDragging}
+                  onDragStart={() => {
+                    const nextState = [...itemStates];
+                    nextState[i].isDragging = true;
+                    setItemStates(nextState);
+                  }}
+                  onDragEnd={() => {
+                    const nextState = [...itemStates];
+                    nextState[i].isDragging = false;
+                    setItemStates(nextState);
+                  }}
+                  onSelect={() => onSelect(i)}
+                  onDeselect={() => onDeselect(i)}
+                  onChangeStyle={(nextStyle) => {
+                    const nextState = [...itemStates];
+                    nextState[i].style = {
+                      ...nextState[i].style,
+                      ...nextStyle,
+                    };
+                    setItemStates(nextState);
+                  }}
+                />
+              );
+            })}
+          </div>
           <div id="detail-propertys"></div>
         </div>
         <div id="edit-tools">
@@ -53,7 +147,6 @@ export default function EditPage() {
                 setTemplateStatus(false);
               }}
               addToItems={addToItems}
-              renderToCanvas={renderToCanvas}
             />
 
             <div
@@ -95,59 +188,4 @@ export default function EditPage() {
       </div>
     </div>
   );
-  function setStateAll() {
-    const states = [
-      [templateStatus, setTemplateStatus],
-      [elementsStatus, setElementsStatus],
-      [imageStatus, setImageStatus],
-      [textStatus, setTextStatus],
-    ];
-
-    states.forEach((el) => {
-      if (el[0] === true) {
-        el[1](false);
-      }
-    });
-  }
-
-  function addToItems(e) {
-    console.log("addToItems");
-    const a = (
-      <ImageOnCanvas
-        src={e.target.src}
-        style={{
-          width: "5rem",
-          position: "absolute",
-          // TODO : 위치 제대로 찾아서 넣기 -> 좀 더 고민해보기
-          top: "15rem",
-          left: "12.5rem",
-          border: "solid 0.1rem white",
-        }}
-        items={items}
-      />
-    );
-    setItems((prevState) => {
-      return [...prevState, a];
-    });
-  }
-
-  function renderToCanvas() {
-    items.map((el) => {
-      react.render(el, document.querySelector("#canvas"));
-    });
-  }
-
-  function deleteObject() {
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Backspace" || e.key === "Delete") {
-        // * 왜 여러번 반복돼서 출력이 될까? 렌더링을 여러번하나..?
-        console.log("Press Key");
-        const selected = document.querySelector(".selected");
-        if (selected) {
-          // TODO : items를 순회해서 클래스가 selected면 제거해버린다.
-          // items.map((el) => console.log(el));
-        }
-      }
-    });
-  }
 }
