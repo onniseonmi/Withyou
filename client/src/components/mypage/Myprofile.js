@@ -1,70 +1,212 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import addImg from "../../images/add_image.png";
 import "../../css/Myprofile.css";
-const Myprofile = ({ userInfo, setUserInfo }) => {
-  const userInfoSession = JSON.parse(sessionStorage.getItem("userInfoSession"));
+const server_url = "http://localhost:4000";
+const Myprofile = () => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
-  const { username, email, mobile, image } = userInfo;
-  const [editBtnOn, setEditBtnOn] = useState(false);
-  const [editUserInfo, setEditUserInfo] = useState({
-    username: userInfoSession.username,
-    mobile: userInfoSession.mobile,
-    image: userInfoSession.image,
+  const imgInputRef = useRef();
+  const [editBtn, setEditBtn] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    email: "",
+    mobile: "",
+    image: "",
   });
+  const [userInput, setUserInput] = useState({
+    username: "",
+    mobile: "",
+    image: "",
+  });
+  const { username, email, mobile, image } = userInfo;
   const handleClick = async (e) => {
     if (e.target.id === "btn-edit") {
-      setEditBtnOn(true);
+      setEditBtn(true);
     } else if (e.target.id === "btn-save") {
-      const data = axios({
-        method: "POST",
-        url: "http://localhost:4000/user/edit",
-        data: {
-          username: editUserInfo.username,
-          mobile: editUserInfo.mobile,
-        },
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setUserInfo({
-        ...userInfo,
-        username: editUserInfo.username,
-        mobile: editUserInfo.mobile,
-      });
-      setEditBtnOn(false);
+      try {
+        const data = await axios({
+          method: "POST",
+          url: `${server_url}/profile`,
+          data: {
+            username: userInput.username,
+            mobile: userInput.mobile,
+          },
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        });
+        setUserInfo({
+          ...userInfo,
+          email: data.data.email,
+          username: data.data.username,
+          mobile: data.data.mobile,
+        });
+        setUserInput({
+          ...userInput,
+          username: data.data.username,
+          mobile: data.data.mobile,
+        });
+      } catch (err) {}
+      setEditBtn(false);
     } else if (e.target.id === "btn-cancel") {
-      setEditUserInfo({
+      setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
         image: userInfo.image,
       });
-      setEditBtnOn(false);
+      setEditBtn(false);
     }
   };
   const handleChange = (e) => {
-    if (e.target.id === "username") {
-      setEditUserInfo({
-        ...editUserInfo,
-        username: e.target.value,
-      });
-    } else if (e.target.id === "mobile") {
-      setEditUserInfo({
-        ...editUserInfo,
-        mobile: e.target.value,
-      });
-    }
+    setUserInput({
+      [e.target.id]: e.target.value,
+    });
   };
+  const imageChange = async (image) => {
+    setUserInfo({
+      ...userInfo,
+      image: image,
+    });
+    // try {
+    //   const data = await axios({
+    //     method: "POST",
+    //     url: `${server_url}/profile/image`,
+    //     data: {
+    //       image,
+    //     },
+    //     headers: {
+    //       authorization: `Bearer ${accessToken}`,
+    //     },
+    //   });
+    //   console.log(data.data);
+    // } catch (err) {}
+  };
+  useEffect(async () => {
+    if (accessToken) {
+      const loginType = sessionStorage.getItem("loginType");
+      try {
+        if (loginType === "kakao") {
+          axios({
+            method: "GET",
+            url: `${server_url}/user/kakao`,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }).then((res) => {
+            setUserInfo({
+              ...userInfo,
+              username: res.data.username,
+              email: res.data.email,
+              image: res.data.image,
+            });
+            setUserInput({
+              username: res.data.username,
+              mobile: res.data.mobile,
+              image: res.data.image,
+            });
+          });
+        } else if (loginType === "naver") {
+          axios({
+            method: "GET",
+            url: `${server_url}/user/naver`,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }).then((res) => {
+            setUserInfo({
+              ...userInfo,
+              username: res.data.username,
+              email: res.data.email,
+              image: res.data.image,
+              mobile: res.data.mobile,
+            });
+            setUserInput({
+              username: res.data.username,
+              mobile: res.data.mobile,
+              image: res.data.image,
+            });
+          });
+        } else if (loginType === "github") {
+          axios({
+            method: "GET",
+            url: `${server_url}/user/github`,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }).then((res) => {
+            setUserInfo({
+              ...userInfo,
+              username: res.data.username,
+              email: res.data.email,
+            });
+            setUserInput({
+              username: res.data.username,
+              mobile: res.data.mobile,
+              image: res.data.image,
+            });
+          });
+        } else {
+          axios({
+            method: "GET",
+            url: `${server_url}/profile`,
+            headers: {
+              authorization: `Bearer ${accessToken}`,
+            },
+          }).then((res) => {
+            setUserInfo({
+              username: res.data.username,
+              email: res.data.email,
+              mobile: res.data.mobile,
+              image: res.data.image,
+            });
+            setUserInput({
+              username: res.data.username,
+              mobile: res.data.mobile,
+              image: res.data.image,
+            });
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, []);
   return (
     <div>
       <div className="mypage-title">⭐️ My Profile</div>
-      {editBtnOn ? (
+      {editBtn ? (
         <div id="profile-content">
           <div className="profile-image">
-            <img
-              id="image"
-              src={image === undefined || image === "" ? addImg : image}
-            />
+            <label for="add-image">
+              <img
+                src={image === "" || image === undefined ? addImg : image}
+                style={{ pointerEvents: "none" }}
+              />
+              <button
+                onClick={(e) => {
+                  imgInputRef.current.click();
+                }}
+              >
+                add Image
+              </button>
+            </label>
+            <input
+              ref={imgInputRef}
+              type="file"
+              id="add-image"
+              accept="image/png, image/jpeg"
+              style={{
+                display: "none",
+              }}
+              onChange={(ev) => {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                  const image = e.target.result;
+                  imageChange(image);
+                };
+                reader.readAsDataURL(ev.target.files[0]);
+              }}
+            ></input>
           </div>
           <div className="userinfo">
             <div id="e-mail" className="row">
@@ -76,7 +218,7 @@ const Myprofile = ({ userInfo, setUserInfo }) => {
               <input
                 id="username"
                 type="text"
-                value={editUserInfo.username}
+                value={userInput.username}
                 onChange={handleChange}
               ></input>
             </div>
@@ -85,7 +227,7 @@ const Myprofile = ({ userInfo, setUserInfo }) => {
               <input
                 id="mobile"
                 type="text"
-                value={editUserInfo.mobile}
+                value={userInput.mobile}
                 onChange={handleChange}
               ></input>
             </div>
@@ -102,27 +244,13 @@ const Myprofile = ({ userInfo, setUserInfo }) => {
       ) : (
         <div id="profile-content">
           <div className="profile-image">
-            <label for="add-image">
-              <img src={image === "" || image === undefined ? addImg : image} />
-            </label>
-            <input
-              type="file"
-              id="add-image"
-              accept="image/png, image/jpeg"
+            <img
+              id="image"
+              src={image === undefined || image === "" ? addImg : image}
               style={{
-                display: "none",
+                pointerEvents: "none",
               }}
-              onChange={(ev) => {
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                  setUserInfo({
-                    ...userInfo,
-                    image: e.target.result,
-                  });
-                };
-                reader.readAsDataURL(ev.target.files[0]);
-              }}
-            ></input>
+            />
           </div>
           <div className="userinfo">
             <div id="e-mail" className="row">

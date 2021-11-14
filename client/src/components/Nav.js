@@ -3,33 +3,24 @@ import { Link } from "react-router-dom";
 import title from "../images/title.png";
 import "../css/Nav.css";
 import Login from "./modals/auth/Login";
+const client_url = "http://localhost:3000";
+const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
+  const [loginBtn, setLoginBtn] = useState(false);
+  const [signupBtn, setSignupBtn] = useState(false);
 
-const Nav = ({
-  isLogin,
-  setIsLogin,
-  userInfo,
-  setUserInfo,
-  setAccessToken,
-}) => {
-  const [loginBtnOn, setLoginBtnOn] = useState(false);
-  const [signupBtnOn, setSignupBtnOn] = useState(false);
   const handleClick = (e) => {
     if (e.target.id === "login") {
-      setLoginBtnOn(true);
+      setLoginBtn(true);
     } else if (e.target.id === "join") {
-      setLoginBtnOn(true);
-      setSignupBtnOn(true);
-    } else if (e.target.id === "logout") {
-      setIsLogin(false);
-      setUserInfo({
-        username: "",
-        email: "",
-        mobile: "",
-        image: "",
-        type: "",
-      });
+      setLoginBtn(true);
+      setSignupBtn(true);
+    }
+    if (e.target.id === "logout") {
       sessionStorage.clear();
-      window.location.assign("http://localhost:3000");
+      setAccessToken("");
+      setIsLogin(false);
+      setLoginBtn(false);
+      window.location.assign(client_url);
     }
   };
   return (
@@ -61,16 +52,16 @@ const Nav = ({
           </div>
         )}
       </div>
-      {loginBtnOn ? (
+      {loginBtn ? (
         <Login
           isLogin={isLogin}
           setIsLogin={setIsLogin}
-          setLoginBtnOn={setLoginBtnOn}
-          signupBtnOn={signupBtnOn}
-          setSignupBtnOn={setSignupBtnOn}
+          loginBtn={loginBtn}
+          setLoginBtn={setLoginBtn}
+          signupBtn={signupBtn}
+          setSignupBtn={setSignupBtn}
+          accessToken={accessToken}
           setAccessToken={setAccessToken}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
         />
       ) : null}
     </>
