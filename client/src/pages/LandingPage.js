@@ -6,7 +6,7 @@ import section_1 from "../images/section_1.png"
 import section_2 from "../images/section_2.png"
 import section_3 from "../images/section_3.png"
 import section_4 from "../images/section_4.jpg"
-
+// import footer
 
 const LandingPage = () => {
   return (
@@ -14,9 +14,9 @@ const LandingPage = () => {
       <div className="landing">
       <img className="landing_img" src={landing} alt="landing"></img>
       <div className="main-get-started">
-           <button className="main-get-started-btn">
+          <button className="main-get-started-btn">
             <Link to="/editpage">시작하기</Link>
-           </button>
+          </button>
         </div>
       </div>
 
@@ -97,7 +97,6 @@ const LandingPage = () => {
             </div>
       </div>
 
-          
     <div className="section4">
     <div className="background-image">
     <img className="section4_img" src={section_4} alt="section_4"></img>
@@ -121,7 +120,7 @@ const LandingPage = () => {
             <Link to="/editpage">시작하기</Link>
             </button>
             <button className="see-more-btn">
-              자세히 알아보기
+            자세히 알아보기
             </button>
           </div>
         </div>
