@@ -97,7 +97,6 @@ const LandingPage = () => {
             </div>
       </div>
 
-          
     <div className="section4">
     <div className="background-image">
     <img className="section4_img" src={section_4} alt="section_4"></img>

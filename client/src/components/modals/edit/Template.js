@@ -21,9 +21,8 @@ export default function Template(props) {
           <img
             id="template-modal-add-button"
             src={templateImg}
-            onClick={(e) => {
-              props.addToItems(e);
-              props.renderToCanvas();
+            onClick={() => {
+              props.addToItems(templateImg);
               props.onClose();
             }}
           />
