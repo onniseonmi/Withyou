@@ -15,6 +15,7 @@ module.exports = (req, res) => {
     res.send({
       username: profile.nickname,
       email: email,
+      mobile: '',
       image: profile.profile_image_url,
     });
   });

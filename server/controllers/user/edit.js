@@ -1,10 +1,8 @@
 const { verify } = require("jsonwebtoken");
 const { user } = require("../../models");
 module.exports = (req, res) => {
-  console.log(req.headers);
   const authorization = req.headers["authorization"];
   const token = authorization.split(" ")[1];
-  console.log(token);
   const userInfo = verify(token, process.env.ACCESS_SECRET);
   if (!userInfo) {
     res.sendStatus(404);
