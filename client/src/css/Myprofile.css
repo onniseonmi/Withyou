@@ -17,16 +17,20 @@
   justify-content: space-around;
 }
 .profile-image {
-  border: 1px dashed gray;
+  border: 1px solid gray;
   width: 7rem;
   height: 7rem;
   margin-top: 1.5rem;
+  text-align: center;
 }
 .profile-image img {
   width: 7rem;
   height: 7rem;
   object-fit: cover;
   cursor: pointer;
+}
+.profile-image button {
+  margin-top: 0.5rem;
 }
 
 .userinfo {
