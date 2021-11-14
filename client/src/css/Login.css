@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   background-color: white;
+  font-family: sans-serif;
 }
 .button {
   cursor: pointer;
@@ -148,9 +149,9 @@
 .oauth-box img {
   /* margin: auto; */
 }
-#google-logo {
-  width: 25px;
-  height: 25px;
+#github-logo {
+  width: 30px;
+  height: 30px;
 }
 #naver-logo {
   width: 30px;

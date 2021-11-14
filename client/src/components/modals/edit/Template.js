@@ -6,33 +6,34 @@ export default function Template(props) {
     return null;
   }
   return (
-    <div id="modal">
-      <div id="modal-nav">
+    <div id="template-modal">
+      <div id="template-modal-nav">
         Template
-        <button id="close-button" onClick={() => props.onClose()}>
+        <button id="template-close-button" onClick={() => props.onClose()}>
           Close
         </button>
       </div>
-      <div id="description">
-        <div id="modal-text">원하는 템플릿을 선택하세요</div>
+      <div id="template-description">
+        <div id="template-modal-text">원하는 템플릿을 선택하세요</div>
       </div>
-      <div id="modal-upload">
-        <div className="row">
+      <div id="template-modal-upload">
+        <div className="template-row">
           <img
-            id="modal-add-button"
+            id="template-modal-add-button"
             src={templateImg}
-            onClick={
-              // TODO : 누르면 템플릿 적용되도록 구현
-              () => props.onClose()
-            }
+            onClick={(e) => {
+              props.addToItems(e);
+              props.renderToCanvas();
+              props.onClose();
+            }}
           />
-          <img id="modal-add-button" src={templateImg} />
-          <img id="modal-add-button" src={templateImg} />
+          <img id="template-modal-add-button" src={templateImg} />
+          <img id="template-modal-add-button" src={templateImg} />
         </div>
-        <div className="row">
-          <img id="modal-add-button" src={templateImg} />
-          <img id="modal-add-button" src={templateImg} />
-          <img id="modal-add-button" src={templateImg} />
+        <div className="template-row">
+          <img id="template-modal-add-button" src={templateImg} />
+          <img id="template-modal-add-button" src={templateImg} />
+          <img id="template-modal-add-button" src={templateImg} />
         </div>
       </div>
     </div>

@@ -1,15 +1,10 @@
-body {
-    font-family: 'nanumsquare';
-  }
-  
   .ivory-nav {
     /* background-color: #FFFDF4; */
     width: 100%;
     display: flex;
     color: #212121;
-    padding: 20px;
-    font-weight: 600;
-    font-size: 20px;
+    padding: 15em;
+    font-size: 15em;
   }
   
   .login {
@@ -21,11 +16,6 @@ body {
     color: #212121;
     display: block;
   }
-  
-  .Phone-icon-image {
-    width: 45px;
-    display: block;
-  }
 
   .main-get-started {
     display: flex;
@@ -34,13 +24,13 @@ body {
 
   .main-get-started-btn {
     background-color: #A0A0A0;
-    border-radius: 5px;
-    width: 280px;
-    height: 50px;
+    border-radius: 1em;
+    width: 17em;
+    height: 2.5em;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    margin: 8px 2px;
+    margin: 0.3em 0.2em;
     cursor: pointer;
   }
 
@@ -125,8 +115,8 @@ body {
   }
 
   .content {
-    padding-top: 20px;
-    padding-bottom: 13px;
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 
   .get-started-btn {

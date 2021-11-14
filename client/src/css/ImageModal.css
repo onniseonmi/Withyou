@@ -1,35 +1,93 @@
-#modal {
-  background-color: white;
-  position: absolute;
-  top: 59.1%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95%;
-  height: 31.6%;
-}
-#modal-nav {
-  display: flex;
-  justify-content: space-between;
-}
-#description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media screen and (min-width: 900px) {
+  #image-modal {
+    background-color: #e2e2e1;
+    position: absolute;
+    left: 5.7rem;
+    top: 8.2rem;
+    width: 25rem;
+    height: 44rem;
+    border: solid 0.1rem gray;
+  }
+  #image-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #image-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #image-close-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+  }
+
+  #image-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+
+  .image-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #image-modal-add-button {
+    width: 15rem;
+  }
 }
 
-#close-button {
-  margin: 0.5rem;
-  font-size: 1.5rem;
-  width: 8rem;
-  height: 3rem;
-}
+@media screen and (max-width: 900px) {
+  #image-modal {
+    background-color: #f5f5f5;
+    position: absolute;
+    top: 37.5rem;
+    left: 15rem;
+    transform: translate(-50%, -50%);
+    width: 87%;
+    height: 19.5rem;
+  }
+  #image-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #image-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-#modal-upload {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  #image-close-button {
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+  }
 
-#modal-add-button {
-  width: 80%;
+  #image-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+
+  .image-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #image-modal-add-button {
+    width: 15rem;
+  }
 }

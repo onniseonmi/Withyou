@@ -1,25 +1,26 @@
 import React from "react";
 import "../../../css/ImageModal.css";
+import image from "../../../images/addButton.png";
 
 export default function Image(props) {
   if (!props.status) {
     return null;
   }
   return (
-    <div id="modal">
-      <div id="modal-nav">
+    <div id="image-modal">
+      <div id="image-modal-nav">
         Image
-        <button id="close-button" onClick={() => props.onClose()}>
+        <button id="image-close-button" onClick={() => props.onClose()}>
           Close
         </button>
       </div>
-      <div id="description">
-        <div id="modal-text">원하는 이미지를 업로드 하세요</div>
+      <div id="image-description">
+        <div id="image-modal-text">원하는 이미지를 업로드 하세요</div>
       </div>
-      <div id="modal-upload">
+      <div id="image-modal-upload">
         <img
-          id="modal-add-button"
-          src="image/addButton.png"
+          id="image-modal-add-button"
+          src={image}
           onClick={() => {
             // TODO : 사진 업로드 구현하기
             console.log("업로드 완료");
