@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function ImageOnCanvas({
   src,
@@ -10,6 +10,9 @@ export default function ImageOnCanvas({
   onSelect,
   onDeselect,
   onChangeStyle,
+  clickSelected,
+  deClickSelected,
+  selectState,
 }) {
   function calculatePosition(e) {
     if (isDragging) {
@@ -32,6 +35,7 @@ export default function ImageOnCanvas({
     window.addEventListener("keydown", (e) => {
       if (isSelected && e.key === "Escape") {
         onDeselect();
+        deClickSelected();
       }
     });
   }
@@ -45,10 +49,14 @@ export default function ImageOnCanvas({
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
       // TODO : 선택하면 아래 뜨도록 만들기
+      // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
-        onDragStart();
-        onSelect();
-        controlCursorStyle(e, "grabbing");
+        if (!selectState) {
+          clickSelected();
+          onSelect();
+          controlCursorStyle(e, "grabbing");
+          onDragStart();
+        }
       }}
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");

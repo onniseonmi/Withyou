@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
 import Elements from "../components/modals/edit/Elements";
@@ -9,6 +9,7 @@ import imageImg from "../images/image.png";
 import textImg from "../images/text.png";
 import "../css/EditPage.css";
 import ImageOnCanvas from "../components/modals/edit/ImageOnCanvas";
+import ImageProperty from "../components/modals/edit/ImageProperty";
 
 export default function EditPage() {
   const [templateStatus, setTemplateStatus] = useState(false);
@@ -16,6 +17,8 @@ export default function EditPage() {
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
   const [itemStates, setItemStates] = useState([]);
+  const [selectState, setSelectState] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
   function setStateAll() {
     const states = [
@@ -51,13 +54,19 @@ export default function EditPage() {
       ];
     });
   }
+  function resizeWidth(input) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].style.width = input;
+    setItemStates(nextState);
+  }
 
   function removeObject() {
     window.onkeydown = (e) => {
       if (e.key === "Backspace" || e.key === "Delete") {
-        // el.isSelected가 true일 경우, 해당 el을 제외한 itemStates를 만든다.
         const removedItems = itemStates.filter((el) => el.isSelected !== true);
         setItemStates(removedItems);
+        setSelectState(false);
       }
     };
   }
@@ -71,16 +80,32 @@ export default function EditPage() {
     );
   }
 
+  function clickSelected() {
+    setSelectState(true);
+  }
+
+  function deClickSelected() {
+    setSelectState(false);
+  }
+
   function onSelect(index) {
+    clickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
     setItemStates(nextState);
+    getSelectedItemInfo();
   }
 
   function onDeselect(index) {
+    deClickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
     setItemStates(nextState);
+  }
+
+  function getSelectedItemInfo() {
+    const itemInfo = itemStates.filter((el) => el.isSelected === true);
+    setSelectedItem(itemInfo.shift().style);
   }
 
   removeObject();
@@ -125,11 +150,23 @@ export default function EditPage() {
                     };
                     setItemStates(nextState);
                   }}
+                  clickSelected={clickSelected}
+                  deClickSelected={deClickSelected}
+                  selectState={selectState}
                 />
               );
             })}
           </div>
-          <div id="detail-propertys"></div>
+          <div id="detail-propertys">
+            {selectState ? (
+              <ImageProperty
+                width={selectedItem.width}
+                resizeWidth={resizeWidth}
+              />
+            ) : (
+              <div>선택안됨</div>
+            )}
+          </div>
         </div>
         <div id="edit-tools">
           <div id="buttons">
