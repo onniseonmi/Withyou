@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import "../../../css/PropertyModal.css";
-export default function ImageProperty({ width, resizeWidth }) {
+export default function ImageProperty({
+  width,
+  resizeWidth,
+  rotateObject,
+  transform,
+}) {
   const [currentSize, setCurrentSize] = useState(width.slice(0, -3));
+  const [currentRotate, setCurrentRotate] = useState(
+    transform.slice(7).slice(0, -4)
+  );
 
   function increaseValue() {
     const nextState = String(+currentSize + 0.5);
@@ -15,6 +23,17 @@ export default function ImageProperty({ width, resizeWidth }) {
     resizeWidth(String(nextState) + "rem");
   }
 
+  function rotateClockSide() {
+    const nextState = String(+currentRotate + 10);
+    setCurrentRotate(nextState);
+    rotateObject(`rotate(${nextState}deg)`);
+  }
+
+  function rotateDeClockSide() {
+    const nextState = String(+currentRotate - 10);
+    setCurrentRotate(nextState);
+    rotateObject(`rotate(${nextState}deg)`);
+  }
   return (
     <div id="property-modal">
       Edit Detail
@@ -33,7 +52,15 @@ export default function ImageProperty({ width, resizeWidth }) {
         </div>
         <div className="control-box">
           <div>회전</div>
-          <input type="text"></input>
+          <div>
+            <button class="rotate-button" onClick={() => rotateDeClockSide()}>
+              -
+            </button>
+            <input type="text" value={currentRotate} />
+            <button class="rotate-button" onClick={() => rotateClockSide()}>
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>

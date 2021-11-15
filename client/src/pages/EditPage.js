@@ -12,6 +12,7 @@ import ImageOnCanvas from "../components/modals/edit/ImageOnCanvas";
 import ImageProperty from "../components/modals/edit/ImageProperty";
 
 export default function EditPage() {
+  // ? 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [templateStatus, setTemplateStatus] = useState(false);
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
@@ -47,6 +48,7 @@ export default function EditPage() {
             width: "7rem",
             top: "12rem",
             left: "12rem",
+            transform: "rotate(0deg)",
           },
           isSelected: false,
           isDragging: false,
@@ -58,6 +60,13 @@ export default function EditPage() {
     const nextState = [...itemStates];
     const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
     nextState[targetIndex].style.width = input;
+    setItemStates(nextState);
+  }
+
+  function rotateObject(input) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].style.transform = input;
     setItemStates(nextState);
   }
 
@@ -161,7 +170,9 @@ export default function EditPage() {
             {selectState ? (
               <ImageProperty
                 width={selectedItem.width}
+                transform={selectedItem.transform}
                 resizeWidth={resizeWidth}
+                rotateObject={rotateObject}
               />
             ) : (
               <div>선택안됨</div>
