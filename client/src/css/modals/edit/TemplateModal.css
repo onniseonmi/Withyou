@@ -1,0 +1,86 @@
+@media screen and (min-width: 900px) {
+  #template-modal {
+    background-color: ivory;
+    position: absolute;
+    left: 5.7rem;
+    top: 8.2rem;
+    width: 25rem;
+    height: 44rem;
+    border: solid 0.1rem gray;
+  }
+  #template-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #template-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #template-close-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+  }
+
+  #template-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+  }
+
+  .template-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #template-modal-add-button {
+    width: 6rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  #template-modal {
+    border: solid 1px red;
+    background-color: ivory;
+    height: 20rem;
+  }
+  #template-modal-nav {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #template-description {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #template-close-button {
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+  }
+
+  #template-modal-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+  }
+
+  .template-row {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+  }
+
+  #template-modal-add-button {
+    width: 6rem;
+  }
+}
