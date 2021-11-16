@@ -34,9 +34,13 @@
     cursor: pointer;
   }
 
-  .landing_img {
+  .landing {
+    background-image: url( "../../src/images/landing.jpg" );
     width: 100%;
+    height: 100%;
     display: inline;
+    resize: both;
+    overflow: scroll;
     /* border: 3px solid hotpink; */
     object-fit: fill;
   }
@@ -163,4 +167,3 @@
       padding-left: 15%;
     }
   }
-  

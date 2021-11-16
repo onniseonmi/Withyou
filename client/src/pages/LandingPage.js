@@ -12,12 +12,11 @@ const LandingPage = () => {
   return (
   <div>
       <div className="landing">
-      <img className="landing_img" src={landing} alt="landing"></img>
       <div className="main-get-started">
           <button className="main-get-started-btn">
             <Link to="/editpage">시작하기</Link>
           </button>
-        </div>
+      </div>
       </div>
 
       <div className="section1">
