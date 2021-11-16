@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Template from "../components/modals/edit/Template";
 import Image from "../components/modals/edit/Image";
 import Elements from "../components/modals/edit/Elements";
@@ -9,13 +9,17 @@ import imageImg from "../images/image.png";
 import textImg from "../images/text.png";
 import "../css/EditPage.css";
 import ImageOnCanvas from "../components/modals/edit/ImageOnCanvas";
+import ImageProperty from "../components/modals/edit/ImageProperty";
 
 export default function EditPage() {
+  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [templateStatus, setTemplateStatus] = useState(false);
   const [elementsStatus, setElementsStatus] = useState(false);
   const [imageStatus, setImageStatus] = useState(false);
   const [textStatus, setTextStatus] = useState(false);
   const [itemStates, setItemStates] = useState([]);
+  const [selectState, setSelectState] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
   function setStateAll() {
     const states = [
@@ -33,17 +37,22 @@ export default function EditPage() {
   }
 
   function addToItems(src) {
+    const canvas = document.querySelector("#canvas").getBoundingClientRect();
+    console.log(canvas);
     setItemStates((prevState) => {
       return [
         ...prevState,
         {
           id: makeId(),
           src,
+          // TODO : 작은화면에서 출력한 경우, 큰 화면으로 어떻게 가져올까?
+          // 작은 화면과 큰 화면의 비율을 맞춰야 할 것 같음
           style: {
             position: "absolute",
-            width: "7rem",
-            top: "12rem",
-            left: "12rem",
+            width: canvas.width / 5,
+            top: canvas.y + canvas.height / 3,
+            left: canvas.x + canvas.width / 3,
+            transform: "rotate(0deg)",
           },
           isSelected: false,
           isDragging: false,
@@ -51,13 +60,26 @@ export default function EditPage() {
       ];
     });
   }
+  function resizeWidth(input) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].style.width = input;
+    setItemStates(nextState);
+  }
+
+  function rotateObject(input) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].style.transform = input;
+    setItemStates(nextState);
+  }
 
   function removeObject() {
     window.onkeydown = (e) => {
       if (e.key === "Backspace" || e.key === "Delete") {
-        // el.isSelected가 true일 경우, 해당 el을 제외한 itemStates를 만든다.
         const removedItems = itemStates.filter((el) => el.isSelected !== true);
         setItemStates(removedItems);
+        setSelectState(false);
       }
     };
   }
@@ -71,16 +93,32 @@ export default function EditPage() {
     );
   }
 
+  function clickSelected() {
+    setSelectState(true);
+  }
+
+  function deClickSelected() {
+    setSelectState(false);
+  }
+
   function onSelect(index) {
+    clickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
     setItemStates(nextState);
+    getSelectedItemInfo();
   }
 
   function onDeselect(index) {
+    deClickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
     setItemStates(nextState);
+  }
+
+  function getSelectedItemInfo() {
+    const itemInfo = itemStates.filter((el) => el.isSelected === true);
+    setSelectedItem(itemInfo.shift().style);
   }
 
   removeObject();
@@ -125,15 +163,60 @@ export default function EditPage() {
                     };
                     setItemStates(nextState);
                   }}
+                  clickSelected={clickSelected}
+                  deClickSelected={deClickSelected}
+                  selectState={selectState}
                 />
               );
             })}
           </div>
-          <div id="detail-propertys"></div>
+          <div id="detail-propertys">
+            {selectState ? (
+              <ImageProperty
+                width={selectedItem.width}
+                transform={selectedItem.transform}
+                resizeWidth={resizeWidth}
+                rotateObject={rotateObject}
+              />
+            ) : null}
+            {templateStatus ? (
+              <Template
+                status={templateStatus}
+                onClose={() => {
+                  setTemplateStatus(false);
+                }}
+                addToItems={addToItems}
+              />
+            ) : null}
+            {elementsStatus ? (
+              <Elements
+                status={elementsStatus}
+                onClose={() => {
+                  setElementsStatus(false);
+                }}
+                addToItems={addToItems}
+              />
+            ) : null}
+            {imageStatus ? (
+              <Image
+                status={imageStatus}
+                onClose={() => setImageStatus(false)}
+                addToItems={addToItems}
+              />
+            ) : null}
+            {textStatus ? (
+              <Text
+                status={textStatus}
+                onClose={() => setTextStatus(false)}
+                addToItems={addToItems}
+              />
+            ) : null}
+          </div>
         </div>
         <div id="edit-tools">
           <div id="buttons">
             <div
+              id="template"
               onClick={() => {
                 setStateAll();
                 setTemplateStatus(true);
@@ -141,15 +224,9 @@ export default function EditPage() {
             >
               {<img className="edit-button" src={templateImg} />}
             </div>
-            <Template
-              status={templateStatus}
-              onClose={() => {
-                setTemplateStatus(false);
-              }}
-              addToItems={addToItems}
-            />
 
             <div
+              id="elements"
               onClick={() => {
                 setStateAll();
                 setElementsStatus(true);
@@ -157,14 +234,9 @@ export default function EditPage() {
             >
               {<img className="edit-button" src={elementsImg} />}
             </div>
-            <Elements
-              status={elementsStatus}
-              onClose={() => {
-                setElementsStatus(false);
-              }}
-            />
 
             <div
+              id="iamge"
               onClick={() => {
                 setStateAll();
                 setImageStatus(true);
@@ -172,9 +244,9 @@ export default function EditPage() {
             >
               {<img className="edit-button" src={imageImg} />}
             </div>
-            <Image status={imageStatus} onClose={() => setImageStatus(false)} />
 
             <div
+              id="text"
               onClick={() => {
                 setStateAll();
                 setTextStatus(true);
@@ -182,7 +254,6 @@ export default function EditPage() {
             >
               {<img className="edit-button" src={textImg} />}
             </div>
-            <Text status={textStatus} onClose={() => setTextStatus(false)} />
           </div>
         </div>
       </div>

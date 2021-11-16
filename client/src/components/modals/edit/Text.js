@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../css/TextModal.css";
+import "../../../css/modals/edit/TextModal.css";
 import templateImg from "../../../images/template/sample.png";
 export default function Text(props) {
   if (!props.status) {

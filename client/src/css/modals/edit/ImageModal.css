@@ -1,6 +1,6 @@
 @media screen and (min-width: 900px) {
-  #template-modal {
-    background-color: #e2e2e1;
+  #image-modal {
+    background-color: ivory;
     position: absolute;
     left: 5.7rem;
     top: 8.2rem;
@@ -8,83 +8,82 @@
     height: 44rem;
     border: solid 0.1rem gray;
   }
-  #template-modal-nav {
+  #image-modal-nav {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
   }
-  #template-description {
+  #image-description {
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #template-close-button {
+  #image-close-button {
     font-size: 0.8rem;
     width: 4rem;
     height: 2rem;
   }
 
-  #template-modal-upload {
+  #image-modal-upload {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     height: 80%;
   }
 
-  .template-row {
+  .image-row {
     display: flex;
     justify-content: space-around;
     width: 95%;
   }
 
-  #template-modal-add-button {
-    width: 6rem;
+  #image-modal-add-button {
+    width: 15rem;
   }
 }
+
 @media screen and (max-width: 900px) {
-  #template-modal {
-    background-color: #f5f5f5;
-    position: absolute;
-    top: 37.5rem;
-    left: 15rem;
-    transform: translate(-50%, -50%);
-    width: 87%;
-    height: 19.5rem;
+  #image-modal {
+    border: solid 1px red;
+    background-color: ivory;
+    height: 20rem;
   }
-  #template-modal-nav {
+  #image-modal-nav {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
   }
-  #template-description {
+  #image-description {
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #template-close-button {
+  #image-close-button {
     font-size: 1rem;
     width: 5rem;
     height: 2rem;
   }
 
-  #template-modal-upload {
+  #image-modal-upload {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     height: 80%;
   }
 
-  .template-row {
+  .image-row {
     display: flex;
     justify-content: space-around;
     width: 95%;
   }
 
-  #template-modal-add-button {
-    width: 6rem;
+  #image-modal-add-button {
+    width: 15rem;
   }
 }

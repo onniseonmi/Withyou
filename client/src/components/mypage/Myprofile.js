@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import addImg from "../../images/add_image.png";
-import "../../css/Myprofile.css";
+import "../../css/mypage/Myprofile.css";
 const server_url = "http://localhost:4000";
 const Myprofile = () => {
   const accessToken = sessionStorage.getItem("accessTokenSession");

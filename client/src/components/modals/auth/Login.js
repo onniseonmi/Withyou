@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../css/Login.css";
+import "../../../css/modals/auth/Login.css";
 import loginModal from "../../../images/loginModal.png";
 import title from "../../../images/title.png";
 import Signup from "./Signup";
