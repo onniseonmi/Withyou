@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import "../../../css/modals/edit/PropertyModal.css";
+import "../../../css/modals/edit/ImageProperty.css";
 export default function ImageProperty({
   width,
   resizeWidth,
   rotateObject,
   transform,
+  removeObject,
 }) {
   const [currentSize, setCurrentSize] = useState(width);
   const [currentRotate, setCurrentRotate] = useState(
@@ -37,7 +38,12 @@ export default function ImageProperty({
   }
   return (
     <div id="property-modal">
-      Edit Detail
+      <div id="property-title-button">
+        <div>Edit Detail</div>
+        <button id="delete-button" onClick={() => removeObject()}>
+          Delete
+        </button>
+      </div>
       <div id="property-box">
         <div className="control-box">
           <div>크기</div>

@@ -38,7 +38,6 @@ export default function EditPage() {
 
   function addToItems(src) {
     const canvas = document.querySelector("#canvas").getBoundingClientRect();
-    console.log(canvas);
     setItemStates((prevState) => {
       return [
         ...prevState,
@@ -49,6 +48,7 @@ export default function EditPage() {
           // 작은 화면과 큰 화면의 비율을 맞춰야 할 것 같음
           style: {
             position: "absolute",
+            zIndex: 0,
             width: canvas.width / 5,
             top: canvas.y + canvas.height / 3,
             left: canvas.x + canvas.width / 3,
@@ -60,6 +60,7 @@ export default function EditPage() {
       ];
     });
   }
+
   function resizeWidth(input) {
     const nextState = [...itemStates];
     const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
@@ -75,13 +76,9 @@ export default function EditPage() {
   }
 
   function removeObject() {
-    window.onkeydown = (e) => {
-      if (e.key === "Backspace" || e.key === "Delete") {
-        const removedItems = itemStates.filter((el) => el.isSelected !== true);
-        setItemStates(removedItems);
-        setSelectState(false);
-      }
-    };
+    const removedItems = itemStates.filter((el) => el.isSelected !== true);
+    setItemStates(removedItems);
+    setSelectState(false);
   }
 
   function makeId() {
@@ -100,11 +97,14 @@ export default function EditPage() {
   function deClickSelected() {
     setSelectState(false);
   }
-
+  // selectState 값 확인
+  // 선택하면  zindex
+  // onselect 등 확인
   function onSelect(index) {
     clickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
+    nextState[index].style.zIndex = "1000";
     setItemStates(nextState);
     getSelectedItemInfo();
   }
@@ -113,6 +113,7 @@ export default function EditPage() {
     deClickSelected();
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
+    nextState[index].style.zIndex = "0";
     setItemStates(nextState);
   }
 
@@ -120,8 +121,6 @@ export default function EditPage() {
     const itemInfo = itemStates.filter((el) => el.isSelected === true);
     setSelectedItem(itemInfo.shift().style);
   }
-
-  removeObject();
 
   return (
     <div id="EditPage">
@@ -166,6 +165,7 @@ export default function EditPage() {
                   clickSelected={clickSelected}
                   deClickSelected={deClickSelected}
                   selectState={selectState}
+                  setStateAll={setStateAll}
                 />
               );
             })}
@@ -177,6 +177,7 @@ export default function EditPage() {
                 transform={selectedItem.transform}
                 resizeWidth={resizeWidth}
                 rotateObject={rotateObject}
+                removeObject={removeObject}
               />
             ) : null}
             {templateStatus ? (
@@ -218,6 +219,7 @@ export default function EditPage() {
             <div
               id="template"
               onClick={() => {
+                setSelectState(false);
                 setStateAll();
                 setTemplateStatus(true);
               }}
@@ -228,6 +230,7 @@ export default function EditPage() {
             <div
               id="elements"
               onClick={() => {
+                setSelectState(false);
                 setStateAll();
                 setElementsStatus(true);
               }}
@@ -238,6 +241,7 @@ export default function EditPage() {
             <div
               id="iamge"
               onClick={() => {
+                setSelectState(false);
                 setStateAll();
                 setImageStatus(true);
               }}
@@ -248,6 +252,7 @@ export default function EditPage() {
             <div
               id="text"
               onClick={() => {
+                setSelectState(false);
                 setStateAll();
                 setTextStatus(true);
               }}

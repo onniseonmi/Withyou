@@ -1,20 +1,16 @@
 import React from "react";
 import "../../../css/modals/edit/TemplateModal.css";
 import templateImg from "../../../images/template/sample.png";
-export default function Template(props) {
-  if (!props.status) {
-    return null;
-  }
-
+export default function Template({ onClose, addToItems }) {
   function addToCanvas(img) {
-    props.addToItems(img);
-    props.onClose();
+    addToItems(img);
+    onClose();
   }
   return (
     <div id="template-modal">
       <div id="template-modal-nav">
         Template
-        <button id="template-close-button" onClick={() => props.onClose()}>
+        <button id="template-close-button" onClick={() => onClose()}>
           Close
         </button>
       </div>

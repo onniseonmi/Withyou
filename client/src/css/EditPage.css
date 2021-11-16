@@ -56,7 +56,6 @@ body {
   justify-content: space-around;
 }
 
-
 /* 클때 */
 @media screen and (min-width: 900px) {
   #sub-nav {
@@ -76,19 +75,17 @@ body {
   #edit-property {
     width: 87rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   #canvas {
-    width: 50rem;
-    height: 23.5rem;
+    width: 868px;
+    height: 644px;
   }
 
   #detail-propertys {
-    width: 50rem;
-    height: 10rem;
+    width: 25rem;
+    height: 644px;
   }
 
   #edit-tools {

@@ -13,6 +13,7 @@ export default function ImageOnCanvas({
   clickSelected,
   deClickSelected,
   selectState,
+  setStateAll,
 }) {
   function calculatePosition(e) {
     if (isDragging) {
@@ -48,14 +49,13 @@ export default function ImageOnCanvas({
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
-      // TODO : 선택하면 아래 뜨도록 만들기
-      // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
           clickSelected();
           onSelect();
           controlCursorStyle(e, "grabbing");
           onDragStart();
+          setStateAll();
         }
       }}
       onMouseUp={(e) => {

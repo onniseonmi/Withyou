@@ -2,14 +2,20 @@
   #property-modal {
     border: solid 1px red;
     background: ivory;
-    height: 10rem;
+    height: 644px;
+  }
+
+  #property-title-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem;
   }
 
   #property-box {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 7.5rem;
+    height: 590px;
     border: solid 1px skyblue;
   }
 
@@ -27,11 +33,17 @@
     height: 20rem;
   }
 
+  #property-title-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem;
+  }
+
   #property-box {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 17.4rem;
+    height: 16.4rem;
     border: solid 1px skyblue;
   }
 
