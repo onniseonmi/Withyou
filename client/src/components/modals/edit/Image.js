@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../css/ImageModal.css";
+import "../../../css/modals/edit/ImageModal.css";
 import image from "../../../images/addButton.png";
 
 export default function Image(props) {

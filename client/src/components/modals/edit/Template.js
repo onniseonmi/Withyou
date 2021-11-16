@@ -1,9 +1,14 @@
 import React from "react";
-import "../../../css/TemplateModal.css";
+import "../../../css/modals/edit/TemplateModal.css";
 import templateImg from "../../../images/template/sample.png";
 export default function Template(props) {
   if (!props.status) {
     return null;
+  }
+
+  function addToCanvas(img) {
+    props.addToItems(img);
+    props.onClose();
   }
   return (
     <div id="template-modal">
@@ -22,8 +27,7 @@ export default function Template(props) {
             id="template-modal-add-button"
             src={templateImg}
             onClick={() => {
-              props.addToItems(templateImg);
-              props.onClose();
+              addToCanvas(templateImg);
             }}
           />
           <img id="template-modal-add-button" src={templateImg} />

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/Mycard.css";
+import "../../css/mypage/Mycard.css";
 import sample from "../../images/template/sample.png";
 
 const Mycard = () => {

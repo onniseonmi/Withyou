@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../css/ElementsModal.css";
+import "../../../css/modals/edit/ElementsModal.css";
 import a from "../../../images/add_image.png";
 
 export default function Elements(props) {
