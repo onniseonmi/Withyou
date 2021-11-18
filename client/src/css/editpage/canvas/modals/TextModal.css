@@ -1,4 +1,75 @@
-@media screen and (min-width: 900px) {
+#text-modal {
+  /* width: 20rem;
+  height: 100%;
+  border: 1px solid black; */
+  width: 99%;
+}
+#text-modal-nav {
+  /* position: relative; */
+}
+#text-modal-nav > div {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+#text-modal-nav > div:first-child {
+  font-size: 2rem;
+}
+#text-modal-upload {
+}
+.text-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text-input > input {
+  width: 90%;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+}
+.text-input > button {
+  margin: 0.5rem 0;
+  width: 50%;
+  height: 1.5rem;
+  line-height: 1.2rem;
+}
+.text-setting:first-child {
+  height: 5rem;
+}
+.text-setting:not(:first-child) {
+  height: 8rem;
+  margin: 0 1rem;
+}
+.text-setting > div:first-child {
+  font-size: 1.5rem;
+}
+.text-setting > div:not(:first-child) {
+  background-color: white;
+  height: 2rem;
+  /* margin: 1rem; */
+}
+@media screen and (max-width: 900px) {
+  #text-modal-upload {
+    height: 15rem;
+    width: 100%;
+    display: inline-block;
+    overflow: auto;
+  }
+  .text-setting:first-child {
+    height: 5rem;
+  }
+  .text-setting:not(:first-child) {
+    height: 4rem;
+  }
+  .text-setting > div:first-child {
+    font-size: 1.2rem;
+  }
+  .text-setting > div:not(:first-child) {
+    background-color: white;
+    height: 2rem;
+    margin-top: 0.1rem;
+  }
+}
+/* @media screen and (min-width: 900px) {
   #text-modal {
     background-color: ivory;
     position: absolute;
@@ -30,7 +101,6 @@
     display: flex;
     align-items: center;
     border-bottom: solid 0.1rem white;
-    /* border: solid 1px blue; */
     height: 4rem;
   }
 
@@ -38,7 +108,6 @@
     display: flex;
     justify-content: center;
     width: 5rem;
-    /* border: solid 1px red; */
   }
 
   .value {
@@ -46,7 +115,6 @@
     display: flex;
     justify-content: center;
     width: 19rem;
-    /* border: solid 1px red; */
   }
 
   #text-apply-button {
@@ -85,7 +153,6 @@
     display: flex;
     align-items: center;
     border-bottom: solid 0.1rem gray;
-    /* border: solid 1px blue; */
     height: 4rem;
   }
 
@@ -93,14 +160,12 @@
     display: flex;
     justify-content: center;
     width: 5rem;
-    /* border: solid 1px red; */
   }
 
   .value {
     display: flex;
     justify-content: center;
     width: 19rem;
-    /* border: solid 1px red; */
   }
 
   #text-apply-button {
@@ -110,4 +175,4 @@
     width: 4rem;
     height: 2rem;
   }
-}
+} */

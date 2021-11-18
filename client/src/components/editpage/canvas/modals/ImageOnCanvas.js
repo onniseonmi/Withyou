@@ -1,6 +1,7 @@
-import React from "react";
-
+import React, { useRef } from "react";
+import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
+  key,
   src,
   style,
   isSelected,
@@ -13,13 +14,13 @@ export default function ImageOnCanvas({
   clickSelected,
   deClickSelected,
   selectState,
-  setStateAll,
 }) {
+  const imgRef = useRef();
   function calculatePosition(e) {
     if (isDragging) {
       onChangeStyle({
-        left: e.nativeEvent.pageX - e.target.offsetWidth / 2 + "px",
-        top: e.nativeEvent.pageY - e.target.offsetHeight / 2 + "px",
+        left: e.nativeEvent.clientX - e.target.offsetWidth + "px",
+        top: e.nativeEvent.clientY - e.target.offsetHeight + "px",
       });
     }
   }
@@ -43,19 +44,23 @@ export default function ImageOnCanvas({
   removeClassName();
   return (
     <img
+      id={`image${key}`}
+      className="image-element"
       draggable={false}
       src={src}
+      ref={imgRef}
       style={{
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
+      // TODO : 선택하면 아래 뜨도록 만들기
+      // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
           clickSelected();
           onSelect();
           controlCursorStyle(e, "grabbing");
           onDragStart();
-          setStateAll();
         }
       }}
       onMouseUp={(e) => {

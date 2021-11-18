@@ -1,21 +1,43 @@
-@media screen and (min-width: 900px) {
+#property-modal {
+  width: 100%;
+  height: 4rem;
+  background-color: rgb(207, 207, 207);
+}
+#property-box {
+  display: flex;
+  margin-left: 1rem;
+}
+.control-box {
+  display: flex;
+  margin: 1rem 0.5rem;
+}
+.control-box > div {
+  margin: 0 0.5rem;
+}
+.control-box > div:first-child {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+.control-box button {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+.control-box input {
+  height: 1.2rem;
+  width: 4rem;
+}
+/* @media screen and (min-width: 900px) {
   #property-modal {
     border: solid 1px red;
     background: ivory;
-    height: 644px;
-  }
-
-  #property-title-button {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem;
+    height: 10rem;
   }
 
   #property-box {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 590px;
+    height: 7.5rem;
     border: solid 1px skyblue;
   }
 
@@ -33,17 +55,11 @@
     height: 20rem;
   }
 
-  #property-title-button {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem;
-  }
-
   #property-box {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 16.4rem;
+    height: 17.4rem;
     border: solid 1px skyblue;
   }
 
@@ -53,4 +69,4 @@
     justify-content: space-around;
     font-size: 2rem;
   }
-}
+} */
