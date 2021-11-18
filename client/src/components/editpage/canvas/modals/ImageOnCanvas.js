@@ -12,13 +12,22 @@ export default function ImageOnCanvas({
   onDeselect,
   onChangeStyle,
   selectState,
+  canvasPaper,
 }) {
-  const imgRef = useRef();
+  const imageRef = useRef();
   function calculatePosition(e) {
     if (isDragging) {
       onChangeStyle({
-        left: e.nativeEvent.clientX - e.target.offsetWidth + "px",
-        top: e.nativeEvent.clientY - e.target.offsetHeight + "px",
+        left:
+          e.nativeEvent.clientX -
+          canvasPaper.getBoundingClientRect().left -
+          imageRef.current.width / 2 +
+          "px",
+        top:
+          e.nativeEvent.clientY -
+          canvasPaper.getBoundingClientRect().top -
+          imageRef.current.height / 2 +
+          "px",
       });
     }
   }
@@ -45,7 +54,7 @@ export default function ImageOnCanvas({
       className="image-element"
       draggable={false}
       src={src}
-      ref={imgRef}
+      ref={imageRef}
       style={{
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",

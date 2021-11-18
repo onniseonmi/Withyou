@@ -157,6 +157,7 @@ export default function EditPage() {
                       setItemStates(nextState);
                     }}
                     selectState={selectState}
+                    canvasPaper={canvasRef.current}
                   />
                 );
               })}
