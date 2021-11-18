@@ -58,78 +58,74 @@ export default function ImageProperty({
           Delete
         </button>
       </div>
-      <div id="property-box">
-        <div className="control-box">
-          <div id="control-width">
-            <div>크기</div>
-            <div>
-              <button class="resize-button" onClick={() => decreaseWidth()}>
-                -
-              </button>
-              <input
-                type="text"
-                value={currentWidth}
-                onChange={(e) => {
-                  setCurrentWidth(Number(e.target.value));
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    resizeWidth(currentWidth);
-                  }
-                }}
-              />
-              <button class="resize-button" onClick={() => increaseWidth()}>
-                +
-              </button>
-            </div>
-          </div>
-          <div id="control-height">
-            <div>높이</div>
-            <div>
-              <button class="resize-button" onClick={() => decreaseHeight()}>
-                -
-              </button>
-              <input
-                type="text"
-                value={currentHeight}
-                onChange={(e) => {
-                  setCurrentHeight(Number(e.target.value));
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    resizeHeight(currentHeight);
-                  }
-                }}
-              />
-              <button class="resize-button" onClick={() => increaseHeight()}>
-                +
-              </button>
-            </div>
+      <div id="control-box">
+        <div id="control-width">
+          <div>크기</div>
+          <div>
+            <button class="resize-button" onClick={() => decreaseWidth()}>
+              -
+            </button>
+            <input
+              type="text"
+              value={Math.floor(currentWidth)}
+              onChange={(e) => {
+                setCurrentWidth(Number(e.target.value));
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  resizeWidth(currentWidth);
+                }
+              }}
+            />
+            <button class="resize-button" onClick={() => increaseWidth()}>
+              +
+            </button>
           </div>
         </div>
-        <div className="control-box">
-          <div id="control-rotate">
-            <div>회전</div>
-            <div>
-              <button class="rotate-button" onClick={() => rotateDeClockSide()}>
-                -
-              </button>
-              <input
-                type="text"
-                value={currentRotate}
-                onChange={(e) => {
-                  setCurrentRotate(Number(e.target.value));
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    rotateObject(`rotate(${currentRotate}deg)`);
-                  }
-                }}
-              />
-              <button class="rotate-button" onClick={() => rotateClockSide()}>
-                +
-              </button>
-            </div>
+        <div id="control-height">
+          <div>높이</div>
+          <div>
+            <button class="resize-button" onClick={() => decreaseHeight()}>
+              -
+            </button>
+            <input
+              type="text"
+              value={Math.floor(currentHeight)}
+              onChange={(e) => {
+                setCurrentHeight(Number(e.target.value));
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  resizeHeight(currentHeight);
+                }
+              }}
+            />
+            <button class="resize-button" onClick={() => increaseHeight()}>
+              +
+            </button>
+          </div>
+        </div>
+        <div id="control-rotate">
+          <div>회전</div>
+          <div>
+            <button class="rotate-button" onClick={() => rotateDeClockSide()}>
+              -
+            </button>
+            <input
+              type="text"
+              value={Math.floor(currentRotate)}
+              onChange={(e) => {
+                setCurrentRotate(Number(e.target.value));
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  rotateObject(`rotate(${currentRotate}deg)`);
+                }
+              }}
+            />
+            <button class="rotate-button" onClick={() => rotateClockSide()}>
+              +
+            </button>
           </div>
         </div>
       </div>

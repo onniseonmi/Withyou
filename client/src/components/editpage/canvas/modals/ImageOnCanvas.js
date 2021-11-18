@@ -11,8 +11,6 @@ export default function ImageOnCanvas({
   onSelect,
   onDeselect,
   onChangeStyle,
-  clickSelected,
-  deClickSelected,
   selectState,
 }) {
   const imgRef = useRef();
@@ -37,7 +35,6 @@ export default function ImageOnCanvas({
     window.addEventListener("keydown", (e) => {
       if (isSelected && e.key === "Escape") {
         onDeselect();
-        deClickSelected();
       }
     });
   }
@@ -57,7 +54,6 @@ export default function ImageOnCanvas({
       // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
-          clickSelected();
           onSelect();
           controlCursorStyle(e, "grabbing");
           onDragStart();

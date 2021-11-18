@@ -12,18 +12,9 @@ export default function EditPage() {
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-template");
   const canvasRef = useRef();
-  const canvas = canvasRef.current;
-
-  function clickSelected() {
-    setSelectState(true);
-  }
-
-  function deClickSelected() {
-    setSelectState(false);
-  }
 
   function onSelect(index) {
-    clickSelected();
+    setSelectState(true);
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
     nextState[index].style.zIndex = "1000";
@@ -32,7 +23,7 @@ export default function EditPage() {
   }
 
   function onDeselect(index) {
-    deClickSelected();
+    setSelectState(false);
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
     nextState[index].style.zIndex = "0";
@@ -86,7 +77,9 @@ export default function EditPage() {
           style: {
             position: "absolute",
             zIndex: 0,
+            // 위치 재설정
             width: canvas.width / 3,
+            height: canvas.height / 3,
             top: canvas.height / 2 - canvas.height / 5,
             left: canvas.width / 2 - canvas.width / 6,
             transform: "rotate(0deg)",
@@ -163,8 +156,6 @@ export default function EditPage() {
                       };
                       setItemStates(nextState);
                     }}
-                    clickSelected={clickSelected}
-                    deClickSelected={deClickSelected}
                     selectState={selectState}
                   />
                 );
