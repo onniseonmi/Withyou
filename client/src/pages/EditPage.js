@@ -98,11 +98,16 @@ export default function EditPage() {
       ).toString(16)
     );
   }
-  // window.onresize = (e) => {
-  //   const canvasWidth = canvas.getBoundingClientRect().width;
-  //   canvas.style.height = `${(canvasWidth * 3) / 4}px`;
-  //   console.log(canvas.style.height);
-  // };
+
+  window.onkeydown = (e) => {
+    if (e.key === "Escape") {
+      const index = itemStates.findIndex((el) => el.isSelected === true);
+      if (index !== -1) {
+        onDeselect(index);
+      }
+    }
+  };
+
   return (
     <>
       <div id="canvas-top-menu">

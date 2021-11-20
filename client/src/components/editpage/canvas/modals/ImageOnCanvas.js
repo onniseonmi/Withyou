@@ -15,18 +15,25 @@ export default function ImageOnCanvas({
   canvasPaper,
 }) {
   const imageRef = useRef();
+
   function calculatePosition(e) {
+    // TODO : 클릭하면 마우스로 중앙점이 따라옴
     if (isDragging) {
+      // 마우스 위치가 변한거만 받아서 넣어주기
+      const differX = Number(e.clientX - e.target.style.left.slice(0, -2));
+      const differY = Number(e.clientY - e.target.style.top.slice(0, -2));
       onChangeStyle({
         left:
-          e.nativeEvent.clientX -
+          e.clientX - // 마우스 x좌표
           canvasPaper.getBoundingClientRect().left -
-          imageRef.current.width / 2 +
+          e.target.style.width.slice(0, -2) / 2 +
+          // differX / 10 +
           "px",
         top:
-          e.nativeEvent.clientY -
+          e.clientY -
           canvasPaper.getBoundingClientRect().top -
-          imageRef.current.height / 2 +
+          e.target.style.height.slice(0, -2) / 2 +
+          // differY / 10 +
           "px",
       });
     }
@@ -40,14 +47,8 @@ export default function ImageOnCanvas({
     e.target.style.cursor = type;
   }
 
-  function removeClassName() {
-    window.addEventListener("keydown", (e) => {
-      if (isSelected && e.key === "Escape") {
-        onDeselect();
-      }
-    });
-  }
-  removeClassName();
+  // 지금 이 이벤트가 여러번 눌린다 -> 어떻게 해결해야할까?
+
   return (
     <img
       id={`image${key}`}
@@ -59,14 +60,12 @@ export default function ImageOnCanvas({
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
-      // TODO : 선택하면 아래 뜨도록 만들기
-      // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
           onSelect();
           controlCursorStyle(e, "grabbing");
-          onDragStart();
         }
+        onDragStart();
       }}
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
