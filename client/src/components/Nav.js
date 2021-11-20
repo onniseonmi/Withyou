@@ -40,6 +40,9 @@ const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
             <div id="join" onClick={handleClick}>
               Join
             </div>
+            <span className="burger_bar">
+
+            </span>
           </div>
         ) : (
           <div className="nav-box nav-right">
