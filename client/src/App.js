@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import Mypage from "./pages/Mypage";
 import Nav from "./components/Nav";
 import axios from "axios";
+import "./App.css";
 
 export default function App() {
   const [accessToken, setAccessToken] = useState("");

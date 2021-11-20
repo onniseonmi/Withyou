@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import title from "../images/title.png";
 import "../css/Nav.css";
-import Login from "./modals/auth/Login";
+import Login from "./login/Login";
 const client_url = "http://localhost:3000";
 const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
   const [loginBtn, setLoginBtn] = useState(false);

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "../../../css/modals/auth/Login.css";
-import loginModal from "../../../images/loginModal.png";
-import title from "../../../images/title.png";
-import Signup from "./Signup";
-import Oauth from "./Oauth";
+import "../../css/login/Login.css";
+import loginModal from "../../images/loginModal.png";
+import title from "../../images/title.png";
+import Signup from "../login/Signup";
+import Oauth from "../login/Oauth";
 import axios from "axios";
 const server_url = "http://localhost:4000";
 const Login = ({
