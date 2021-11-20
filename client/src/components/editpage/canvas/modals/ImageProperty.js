@@ -8,6 +8,8 @@ export default function ImageProperty({
   rotateObject,
   transform,
   removeObject,
+  zindex,
+  modifyZindex,
 }) {
   const [currentWidth, setCurrentWidth] = useState(width);
   const [currentHeight, setCurrentHeight] = useState(height);
@@ -50,6 +52,7 @@ export default function ImageProperty({
     setCurrentRotate(nextState);
     rotateObject(`rotate(${nextState}deg)`);
   }
+
   return (
     <div id="property-modal">
       <div id="property-title-button">
@@ -126,6 +129,33 @@ export default function ImageProperty({
             <button class="rotate-button" onClick={() => rotateClockSide()}>
               +
             </button>
+          </div>
+        </div>
+        <div id="control-zindex">
+          <div>위치</div>
+          <div id="zindex-buttons">
+            <div id="to-backward">
+              <button
+                class="zindex-button"
+                onClick={() => {
+                  if (zindex !== 0) {
+                    modifyZindex(zindex - 1);
+                  }
+                }}
+              >
+                뒤로보내기
+              </button>
+            </div>
+            <div id="to-forward">
+              <button
+                class="zindex-button"
+                onClick={() => {
+                  modifyZindex(zindex + 1);
+                }}
+              >
+                앞으로보내기
+              </button>
+            </div>
           </div>
         </div>
       </div>

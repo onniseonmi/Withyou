@@ -12,12 +12,15 @@ export default function EditPage() {
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-template");
   const canvasRef = useRef();
+  const [contemporaryZIndex, setcontemporaryZIndex] = useState("0");
+  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
-    nextState[index].style.zIndex = "1000";
+    setcontemporaryZIndex(nextState[index].style.zIndex);
+    nextState[index].style.zIndex = 1000;
     setItemStates(nextState);
     getSelectedItemInfo();
   }
@@ -26,7 +29,7 @@ export default function EditPage() {
     setSelectState(false);
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
-    nextState[index].style.zIndex = "0";
+    nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
   }
 
@@ -76,7 +79,7 @@ export default function EditPage() {
           // 작은 화면과 큰 화면의 비율을 맞춰야 할 것 같음
           style: {
             position: "absolute",
-            zIndex: 0,
+            zIndex: itemStates.length,
             // 위치 재설정
             width: canvas.width / 3,
             height: canvas.height / 3,
@@ -107,6 +110,10 @@ export default function EditPage() {
       }
     }
   };
+
+  function modifyZindex(input) {
+    setcontemporaryZIndex(input);
+  }
 
   return (
     <>
@@ -171,9 +178,12 @@ export default function EditPage() {
           <div id="edit-footer-menu">
             {selectState && (
               <ImageProperty
+                itemStates={itemStates}
                 width={selectedItem.width}
                 height={selectedItem.height}
                 transform={selectedItem.transform}
+                zindex={contemporaryZIndex}
+                modifyZindex={modifyZindex}
                 resizeWidth={resizeWidth}
                 resizeHeight={resizeHeight}
                 rotateObject={rotateObject}

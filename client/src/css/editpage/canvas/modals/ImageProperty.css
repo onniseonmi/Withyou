@@ -16,5 +16,8 @@
   justify-content: space-around;
 }
 
+#zindex-buttons {
+  display: flex;
+}
 @media screen and (max-width: 900px) {
 }
