@@ -1,5 +1,40 @@
-@media screen and (min-width: 900px) {
-  #elements-modal {
+#template-modal {
+  /* width: 20rem;
+  height: 100%;
+  border: 1px solid black; */
+  width: 99%;
+}
+#template-modal-nav {
+  /* position: relative; */
+}
+#template-modal-nav > div {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+#template-modal-nav > div:first-child {
+  font-size: 2rem;
+}
+
+#template-modal-upload {
+  padding-left: 0.3rem;
+}
+#template-modal-upload > img {
+  width: 8rem;
+  height: 6rem;
+  margin: 1rem 0.8rem;
+  object-fit: fill;
+  cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+  #template-modal-upload {
+    height: 15rem;
+    width: 100%;
+    display: inline-block;
+    overflow: auto;
+  }
+}
+/* @media screen and (min-width: 900px) {
+  #template-modal {
     background-color: ivory;
     position: absolute;
     left: 5.7rem;
@@ -8,80 +43,79 @@
     height: 44rem;
     border: solid 0.1rem gray;
   }
-  #elements-modal-nav {
+  #template-modal-nav {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
   }
-  #elements-description {
+  #template-description {
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #elements-close-button {
+  #template-close-button {
     font-size: 0.8rem;
     width: 4rem;
     height: 2rem;
   }
 
-  #elements-modal-upload {
+  #template-modal-upload {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 80%;
   }
 
-  .elements-row {
+  .template-row {
     display: flex;
     justify-content: space-around;
     width: 95%;
   }
 
-  #elements-modal-add-button {
+  #template-modal-add-button {
     width: 6rem;
   }
 }
-
 @media screen and (max-width: 900px) {
-  #elements-modal {
+  #template-modal {
     border: solid 1px red;
     background-color: ivory;
     height: 20rem;
   }
-  #elements-modal-nav {
+  #template-modal-nav {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
   }
-  #elements-description {
+  #template-description {
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #elements-close-button {
+  #template-close-button {
     font-size: 1rem;
     width: 5rem;
     height: 2rem;
   }
 
-  #elements-modal-upload {
+  #template-modal-upload {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 80%;
   }
 
-  .elements-row {
+  .template-row {
     display: flex;
     justify-content: space-around;
     width: 95%;
   }
 
-  #elements-modal-add-button {
+  #template-modal-add-button {
     width: 6rem;
   }
-}
+} */ ;

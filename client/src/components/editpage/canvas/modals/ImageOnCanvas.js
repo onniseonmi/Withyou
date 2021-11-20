@@ -1,6 +1,7 @@
-import React from "react";
-
+import React, { useRef } from "react";
+import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
+  key,
   src,
   style,
   isSelected,
@@ -10,15 +11,23 @@ export default function ImageOnCanvas({
   onSelect,
   onDeselect,
   onChangeStyle,
-  clickSelected,
-  deClickSelected,
   selectState,
+  canvasPaper,
 }) {
+  const imageRef = useRef();
   function calculatePosition(e) {
     if (isDragging) {
       onChangeStyle({
-        left: e.nativeEvent.pageX - e.target.offsetWidth / 2 + "px",
-        top: e.nativeEvent.pageY - e.target.offsetHeight / 2 + "px",
+        left:
+          e.nativeEvent.clientX -
+          canvasPaper.getBoundingClientRect().left -
+          imageRef.current.width / 2 +
+          "px",
+        top:
+          e.nativeEvent.clientY -
+          canvasPaper.getBoundingClientRect().top -
+          imageRef.current.height / 2 +
+          "px",
       });
     }
   }
@@ -35,15 +44,17 @@ export default function ImageOnCanvas({
     window.addEventListener("keydown", (e) => {
       if (isSelected && e.key === "Escape") {
         onDeselect();
-        deClickSelected();
       }
     });
   }
   removeClassName();
   return (
     <img
+      id={`image${key}`}
+      className="image-element"
       draggable={false}
       src={src}
+      ref={imageRef}
       style={{
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
@@ -52,7 +63,6 @@ export default function ImageOnCanvas({
       // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
-          clickSelected();
           onSelect();
           controlCursorStyle(e, "grabbing");
           onDragStart();
