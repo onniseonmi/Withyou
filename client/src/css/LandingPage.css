@@ -1,6 +1,5 @@
-.body {
-  padding: 0rem;
-  margin: 0rem;
+.ladning-body {
+  font-family: "Gulimn";
 }
 
 .login {
@@ -18,13 +17,12 @@
   height: auto;
   display: flex;
   resize: both;
-  /* border: 3px solid hotpink; */
   object-fit: fill;
 }
 
 .video-box {
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: hidden;
   position: relative;
 }
@@ -38,42 +36,33 @@
 
 .landing-title {
   position: absolute;
-  top: 38%;
-  font-family: "굴림체";
+  top: 18%;
+  font-family: "Gulimn";
   width: 100%;
   font-size: 3.5rem;
   font-weight: 500 !important;
   margin-left: 4rem;
-  color: #eef0f6;
+  color: #F9FFFF;
 }
 
 .main-get-started {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 55%;
-  left: 8%;
-}
+    border: 2px solid #eef0f6;
+    border-radius: 60px;
+    width: 800px;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 15px;
+  }
 
-.main-get-started-btn {
-  background-color: transparent;
-  border-radius: 1em;
-  width: 50em;
-  height: 2.5em;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin-top: -1em;
-  margin-left: -3.6em;
-  cursor: pointer;
-  border: 1px solid #eef0f6;
-  color: #eef0f6;
-  font-weight: bold;
-}
+.main-get-started:hover {
+    background-color: white;
+    color: gray;
+  }
 
 .start {
   text-decoration: none;
   color: #eef0f6;
+  display: inline-block;
 }
 
 .content1 {
@@ -157,6 +146,16 @@
   cursor: pointer;
 }
 
+.landing-footer {
+  position: relative;
+}
+
+@media all and (min-width:1440px) and (max-width:7680px) {
+  .phone-landing {
+    display: none;
+  }
+}
+
 @media all and (max-width: 1440px) {
   /* PC */
   .LandingPage {
@@ -171,8 +170,81 @@
   }
 }
 
-@media all and (max-width: 900px) {
-  /* Phone */
+@media all and (min-width:900px) and (max-width: 1440px) {
+  /* .video-box {
 
+  } */
+
+  .landing-title {
+    font-size: 40px;
+    margin-top: 25px;
+    margin-left: 30px;
+  }
+
+  .main-get-started {
+    font-size: 22px;
+    font-weight: 700;
+    width: 400px;
+  }
+
+  .phone-landing {
+    display: none;
+  }
+}
+
+@media all and (max-width: 900px) {
+  /* Phone 1안 */
+  .landing-title { 
+    font-size: 28px;
+    margin-top: 25px;
+    margin-left: 30px;
+  }
+
+  .main-get-started {
+    font-size: 22px;
+    font-weight: 700;
+    width: 400px;
+  }
   
+    /* Phone 2안*/
+  .landing {
+    display: none;
+  }
+
+  .phone-landing {
+    display: flex;
+    font-family: "Huglife";
+  }
+
+  .phone-landing-logo {
+    margin-top: 300px;
+    font-size: 300px;
+  }
+
+  .phone-landing-logo-firstline {
+    display: block;
+    font-size: 35px;
+    font-family: "Gulimn";
+    margin-top: -230px;
+    margin-left: 330px;
+    margin-bottom: 10px;
+  }
+
+  .phone-landing-logo-secondline {
+    display: block;
+    margin-top: -80px;
+    margin-bottom: 350px;
+    margin-left: 280px;
+  }
+
+  .main-get-started {
+    border: 1px solid black;
+    margin-top: 700px;
+    margin-left: -800px;
+    display: inline-block;
+  }
+
+  .start {
+    color: black;
+  }
 }

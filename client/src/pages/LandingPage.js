@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
-import weddingarch from "../images/weddingarch.mp4";
-
-// import footer
+import weddingarch from "../videos/weddingarch.mp4";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
+import "../css/Nav.css";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="ladning-body">
       <div className="landing">
         <div className="video-box">
           <video
@@ -19,18 +20,26 @@ const LandingPage = () => {
           >
             <source src={weddingarch} type="video/mp4"></source>
           </video>
-          <div className="landing-title">
-            세상에 없던 단 하나뿐인
-            <br />
-            청첩장, 쉬운 디자인을 도와드립니다.
-          </div>
-          <div className="main-get-started">
-              <a className="start" href="/editpage">
-              <button className="main-get-started-btn">시작하기
-              </button>
-              </a>
-          </div>
         </div>
+        <div className="landing-title">
+          <div>세상에 없던 단 하나뿐인</div>
+          <div>청첩장, 쉬운 디자인을 도와드립니다.</div>
+          <a className="start" href="/editpage">
+            <div className="main-get-started">시작하기</div>
+          </a>
+        </div>
+      </div>
+      <div className="phone-landing">
+        <div className="phone-landing-logo">
+          W
+          <div className="phone-landing-logo-firstline">
+            Make your own wedding invitation
+          </div>
+          <div className="phone-landing-logo-secondline">ithyou</div>
+        </div>
+        <a className="start" href="/editpage">
+          <div className="main-get-started">시작하기</div>
+        </a>
       </div>
 
       <div className="section1">
@@ -50,7 +59,9 @@ const LandingPage = () => {
               황금시대다.
             </div>
             <button className="get-started-btn">
-              <a className="start" to="/editpage">시작하기</a>
+              <a className="start" to="/editpage">
+                시작하기
+              </a>
             </button>
             <button className="see-more-btn">자세히 알아보기</button>
           </div>
@@ -135,11 +146,16 @@ const LandingPage = () => {
               인간이 만물은 황금시대다.
             </div>
             <button className="get-started-btn">
-              <a className="start" to="/editpage">시작하기</a>
+              <a className="start" to="/editpage">
+                시작하기
+              </a>
             </button>
             <button className="see-more-btn">자세히 알아보기</button>
           </div>
         </div>
+      </div>
+      <div className="landing-footer">
+        <Footer />
       </div>
     </div>
   );
