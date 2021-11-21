@@ -13,8 +13,8 @@ const LandingPage = () => {
         <div className="video-box">
           <video
             id="landing-video"
-            autoplay="autoplay"
-            loop="Loop"
+            // autoplay="autoplay"
+            // loop="Loop"
             muted
             volume="0"
           >
@@ -24,22 +24,44 @@ const LandingPage = () => {
         <div className="landing-title">
           <div>세상에 없던 단 하나뿐인</div>
           <div>청첩장, 쉬운 디자인을 도와드립니다.</div>
-          <a className="start" href="/editpage">
+          <a className="phone-start" href="/editpage">
             <div className="main-get-started">시작하기</div>
           </a>
         </div>
       </div>
       <div className="phone-landing">
         <div className="phone-landing-logo">
+          <div className="first-box">
+            <div className="f-left">W</div>
+            <div className="f-right">
+              <div className="sec-top">For your wedding</div>
+              <div className="sec-bot">ithyou</div>
+            </div>
+          </div>
+          <div className="second-box">
+            <div>
+              <div className="second-box-top">
+                Make your own wedding invitation
+                Make your own wedding invitation
+              </div>
+              <div className="second-box-bottom">
+                <a href="/editpage">
+                  <div>Start</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="phone-landing-logo">
+          <div className="largeW">
           W
+          </div>
           <div className="phone-landing-logo-firstline">
-            Make your own wedding invitation
+            
           </div>
           <div className="phone-landing-logo-secondline">ithyou</div>
         </div>
-        <a className="start" href="/editpage">
-          <div className="main-get-started">시작하기</div>
-        </a>
+*/}
       </div>
 
       <div className="section1">

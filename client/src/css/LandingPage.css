@@ -1,5 +1,7 @@
 .ladning-body {
   font-family: "Gulimn";
+  width: 100%;
+  height: 100%;
 }
 
 .login {
@@ -38,26 +40,25 @@
   position: absolute;
   top: 18%;
   font-family: "Gulimn";
-  width: 100%;
   font-size: 3.5rem;
   font-weight: 500 !important;
   margin-left: 4rem;
-  color: #F9FFFF;
+  color: #f9ffff;
 }
 
 .main-get-started {
-    border: 2px solid #eef0f6;
-    border-radius: 60px;
-    width: 800px;
-    font-size: 32px;
-    text-align: center;
-    margin-top: 15px;
-  }
+  border: 2px solid #eef0f6;
+  border-radius: 60px;
+  width: 800px;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 15px;
+}
 
 .main-get-started:hover {
-    background-color: white;
-    color: gray;
-  }
+  background-color: white;
+  color: gray;
+}
 
 .start {
   text-decoration: none;
@@ -66,14 +67,11 @@
 }
 
 .content1 {
-  top: 10rem;
-  left: 10rem;
 }
 
 .section1 {
   width: 100%;
-  height: auto;
-  padding: 15rem 3rem;
+  height: 100%;
   /* border: 3px solid hotpink; */
   object-fit: fill;
   display: block;
@@ -81,8 +79,7 @@
 
 .section2 {
   width: 100%;
-  height: auto;
-  padding: 15rem 3rem;
+  height: 100%;
   background-color: #f3f5f7;
   object-fit: fill;
   display: block;
@@ -90,16 +87,14 @@
 
 .section3 {
   width: 100%;
-  height: auto;
-  padding: 15rem 3rem;
+  height: 100%;
   display: block;
 }
 
 .section4 {
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: #f3f5f7;
-  padding: 15rem 3rem;
 }
 
 .title {
@@ -150,27 +145,30 @@
   position: relative;
 }
 
-@media all and (min-width:1440px) and (max-width:7680px) {
+@media all and (min-width: 1440px) and (max-width: 7680px) {
   .phone-landing {
     display: none;
   }
+  .phone-start {
+    color: #eef0f6;
+    text-decoration-line: none;
+  }
 }
 
-@media all and (max-width: 1440px) {
-  /* PC */
+/* @media all and (max-width: 1440px) {
   .LandingPage {
     padding-right: 15%;
     padding-left: 15%;
-    /* display: none; */
+
   }
 
   .Nav {
     padding-right: 15%;
     padding-left: 15%;
   }
-}
+} */
 
-@media all and (min-width:900px) and (max-width: 1440px) {
+@media all and (min-width: 900px) and (max-width: 1440px) {
   /* .video-box {
 
   } */
@@ -184,7 +182,13 @@
   .main-get-started {
     font-size: 22px;
     font-weight: 700;
-    width: 400px;
+    width: 600px;
+  }
+
+  .phone-start {
+    text-decoration: none;
+    text-decoration-line: none;
+    color: #eef0f6;
   }
 
   .phone-landing {
@@ -193,8 +197,7 @@
 }
 
 @media all and (max-width: 900px) {
-  /* Phone 1안 */
-  .landing-title { 
+  .landing-title {
     font-size: 28px;
     margin-top: 25px;
     margin-left: 30px;
@@ -205,46 +208,109 @@
     font-weight: 700;
     width: 400px;
   }
-  
-    /* Phone 2안*/
+
+  /* Phone 2안*/
   .landing {
     display: none;
+    width: 100%;
   }
 
   .phone-landing {
     display: flex;
     font-family: "Huglife";
+    background-color: #f3f5f7;
+    height: 77rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
   .phone-landing-logo {
-    margin-top: 300px;
-    font-size: 300px;
+    width: 30rem;
+    height: 30rem;
   }
 
-  .phone-landing-logo-firstline {
-    display: block;
-    font-size: 35px;
-    font-family: "Gulimn";
-    margin-top: -230px;
-    margin-left: 330px;
-    margin-bottom: 10px;
+  .first-box {
+    height: 40%;
+    display: flex;
   }
 
-  .phone-landing-logo-secondline {
-    display: block;
-    margin-top: -80px;
-    margin-bottom: 350px;
-    margin-left: 280px;
+  .f-left {
+    width: 48%;
+    height: 100%;
+    font-size: 200px;
   }
 
-  .main-get-started {
-    border: 1px solid black;
-    margin-top: 700px;
-    margin-left: -800px;
-    display: inline-block;
+  .f-right {
+    width: 100%;
+    position: relative;
   }
 
-  .start {
+  .sec-top {
+    position: absolute;
+    width: 100%;
+    height: 28%;
+    font-size: 60px;
+
+    top: 20px;
+    left: 40px;
+  }
+
+  .sec-bot {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    font-size: 150px;
+    top: 50px;
+    left: -10px;
+  }
+
+  .second-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+
+  }
+
+  .second-box > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .second-box-top {
     color: black;
+    width: 100%;
+    height: 50%;
+
+    font-size: 60px;
+  }
+
+  .second-box-bottom {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+  }
+
+  .second-box-bottom > a {
+    text-decoration-line: none;
+    text-decoration: none;
+    color: black;
+    font-family: "Gulimn";
+  }
+
+  .second-box-bottom div {
+    font-size: 35px;
+    margin-top: 40px;
+    border: 2px solid black;
+    border-radius: 2rem;
+  }
+
+  .second-box-bottom div:hover {
+    background-color: gray;
+    box-shadow: 4px 4px gray;
+    color: white;
   }
 }
