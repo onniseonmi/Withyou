@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import title from "../images/title.png";
 import "../css/Nav.css";
+import "../css/LandingPage.css";
 import Login from "./login/Login";
 const client_url = "http://localhost:3000";
 const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
@@ -28,9 +28,9 @@ const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
       <div className="nav-container">
         <div className="nav-left"></div>
         <div className="title">
-          <Link to="/">
-            <img src={title} alt="title"></img>
-          </Link>
+        <a href="/">
+            <div className="logo">Withyou</div>
+          </a>
         </div>
         {!isLogin ? (
           <div className="nav-box nav-right">
@@ -40,6 +40,9 @@ const Nav = ({ isLogin, setIsLogin, accessToken, setAccessToken }) => {
             <div id="join" onClick={handleClick}>
               Join
             </div>
+            <span className="burger_bar">
+
+            </span>
           </div>
         ) : (
           <div className="nav-box nav-right">

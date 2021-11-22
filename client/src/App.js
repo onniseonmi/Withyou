@@ -53,9 +53,12 @@ export default function App() {
         accessToken={accessToken}
         setAccessToken={setAccessToken}
       />
+      
       <Switch>
         <Route exact={true} path="/">
           <LandingPage />
+        </Route>
+        <Route path="/login">
         </Route>
         <Route path="/editpage">
           <EditPage />

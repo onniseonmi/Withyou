@@ -1,0 +1,13 @@
+# pack-refs with: peeled fully-peeled sorted 
+00389813d1782f39a2c98ab27555962a0d4679eb refs/heads/dev/client
+d8398700e84f6e6a0fa5a815d0e9a51436c5b9af refs/heads/dev/client-ConflictResolved
+9e36b47d2ff006959effeeada00bcb803eaf7e47 refs/heads/dev/client-landing1
+7c6b44f9a8290a7d4d53b859cb6cd243164bab97 refs/heads/dev/client-landing2
+4ec3a5343f2af8222bf8a2b5ac98cd50f0d1fad5 refs/heads/dev/client-landing3
+59e3693b39b6c295ebd8a477b527c8378b47ff38 refs/heads/dev/client-landing4
+8f0c6fb8b439e080c09d0a28548fd09c34d475a3 refs/heads/dev/client-landing5
+d6d8dc6355266f3b58a7d07552cc7353dc7152f7 refs/heads/dev/client-landing6
+00389813d1782f39a2c98ab27555962a0d4679eb refs/heads/dev/client-landing7
+779c38483d9a6d97dd2b7af67c50deeb04300994 refs/heads/dev/client-landing9
+c34ac30e8ec7f1774fafcf036ca0bc75601ea3f6 refs/heads/dev/server
+2ba604dfb7be06455b9a44e1d583cfbf7247899a refs/heads/master
