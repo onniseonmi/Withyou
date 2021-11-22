@@ -5,19 +5,23 @@ import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
 import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
+import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 export default function EditPage() {
-  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
+  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록  
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-template");
   const canvasRef = useRef();
+  const [contemporaryZIndex, setcontemporaryZIndex] = useState("0");
+  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
-    nextState[index].style.zIndex = "1000";
+    setcontemporaryZIndex(nextState[index].style.zIndex);
+    nextState[index].style.zIndex = 1000;
     setItemStates(nextState);
     getSelectedItemInfo();
   }
@@ -26,7 +30,7 @@ export default function EditPage() {
     setSelectState(false);
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
-    nextState[index].style.zIndex = "0";
+    nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
   }
 
@@ -76,7 +80,7 @@ export default function EditPage() {
           // 작은 화면과 큰 화면의 비율을 맞춰야 할 것 같음
           style: {
             position: "absolute",
-            zIndex: 0,
+            zIndex: itemStates.length,
             // 위치 재설정
             width: canvas.width / 3,
             height: canvas.height / 3,
@@ -98,11 +102,20 @@ export default function EditPage() {
       ).toString(16)
     );
   }
-  // window.onresize = (e) => {
-  //   const canvasWidth = canvas.getBoundingClientRect().width;
-  //   canvas.style.height = `${(canvasWidth * 3) / 4}px`;
-  //   console.log(canvas.style.height);
-  // };
+
+  window.onkeydown = (e) => {
+    if (e.key === "Escape") {
+      const index = itemStates.findIndex((el) => el.isSelected === true);
+      if (index !== -1) {
+        onDeselect(index);
+      }
+    }
+  };
+
+  function modifyZindex(input) {
+    setcontemporaryZIndex(input);
+  }
+
   return (
     <>
       <div id="canvas-top-menu">
@@ -116,6 +129,7 @@ export default function EditPage() {
           />
 
           <EditMenu
+            makeId={makeId}
             selectedItem={selectedItem}
             itemStates={itemStates}
             setItemStates={setItemStates}
@@ -164,16 +178,21 @@ export default function EditPage() {
             </div>
           </div>
           <div id="edit-footer-menu">
-            {selectState && (
+            {selectState ? (
               <ImageProperty
+                itemStates={itemStates}
                 width={selectedItem.width}
                 height={selectedItem.height}
                 transform={selectedItem.transform}
+                zindex={contemporaryZIndex}
+                modifyZindex={modifyZindex}
                 resizeWidth={resizeWidth}
                 resizeHeight={resizeHeight}
                 rotateObject={rotateObject}
                 removeObject={removeObject}
               />
+            ) : (
+              <PropertyBlank />
             )}
           </div>
         </div>
