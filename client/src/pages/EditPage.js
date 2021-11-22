@@ -5,8 +5,9 @@ import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
 import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
+import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 export default function EditPage() {
-  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
+  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록  
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -128,6 +129,7 @@ export default function EditPage() {
           />
 
           <EditMenu
+            makeId={makeId}
             selectedItem={selectedItem}
             itemStates={itemStates}
             setItemStates={setItemStates}
@@ -176,7 +178,7 @@ export default function EditPage() {
             </div>
           </div>
           <div id="edit-footer-menu">
-            {selectState && (
+            {selectState ? (
               <ImageProperty
                 itemStates={itemStates}
                 width={selectedItem.width}
@@ -189,6 +191,8 @@ export default function EditPage() {
                 rotateObject={rotateObject}
                 removeObject={removeObject}
               />
+            ) : (
+              <PropertyBlank />
             )}
           </div>
         </div>

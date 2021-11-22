@@ -6,6 +6,7 @@ import Elements from "../canvas/modals/Elements";
 import Text from "../canvas/modals/Text";
 import "../../../css/editpage/menu/EditMenu.css";
 const EditMenu = ({
+  makeId,
   setItemStates,
   setMenuBtnOn,
   menuBtnStatus,
@@ -16,16 +17,32 @@ const EditMenu = ({
     <div id="detail-property">
       <div id="edit-menu-container">
         {menuBtnStatus === "menuBar-template" ? (
-          <Template setMenuBtnOn={setMenuBtnOn} addToItems={addToItems} />
+          <Template
+            setMenuBtnOn={setMenuBtnOn}
+            addToItems={addToItems}
+            makeId={makeId}
+          />
         ) : null}
         {menuBtnStatus === "menuBar-elements" ? (
-          <Elements setMenuBtnOn={setMenuBtnOn} addToItems={addToItems} />
+          <Elements
+            setMenuBtnOn={setMenuBtnOn}
+            addToItems={addToItems}
+            makeId={makeId}
+          />
         ) : null}
         {menuBtnStatus === "menuBar-image" ? (
-          <Image setMenuBtnOn={setMenuBtnOn} addToItems={addToItems} />
+          <Image
+            setMenuBtnOn={setMenuBtnOn}
+            addToItems={addToItems}
+            makeId={makeId}
+          />
         ) : null}
         {menuBtnStatus === "menuBar-text" ? (
-          <Text setMenuBtnOn={setMenuBtnOn} addToItems={addToItems} />
+          <Text
+            setMenuBtnOn={setMenuBtnOn}
+            addToItems={addToItems}
+            makeId={makeId}
+          />
         ) : null}
       </div>
     </div>
