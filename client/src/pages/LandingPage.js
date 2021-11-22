@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
 import weddingarch from "../videos/weddingarch.mp4";
 import Footer from "../components/Footer";
-import Nav from "../components/Nav";
-import "../css/Nav.css";
 
 const LandingPage = () => {
   return (
