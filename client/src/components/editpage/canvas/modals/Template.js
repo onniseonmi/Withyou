@@ -1,8 +1,8 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/TemplateModal.css";
 import templateImg from "../../../../images/template/sample.png";
-const fakeData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-export default function Template({ addToItems }) {
+const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
+export default function Template({ addToItems, makeId }) {
   function addToCanvas(img) {
     addToItems(img);
   }
@@ -15,6 +15,7 @@ export default function Template({ addToItems }) {
       <div id="template-modal-upload">
         {fakeData.map((el) => (
           <img
+            key={makeId()}
             src={templateImg}
             alt={el}
             onClick={() => {

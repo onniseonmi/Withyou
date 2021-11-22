@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
-  key,
+  id,
   src,
   style,
   isSelected,
@@ -9,25 +9,36 @@ export default function ImageOnCanvas({
   onDragStart,
   onDragEnd,
   onSelect,
-  onDeselect,
   onChangeStyle,
   selectState,
   canvasPaper,
 }) {
   const imageRef = useRef();
+  let initialLocation_X = 0;
+  let initialLocation_Y = 0;
+
   function calculatePosition(e) {
     if (isDragging) {
+      // TODO : 클릭하면 오브젝트가 다시 중앙으로 감 왜?
+      // 기본 로직
+      // 현재 오브젝트의 위치 - 마우스의 첫 클릭지점  ---> 변위차
+      // 마우스의 현재지점 - 변위차 = 오브젝트의 위치
+      // console.log("1", +e.target.style.left.slice(0, -2)); // 현재 오브젝트의 캔버스 안 좌표
+      // console.log("2", canvasPaper.getBoundingClientRect().left); // 현재 캔버스 좌표
+      let currentX =
+        +e.target.style.left.slice(0, -2) +
+        canvasPaper.getBoundingClientRect().left;
+
+      // console.log("3", currentX); //화면상 실 좌표
+      // console.log("4", initialLocation_X); // 클릭 시작한 좌표
+      // 변위 차
+      let differX = +e.target.style.left.slice(0, -2) - initialLocation_X;
+      let differY = +e.target.style.top.slice(0, -2) - initialLocation_Y;
+
       onChangeStyle({
-        left:
-          e.nativeEvent.clientX -
-          canvasPaper.getBoundingClientRect().left -
-          imageRef.current.width / 2 +
-          "px",
-        top:
-          e.nativeEvent.clientY -
-          canvasPaper.getBoundingClientRect().top -
-          imageRef.current.height / 2 +
-          "px",
+        // -(처음 클릭한 지점 - 마우스위치)
+        // left: e.clientX - differX + "px",
+        // top: e.clientY - differY + "px",
       });
     }
   }
@@ -40,17 +51,9 @@ export default function ImageOnCanvas({
     e.target.style.cursor = type;
   }
 
-  function removeClassName() {
-    window.addEventListener("keydown", (e) => {
-      if (isSelected && e.key === "Escape") {
-        onDeselect();
-      }
-    });
-  }
-  removeClassName();
   return (
     <img
-      id={`image${key}`}
+      key={id}
       className="image-element"
       draggable={false}
       src={src}
@@ -59,18 +62,21 @@ export default function ImageOnCanvas({
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
-      // TODO : 선택하면 아래 뜨도록 만들기
-      // 중복 선택이 안되도록 해야함
       onMouseDown={(e) => {
         if (!selectState) {
+          initialLocation_X = e.clientX;
+          initialLocation_Y = e.clientY;
           onSelect();
           controlCursorStyle(e, "grabbing");
-          onDragStart();
         }
+        onDragStart();
+        console.log("down", initialLocation_X);
       }}
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
         onDragEnd();
+        initialLocation_X = 0;
+        initialLocation_Y = 0;
       }}
       onMouseMove={(e) => {
         calculatePosition(e);
@@ -81,7 +87,6 @@ export default function ImageOnCanvas({
       }}
       onMouseOut={(e) => {
         onMouseOverObject(e, 1);
-        calculatePosition(e);
       }}
     />
   );

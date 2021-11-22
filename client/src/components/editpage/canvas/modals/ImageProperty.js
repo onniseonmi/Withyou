@@ -8,6 +8,8 @@ export default function ImageProperty({
   rotateObject,
   transform,
   removeObject,
+  zindex,
+  modifyZindex,
 }) {
   const [currentWidth, setCurrentWidth] = useState(width);
   const [currentHeight, setCurrentHeight] = useState(height);
@@ -50,6 +52,7 @@ export default function ImageProperty({
     setCurrentRotate(nextState);
     rotateObject(`rotate(${nextState}deg)`);
   }
+
   return (
     <div id="property-modal">
       <div id="property-title-button">
@@ -60,12 +63,13 @@ export default function ImageProperty({
       </div>
       <div id="control-box">
         <div id="control-width">
-          <div>크기</div>
-          <div>
-            <button class="resize-button" onClick={() => decreaseWidth()}>
+          <div>가로</div>
+          <div className="button-area">
+            <button className="resize-button" onClick={() => decreaseWidth()}>
               -
             </button>
             <input
+              className="input-area"
               type="text"
               value={Math.floor(currentWidth)}
               onChange={(e) => {
@@ -77,18 +81,19 @@ export default function ImageProperty({
                 }
               }}
             />
-            <button class="resize-button" onClick={() => increaseWidth()}>
+            <button className="resize-button" onClick={() => increaseWidth()}>
               +
             </button>
           </div>
         </div>
         <div id="control-height">
-          <div>높이</div>
-          <div>
-            <button class="resize-button" onClick={() => decreaseHeight()}>
+          <div>세로</div>
+          <div className="button-area">
+            <button className="resize-button" onClick={() => decreaseHeight()}>
               -
             </button>
             <input
+              className="input-area"
               type="text"
               value={Math.floor(currentHeight)}
               onChange={(e) => {
@@ -100,18 +105,22 @@ export default function ImageProperty({
                 }
               }}
             />
-            <button class="resize-button" onClick={() => increaseHeight()}>
+            <button className="resize-button" onClick={() => increaseHeight()}>
               +
             </button>
           </div>
         </div>
         <div id="control-rotate">
           <div>회전</div>
-          <div>
-            <button class="rotate-button" onClick={() => rotateDeClockSide()}>
+          <div className="button-area">
+            <button
+              className="rotate-button"
+              onClick={() => rotateDeClockSide()}
+            >
               -
             </button>
             <input
+              className="input-area"
               type="text"
               value={Math.floor(currentRotate)}
               onChange={(e) => {
@@ -123,9 +132,36 @@ export default function ImageProperty({
                 }
               }}
             />
-            <button class="rotate-button" onClick={() => rotateClockSide()}>
+            <button className="rotate-button" onClick={() => rotateClockSide()}>
               +
             </button>
+          </div>
+        </div>
+        <div id="control-zindex">
+          <div>높이</div>
+          <div id="zindex-buttons">
+            <div id="to-backward">
+              <button
+                className="zindex-button"
+                onClick={() => {
+                  if (zindex !== 0) {
+                    modifyZindex(zindex - 1);
+                  }
+                }}
+              >
+                뒤로
+              </button>
+            </div>
+            <div id="to-forward">
+              <button
+                className="zindex-button"
+                onClick={() => {
+                  modifyZindex(zindex + 1);
+                }}
+              >
+                앞으로
+              </button>
+            </div>
           </div>
         </div>
       </div>

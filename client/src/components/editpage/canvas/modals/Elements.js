@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/ElementsModal.css";
 import addImg from "../../../../images/add_image.png";
-const fakeData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function Elements() {
   return (
