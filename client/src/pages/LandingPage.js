@@ -13,8 +13,8 @@ const LandingPage = () => {
         <div className="video-box">
           <video
             id="landing-video"
-            // autoplay="autoplay"
-            // loop="Loop"
+            autoplay="autoplay"
+            loop="Loop"
             muted
             volume="0"
           >
