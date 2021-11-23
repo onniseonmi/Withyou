@@ -15,7 +15,7 @@ export default function EditPage() {
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
-  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
+  const { clientWidth } = document.body;
 
   function onSelect(index) {
     setSelectState(true);
@@ -74,8 +74,6 @@ export default function EditPage() {
     setSelectState(false);
   }
 
-  const { clientWidth } = document.body;
-
   function addToItems(src) {
     const canvas = document
       .querySelector("#canvas-paper")
@@ -133,6 +131,23 @@ export default function EditPage() {
     );
   }
 
+  function setMouseInitLocation(x, y) {
+    setInitLocation({ x: x, y: y });
+  }
+
+  function setMouseCurrentLocation(x, y) {
+    setCurrentLocation({ x: x, y: y });
+  }
+
+  function onclickToDeselect(e) {
+    if (e.target.className !== "image-element") {
+      const index = itemStates.findIndex((el) => el.isSelected === true);
+      if (index !== -1) {
+        onDeselect(index);
+      }
+    }
+  }
+
   window.onkeydown = (e) => {
     if (e.key === "Escape") {
       const index = itemStates.findIndex((el) => el.isSelected === true);
@@ -142,13 +157,14 @@ export default function EditPage() {
     }
   };
 
-  function setMouseInitLocation(x, y) {
-    setInitLocation({ x: x, y: y });
-  }
+  window.onkeydown = (e) => {
+    if (e.key === "Delete" || "Backspace") {
+      const removedItems = itemStates.filter((el) => el.isSelected !== true);
+      setItemStates(removedItems);
+      setSelectState(false);
+    }
+  };
 
-  function setMouseCurrentLocation(x, y) {
-    setCurrentLocation({ x: x, y: y });
-  }
   return (
     <>
       <div id="canvas-top-menu">
@@ -172,7 +188,7 @@ export default function EditPage() {
           />
         </div>
         <div id="canvas">
-          <div id="canvas-container">
+          <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
             <div id="canvas-paper">
               {itemStates.map((el, i) => {

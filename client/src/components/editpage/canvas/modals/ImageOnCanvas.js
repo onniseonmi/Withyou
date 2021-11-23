@@ -47,10 +47,12 @@ export default function ImageOnCanvas({
           e.target.getBoundingClientRect().left,
           e.target.getBoundingClientRect().top
         );
-        onDragStart();
         if (!selectState) {
           onSelect();
+          onDragStart();
           controlCursorStyle(e, "grabbing");
+        } else if (e.target.style.zIndex === "1000") {
+          onDragStart();
         }
       }}
       onMouseUp={(e) => {
