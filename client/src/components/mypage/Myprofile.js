@@ -5,6 +5,8 @@ import '../../css/mypage/Myprofile.css';
 const server_url = 'http://localhost:4000';
 const Myprofile = () => {
   const accessToken = sessionStorage.getItem('accessTokenSession');
+  const userInfoSession = JSON.parse(sessionStorage.getItem('userInfoSession'));
+  const userImageSession = sessionStorage.getItem('userImageSession');
   const imgInputRef = useRef();
   const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -46,6 +48,12 @@ const Myprofile = () => {
           username: data.data.username,
           mobile: data.data.mobile,
         });
+        const { email, username, mobile } = userInfo;
+        sessionStorage.removeItem('userInfoSession');
+        sessionStorage.setItem(
+          'userInfoSession',
+          JSON.stringify({ email, username, mobile })
+        );
       } catch (err) {}
       setEditBtn(false);
     } else if (e.target.id === 'btn-cancel') {
@@ -64,95 +72,12 @@ const Myprofile = () => {
   };
 
   useEffect(async () => {
-    if (accessToken) {
-      const loginType = sessionStorage.getItem('loginType');
-      try {
-        if (loginType === 'kakao') {
-          axios({
-            method: 'GET',
-            url: `${server_url}/user/kakao`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        } else if (loginType === 'naver') {
-          axios({
-            method: 'GET',
-            url: `${server_url}/user/naver`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-              mobile: res.data.mobile,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        } else if (loginType === 'github') {
-          axios({
-            method: 'GET',
-            url: `${server_url}/user/github`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        } else {
-          axios({
-            method: 'GET',
-            url: `${server_url}/profile`,
-            headers: {
-              authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              username: res.data.username,
-              email: res.data.email,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        }
-      } catch (err) {
-        console.log(err);
-      }
+    if (userInfoSession) {
+      setUserInfo({ ...userInfoSession, image: userImageSession });
+      setUserInput({ ...userInfoSession, image: userImageSession });
     }
   }, []);
+
   const pofileImgHandler = async (event) => {
     let reader = new FileReader();
     // reader.onloadend = async () => {
@@ -171,8 +96,6 @@ const Myprofile = () => {
     formData.append('img', event.target.files[0]);
 
     const accessTokenSession = sessionStorage.getItem('accessTokenSession');
-    console.log('accessTokenSession');
-    console.log(accessTokenSession);
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
       headers: {
@@ -181,7 +104,16 @@ const Myprofile = () => {
       },
       withCredentials: true,
     });
+
+    sessionStorage.removeItem('userImageSession');
+    sessionStorage.setItem('userImageSession', res.data.image);
     setUserInfo({ ...userInfo, image: res.data.image });
+  };
+  const addImgHandler = () => {
+    const loginType = sessionStorage.getItem('loginType');
+    if (loginType === null) imgInputRef.current.click();
+    else {
+    }
   };
   return (
     <div>
@@ -197,9 +129,7 @@ const Myprofile = () => {
               />
             </div>
 
-            <label htmlFor='add-image' onChange={pofileImgHandler}>
-              +
-            </label>
+            <button onClick={addImgHandler}>add image</button>
 
             <input
               ref={imgInputRef}
