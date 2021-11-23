@@ -26,19 +26,17 @@
 #control-zindex {
   display: flex;
   flex-direction: column;
-  flex: 0.5;
+  flex: 1;
   text-align: center;
 }
 
 #zindex-buttons {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  display: flex;
+  justify-content: center;
 }
 
 .input-area {
-  width: 40%;
+  width: 30%;
   text-align: center;
 }
 

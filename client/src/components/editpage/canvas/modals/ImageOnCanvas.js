@@ -42,9 +42,7 @@ export default function ImageOnCanvas({
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
       onMouseDown={(e) => {
-        // 초기 선택좌표 기억
         setMouseInitLocation(e.clientX, e.clientY);
-        // 현재 오브젝트의 좌표
         setMouseCurrentLocation(
           e.target.getBoundingClientRect().left,
           e.target.getBoundingClientRect().top
@@ -61,19 +59,19 @@ export default function ImageOnCanvas({
       }}
       onMouseMove={(e) => {
         if (isDragging) {
+          const differX = initLocation.x - currentLocation.x;
+          const differY = initLocation.y - currentLocation.y;
+          let x = e.pageX - differX - left;
+          let y = e.pageY - differY - top;
           if (clientWidth >= 900) {
-            const differX = initLocation.x / 2 - currentLocation.x / 2;
-            const differY = initLocation.y / 2 - currentLocation.y / 2;
             onChangeStyle({
-              left: e.pageX / 2 - differX - left / 2,
-              top: e.pageY / 2 - differY - top / 2,
+              left: x / 2,
+              top: y / 2,
             });
           } else {
-            const differX = initLocation.x - currentLocation.x;
-            const differY = initLocation.y - currentLocation.y;
             onChangeStyle({
-              left: e.pageX - differX - left,
-              top: e.pageY - differY - top,
+              left: x,
+              top: y,
             });
           }
         }
@@ -83,7 +81,7 @@ export default function ImageOnCanvas({
         opacityOnObject(e, 0.5);
       }}
       onMouseOut={(e) => {
-        // onDragEnd();
+        onDragEnd();
         opacityOnObject(e, 1);
       }}
     />

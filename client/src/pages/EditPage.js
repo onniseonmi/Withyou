@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/EditPage.css";
 import ImageOnCanvas from "../components/editpage/canvas/modals/ImageOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
@@ -12,8 +12,7 @@ export default function EditPage() {
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-template");
-  const canvasRef = useRef();
-  const [contemporaryZIndex, setcontemporaryZIndex] = useState("0");
+  const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
   // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
@@ -60,6 +59,13 @@ export default function EditPage() {
     const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
     nextState[targetIndex].style.transform = input;
     setItemStates(nextState);
+  }
+
+  function modifyZindex(input) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].zIndex = input;
+    setcontemporaryZIndex(input);
   }
 
   function removeObject() {
@@ -136,10 +142,6 @@ export default function EditPage() {
     }
   };
 
-  function modifyZindex(input) {
-    setcontemporaryZIndex(input);
-  }
-
   function setMouseInitLocation(x, y) {
     setInitLocation({ x: x, y: y });
   }
@@ -172,7 +174,7 @@ export default function EditPage() {
         <div id="canvas">
           <div id="canvas-container">
             <div id="content"></div>
-            <div id="canvas-paper" ref={canvasRef}>
+            <div id="canvas-paper">
               {itemStates.map((el, i) => {
                 return (
                   <ImageOnCanvas
