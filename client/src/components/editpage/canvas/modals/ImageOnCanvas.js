@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
   id,
@@ -9,6 +9,7 @@ export default function ImageOnCanvas({
   onDragStart,
   onDragEnd,
   onSelect,
+  deSelectObject,
   onChangeStyle,
   selectState,
   initLocation,
@@ -17,8 +18,6 @@ export default function ImageOnCanvas({
   setMouseCurrentLocation,
   clientWidth,
 }) {
-  const imageRef = useRef();
-
   function opacityOnObject(e, opacity) {
     e.target.style.opacity = opacity;
   }
@@ -30,13 +29,16 @@ export default function ImageOnCanvas({
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
 
+  function clickObject() {
+    onSelect();
+    onDragStart();
+  }
   return (
     <img
       key={id}
       className="image-element"
       draggable={false}
       src={src}
-      ref={imageRef}
       style={{
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
@@ -48,17 +50,19 @@ export default function ImageOnCanvas({
           e.target.getBoundingClientRect().top
         );
         if (!selectState) {
-          onSelect();
-          onDragStart();
+          clickObject();
           controlCursorStyle(e, "grabbing");
         } else if (e.target.style.zIndex === "1000") {
           onDragStart();
+        } else if (e.target.className === "image-element") {
+          deSelectObject();
         }
       }}
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
         onDragEnd();
       }}
+      // TODO : 밖으로 나가는 거 없애주는 기능 추가 하기..
       onMouseMove={(e) => {
         if (isDragging) {
           const differX = initLocation.x - currentLocation.x;

@@ -16,6 +16,7 @@ export default function EditPage() {
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
   const { clientWidth } = document.body;
+  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
     setSelectState(true);
@@ -33,6 +34,13 @@ export default function EditPage() {
     nextState[index].isSelected = false;
     nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
+  }
+
+  function deSelectObject() {
+    const index = itemStates.findIndex((el) => el.isSelected === true);
+    if (index !== -1) {
+      onDeselect(index);
+    }
   }
 
   function getSelectedItemInfo() {
@@ -150,18 +158,7 @@ export default function EditPage() {
 
   window.onkeydown = (e) => {
     if (e.key === "Escape") {
-      const index = itemStates.findIndex((el) => el.isSelected === true);
-      if (index !== -1) {
-        onDeselect(index);
-      }
-    }
-  };
-
-  window.onkeydown = (e) => {
-    if (e.key === "Delete" || "Backspace") {
-      const removedItems = itemStates.filter((el) => el.isSelected !== true);
-      setItemStates(removedItems);
-      setSelectState(false);
+      deSelectObject();
     }
   };
 
@@ -210,7 +207,7 @@ export default function EditPage() {
                       setItemStates(nextState);
                     }}
                     onSelect={() => onSelect(i)}
-                    onDeselect={() => onDeselect(i)}
+                    deSelectObject={deSelectObject}
                     onChangeStyle={(nextStyle) => {
                       const nextState = [...itemStates];
                       nextState[i].style = {
