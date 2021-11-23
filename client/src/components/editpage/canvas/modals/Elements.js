@@ -19,7 +19,7 @@ export default function Elements() {
             onClick={
               // TODO : 누르면 템플릿 적용되도록 구현
               // 그 후 닫힘
-              console.log("엘리먼트 추가")
+              () => console.log("엘리먼트 추가")
             }
           />
         ))}
