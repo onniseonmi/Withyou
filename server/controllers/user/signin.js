@@ -11,8 +11,6 @@ module.exports = async (req, res) => {
   const userInfo = await User.findOne({
     where: { email: req.body.email },
   });
-  console.log('userInfo');
-  console.log(userInfo);
   if (!userInfo) {
     return res.status(401).send({ message: 'Invalid email' });
   }
