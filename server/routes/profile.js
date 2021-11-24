@@ -12,8 +12,7 @@ router.put('/image', profileUpload.single('img'), async (req, res, err) => {
   if (err) {
     console.log('err.message');
   }
-  console.log('image!!!');
-  console.log(req);
+
   const authHeader = await auth(req);
 
   if (!authHeader) {

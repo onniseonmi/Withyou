@@ -3,8 +3,7 @@ const auth = require('../../middelware/auth');
 
 module.exports = async (req, res) => {
   const authHeader = await auth(req);
-  console.log('authHeader');
-  console.log(authHeader);
+
   if (!authHeader) {
     res.status(400).send({ data: null, message: 'invalid access token' });
   }
