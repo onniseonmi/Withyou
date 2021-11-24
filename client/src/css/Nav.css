@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Huglife";
-  src: url('../fonts/HughIsLifePersonalUseItalic-K7axe.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: "Gulimn";
-  src: url('../fonts/DXGulimB-KSCpc-EUC-H.ttf') format('truetype');
-}
-
 .nav-container {
   width: 100%;
   background-color: #f3f5f7;
