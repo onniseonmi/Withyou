@@ -5,8 +5,6 @@ const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
 module.exports = async (req, res, next) => {
   const authorization = req.headers['authorization'];
-  console.log('authorization');
-  console.log(req.headers);
 
   if (!authorization) {
     return null;
