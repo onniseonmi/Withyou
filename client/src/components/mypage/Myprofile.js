@@ -18,15 +18,12 @@ const Myprofile = () => {
     mobile: '',
     image: '',
   });
-  const { username, email, mobile } = userInfo;
+  const { username, email, mobile, image } = userInfo;
   const handleClick = async (e) => {
     const loginType = sessionStorage.getItem('loginType');
 
-    if (e.target.id === 'btn-edit') {
-      if (loginType === null) {
-        setEditBtn(true);
-      }
-      setEditBtn(false);
+    if (e.target.id === 'btn-edit' && loginType === null) {
+      setEditBtn(true);
     } else if (e.target.id === 'btn-save') {
       try {
         const data = await axios({
