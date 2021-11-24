@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import title from "../../../images/title.png";
-import loadingImg from "../../../images/loading.gif";
-import "../../../css/modals/auth/Signup.css";
+import title from "../../images/title.png";
+import loadingImg from "../../images/loading.gif";
+import "../../css/login/Signup.css";
 import axios from "axios";
 const Signup = ({ signupBtn, setSignupBtn }) => {
   const [inputErr, setInputErr] = useState(false);

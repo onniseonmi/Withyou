@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import "../css/Mypage.css";
-import Footer from "../components/Footer";
-import Myprofile from "../components/mypage/Myprofile";
-import Mycard from "../components/mypage/Mycard";
-const Mypage = ({ accessToken }) => {
+import React, { useState, useEffect } from 'react';
+import '../css/Mypage.css';
+import Footer from '../components/Footer';
+import Myprofile from '../components/mypage/Myprofile';
+import Mycard from '../components/mypage/Mycard';
+const Mypage = () => {
   return (
-    <div id="mypage">
-      <div id="profile">
+    <div id='mypage'>
+      <div id='profile'>
         <Myprofile />
       </div>
-      <div id="cards">
+      <div id='cards'>
         <Mycard />
       </div>
       <Footer />

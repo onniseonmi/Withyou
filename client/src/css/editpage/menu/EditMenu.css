@@ -1,0 +1,30 @@
+#detail-property {
+  position: relative;
+  width: 99.5%;
+  background-color: #999999;
+}
+#editCloseBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+}
+#editCloseBtn > button {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 4rem;
+}
+#edit-menu-container {
+  width: 20rem;
+}
+.edit--menu-title {
+  padding-left: 1rem;
+}
+@media screen and (max-width: 900px) {
+  #edit-menu-container {
+    /* position: absolute; */
+    height: 22rem;
+    display: flex;
+    width: 100%;
+  }
+}
