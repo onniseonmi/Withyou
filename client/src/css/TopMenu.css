@@ -14,3 +14,18 @@
   margin-left: 1rem;
   cursor: pointer;
 }
+#top-menu-save {
+  display: flex;
+  justify-content: space-around;
+  width: 15vh;
+}
+#download {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+#save {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}

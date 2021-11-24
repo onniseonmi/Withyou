@@ -6,6 +6,7 @@ import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
 import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
+
 export default function EditPage() {
   // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
