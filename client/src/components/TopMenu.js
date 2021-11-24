@@ -38,12 +38,6 @@ export default function TopMenu({ saveCard }) {
             alert("저장되었습니다. 마이페이지에서 확인해보실 수 있어요!")
           )
           .catch((el) => console.log(el));
-
-        // * 밑에 네줄 활성화하면 다운가능
-        // let el = document.querySelector("#save");
-        // el.href = myImage;
-        // el.download = "sample.png";
-        // el.click();
       }
     );
   }
