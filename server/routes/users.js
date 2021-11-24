@@ -10,7 +10,6 @@ const {
   naver,
   edit,
   github,
-  oauthSignin,
 } = require('../controllers');
 // const auth = require('../middelware/auth');
 
@@ -24,5 +23,5 @@ router.get('/kakao', kakao);
 router.get('/naver', naver);
 router.get('/github', github);
 router.post('/edit', edit);
-router.post('/oauth', oauthSignin);
+
 module.exports = router;
