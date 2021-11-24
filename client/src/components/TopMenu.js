@@ -34,7 +34,7 @@ export default function TopMenu({ saveCard }) {
           },
         })
           .then(() =>
-            // 또는 특정 모달이 생성되도록
+            // 또는 특정 모달이 생성되도록~
             alert("저장되었습니다. 마이페이지에서 확인해보실 수 있어요!")
           )
           .catch((el) => console.log(el));
