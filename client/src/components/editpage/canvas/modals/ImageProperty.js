@@ -16,6 +16,7 @@ export default function ImageProperty({
   const [currentRotate, setCurrentRotate] = useState(
     transform.slice(7).slice(0, -4)
   );
+  const [currentZindex, setCurrentZindex] = useState(zindex);
 
   function increaseWidth() {
     const nextState = currentWidth + 5;
@@ -51,6 +52,18 @@ export default function ImageProperty({
     const nextState = String(+currentRotate - 10);
     setCurrentRotate(nextState);
     rotateObject(`rotate(${nextState}deg)`);
+  }
+
+  function decreaseZindex() {
+    const nextState = zindex - 1;
+    setCurrentZindex(nextState);
+    modifyZindex(nextState);
+  }
+
+  function increaseZindex() {
+    const nextState = zindex + 1;
+    setCurrentZindex(nextState);
+    modifyZindex(nextState);
   }
 
   return (
@@ -138,30 +151,39 @@ export default function ImageProperty({
           </div>
         </div>
         <div id="control-zindex">
-          <div>높이</div>
+          <div>레이어</div>
           <div id="zindex-buttons">
-            <div id="to-backward">
-              <button
-                className="zindex-button"
-                onClick={() => {
-                  if (zindex !== 0) {
-                    modifyZindex(zindex - 1);
-                  }
-                }}
-              >
-                뒤로
-              </button>
-            </div>
-            <div id="to-forward">
-              <button
-                className="zindex-button"
-                onClick={() => {
-                  modifyZindex(zindex + 1);
-                }}
-              >
-                앞으로
-              </button>
-            </div>
+            <button
+              className="zindex-button"
+              onClick={() => {
+                if (zindex !== 0) {
+                  decreaseZindex(zindex - 1);
+                }
+              }}
+            >
+              -
+            </button>
+            <input
+              className="input-area"
+              type="text"
+              value={currentZindex}
+              onChange={(e) => {
+                setCurrentZindex(e.target.value);
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  modifyZindex(currentZindex);
+                }
+              }}
+            />
+            <button
+              className="zindex-button"
+              onClick={() => {
+                increaseZindex(zindex + 1);
+              }}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>

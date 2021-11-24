@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
   id,
@@ -9,84 +9,86 @@ export default function ImageOnCanvas({
   onDragStart,
   onDragEnd,
   onSelect,
+  deSelectObject,
   onChangeStyle,
   selectState,
-  canvasPaper,
+  initLocation,
+  setMouseInitLocation,
+  currentLocation,
+  setMouseCurrentLocation,
+  clientWidth,
 }) {
-  const imageRef = useRef();
-  let initialLocation_X = 0;
-  let initialLocation_Y = 0;
-
-  function calculatePosition(e) {
-    if (isDragging) {
-      // TODO : 클릭하면 오브젝트가 다시 중앙으로 감 왜?
-      // 기본 로직
-      // 현재 오브젝트의 위치 - 마우스의 첫 클릭지점  ---> 변위차
-      // 마우스의 현재지점 - 변위차 = 오브젝트의 위치
-      // console.log("1", +e.target.style.left.slice(0, -2)); // 현재 오브젝트의 캔버스 안 좌표
-      // console.log("2", canvasPaper.getBoundingClientRect().left); // 현재 캔버스 좌표
-      let currentX =
-        +e.target.style.left.slice(0, -2) +
-        canvasPaper.getBoundingClientRect().left;
-
-      // console.log("3", currentX); //화면상 실 좌표
-      // console.log("4", initialLocation_X); // 클릭 시작한 좌표
-      // 변위 차
-      let differX = +e.target.style.left.slice(0, -2) - initialLocation_X;
-      let differY = +e.target.style.top.slice(0, -2) - initialLocation_Y;
-
-      onChangeStyle({
-        // -(처음 클릭한 지점 - 마우스위치)
-        // left: e.clientX - differX + "px",
-        // top: e.clientY - differY + "px",
-      });
-    }
-  }
-
-  function onMouseOverObject(e, opacity) {
+  function opacityOnObject(e, opacity) {
     e.target.style.opacity = opacity;
   }
 
   function controlCursorStyle(e, type) {
     e.target.style.cursor = type;
   }
+  const { left, top } = document
+    .querySelector("#canvas-paper")
+    .getBoundingClientRect();
 
+  function clickObject() {
+    onSelect();
+    onDragStart();
+  }
   return (
     <img
       key={id}
       className="image-element"
       draggable={false}
       src={src}
-      ref={imageRef}
       style={{
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
       onMouseDown={(e) => {
+        setMouseInitLocation(e.clientX, e.clientY);
+        setMouseCurrentLocation(
+          e.target.getBoundingClientRect().left,
+          e.target.getBoundingClientRect().top
+        );
         if (!selectState) {
-          initialLocation_X = e.clientX;
-          initialLocation_Y = e.clientY;
-          onSelect();
+          clickObject();
           controlCursorStyle(e, "grabbing");
+        } else if (e.target.style.zIndex === "1000") {
+          onDragStart();
+        } else if (e.target.className === "image-element") {
+          deSelectObject();
         }
-        onDragStart();
-        console.log("down", initialLocation_X);
       }}
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
         onDragEnd();
-        initialLocation_X = 0;
-        initialLocation_Y = 0;
       }}
+      // TODO : 밖으로 나가는 거 없애주는 기능 추가 하기..
       onMouseMove={(e) => {
-        calculatePosition(e);
+        if (isDragging) {
+          const differX = initLocation.x - currentLocation.x;
+          const differY = initLocation.y - currentLocation.y;
+          let x = e.pageX - differX - left;
+          let y = e.pageY - differY - top;
+          if (clientWidth >= 900) {
+            onChangeStyle({
+              left: x / 2,
+              top: y / 2,
+            });
+          } else {
+            onChangeStyle({
+              left: x,
+              top: y,
+            });
+          }
+        }
       }}
       onMouseOver={(e) => {
         controlCursorStyle(e, "grab");
-        onMouseOverObject(e, 0.5);
+        opacityOnObject(e, 0.5);
       }}
       onMouseOut={(e) => {
-        onMouseOverObject(e, 1);
+        onDragEnd();
+        opacityOnObject(e, 1);
       }}
     />
   );
