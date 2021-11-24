@@ -12,5 +12,4 @@ module.exports = {
   postCard: require('./cards/cardPost'),
   edit: require('./user/edit'),
   profile: require('./profile/profile'),
-  oauthSignin: require('./user/oauth/oauthSignin'),
 };
