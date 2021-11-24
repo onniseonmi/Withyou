@@ -21,11 +21,7 @@ module.exports = {
     });
   },
   editProfile: async (req, res) => {
-    console.log('mypage 수정');
-    console.log(req.body);
     const authHeader = await auth(req);
-    console.log('email');
-    console.log(authHeader.email);
     if (!authHeader) {
       res.status(400).send({ data: null, message: 'invalid access token' });
     }

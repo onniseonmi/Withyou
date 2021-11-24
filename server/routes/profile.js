@@ -5,7 +5,7 @@ const { profileUpload } = require('../routes/multer');
 const { User } = require('../models');
 const auth = require('../middelware/auth');
 router.get('/', profile.getProfile);
-router.put('/', profile.editProfile);
+router.post('/', profile.editProfile);
 // router.post('/image', profile.editImage);
 
 router.put('/image', profileUpload.single('img'), async (req, res, err) => {
