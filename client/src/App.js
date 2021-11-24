@@ -9,7 +9,7 @@ import './App.css';
 const server_url = 'http://localhost:4000';
 
 export default function App() {
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken1, setAccessToken] = useState('');
   const [isLogin, setIsLogin] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
@@ -25,9 +25,8 @@ export default function App() {
       url: 'http://localhost:4000/user/callback',
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then(async (resp) => {
-      const { accessToken } = resp.data;
-
-      if (accessToken) {
+      const { access_token } = resp.data;
+      if (access_token) {
         const loginType = sessionStorage.getItem('loginType');
         try {
           if (loginType === 'kakao') {
@@ -35,9 +34,10 @@ export default function App() {
               method: 'GET',
               url: `${server_url}/user/kakao`,
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${access_token}`,
               },
             }).then(async (res) => {
+              sessionStorage.setItem('accessTokenSession', access_token);
               await axios({
                 method: 'POST',
                 url: 'http://localhost:4000/user/oauth',
@@ -48,6 +48,8 @@ export default function App() {
                   mobile: '',
                 },
               }).then((resp) => {
+                setIsLogin(true);
+                sessionStorage.setItem('isLoginSession', isLogin);
                 sessionStorage.setItem(
                   'userInfoSession',
                   JSON.stringify({
@@ -70,7 +72,7 @@ export default function App() {
               method: 'GET',
               url: `${server_url}/user/naver`,
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${access_token}`,
               },
             }).then((res) => {
               axios({
@@ -83,6 +85,7 @@ export default function App() {
                   mobile: '',
                 },
               }).then((resp) => {
+                setIsLogin(true);
                 sessionStorage.setItem(
                   'userInfoSession',
                   JSON.stringify({
@@ -105,7 +108,7 @@ export default function App() {
               method: 'GET',
               url: `${server_url}/user/github`,
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${access_token}`,
               },
             }).then((res) => {
               axios({
@@ -118,6 +121,7 @@ export default function App() {
                   mobile: '',
                 },
               }).then((resp) => {
+                setIsLogin(true);
                 sessionStorage.setItem(
                   'userInfoSession',
                   JSON.stringify({
@@ -135,15 +139,15 @@ export default function App() {
                 });
               });
             });
+          } else {
+            setIsLogin(true);
+            sessionStorage.setItem('isLoginSession', isLogin);
+            sessionStorage.setItem('accessTokenSession', access_token);
           }
         } catch (err) {
           console.log(err);
         }
       }
-
-      setIsLogin(true);
-      sessionStorage.setItem('isLoginSession', isLogin);
-      sessionStorage.setItem('accessTokenSession', accessToken);
     });
   };
 
@@ -176,7 +180,7 @@ export default function App() {
         setSignupBtn={setSignupBtn}
         isLogin={isLogin}
         setIsLogin={setIsLogin}
-        accessToken={accessToken}
+        accessToken={accessToken1}
         setAccessToken={setAccessToken}
       />
 
@@ -186,7 +190,7 @@ export default function App() {
         </Route>
         <Route path='/editpage'>{!loginBtn && <EditPage />}</Route>
         <Route path='/mypage'>
-          <Mypage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <Mypage userInfo1={userInfo} setUserInfo={setUserInfo} />
         </Route>
       </Switch>
     </Router>

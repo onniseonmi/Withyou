@@ -10,11 +10,12 @@ const Myprofile = () => {
   const imgInputRef = useRef();
   const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    email: '',
-    mobile: '',
-    image: '',
+    username: userInfoSession.username,
+    email: userInfoSession.email,
+    mobile: userInfoSession.mobile,
+    image: userInfoSession.image,
   });
+
   const [userInput, setUserInput] = useState({
     username: '',
     mobile: '',
@@ -26,6 +27,8 @@ const Myprofile = () => {
       setEditBtn(true);
     } else if (e.target.id === 'btn-save') {
       try {
+        console.log('userInput');
+        console.log(userInput);
         const data = await axios({
           method: 'POST',
           url: `${server_url}/profile`,
@@ -37,6 +40,7 @@ const Myprofile = () => {
             authorization: `Bearer ${accessToken}`,
           },
         });
+
         setUserInfo({
           ...userInfo,
           email: data.data.email,
@@ -48,7 +52,8 @@ const Myprofile = () => {
           username: data.data.username,
           mobile: data.data.mobile,
         });
-        const { email, username, mobile } = userInfo;
+
+        const { email, username, mobile } = data.data;
         sessionStorage.removeItem('userInfoSession');
         sessionStorage.setItem(
           'userInfoSession',
@@ -66,9 +71,9 @@ const Myprofile = () => {
     }
   };
   const handleChange = (e) => {
-    setUserInput({
-      [e.target.id]: e.target.value,
-    });
+    console.log('e.target.id');
+    console.log(e.target.id);
+    setUserInput({ ...userInput, [e.target.id]: e.target.value });
   };
 
   useEffect(async () => {
@@ -110,13 +115,13 @@ const Myprofile = () => {
     setUserInfo({ ...userInfo, image: res.data.image });
   };
   const addImgHandler = () => {
-    const loginType = sessionStorage.getItem('loginType');
-    if (loginType === null) imgInputRef.current.click();
-    else {
-    }
+    // const loginType = sessionStorage.getItem('loginType');
+    // if (loginType === null)
+    imgInputRef.current.click();
   };
   return (
     <div>
+      {console.log(userInfo)}
       <div className='mypage-title'>⭐️ My Profile</div>
       {editBtn ? (
         <div id='profile-content'>
