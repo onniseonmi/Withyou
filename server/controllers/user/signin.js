@@ -22,22 +22,22 @@ module.exports = async (req, res) => {
     return res.status(401).json({ message: 'Invalid password' });
   }
 
-  const accessToken = createAccessToken(userInfo.email);
-  const refreshToken = createRefreshToken(userInfo.email);
   const { id, username, mobile, email, image } = userInfo.dataValues;
+  const accessToken = createAccessToken({ id, email });
+  const refreshToken = createRefreshToken({ id, email });
   res
     .status(200)
     .cookie('refreshToken', refreshToken)
     .json({ accessToken, userInfo: { id, username, mobile, email, image } });
 };
 
-function createAccessToken(email) {
-  return jwt.sign({ email }, ACCESS_SECRET, {
+function createAccessToken({ id, email }) {
+  return jwt.sign({ id, email }, ACCESS_SECRET, {
     expiresIn: ACCESSEXPIREINDAYS,
   });
 }
-function createRefreshToken(email) {
-  return jwt.sign({ email }, REFRESH_SECRET, {
+function createRefreshToken({ id, email }) {
+  return jwt.sign({ id, email }, REFRESH_SECRET, {
     expiresIn: REFRESHEXPIREINDAYS,
   });
 }
