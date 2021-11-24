@@ -6,6 +6,7 @@ import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
 import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
+
 export default function EditPage() {
   // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
@@ -15,6 +16,7 @@ export default function EditPage() {
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
+  const { clientWidth } = document.body;
   // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
@@ -33,6 +35,13 @@ export default function EditPage() {
     nextState[index].isSelected = false;
     nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
+  }
+
+  function deSelectObject() {
+    const index = itemStates.findIndex((el) => el.isSelected === true);
+    if (index !== -1) {
+      onDeselect(index);
+    }
   }
 
   function getSelectedItemInfo() {
@@ -73,8 +82,6 @@ export default function EditPage() {
     setItemStates(removedItems);
     setSelectState(false);
   }
-
-  const { clientWidth } = document.body;
 
   function addToItems(src) {
     const canvas = document
@@ -133,15 +140,6 @@ export default function EditPage() {
     );
   }
 
-  window.onkeydown = (e) => {
-    if (e.key === "Escape") {
-      const index = itemStates.findIndex((el) => el.isSelected === true);
-      if (index !== -1) {
-        onDeselect(index);
-      }
-    }
-  };
-
   function setMouseInitLocation(x, y) {
     setInitLocation({ x: x, y: y });
   }
@@ -149,6 +147,22 @@ export default function EditPage() {
   function setMouseCurrentLocation(x, y) {
     setCurrentLocation({ x: x, y: y });
   }
+
+  function onclickToDeselect(e) {
+    if (e.target.className !== "image-element") {
+      const index = itemStates.findIndex((el) => el.isSelected === true);
+      if (index !== -1) {
+        onDeselect(index);
+      }
+    }
+  }
+
+  window.onkeydown = (e) => {
+    if (e.key === "Escape") {
+      deSelectObject();
+    }
+  };
+
   return (
     <>
       <div id="canvas-top-menu">
@@ -172,7 +186,7 @@ export default function EditPage() {
           />
         </div>
         <div id="canvas">
-          <div id="canvas-container">
+          <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
             <div id="canvas-paper">
               {itemStates.map((el, i) => {
@@ -194,7 +208,7 @@ export default function EditPage() {
                       setItemStates(nextState);
                     }}
                     onSelect={() => onSelect(i)}
-                    onDeselect={() => onDeselect(i)}
+                    deSelectObject={deSelectObject}
                     onChangeStyle={(nextStyle) => {
                       const nextState = [...itemStates];
                       nextState[i].style = {
