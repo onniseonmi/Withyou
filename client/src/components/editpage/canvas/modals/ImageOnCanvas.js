@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
 export default function ImageOnCanvas({
+  key,
   id,
   src,
   style,
@@ -11,7 +12,6 @@ export default function ImageOnCanvas({
   onSelect,
   deSelectObject,
   onChangeStyle,
-  selectState,
   initLocation,
   setMouseInitLocation,
   currentLocation,
@@ -29,13 +29,15 @@ export default function ImageOnCanvas({
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
 
-  function clickObject() {
+  function onClickObject() {
+    deSelectObject();
     onSelect();
     onDragStart();
   }
   return (
     <img
-      key={id}
+      key={key}
+      id={id}
       className="image-element"
       draggable={false}
       src={src}
@@ -44,25 +46,19 @@ export default function ImageOnCanvas({
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
       onMouseDown={(e) => {
+        onClickObject();
         setMouseInitLocation(e.clientX, e.clientY);
         setMouseCurrentLocation(
           e.target.getBoundingClientRect().left,
           e.target.getBoundingClientRect().top
         );
-        if (!selectState) {
-          clickObject();
-          controlCursorStyle(e, "grabbing");
-        } else if (e.target.style.zIndex === "1000") {
-          onDragStart();
-        } else if (e.target.className === "image-element") {
-          deSelectObject();
-        }
+        controlCursorStyle(e, "grabbing");
       }}
+      // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
         onDragEnd();
       }}
-      // TODO : 밖으로 나가는 거 없애주는 기능 추가 하기..
       onMouseMove={(e) => {
         if (isDragging) {
           const differX = initLocation.x - currentLocation.x;
