@@ -7,8 +7,6 @@ import Oauth from '../login/Oauth';
 import axios from 'axios';
 const server_url = 'http://localhost:4000';
 const Login = ({
-  userInfo,
-  setUserInfo,
   isLogin,
   setIsLogin,
   loginBtn,
@@ -38,13 +36,6 @@ const Login = ({
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;
-      const { email, username, mobile, image } = userInfo;
-      sessionStorage.setItem(
-        'userInfoSession',
-        JSON.stringify({ email, username, mobile })
-      );
-
-      sessionStorage.setItem('userImageSession', image);
       sessionStorage.setItem('isLoginSession', true);
       sessionStorage.setItem('accessTokenSession', accessToken);
       setIsLogin(true);
@@ -123,7 +114,7 @@ const Login = ({
                   </div>
                 </div>
               </div>
-              <Oauth userInfo={userInfo} setUserInfo={setUserInfo} />
+              <Oauth />
             </div>
           </div>
         )}

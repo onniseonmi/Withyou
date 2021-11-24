@@ -1,7 +1,7 @@
 import React from 'react';
 import naver from '../../images/naver.png';
 import kakao from '../../images/kakao.png';
-const Oauth = ({ userInfo, setUserInfo }) => {
+const Oauth = () => {
   const naverLogin = (e) => {
     const client_id = 'uFXw6VGES6r8XT7wm80Q';
     const state = 'RANDOM_STATE';
