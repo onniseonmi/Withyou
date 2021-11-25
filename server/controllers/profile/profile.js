@@ -1,6 +1,6 @@
 const { User } = require('../../models');
 const { verify } = require('jsonwebtoken');
-const auth = require('../../middelware/auth');
+const auth = require('../../middleware/auth');
 
 module.exports = {
   getProfile: async (req, res) => {

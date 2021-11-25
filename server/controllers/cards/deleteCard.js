@@ -1,5 +1,5 @@
 const { Card } = require('../../models');
-const auth = require('../../middelware/auth');
+const auth = require('../../middleware/auth');
 
 module.exports = async (req, res) => {
   const authHeader = auth(req);

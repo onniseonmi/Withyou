@@ -1,4 +1,4 @@
-const auth = require('../../middelware/auth');
+const auth = require('../../middleware/auth');
 const { User } = require('../../models');
 
 module.exports = async (req, res) => {
