@@ -60,7 +60,11 @@ export default function TopMenu({ saveCard }) {
 
   return (
     <div id="top-menu">
-      <div className="top-menu-box">
+      <div className="top-menu-box top-menu-left">
+        <div>새 페이지</div>
+        <div>페이지 추가</div>
+      </div>
+      <div className="top-menu-box top-menu-right">
         <div id="top-menu-save">
           <a id="download" onClick={() => download()}>
             다운로드

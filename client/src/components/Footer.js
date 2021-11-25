@@ -14,7 +14,7 @@ const Footer = () => {
         <div id="footer-title">
           <a href="https://github.com/codestates/Withyou" target="_blank">
             <span>Made by</span>
-            <img src={withyou} alt="withyou" />
+            <span>Withyou</span>
           </a>
         </div>
         <div className="footer-contact">

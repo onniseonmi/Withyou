@@ -168,9 +168,6 @@ export default function EditPage() {
 
   return (
     <>
-      <div id="canvas-top-menu">
-        <TopMenu />
-      </div>
       <div id="EditPage">
         <div id="edit-menu">
           <EditMenuBar
@@ -189,6 +186,9 @@ export default function EditPage() {
           />
         </div>
         <div id="canvas">
+          <div id="canvas-top-menu">
+            <TopMenu />
+          </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
             <div id="canvas-paper">
