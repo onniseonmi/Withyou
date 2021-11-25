@@ -155,21 +155,12 @@ const Myprofile = () => {
   }, []);
   const pofileImgHandler = async (event) => {
     let reader = new FileReader();
-    // reader.onloadend = async () => {
-    //   // 2. 읽기가 완료되면 아래코드가 실행됩니다.
-    //   // const base64 = reader.result;
-    //   // if (base64) {
-    //   //   setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
-    //   // }
-    // };
+
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
     }
-
-    // multer s3 통신해서 프로필 사진 변경
     const formData = new FormData();
     formData.append("img", event.target.files[0]);
-    console.log(formData);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
@@ -179,6 +170,7 @@ const Myprofile = () => {
       },
       withCredentials: true,
     });
+    console.log(event.target.files[0]);
     setUserInfo({ ...userInfo, image: res.data.image });
   };
   return (
@@ -189,6 +181,7 @@ const Myprofile = () => {
           <div className="profile-image">
             <div className="profile-image-box">
               <img
+                id="image"
                 src={userInfo.image ? userInfo.image : addImg}
                 alt="#"
                 style={{ pointerEvents: "none" }}
@@ -245,14 +238,14 @@ const Myprofile = () => {
       ) : (
         <div id="profile-content">
           <div className="profile-image">
-            <img
-              id="image"
-              src={userInfo.image ? userInfo.image : addImg}
-              alt="#"
-              style={{
-                pointerEvents: "none",
-              }}
-            />
+            <div className="profile-image-box">
+              <img
+                id="image"
+                src={userInfo.image ? userInfo.image : addImg}
+                alt="#"
+                style={{ pointerEvents: "none" }}
+              />
+            </div>
           </div>
           <div className="userinfo">
             <div id="e-mail" className="row">
