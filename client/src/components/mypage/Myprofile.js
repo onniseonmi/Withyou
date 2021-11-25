@@ -1,31 +1,31 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import addImg from '../../images/add_image.png';
-import '../../css/mypage/Myprofile.css';
-const server_url = 'http://localhost:4000';
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import addImg from "../../images/add_image.png";
+import "../../css/mypage/Myprofile.css";
+const server_url = "http://localhost:4000";
 const Myprofile = () => {
-  const accessToken = sessionStorage.getItem('accessTokenSession');
+  const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
   const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    email: '',
-    mobile: '',
-    image: '',
+    username: "",
+    email: "",
+    mobile: "",
+    image: "",
   });
   const [userInput, setUserInput] = useState({
-    username: '',
-    mobile: '',
-    image: '',
+    username: "",
+    mobile: "",
+    image: "",
   });
   const { username, email, mobile, image } = userInfo;
   const handleClick = async (e) => {
-    if (e.target.id === 'btn-edit') {
+    if (e.target.id === "btn-edit") {
       setEditBtn(true);
-    } else if (e.target.id === 'btn-save') {
+    } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
-          method: 'POST',
+          method: "POST",
           url: `${server_url}/profile`,
           data: {
             username: userInput.username,
@@ -48,7 +48,7 @@ const Myprofile = () => {
         });
       } catch (err) {}
       setEditBtn(false);
-    } else if (e.target.id === 'btn-cancel') {
+    } else if (e.target.id === "btn-cancel") {
       setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
@@ -63,11 +63,11 @@ const Myprofile = () => {
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem('loginType');
+      const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === 'kakao') {
+        if (loginType === "kakao") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/kakao`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -85,9 +85,9 @@ const Myprofile = () => {
               image: res.data.image,
             });
           });
-        } else if (loginType === 'naver') {
+        } else if (loginType === "naver") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/naver`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -106,9 +106,9 @@ const Myprofile = () => {
               image: res.data.image,
             });
           });
-        } else if (loginType === 'github') {
+        } else if (loginType === "github") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/github`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -127,7 +127,7 @@ const Myprofile = () => {
           });
         } else {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/profile`,
             headers: {
               authorization: `Bearer ${accessToken}`,
@@ -166,14 +166,14 @@ const Myprofile = () => {
 
     // multer s3 통신해서 프로필 사진 변경
     const formData = new FormData();
-    formData.append('img', event.target.files[0]);
+    formData.append("img", event.target.files[0]);
 
-    const accessTokenSession = sessionStorage.getItem('accessTokenSession');
+    const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
-        'content-type': 'multipart/form-data boundary=something',
+        "content-type": "multipart/form-data boundary=something",
       },
       withCredentials: true,
     });
@@ -181,94 +181,93 @@ const Myprofile = () => {
   };
   return (
     <div>
-      <div className='mypage-title'>⭐️ My Profile</div>
+      <div className="mypage-title">⭐️ My Profile</div>
       {editBtn ? (
-        <div id='profile-content'>
-          <div className='profile-image'>
-            <div>
+        <div id="profile-content">
+          <div className="profile-image">
+            <div className="profile-image-box">
               <img
                 src={userInfo.image ? userInfo.image : addImg}
-                alt='#'
-                style={{ pointerEvents: 'none' }}
+                alt="#"
+                style={{ pointerEvents: "none" }}
               />
             </div>
-
-            <label htmlFor='add-image' onChange={pofileImgHandler}>
-              +
-            </label>
+            <button onClick={() => imgInputRef.current.click()}>
+              Add Image
+            </button>
 
             <input
               ref={imgInputRef}
-              type='file'
-              id='add-image'
+              type="file"
+              id="add-image"
               // accept='image/png, image/jpeg, image/svg'
               style={{
-                display: 'none',
+                display: "none",
               }}
               onChange={pofileImgHandler}
             ></input>
           </div>
-          <div className='userinfo'>
-            <div id='e-mail' className='row'>
+          <div className="userinfo">
+            <div id="e-mail" className="row">
               <span>💫 email : </span>
               <span>{email}</span>
             </div>
-            <div id='username' className='row'>
+            <div id="username" className="row">
               <span>💫 username : </span>
               <input
-                id='username'
-                type='text'
+                id="username"
+                type="text"
                 value={userInput.username}
                 onChange={handleChange}
               ></input>
             </div>
-            <div id='mobile' className='row'>
+            <div id="mobile" className="row">
               <span>💫 mobile : </span>
               <input
-                id='mobile'
-                type='text'
+                id="mobile"
+                type="text"
                 value={userInput.mobile}
                 onChange={handleChange}
               ></input>
             </div>
           </div>
-          <div className='edit-profile mypage-button'>
-            <button id='btn-save' onClick={handleClick}>
+          <div className="edit-profile mypage-button">
+            <button id="btn-save" onClick={handleClick}>
               save
             </button>
-            <button id='btn-cancel' onClick={handleClick}>
+            <button id="btn-cancel" onClick={handleClick}>
               cancel
             </button>
           </div>
         </div>
       ) : (
-        <div id='profile-content'>
-          <div className='profile-image'>
+        <div id="profile-content">
+          <div className="profile-image">
             <img
-              id='image'
+              id="image"
               src={userInfo.image ? userInfo.image : addImg}
-              alt='#'
+              alt="#"
               style={{
-                pointerEvents: 'none',
+                pointerEvents: "none",
               }}
             />
           </div>
-          <div className='userinfo'>
-            <div id='e-mail' className='row'>
+          <div className="userinfo">
+            <div id="e-mail" className="row">
               <span>💫 email : </span>
               <span>{email}</span>
             </div>
-            <div id='username' className='row'>
+            <div id="username" className="row">
               <span>💫 username : </span>
               <span>{username}</span>
             </div>
-            <div id='mobile' className='row'>
+            <div id="mobile" className="row">
               <span>💫 mobile : </span>
               <span>{mobile}</span>
             </div>
           </div>
-          <div className='edit-profile mypage-button'>
-            <button id='btn-edit' onClick={handleClick}>
+          <div className="edit-profile mypage-button">
+            <button id="btn-edit" onClick={handleClick}>
               Edit
             </button>
           </div>
