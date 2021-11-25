@@ -4,56 +4,44 @@ import html2canvse from "html2canvas";
 import axios from "axios";
 const server_url = "http://localhost:4000";
 
-export default function TopMenu({ saveCard }) {
-  // TODO : 캔버스 저장하기
-  const accessToken = sessionStorage.getItem("accessTokenSession");
-
+export default function TopMenu() {
   function download() {
     html2canvse(document.querySelector("#canvas-paper")).then((canvas) => {
       const myImage = canvas.toDataURL("image/png");
-      let el = document.querySelector("#download");
+      if (document.body.clientWidth < 900) {
+        canvas.width = canvas.width * 2;
+        canvas.height = canvas.height * 2;
+      }
+      let el = document.createElement("a");
       el.href = myImage;
-      el.download = "sample.png";
+      el.download = "My Card.png";
       el.click();
+      el.remove();
     });
   }
 
-  // 파일 자체를 formData
-  // useRef() : ?
-  // const formData = new FormData();
-  // formData.append('img', event.target.files[0]);
-
-  // const accessTokenSession = sessionStorage.getItem('accessTokenSession');
-
-  // const res = await axios.put(`${server_url}/profile/image`, formData, {
-  //   headers: {
-  //     authorization: `Bearer ${accessTokenSession}`,
-  //     'content-type': 'multipart/form-data boundary=something',
-  //   },
-  //   withCredentials: true,
-  // });
-
+  const accessToken = sessionStorage.getItem("accessTokenSession");
+  // TODO : 서버로 저장
+  // 위에서 다운로드하는 이미지 자체를 바로 서버로 보낼 수 있지 않을까?
   function saveToServer() {
     html2canvse(document.querySelector("#canvas-paper")).then(
       async (canvas) => {
         const myImage = canvas.toDataURL("image/png");
-        console.log(myImage);
-        // 이 부분을 서버로 보내게 하면 될듯?
-        // 이 URL을 서버로 보내주기 -> 어디로 보내지
         await axios({
-          // TODO : url, data-type
-          method: "POST",
+          method: "post",
           url: `${server_url}/mycard/post`,
-          // data: { data: myImage },
+          data: {
+            // 현재 imgBase64 -> 이를 서버에서 이미지로 저장하기
+            img: myImage,
+          },
           headers: {
-            authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/x-www-url-form-encoded",
           },
         })
-          .then(() =>
-            // 또는 특정 모달이 생성되도록~
-            alert("저장되었습니다. 마이페이지에서 확인해보실 수 있어요!")
-          )
-          .catch((el) => alert(el));
+          .then(() => {
+            console.log("전송되었습니다.");
+          })
+          .catch((err) => alert(err));
       }
     );
   }
