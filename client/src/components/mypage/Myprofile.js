@@ -169,7 +169,7 @@ const Myprofile = () => {
     // multer s3 통신해서 프로필 사진 변경
     const formData = new FormData();
     formData.append('img', event.target.files[0]);
-
+    console.log(formData);
     const accessTokenSession = sessionStorage.getItem('accessTokenSession');
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
