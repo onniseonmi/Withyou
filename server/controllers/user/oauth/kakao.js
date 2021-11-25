@@ -11,8 +11,6 @@ module.exports = (req, res) => {
     },
   }).then((resp) => {
     const { profile, email } = resp.data.kakao_account;
-    console.log("kakao");
-    console.log(email);
 
     res.send({
       username: profile.nickname,
