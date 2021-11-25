@@ -4,7 +4,7 @@ import addImg from "../../images/add_image.png";
 import "../../css/mypage/Myprofile.css";
 const server_url = "http://localhost:4000";
 const Myprofile = () => {
-  const accessToken = sessionStorage.getItem('accessTokenSession');
+  const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
   const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -20,7 +20,9 @@ const Myprofile = () => {
   });
   const { username, email, mobile, image } = userInfo;
   const handleClick = async (e) => {
-    if (e.target.id === "btn-edit") {
+    const loginType = sessionStorage.getItem('loginType');
+
+    if (e.target.id === 'btn-edit' && loginType === null) {
       setEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
@@ -63,11 +65,11 @@ const Myprofile = () => {
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem('loginType');
+      const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === 'kakao') {
+        if (loginType === "kakao") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/kakao`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -85,9 +87,9 @@ const Myprofile = () => {
               image: res.data.image,
             });
           });
-        } else if (loginType === 'naver') {
+        } else if (loginType === "naver") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/naver`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -106,9 +108,9 @@ const Myprofile = () => {
               image: res.data.image,
             });
           });
-        } else if (loginType === 'github') {
+        } else if (loginType === "github") {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/user/github`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -127,7 +129,7 @@ const Myprofile = () => {
           });
         } else {
           axios({
-            method: 'GET',
+            method: "GET",
             url: `${server_url}/profile`,
             headers: {
               authorization: `Bearer ${accessToken}`,
@@ -166,9 +168,15 @@ const Myprofile = () => {
 
     // multer s3 통신해서 프로필 사진 변경
     const formData = new FormData();
+<<<<<<< HEAD
     formData.append("img", event.target.files[0]);
-    console.log(formData);
+
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
+=======
+    formData.append('img', event.target.files[0]);
+    console.log(formData);
+    const accessTokenSession = sessionStorage.getItem('accessTokenSession');
+>>>>>>> aeb04f2cba1c5f9b6e30a81f1cf243060231eefc
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
       headers: {
@@ -185,17 +193,16 @@ const Myprofile = () => {
       {editBtn ? (
         <div id="profile-content">
           <div className="profile-image">
-            <div>
+            <div className="profile-image-box">
               <img
                 src={userInfo.image ? userInfo.image : addImg}
                 alt="#"
                 style={{ pointerEvents: "none" }}
               />
             </div>
-
-            <label htmlFor='add-image' onChange={pofileImgHandler}>
-              +
-            </label>
+            <button onClick={() => imgInputRef.current.click()}>
+              Add Image
+            </button>
 
             <input
               ref={imgInputRef}
