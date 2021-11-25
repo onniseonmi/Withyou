@@ -8,7 +8,7 @@ import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage() {
-  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
+  // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -18,7 +18,6 @@ export default function EditPage() {
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
   const [currentId, setCurrentId] = useState({ id: "" });
   const { clientWidth } = document.body;
-  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
     setSelectState(true);

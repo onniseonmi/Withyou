@@ -29,10 +29,9 @@ export default function ImageOnCanvas({
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
 
-  function onClickObject() {
+  function onClickObjcet() {
     deSelectObject();
     onSelect();
-    onDragStart();
   }
   return (
     <img
@@ -45,8 +44,11 @@ export default function ImageOnCanvas({
         ...style,
         border: isSelected ? "solid 1px red" : "solid 1px transparent",
       }}
+      // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
       onMouseDown={(e) => {
-        onClickObject();
+        // 기존 선택을 풀어주고, 현재 선택으로 만들어 준다.
+        onClickObjcet();
+        onDragStart();
         setMouseInitLocation(e.clientX, e.clientY);
         setMouseCurrentLocation(
           e.target.getBoundingClientRect().left,
@@ -54,7 +56,6 @@ export default function ImageOnCanvas({
         );
         controlCursorStyle(e, "grabbing");
       }}
-      // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
       onMouseUp={(e) => {
         controlCursorStyle(e, "grab");
         onDragEnd();
