@@ -24,26 +24,42 @@ export default function TopMenu() {
   // TODO : 서버로 저장
   // 위에서 다운로드하는 이미지 자체를 바로 서버로 보낼 수 있지 않을까?
   function saveToServer() {
-    html2canvse(document.querySelector("#canvas-paper")).then(
-      async (canvas) => {
-        const myImage = canvas.toDataURL("image/png");
-        await axios({
-          method: "post",
-          url: `${server_url}/mycard/post`,
-          data: {
-            // 현재 imgBase64 -> 이를 서버에서 이미지로 저장하기
-            img: myImage,
-          },
-          headers: {
-            "Content-Type": "application/x-www-url-form-encoded",
-          },
-        })
-          .then(() => {
-            console.log("전송되었습니다.");
-          })
-          .catch((err) => alert(err));
+    html2canvse(document.querySelector("#canvas-paper")).then((canvas) => {
+      const myImage = canvas.toDataURL("image/png");
+      if (document.body.clientWidth < 900) {
+        canvas.width = canvas.width * 2;
+        canvas.height = canvas.height * 2;
       }
-    );
+      let blobBin = atob(myImage.split(",")[1]); // base64 데이터 디코딩
+      let array = [];
+      for (let i = 0; i < blobBin.length; i++) {
+        array.push(blobBin.charCodeAt(i));
+      }
+      let blob = new Blob([new Uint8Array(array)], { type: "image/png" }); // Blob 생성
+      let file = new File([blob], "My card.png", {
+        type: "image/png",
+      });
+      let formData = new FormData(); // formData 생성
+      formData.append("img", file); // file data 추가
+
+      const accessTokenSession = sessionStorage.getItem("accessTokenSession");
+
+      axios({
+        method: "PUT",
+        url: `${server_url}/mycard/post`,
+        data: formData,
+        headers: {
+          authorization: `Bearer ${accessTokenSession}`,
+          // processData: false,
+          // "content-type": false,
+          "content-type": "multipart/form-data boundary=something",
+        },
+      })
+        .then(() => {
+          console.log("전송되었습니다.");
+        })
+        .catch((err) => alert(err));
+    });
   }
 
   return (
