@@ -20,7 +20,9 @@ const Myprofile = () => {
   });
   const { username, email, mobile, image } = userInfo;
   const handleClick = async (e) => {
-    if (e.target.id === "btn-edit") {
+    const loginType = sessionStorage.getItem('loginType');
+
+    if (e.target.id === 'btn-edit' && loginType === null) {
       setEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
@@ -166,9 +168,15 @@ const Myprofile = () => {
 
     // multer s3 통신해서 프로필 사진 변경
     const formData = new FormData();
+<<<<<<< HEAD
     formData.append("img", event.target.files[0]);
 
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
+=======
+    formData.append('img', event.target.files[0]);
+    console.log(formData);
+    const accessTokenSession = sessionStorage.getItem('accessTokenSession');
+>>>>>>> aeb04f2cba1c5f9b6e30a81f1cf243060231eefc
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {
       headers: {

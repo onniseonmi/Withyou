@@ -16,6 +16,7 @@ export default function EditPage() {
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
+  const [currentId, setCurrentId] = useState({ id: "" });
   const { clientWidth } = document.body;
   // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
@@ -24,6 +25,7 @@ export default function EditPage() {
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
     setcontemporaryZIndex(nextState[index].style.zIndex);
+    setCurrentId(nextState[index].id);
     nextState[index].style.zIndex = 1000;
     setItemStates(nextState);
     getSelectedItemInfo();
@@ -33,6 +35,7 @@ export default function EditPage() {
     setSelectState(false);
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
+    setCurrentId({ id: "" });
     nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
   }
@@ -149,7 +152,7 @@ export default function EditPage() {
   }
 
   function onclickToDeselect(e) {
-    if (e.target.className !== "image-element") {
+    if (e.target.id !== currentId) {
       const index = itemStates.findIndex((el) => el.isSelected === true);
       if (index !== -1) {
         onDeselect(index);
@@ -193,6 +196,7 @@ export default function EditPage() {
                 return (
                   <ImageOnCanvas
                     key={el.id}
+                    id={el.id}
                     src={el.src}
                     style={el.style}
                     isSelected={el.isSelected}
@@ -208,6 +212,7 @@ export default function EditPage() {
                       setItemStates(nextState);
                     }}
                     onSelect={() => onSelect(i)}
+                    // onDeselect={() => onDeselect(i)}
                     deSelectObject={deSelectObject}
                     onChangeStyle={(nextStyle) => {
                       const nextState = [...itemStates];
@@ -217,7 +222,6 @@ export default function EditPage() {
                       };
                       setItemStates(nextState);
                     }}
-                    selectState={selectState}
                     initLocation={initLocation}
                     setMouseInitLocation={setMouseInitLocation}
                     currentLocation={currentLocation}
