@@ -87,11 +87,7 @@ export default function ImageProperty({
               value={Math.floor(currentWidth)}
               onChange={(e) => {
                 setCurrentWidth(Number(e.target.value));
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  resizeWidth(currentWidth);
-                }
+                resizeWidth(Number(e.target.value));
               }}
             />
             <button className="resize-button" onClick={() => increaseWidth()}>
@@ -111,11 +107,7 @@ export default function ImageProperty({
               value={Math.floor(currentHeight)}
               onChange={(e) => {
                 setCurrentHeight(Number(e.target.value));
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  resizeHeight(currentHeight);
-                }
+                resizeHeight(Number(e.target.value));
               }}
             />
             <button className="resize-button" onClick={() => increaseHeight()}>
@@ -138,11 +130,7 @@ export default function ImageProperty({
               value={Math.floor(currentRotate)}
               onChange={(e) => {
                 setCurrentRotate(Number(e.target.value));
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  rotateObject(`rotate(${currentRotate}deg)`);
-                }
+                rotateObject(`rotate(${Number(e.target.value)}deg)`);
               }}
             />
             <button className="rotate-button" onClick={() => rotateClockSide()}>
@@ -169,11 +157,7 @@ export default function ImageProperty({
               value={currentZindex}
               onChange={(e) => {
                 setCurrentZindex(e.target.value);
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  modifyZindex(currentZindex);
-                }
+                modifyZindex(e.target.value);
               }}
             />
             <button
