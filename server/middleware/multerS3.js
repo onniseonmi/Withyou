@@ -28,4 +28,4 @@ const profileUpload = multer({
   }),
 }); // S3로 이미지 업로드
 
-exports.profileUpload = profileUpload;
+module.exports = profileUpload;

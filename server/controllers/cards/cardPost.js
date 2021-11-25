@@ -1,5 +1,5 @@
 const { Card } = require('../../models');
-const auth = require('../../middelware/auth');
+const auth = require('../../middleware/auth');
 
 module.exports = async (req, res) => {
   const authHeader = await auth(req);
@@ -8,14 +8,14 @@ module.exports = async (req, res) => {
   }
   const { card } = req.body;
   const found = await Card.findOne({
-    where: { user_id: authHeader.iat },
+    where: { user_id: authHeader.id },
   });
   if (!found) {
     return res.status(404).send({ message: 'not found' });
   }
   const cardUp = await Card.create({
+    user_id: authHeader.id,
     card,
-    user_id: authHeader.iat,
   });
   res.status(201).json(cardUp);
 };

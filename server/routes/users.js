@@ -11,7 +11,7 @@ const {
   edit,
   github,
 } = require("../controllers");
-// const auth = require('../middelware/auth');
+// const auth = require('../middleware/auth');
 
 /* GET users listing. */
 router.post("/signin", signin);
