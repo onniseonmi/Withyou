@@ -1,5 +1,5 @@
-const { Card } = require('../../models');
-const auth = require('../../middelware/auth');
+const { Card, User } = require('../../models');
+const auth = require('../../middleware/auth');
 
 module.exports = async (req, res) => {
   const authHeader = await auth(req);
@@ -8,7 +8,12 @@ module.exports = async (req, res) => {
     res.status(400).send({ data: null, message: 'invalid access token' });
   }
   const cards = await Card.findAll({
-    where: { user_id: authHeader.iat },
+    include: {
+      model: User,
+    },
+    where: {
+      user_id: authHeader.id,
+    },
   });
   if (!cards) {
     return res.status(404).send({ message: 'not found' });
