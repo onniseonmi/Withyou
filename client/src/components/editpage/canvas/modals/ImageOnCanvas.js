@@ -32,6 +32,10 @@ export default function ImageOnCanvas({
   function onClickObjcet() {
     deSelectObject();
     onSelect();
+    // setTimeout(() => {
+    //   deSelectObject();
+    //   onSelect();
+    // }, 10);
   }
   return (
     <img
