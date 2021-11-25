@@ -9,12 +9,12 @@ module.exports = async (req, res) => {
         .send({ data: null, message: "invalid access token" });
     }
     const profileUrl = await req.file.path; // 이미지 URL 정보가 담긴 곳
+    console.log(req.file);
     await User.update(
       { image: profileUrl },
       { where: { email: authHeader.email } }
     );
     const userInfo = await User.findOne({ where: { email: authHeader.email } });
-    console.log(`../../../server/${userInfo.dataValues.image}`);
     res.send({
       image: `server/${userInfo.dataValues.image}`,
       message: "프로필 사진이 등록되었습니다.",
