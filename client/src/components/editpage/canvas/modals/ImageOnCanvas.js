@@ -4,6 +4,7 @@ export default function ImageOnCanvas({
   key,
   id,
   src,
+  text,
   style,
   isSelected,
   isDragging,
@@ -17,7 +18,14 @@ export default function ImageOnCanvas({
   currentLocation,
   setMouseCurrentLocation,
   clientWidth,
+  modifyText,
+  currentTextSize,
+  textColor,
 }) {
+  const { left, top } = document
+    .querySelector("#canvas-paper")
+    .getBoundingClientRect();
+
   function opacityOnObject(e, opacity) {
     e.target.style.opacity = opacity;
   }
@@ -25,72 +33,115 @@ export default function ImageOnCanvas({
   function controlCursorStyle(e, type) {
     e.target.style.cursor = type;
   }
-  const { left, top } = document
-    .querySelector("#canvas-paper")
-    .getBoundingClientRect();
 
-  function onClickObjcet() {
+  function onClickObjcet(e) {
     deSelectObject();
     onSelect();
-    // setTimeout(() => {
-    //   deSelectObject();
-    //   onSelect();
-    // }, 10);
+    onDragStart();
+    setMouseInitLocation(e.clientX, e.clientY);
+    setMouseCurrentLocation(
+      e.target.getBoundingClientRect().left,
+      e.target.getBoundingClientRect().top
+    );
+    controlCursorStyle(e, "grabbing");
   }
-  return (
-    <img
-      key={key}
-      id={id}
-      className="image-element"
-      draggable={false}
-      src={src}
-      style={{
-        ...style,
-        border: isSelected ? "solid 1px red" : "solid 1px transparent",
-      }}
-      // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
-      onMouseDown={(e) => {
-        // 기존 선택을 풀어주고, 현재 선택으로 만들어 준다.
-        onClickObjcet();
-        onDragStart();
-        setMouseInitLocation(e.clientX, e.clientY);
-        setMouseCurrentLocation(
-          e.target.getBoundingClientRect().left,
-          e.target.getBoundingClientRect().top
-        );
-        controlCursorStyle(e, "grabbing");
-      }}
-      onMouseUp={(e) => {
-        controlCursorStyle(e, "grab");
-        onDragEnd();
-      }}
-      onMouseMove={(e) => {
-        if (isDragging) {
-          const differX = initLocation.x - currentLocation.x;
-          const differY = initLocation.y - currentLocation.y;
-          let x = e.pageX - differX - left;
-          let y = e.pageY - differY - top;
-          if (clientWidth >= 900) {
-            onChangeStyle({
-              left: x / 2,
-              top: y / 2,
-            });
-          } else {
-            onChangeStyle({
-              left: x,
-              top: y,
-            });
-          }
-        }
-      }}
-      onMouseOver={(e) => {
-        controlCursorStyle(e, "grab");
-        opacityOnObject(e, 0.5);
-      }}
-      onMouseOut={(e) => {
-        onDragEnd();
-        opacityOnObject(e, 1);
-      }}
-    />
-  );
+
+  function onDragAndDrop(isDragging, e) {
+    if (isDragging) {
+      const differX = initLocation.x - currentLocation.x;
+      const differY = initLocation.y - currentLocation.y;
+      let x = e.pageX - differX - left;
+      let y = e.pageY - differY - top;
+      if (clientWidth >= 900) {
+        onChangeStyle({
+          left: x / 2,
+          top: y / 2,
+        });
+      } else {
+        onChangeStyle({
+          left: x,
+          top: y,
+        });
+      }
+    }
+  }
+
+  function setObjectStyle(style, isSelected) {
+    return {
+      ...style,
+      border: isSelected ? "solid 1px red" : "solid 1px transparent",
+    };
+  }
+
+  if (style.type === "image") {
+    return (
+      <img
+        key={key}
+        id={id}
+        className="image-element"
+        draggable={false}
+        src={src}
+        style={setObjectStyle(style, isSelected)}
+        // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
+        onMouseDown={(e) => {
+          // 기존 선택을 풀어주고, 현재 선택으로 만들어 준다.
+          onClickObjcet(e);
+        }}
+        onMouseUp={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+        }}
+        onMouseMove={(e) => {
+          onDragAndDrop(isDragging, e);
+        }}
+        onMouseOver={(e) => {
+          controlCursorStyle(e, "grab");
+          opacityOnObject(e, 0.5);
+        }}
+        onMouseOut={(e) => {
+          onDragEnd();
+          opacityOnObject(e, 1);
+        }}
+      />
+    );
+  } else if (style.type === "text") {
+    return (
+      <input
+        size={text ? text.length + 3 : 20}
+        value={text ? text : "여기에 입력하세요"} // 어떻게 처음에만 유지되게 할까?
+        onChange={(e) => modifyText(e.target.value)}
+        style={{
+          ...style,
+          border: "none",
+          padding: "0.5rem",
+          height: "auto",
+          fontSize: currentTextSize,
+          background: "transparent",
+          color: textColor,
+        }}
+        key={key}
+        id={id}
+        className="image-element"
+        draggable={false}
+        onMouseDown={(e) => {
+          onClickObjcet(e);
+        }}
+        onMouseUp={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+        }}
+        onMouseMove={(e) => {
+          onDragAndDrop(isDragging, e);
+        }}
+        onMouseOver={(e) => {
+          controlCursorStyle(e, "grab");
+          opacityOnObject(e, 0.5);
+        }}
+        onMouseOut={(e) => {
+          onDragEnd();
+          opacityOnObject(e, 1);
+        }}
+      ></input>
+    );
+  }
 }

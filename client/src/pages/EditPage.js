@@ -17,6 +17,10 @@ export default function EditPage() {
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
   const [currentId, setCurrentId] = useState({ id: "" });
+  const [currentText, setCurrentText] = useState("");
+  const [currentTextSize, setCurrentTextSize] = useState(20);
+  // const [currentTextStyle, setCurrentTextStyle] = useState(20);
+  const [currentColor, setCurrentColor] = useState("Red");
   const { clientWidth } = document.body;
 
   function onSelect(index) {
@@ -85,49 +89,57 @@ export default function EditPage() {
     setSelectState(false);
   }
 
-  function addToItems(src) {
+  function setStyle(input, type, states, { width, height }) {
+    if (type === "image") {
+      return {
+        id: makeId(),
+        src: input,
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: states.length,
+          width: width / 6,
+          height: height / 6,
+          top: (height * 3) / 20,
+          left: width / 6,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
+    } else if (type === "text") {
+      // 타입이 text일 경우, 현재 글자 상태를 넣어준다.
+      return {
+        id: makeId(),
+        text: input,
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: states.length,
+          top: (height * 3) / 20,
+          left: width / 6,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
+    }
+  }
+
+  function addToItems(input, type) {
     const canvas = document
       .querySelector("#canvas-paper")
       .getBoundingClientRect();
-    // ! 아래 코드 중복 줄이기
     setItemStates((prevState) => {
       if (clientWidth >= 900) {
-        return [
-          ...prevState,
-          {
-            id: makeId(),
-            src,
-            style: {
-              position: "absolute",
-              zIndex: itemStates.length,
-              width: canvas.width / 6,
-              height: canvas.height / 6,
-              top: canvas.height / 4 - canvas.height / 10,
-              left: canvas.width / 4 - canvas.width / 12,
-              transform: "rotate(0deg)",
-            },
-            isSelected: false,
-            isDragging: false,
-          },
-        ];
+        return [...prevState, setStyle(input, type, itemStates, canvas)];
       } else {
         return [
           ...prevState,
-          {
-            id: makeId(),
-            src,
-            style: {
-              position: "absolute",
-              zIndex: itemStates.length,
-              width: canvas.width / 3,
-              height: canvas.height / 3,
-              top: canvas.height / 2 - canvas.height / 5,
-              left: canvas.width / 2 - canvas.width / 6,
-              transform: "rotate(0deg)",
-            },
-            isSelected: false,
-            isDragging: false,
-          },
+          setStyle(input, type, itemStates, {
+            width: canvas.width * 2,
+            height: canvas.height * 2,
+          }),
         ];
       }
     });
@@ -165,6 +177,10 @@ export default function EditPage() {
     }
   };
 
+  function modifyText(input) {
+    setCurrentText(input);
+  }
+
   return (
     <>
       <div id="EditPage">
@@ -182,6 +198,8 @@ export default function EditPage() {
             menuBtnStatus={menuBtnStatus}
             setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
+            currentText={currentText}
+            setCurrentText={setCurrentText}
           />
         </div>
         <div id="canvas">
@@ -197,6 +215,7 @@ export default function EditPage() {
                     key={el.id}
                     id={el.id}
                     src={el.src}
+                    text={currentText}
                     style={el.style}
                     isSelected={el.isSelected}
                     isDragging={el.isDragging}
@@ -211,7 +230,6 @@ export default function EditPage() {
                       setItemStates(nextState);
                     }}
                     onSelect={() => onSelect(i)}
-                    // onDeselect={() => onDeselect(i)}
                     deSelectObject={deSelectObject}
                     onChangeStyle={(nextStyle) => {
                       const nextState = [...itemStates];
@@ -226,6 +244,9 @@ export default function EditPage() {
                     currentLocation={currentLocation}
                     setMouseCurrentLocation={setMouseCurrentLocation}
                     clientWidth={clientWidth}
+                    modifyText={modifyText}
+                    currentTextSize={currentTextSize}
+                    textColor={currentColor}
                   />
                 );
               })}
@@ -234,16 +255,20 @@ export default function EditPage() {
           <div id="edit-footer-menu">
             {selectState ? (
               <ImageProperty
-                itemStates={itemStates}
+                type={selectedItem.type}
                 width={selectedItem.width}
+                resizeWidth={resizeWidth}
                 height={selectedItem.height}
+                resizeHeight={resizeHeight}
                 transform={selectedItem.transform}
+                rotateObject={rotateObject}
                 zindex={contemporaryZIndex}
                 modifyZindex={modifyZindex}
-                resizeWidth={resizeWidth}
-                resizeHeight={resizeHeight}
-                rotateObject={rotateObject}
                 removeObject={removeObject}
+                textSize={currentTextSize}
+                resizeTextSize={setCurrentTextSize}
+                textColor={currentColor}
+                reSelectColor={setCurrentColor}
               />
             ) : (
               <PropertyBlank />

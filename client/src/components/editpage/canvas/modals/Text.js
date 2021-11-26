@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../../css/editpage/canvas/modals/TextModal.css";
 import templateImg from "../../../../images/template/sample.png";
 const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export default function Text() {
+export default function Text({ addToItems, currentText, setCurrentText }) {
   return (
     <div id="text-modal">
       <div id="text-modal-nav" className="edit--menu-title">
@@ -12,10 +12,21 @@ export default function Text() {
       </div>
       <div id="text-modal-upload">
         <div className="text-setting text-input">
-          <input placeholder="텍스트를 입력하세요"></input>
-          <button>텍스트 추가</button>
+          {/* <input
+            id="input-text"
+            value={currentText}
+            onChange={(e) => setCurrentText(e.target.value)}
+          ></input> */}
+          <button
+            onClick={() => {
+              addToItems(currentText, "text");
+              setCurrentText("");
+            }}
+          >
+            텍스트 추가
+          </button>
         </div>
-        <div className="text-setting text-font">
+        {/* <div className="text-setting text-font">
           <div>글꼴</div>
           <div></div>
         </div>
@@ -26,7 +37,7 @@ export default function Text() {
         <div className="text-setting text-color">
           <div>색깔</div>
           <div></div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

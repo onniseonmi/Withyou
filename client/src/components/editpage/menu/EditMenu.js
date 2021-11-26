@@ -12,6 +12,8 @@ const EditMenu = ({
   menuBtnStatus,
   setMenuBtnStatus,
   addToItems,
+  currentText,
+  setCurrentText,
 }) => {
   return (
     <div id="detail-property">
@@ -42,6 +44,8 @@ const EditMenu = ({
             setMenuBtnOn={setMenuBtnOn}
             addToItems={addToItems}
             makeId={makeId}
+            currentText={currentText}
+            setCurrentText={setCurrentText}
           />
         ) : null}
       </div>

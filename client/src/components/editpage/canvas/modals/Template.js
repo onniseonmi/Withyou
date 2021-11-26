@@ -3,9 +3,6 @@ import "../../../../css/editpage/canvas/modals/TemplateModal.css";
 import templateImg from "../../../../images/template/sample.png";
 const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
 export default function Template({ addToItems, makeId }) {
-  function addToCanvas(img) {
-    addToItems(img);
-  }
   return (
     <div id="template-modal">
       <div id="template-modal-nav" className="edit--menu-title">
@@ -19,7 +16,7 @@ export default function Template({ addToItems, makeId }) {
             src={templateImg}
             alt={el}
             onClick={() => {
-              addToCanvas(templateImg);
+              addToItems(templateImg, "image");
             }}
           />
         ))}
