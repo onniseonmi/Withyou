@@ -16,7 +16,10 @@
 
 #control-width,
 #control-height,
-#control-rotate {
+#control-rotate,
+#control-style,
+#control-color,
+#control-size {
   display: flex;
   flex-direction: column;
   flex: 1;

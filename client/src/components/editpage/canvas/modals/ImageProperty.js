@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "../../../../css/editpage/canvas/modals/ImageProperty.css";
+import reactCSS from "reactcss";
+import { ChromePicker } from "react-color";
+import FontList from "./FontList";
+
 export default function ImageProperty({
   type,
   width,
@@ -11,20 +15,31 @@ export default function ImageProperty({
   removeObject,
   zindex,
   modifyZindex,
+  clientWidth,
   textSize,
-  resizeTextSize,
   textColor,
-  reSelectColor,
+  textStyle,
+  modifyTextSize,
+  modifyTextColor,
+  modifyTextStyle,
 }) {
+  const fontLIst = [
+    "Gulimn",
+    "NanumGothic-Bold",
+    "NanumGothic-Regular",
+    "NanumMyeongjo-Bold",
+    "NanumMyeongjo-Regular",
+  ];
   const [currentWidth, setCurrentWidth] = useState(width);
   const [currentHeight, setCurrentHeight] = useState(height);
   const [currentRotate, setCurrentRotate] = useState(
     transform.slice(7).slice(0, -4)
   );
   const [currentZindex, setCurrentZindex] = useState(zindex);
-
   const [currentTextSize, setCurrentTextSize] = useState(textSize);
   const [currentTextColor, setCurrentTextColor] = useState(textColor);
+  const [onColorPicker, setOnColorPicker] = useState(false);
+  const [currentTextSyle, setCurrentTextSyle] = useState(textStyle);
 
   function increaseWidth() {
     const nextState = currentWidth + 5;
@@ -77,14 +92,55 @@ export default function ImageProperty({
   function increaseTextSize() {
     const nextState = textSize + 1;
     setCurrentTextSize(nextState);
-    resizeTextSize(nextState);
+    modifyTextSize(nextState);
   }
 
   function decreaseTextSize() {
     const nextState = textSize - 1;
     setCurrentTextSize(nextState);
-    resizeTextSize(nextState);
+    modifyTextSize(nextState);
   }
+
+  function onChangeTextStyle(e) {
+    const nextState = e.target.value;
+    setCurrentTextSyle(nextState);
+    modifyTextStyle(nextState);
+  }
+
+  //! ??????? 물어보기
+  // setTop(0);
+
+  const styles = reactCSS({
+    default: {
+      color: {
+        width: "20px",
+        height: "50px",
+        borderRadius: "0.2rem",
+      },
+      swatch: {
+        width: "5rem",
+        height: "1.5rem",
+        background: currentTextColor,
+        borderRadius: "0.5rem",
+        display: "inline-block",
+        cursor: "pointer",
+      },
+      palette: {
+        position: "fixed",
+        top: `${clientWidth >= 900 ? "75vh" : "40vh"}`,
+        left: `${clientWidth >= 900 ? "40vw" : "10vw"}`,
+        zIndex: "2",
+      },
+      selected: {
+        position: "fixed",
+        top: "0px",
+        right: "0px",
+        bottom: "0px",
+        left: "0px",
+      },
+    },
+  });
+
   // TODO : 밑에 반복되는 버튼들을 함수화 하면 좋을것 같은데..
   if (type === "image") {
     return (
@@ -216,35 +272,43 @@ export default function ImageProperty({
           <div id="control-style">
             <div>글꼴</div>
             <div className="button-area">
-              <button className="resize-button" onClick={() => decreaseWidth()}>
-                -
-              </button>
-              <input
-                className="input-area"
-                type="text"
-                value={Math.floor(currentWidth)}
+              <select
+                name="selectList"
+                id="selectList"
+                value={currentTextSyle}
                 onChange={(e) => {
-                  setCurrentWidth(Number(e.target.value));
-                  resizeWidth(Number(e.target.value));
+                  onChangeTextStyle(e);
                 }}
-              />
-              <button className="resize-button" onClick={() => increaseWidth()}>
-                +
-              </button>
+              >
+                {fontLIst.map((el) => (
+                  <FontList font={el} />
+                ))}
+              </select>
             </div>
           </div>
           <div id="control-color">
             <div>색상</div>
             <div className="button-area">
-              <input
-                className="input-area"
-                type="text"
-                value={currentTextColor}
-                onChange={(e) => {
-                  setCurrentTextColor(String(e.target.value));
-                  reSelectColor(String(e.target.value));
-                }}
-              />
+              <div
+                style={styles.swatch}
+                onClick={() => setOnColorPicker(!onColorPicker)}
+              ></div>
+              {onColorPicker && (
+                <div style={styles.palette}>
+                  <div
+                    style={styles.selected}
+                    onClick={() => setOnColorPicker(!onColorPicker)}
+                  />
+                  <ChromePicker
+                    disableAlpha={true}
+                    color={currentTextColor}
+                    onChangeComplete={(color) => {
+                      setCurrentTextColor(color.hex);
+                      modifyTextColor(color.hex);
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
           <div id="control-size">
@@ -262,7 +326,7 @@ export default function ImageProperty({
                 value={Math.floor(currentTextSize)}
                 onChange={(e) => {
                   setCurrentTextSize(Number(e.target.value));
-                  resizeTextSize(Number(e.target.value));
+                  modifyTextSize(Number(e.target.value));
                 }}
               />
               <button
@@ -299,7 +363,7 @@ export default function ImageProperty({
               </button>
             </div>
           </div>
-          <div id="control-zindex">ƒ
+          <div id="control-zindex">
             <div>레이어</div>
             <div id="zindex-buttons">
               <button

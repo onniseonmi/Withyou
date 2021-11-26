@@ -1,10 +1,12 @@
-import React from "react";
-import "../../../../css/editpage/canvas/modals/ImageOnCanvas.css";
-export default function ImageOnCanvas({
+import React, { useState } from "react";
+export default function PrintOnCanvas({
   key,
   id,
   src,
   text,
+  textColor,
+  textSize,
+  textStyle,
   style,
   isSelected,
   isDragging,
@@ -19,9 +21,8 @@ export default function ImageOnCanvas({
   setMouseCurrentLocation,
   clientWidth,
   modifyText,
-  currentTextSize,
-  textColor,
 }) {
+  const [currentText, setCurrentText] = useState(text);
   const { left, top } = document
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
@@ -72,7 +73,6 @@ export default function ImageOnCanvas({
       border: isSelected ? "solid 1px red" : "solid 1px transparent",
     };
   }
-
   if (style.type === "image") {
     return (
       <img
@@ -107,15 +107,20 @@ export default function ImageOnCanvas({
   } else if (style.type === "text") {
     return (
       <input
-        size={text ? text.length + 3 : 20}
-        value={text ? text : "여기에 입력하세요"} // 어떻게 처음에만 유지되게 할까?
-        onChange={(e) => modifyText(e.target.value)}
+        size={currentText ? currentText.length * 2 : 9}
+        value={currentText ? text : "With you"} // 어떻게 처음에만 유지되게 할까?
+        onChange={(e) => {
+          setCurrentText(e.target.value);
+          modifyText(e.target.value);
+        }}
         style={{
           ...style,
+          display: "inline-block",
           border: "none",
-          padding: "0.5rem",
+          padding: "auto",
           height: "auto",
-          fontSize: currentTextSize,
+          fontFamily: textStyle,
+          fontSize: textSize,
           background: "transparent",
           color: textColor,
         }}
