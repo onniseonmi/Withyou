@@ -16,8 +16,7 @@ module.exports = async (req, res) => {
     if (!found) {
       return res.status(404).send({ message: 'not found' });
     }
-    console.log('found');
-    console.log(found);
+
     const cardUp = await Card.create({
       user_id: authHeader.id,
       card: cardUrl,
