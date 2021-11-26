@@ -12,7 +12,7 @@ const s3 = new AWS.S3({
   region,
 });
 
-const profileUpload = multer({
+const cardUpload = multer({
   storage: multerS3({
     s3,
     bucket,
@@ -22,9 +22,9 @@ const profileUpload = multer({
     },
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `uploads/${Date.now()}_${file.originalname}`);
     },
   }),
-}); // S3로 이미지 업로드
+}); // S3로 카드 업로드
 
-module.exports = profileUpload;
+module.exports = cardUpload;
