@@ -107,8 +107,8 @@ export default function PrintOnCanvas({
   } else if (style.type === "text") {
     return (
       <input
-        size={currentText ? currentText.length * 2 : 9}
-        value={currentText ? text : "With you"} // 어떻게 처음에만 유지되게 할까?
+        size={currentText ? currentText.length * 2 : 9} // * 문자열 박스크기 조절을 어떻게 할까?
+        value={currentText ? text : "With you"} // * ? 어떻게 처음에만 유지되게 할까?
         onChange={(e) => {
           setCurrentText(e.target.value);
           modifyText(e.target.value);
@@ -123,6 +123,7 @@ export default function PrintOnCanvas({
           fontSize: textSize,
           background: "transparent",
           color: textColor,
+          textAlign: "center",
         }}
         key={key}
         id={id}

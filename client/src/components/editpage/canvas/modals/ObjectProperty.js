@@ -140,7 +140,7 @@ export default function ObjectProperty({
       },
     },
   });
-
+  // ! 회전 크기 에러 잡기
   // TODO : 밑에 반복되는 버튼들을 함수화 하면 좋을것 같은데..
   if (type === "image") {
     return (
@@ -330,7 +330,7 @@ export default function ObjectProperty({
                 type="text"
                 value={Math.floor(currentRotate)}
                 onChange={(e) => {
-                  setCurrentTextSize(Number(e.target.value));
+                  setCurrentRotate(Number(e.target.value));
                   rotateObject(`rotate(${Number(e.target.value)}deg)`);
                 }}
               />

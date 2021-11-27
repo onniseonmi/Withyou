@@ -206,7 +206,6 @@ export default function EditPage() {
     }
   };
 
-  // 여기다 색상 바꾸는 함수 만들기
   function handleCanvasColor(newColor) {
     setCurrentCanvasColor(newColor);
   }
