@@ -6,8 +6,12 @@ const server_url = 'http://localhost:4000';
 
 export default function TopMenu() {
   function download() {
+    console.log(document.querySelector('#canvas-paper'));
     html2canvse(document.querySelector('#canvas-paper')).then((canvas) => {
+      console.log(canvas);
       const myImage = canvas.toDataURL('image/png');
+      console.log('menumyImage');
+      console.log(myImage);
       if (document.body.clientWidth < 900) {
         canvas.width = canvas.width * 2;
         canvas.height = canvas.height * 2;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import addImg from '../../images/add_image.png';
+import addImg from '../../images/manImage.svg';
 import '../../css/mypage/Myprofile.css';
 const server_url = 'http://localhost:4000';
 const Myprofile = () => {
@@ -188,7 +188,9 @@ const Myprofile = () => {
                   style={{ pointerEvents: 'none' }}
                 />
               </div>
-              <button onClick={() => imgInputRef.current.click()}>Add +</button>
+              <button onClick={() => imgInputRef.current.click()}>
+                Image +
+              </button>
 
               <input
                 ref={imgInputRef}
