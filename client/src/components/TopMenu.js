@@ -20,9 +20,6 @@ export default function TopMenu() {
     });
   }
 
-  const accessToken = sessionStorage.getItem('accessTokenSession');
-  // TODO : 서버로 저장
-  // 위에서 다운로드하는 이미지 자체를 바로 서버로 보낼 수 있지 않을까?
   function saveToServer() {
     html2canvse(document.querySelector('#canvas-paper')).then((canvas) => {
       const myImage = canvas.toDataURL('image/png');
