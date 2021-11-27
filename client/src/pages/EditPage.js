@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../css/EditPage.css";
-import ImageOnCanvas from "../components/editpage/canvas/modals/ImageOnCanvas";
+import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
-import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
+import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage() {
-  // * 나중에 함수, 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
+  // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -16,14 +16,18 @@ export default function EditPage() {
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
+  const [currentId, setCurrentId] = useState({ id: "" });
+  const [currentCanvasColor, setCurrentCanvasColor] = useState({
+    hex: "#ffffff",
+  });
   const { clientWidth } = document.body;
-  // 가장 위로 올리려면, 현재 인덱스중 가장 높은 놈으로 만들어주면 된다.
 
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];
     nextState[index].isSelected = true;
     setcontemporaryZIndex(nextState[index].style.zIndex);
+    setCurrentId(nextState[index].id);
     nextState[index].style.zIndex = 1000;
     setItemStates(nextState);
     getSelectedItemInfo();
@@ -33,6 +37,7 @@ export default function EditPage() {
     setSelectState(false);
     const nextState = [...itemStates];
     nextState[index].isSelected = false;
+    setCurrentId({ id: "" });
     nextState[index].style.zIndex = contemporaryZIndex;
     setItemStates(nextState);
   }
@@ -46,7 +51,7 @@ export default function EditPage() {
 
   function getSelectedItemInfo() {
     const itemInfo = itemStates.filter((el) => el.isSelected === true);
-    setSelectedItem(itemInfo.shift().style);
+    setSelectedItem(itemInfo.shift());
   }
 
   function resizeWidth(input) {
@@ -73,7 +78,7 @@ export default function EditPage() {
   function modifyZindex(input) {
     const nextState = [...itemStates];
     const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
-    nextState[targetIndex].zIndex = input;
+    nextState[targetIndex].style.zIndex = input;
     setcontemporaryZIndex(input);
   }
 
@@ -83,49 +88,87 @@ export default function EditPage() {
     setSelectState(false);
   }
 
-  function addToItems(src) {
+  function modifyText(newText) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].text = newText;
+    setItemStates(nextState);
+  }
+
+  function modifyTextSize(newSize) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].textSize = newSize;
+    setItemStates(nextState);
+  }
+
+  function modifyTextColor(newColor) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].textColor = { hex: newColor };
+    setItemStates(nextState);
+  }
+
+  function modifyTextStyle(newTextStyle) {
+    const nextState = [...itemStates];
+    const targetIndex = itemStates.findIndex((el) => el.isSelected === true);
+    nextState[targetIndex].textStyle = newTextStyle;
+    setItemStates(nextState);
+  }
+
+  function setStyle(input, type, states, { width, height }) {
+    if (type === "image") {
+      return {
+        id: makeId(),
+        src: input,
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: states.length,
+          width: width / 6,
+          height: height / 6,
+          top: (height * 3) / 20,
+          left: width / 6,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
+    } else if (type === "text") {
+      return {
+        id: makeId(),
+        text: input,
+        textColor: { hex: "#000000" },
+        textSize: 20,
+        textStyle: "Gulimn",
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: states.length,
+          top: (height * 3) / 20,
+          left: width / 6,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
+    }
+  }
+
+  function addToItems(input, type) {
     const canvas = document
       .querySelector("#canvas-paper")
       .getBoundingClientRect();
-    // ! 아래 코드 중복 줄이기
     setItemStates((prevState) => {
       if (clientWidth >= 900) {
-        return [
-          ...prevState,
-          {
-            id: makeId(),
-            src,
-            style: {
-              position: "absolute",
-              zIndex: itemStates.length,
-              width: canvas.width / 6,
-              height: canvas.height / 6,
-              top: canvas.height / 4 - canvas.height / 10,
-              left: canvas.width / 4 - canvas.width / 12,
-              transform: "rotate(0deg)",
-            },
-            isSelected: false,
-            isDragging: false,
-          },
-        ];
+        return [...prevState, setStyle(input, type, itemStates, canvas)];
       } else {
         return [
           ...prevState,
-          {
-            id: makeId(),
-            src,
-            style: {
-              position: "absolute",
-              zIndex: itemStates.length,
-              width: canvas.width / 3,
-              height: canvas.height / 3,
-              top: canvas.height / 2 - canvas.height / 5,
-              left: canvas.width / 2 - canvas.width / 6,
-              transform: "rotate(0deg)",
-            },
-            isSelected: false,
-            isDragging: false,
-          },
+          setStyle(input, type, itemStates, {
+            width: canvas.width * 2,
+            height: canvas.height * 2,
+          }),
         ];
       }
     });
@@ -149,7 +192,7 @@ export default function EditPage() {
   }
 
   function onclickToDeselect(e) {
-    if (e.target.className !== "image-element") {
+    if (e.target.id !== currentId) {
       const index = itemStates.findIndex((el) => el.isSelected === true);
       if (index !== -1) {
         onDeselect(index);
@@ -163,11 +206,13 @@ export default function EditPage() {
     }
   };
 
+  // 여기다 색상 바꾸는 함수 만들기
+  function handleCanvasColor(newColor) {
+    setCurrentCanvasColor(newColor);
+  }
+
   return (
     <>
-      <div id="canvas-top-menu">
-        <TopMenu />
-      </div>
       <div id="EditPage">
         <div id="edit-menu">
           <EditMenuBar
@@ -183,17 +228,29 @@ export default function EditPage() {
             menuBtnStatus={menuBtnStatus}
             setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
+            handleCanvasColor={handleCanvasColor}
           />
         </div>
         <div id="canvas">
+          <div id="canvas-top-menu">
+            <TopMenu />
+          </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
-            <div id="canvas-paper">
+            <div
+              id="canvas-paper"
+              style={{ backgroundColor: currentCanvasColor.hex }}
+            >
               {itemStates.map((el, i) => {
                 return (
-                  <ImageOnCanvas
+                  <PrintOnCanvas
                     key={el.id}
+                    id={el.id}
                     src={el.src}
+                    text={el.text}
+                    textColor={el.style.type === "text" && el.textColor.hex}
+                    textSize={el.textSize}
+                    textStyle={el.textStyle}
                     style={el.style}
                     isSelected={el.isSelected}
                     isDragging={el.isDragging}
@@ -217,12 +274,12 @@ export default function EditPage() {
                       };
                       setItemStates(nextState);
                     }}
-                    selectState={selectState}
                     initLocation={initLocation}
                     setMouseInitLocation={setMouseInitLocation}
                     currentLocation={currentLocation}
                     setMouseCurrentLocation={setMouseCurrentLocation}
                     clientWidth={clientWidth}
+                    modifyText={modifyText}
                   />
                 );
               })}
@@ -230,17 +287,27 @@ export default function EditPage() {
           </div>
           <div id="edit-footer-menu">
             {selectState ? (
-              <ImageProperty
-                itemStates={itemStates}
-                width={selectedItem.width}
-                height={selectedItem.height}
-                transform={selectedItem.transform}
-                zindex={contemporaryZIndex}
-                modifyZindex={modifyZindex}
+              <ObjectProperty
+                type={selectedItem.style.type}
+                width={selectedItem.style.width}
                 resizeWidth={resizeWidth}
+                height={selectedItem.style.height}
                 resizeHeight={resizeHeight}
+                transform={selectedItem.style.transform}
                 rotateObject={rotateObject}
                 removeObject={removeObject}
+                zindex={contemporaryZIndex}
+                modifyZindex={modifyZindex}
+                clientWidth={clientWidth}
+                textColor={
+                  selectedItem.style.type === "text" &&
+                  selectedItem.textColor.hex
+                }
+                textSize={selectedItem.textSize}
+                modifyTextSize={modifyTextSize}
+                modifyTextColor={modifyTextColor}
+                textStyle={selectedItem.textStyle}
+                modifyTextStyle={modifyTextStyle}
               />
             ) : (
               <PropertyBlank />

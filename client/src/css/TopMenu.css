@@ -4,28 +4,29 @@
   height: 2rem;
   line-height: 2rem;
   border-bottom: 1px solid gray;
+  display: flex;
 }
-.top-menu-box {
+.top-menu-left {
+  display: flex;
+}
+.top-menu-left > div {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.top-menu-right {
   display: flex;
   position: absolute;
   right: 1rem;
 }
-.top-menu-box > div {
+.top-menu-right > div {
   margin-left: 1rem;
-  cursor: pointer;
 }
+
 #top-menu-save {
+  width: 25vh;
   display: flex;
   justify-content: space-around;
-  width: 15vh;
 }
-#download {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-}
-#save {
-  display: flex;
-  justify-content: center;
-  flex: 1;
+#top-menu-save > a {
+  cursor: pointer;
 }
