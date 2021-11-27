@@ -23,6 +23,7 @@ export default function PrintOnCanvas({
   modifyText,
 }) {
   const [currentText, setCurrentText] = useState(text);
+  
   const { left, top } = document
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
@@ -47,23 +48,21 @@ export default function PrintOnCanvas({
     controlCursorStyle(e, "grabbing");
   }
 
-  function onDragAndDrop(isDragging, e) {
-    if (isDragging) {
-      const differX = initLocation.x - currentLocation.x;
-      const differY = initLocation.y - currentLocation.y;
-      let x = e.pageX - differX - left;
-      let y = e.pageY - differY - top;
-      if (clientWidth >= 900) {
-        onChangeStyle({
-          left: x / 2,
-          top: y / 2,
-        });
-      } else {
-        onChangeStyle({
-          left: x,
-          top: y,
-        });
-      }
+  function onDragAndDrop(e) {
+    const differX = initLocation.x - currentLocation.x;
+    const differY = initLocation.y - currentLocation.y;
+    let x = e.pageX - differX - left;
+    let y = e.pageY - differY - top;
+    if (clientWidth >= 900) {
+      onChangeStyle({
+        left: x / 2,
+        top: y / 2,
+      });
+    } else {
+      onChangeStyle({
+        left: x,
+        top: y,
+      });
     }
   }
 
@@ -92,7 +91,9 @@ export default function PrintOnCanvas({
           onDragEnd();
         }}
         onMouseMove={(e) => {
-          onDragAndDrop(isDragging, e);
+          if (isDragging) {
+            onDragAndDrop(e);
+          }
         }}
         onMouseOver={(e) => {
           controlCursorStyle(e, "grab");
@@ -137,14 +138,16 @@ export default function PrintOnCanvas({
           onDragEnd();
         }}
         onMouseMove={(e) => {
-          onDragAndDrop(isDragging, e);
+          if (isDragging) {
+            onDragAndDrop(e);
+          }
         }}
         onMouseOver={(e) => {
           controlCursorStyle(e, "grab");
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          onDragEnd();
+          // onDragEnd();
           opacityOnObject(e, 1);
         }}
       ></input>

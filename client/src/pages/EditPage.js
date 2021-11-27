@@ -227,12 +227,13 @@ export default function EditPage() {
             menuBtnStatus={menuBtnStatus}
             setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
+            currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
         </div>
         <div id="canvas">
           <div id="canvas-top-menu">
-            <TopMenu />
+            <TopMenu deSelectObject={deSelectObject} />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>

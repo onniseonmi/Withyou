@@ -4,63 +4,65 @@ import html2canvse from 'html2canvas';
 import axios from 'axios';
 const server_url = 'http://localhost:4000';
 
-export default function TopMenu() {
-  function download() {
-    console.log(document.querySelector('#canvas-paper'));
-    html2canvse(document.querySelector('#canvas-paper')).then((canvas) => {
-      console.log(canvas);
-      const myImage = canvas.toDataURL('image/png');
-      console.log('menumyImage');
-      console.log(myImage);
-      if (document.body.clientWidth < 900) {
-        canvas.width = canvas.width * 2;
-        canvas.height = canvas.height * 2;
+export default function TopMenu({ deSelectObject }) {
+  async function download() {
+    await deSelectObject();
+    await html2canvse(document.querySelector('#canvas-paper')).then(
+      (canvas) => {
+        const myImage = canvas.toDataURL('image/png');
+        if (document.body.clientWidth < 900) {
+          canvas.width = canvas.width * 2;
+          canvas.height = canvas.height * 2;
+        }
+        let el = document.createElement('a');
+        el.href = myImage;
+        el.download = 'My Card.png';
+        el.click();
+        el.remove();
       }
-      let el = document.createElement('a');
-      el.href = myImage;
-      el.download = 'My Card.png';
-      el.click();
-      el.remove();
-    });
+    );
   }
 
-  function saveToServer() {
-    html2canvse(document.querySelector('#canvas-paper')).then((canvas) => {
-      const myImage = canvas.toDataURL('image/png');
-      if (document.body.clientWidth < 900) {
-        canvas.width = canvas.width * 2;
-        canvas.height = canvas.height * 2;
-      }
-      let blobBin = atob(myImage.split(',')[1]); // base64 데이터 디코딩
-      let array = [];
-      for (let i = 0; i < blobBin.length; i++) {
-        array.push(blobBin.charCodeAt(i));
-      }
-      let blob = new Blob([new Uint8Array(array)], { type: 'image/png' }); // Blob 생성
-      let file = new File([blob], 'My card.png', {
-        type: 'image/png',
-      });
-      let formData = new FormData(); // formData 생성
-      formData.append('img', file); // file data 추가
+  async function saveToServer() {
+    await deSelectObject();
+    await html2canvse(document.querySelector('#canvas-paper')).then(
+      (canvas) => {
+        const myImage = canvas.toDataURL('image/png');
+        if (document.body.clientWidth < 900) {
+          canvas.width = canvas.width * 2;
+          canvas.height = canvas.height * 2;
+        }
+        let blobBin = atob(myImage.split(',')[1]); // base64 데이터 디코딩
+        let array = [];
+        for (let i = 0; i < blobBin.length; i++) {
+          array.push(blobBin.charCodeAt(i));
+        }
+        let blob = new Blob([new Uint8Array(array)], { type: 'image/png' }); // Blob 생성
+        let file = new File([blob], 'My card.png', {
+          type: 'image/png',
+        });
+        let formData = new FormData(); // formData 생성
+        formData.append('img', file); // file data 추가
 
-      const accessTokenSession = sessionStorage.getItem('accessTokenSession');
+        const accessTokenSession = sessionStorage.getItem('accessTokenSession');
 
-      axios({
-        method: 'POST',
-        url: `${server_url}/mycard/post`,
-        data: formData,
-        headers: {
-          authorization: `Bearer ${accessTokenSession}`,
-          // processData: false,
-          // "content-type": false,
-          'content-type': 'multipart/form-data boundary=something',
-        },
-      })
-        .then(() => {
-          alert('전송되었습니다.');
+        axios({
+          method: 'POST',
+          url: `${server_url}/mycard/post`,
+          data: formData,
+          headers: {
+            authorization: `Bearer ${accessTokenSession}`,
+            // processData: false,
+            // "content-type": false,
+            'content-type': 'multipart/form-data boundary=something',
+          },
         })
-        .catch((err) => alert(err));
-    });
+          .then(() => {
+            alert('전송되었습니다.');
+          })
+          .catch((err) => alert(err));
+      }
+    );
   }
 
   return (
