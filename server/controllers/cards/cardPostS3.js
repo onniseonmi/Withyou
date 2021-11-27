@@ -9,13 +9,14 @@ module.exports = async (req, res) => {
         .status(400)
         .send({ data: null, message: 'invalid access token' });
     }
-    const cardUrl = await req.file.path; // 이미지 URL 정보가 담긴 곳
+    const cardUrl = await req.file.location; // 이미지 URL 정보가 담긴 곳
     const found = await Card.findOne({
       where: { user_id: authHeader.id },
     });
     if (!found) {
       return res.status(404).send({ message: 'not found' });
     }
+
     const cardUp = await Card.create({
       user_id: authHeader.id,
       card: cardUrl,
