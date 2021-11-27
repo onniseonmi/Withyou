@@ -233,7 +233,7 @@ export default function EditPage() {
         </div>
         <div id="canvas">
           <div id="canvas-top-menu">
-            <TopMenu />
+            <TopMenu deSelectObject={deSelectObject} />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
