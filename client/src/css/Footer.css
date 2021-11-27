@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Huglife";
-  src: url('../fonts/HughIsLifePersonalUseItalic-K7axe.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: "Gulimn";
-  src: url('../fonts/DXGulimB-KSCpc-EUC-H.ttf') format('truetype');
-}
-
 #footer {
   font-family: "Gulimn";
   position: absolute;
@@ -20,6 +10,7 @@
   background-color: #f3f5f7;
   border-top: 1px solid black;
 }
+
 #footer > div {
   position: absolute;
   left: 50%;
@@ -28,6 +19,7 @@
   display: flex;
   width: 90%;
 }
+
 #footer-title > a {
   display: flex;
   align-items: center;
@@ -35,9 +27,11 @@
   color: black;
   font-weight: 700;
 }
+
 #footer-title > a:hover {
   text-shadow: 1px 1px 1px rgb(83, 83, 83);
 }
+
 #footer-title img {
   height: 1.5rem;
   margin: 0.5rem 0.5rem;
@@ -46,32 +40,39 @@
 .footer-row span {
   cursor: pointer;
 }
+
 .footer-row > a {
   color: black;
 }
+
 .footer-row > a:hover {
   text-shadow: 1px 1px 1px rgb(83, 83, 83);
 }
+
 .footer-contact {
   display: flex;
   position: absolute;
   right: 1rem;
   margin: 0.8rem 0;
 }
+
 .footer-contact > div:first-child {
   display: flex;
   margin-right: 1rem;
   padding-right: 0.3rem;
 }
+
 #githubIcon {
   width: 1.5rem;
   vertical-align: middle;
 }
+
 #githubTitle {
   margin-top: 0.2rem;
   vertical-align: middle;
   font-weight: 700;
 }
+
 @media screen and (min-width: 900px) {
   .footer-developer {
     display: flex;
@@ -84,6 +85,7 @@
     font-size: 1rem;
   }
 }
+
 @media screen and (max-width: 900px) {
   .footer-contact {
     margin: 0.3rem 0;
