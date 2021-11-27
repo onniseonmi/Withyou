@@ -227,6 +227,7 @@ export default function EditPage() {
             menuBtnStatus={menuBtnStatus}
             setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
+            currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
         </div>
