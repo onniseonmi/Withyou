@@ -161,7 +161,6 @@ const Myprofile = () => {
     }
     const formData = new FormData();
     formData.append("img", event.target.files[0]);
-
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
     const res = await axios.put(`${server_url}/profile/image`, formData, {

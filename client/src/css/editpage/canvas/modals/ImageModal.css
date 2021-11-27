@@ -1,25 +1,32 @@
 #image-modal {
-  /* width: 20rem;
-  height: 100%;
-  border: 1px solid black; */
   width: 99%;
 }
+
 #image-modal-nav {
   /* position: relative; */
 }
+
 #image-modal-nav > div {
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
+
 #image-modal-nav > div:first-child {
   font-size: 2rem;
 }
 
 #image-modal-upload {
   display: flex;
-  justify-content: center;
-  /* margin-top: 3rem; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 20vh;
 }
+
+#image-input {
+  margin-left: 10vh;
+}
+
 #image-modal-upload > img {
   width: 12rem;
   height: 9rem;
@@ -27,12 +34,14 @@
   object-fit: fill;
   cursor: pointer;
 }
+
 @media screen and (max-width: 900px) {
   #image-modal-upload {
     height: 15rem;
     width: 100%;
     position: relative;
   }
+
   #image-modal-upload > img {
     width: 16rem;
     height: 12rem;
