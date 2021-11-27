@@ -5,14 +5,14 @@
 
 #canvas {
   flex: 1 1 0;
-  background-color: #f1f5ff;
+  background-color: #F5F5F5;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 #edit-menu {
-  background-color: #aaaaaa;
+  background-color: #FEFCFF;
   display: flex;
 }
 #canvas-container {
@@ -27,9 +27,7 @@
   width: 350px;
   height: 250px;
   transform: scale(2);
-  background-color: #ffffff;
   border: 1px solid gray;
-  box-shadow: 0.2rem 0.2rem 0.1rem gray;
   position: relative;
 }
 
