@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
-import weddingarch from "../videos/weddingarch.mp4";
+// import weddingarch from "../videos/weddingarch.mp4";
 import Footer from "../components/Footer";
-import weddinggif from "../videos/weddingarch.gif"
+import landingVideo from "../videos/landingVideo.mp4";
+// import landingVideo from "../videos/landingVideo.gif";
 
 const LandingPage = () => {
   return (
@@ -12,14 +13,13 @@ const LandingPage = () => {
         <div className="video-box">
           <video
             id="landing-video"
-            // autoplay="autoplay"
-            // loop="Loop"
+            autoplay="autoplay"
+            loop="Loop"
             muted
             volume="0"
           >
-            <source src={weddingarch} type="video/mp4"></source>
+            <source src={landingVideo} type="video/mp4" />
           </video>
-          {/* <img id="landing-video" src={weddinggif} alt={weddinggif}></img> */}
         </div>
         <div className="landing-title">
           <div>세상에 없던 단 하나뿐인</div>
@@ -52,16 +52,6 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="phone-landing-logo">
-          <div className="largeW">
-          W
-          </div>
-          <div className="phone-landing-logo-firstline">
-            
-          </div>
-          <div className="phone-landing-logo-secondline">ithyou</div>
-        </div>
-*/}
       </div>
 
       <div className="section1">
