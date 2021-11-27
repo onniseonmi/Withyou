@@ -49,6 +49,13 @@
   justify-content: center;
 }
 
+.button {
+  cursor: pointer;
+}
+
+#selectList {
+  width: 15vh;
+}
 @media screen and (max-width: 900px) {
   #control-zindex {
     display: flex;

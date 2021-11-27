@@ -11,7 +11,6 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
     setMenuBtnStatus(e.target.id);
     setSelectState(false);
   };
-
   return (
     <div id="menuBar-container">
       <div

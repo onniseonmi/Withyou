@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../../../../css/editpage/canvas/modals/ImageProperty.css";
+import "../../../../css/editpage/canvas/modals/ObjectProperty.css";
 import reactCSS from "reactcss";
 import { ChromePicker } from "react-color";
 import FontList from "./FontList";
 
-export default function ImageProperty({
+export default function ObjectProperty({
   type,
   width,
   resizeWidth,
@@ -155,7 +155,7 @@ export default function ImageProperty({
           <div id="control-width">
             <div>가로</div>
             <div className="button-area">
-              <button className="resize-button" onClick={() => decreaseWidth()}>
+              <button className="button" onClick={() => decreaseWidth()}>
                 -
               </button>
               <input
@@ -167,7 +167,7 @@ export default function ImageProperty({
                   resizeWidth(Number(e.target.value));
                 }}
               />
-              <button className="resize-button" onClick={() => increaseWidth()}>
+              <button className="button" onClick={() => increaseWidth()}>
                 +
               </button>
             </div>
@@ -175,10 +175,7 @@ export default function ImageProperty({
           <div id="control-height">
             <div>세로</div>
             <div className="button-area">
-              <button
-                className="resize-button"
-                onClick={() => decreaseHeight()}
-              >
+              <button className="button" onClick={() => decreaseHeight()}>
                 -
               </button>
               <input
@@ -190,10 +187,7 @@ export default function ImageProperty({
                   resizeHeight(Number(e.target.value));
                 }}
               />
-              <button
-                className="resize-button"
-                onClick={() => increaseHeight()}
-              >
+              <button className="button" onClick={() => increaseHeight()}>
                 +
               </button>
             </div>
@@ -201,10 +195,7 @@ export default function ImageProperty({
           <div id="control-rotate">
             <div>회전</div>
             <div className="button-area">
-              <button
-                className="rotate-button"
-                onClick={() => rotateDeClockSide()}
-              >
+              <button className="button" onClick={() => rotateDeClockSide()}>
                 -
               </button>
               <input
@@ -216,10 +207,7 @@ export default function ImageProperty({
                   rotateObject(`rotate(${Number(e.target.value)}deg)`);
                 }}
               />
-              <button
-                className="rotate-button"
-                onClick={() => rotateClockSide()}
-              >
+              <button className="button" onClick={() => rotateClockSide()}>
                 +
               </button>
             </div>
@@ -228,7 +216,7 @@ export default function ImageProperty({
             <div>레이어</div>
             <div id="zindex-buttons">
               <button
-                className="zindex-button"
+                className="button"
                 onClick={() => {
                   if (zindex !== 0) {
                     decreaseZindex(zindex - 1);
@@ -247,7 +235,7 @@ export default function ImageProperty({
                 }}
               />
               <button
-                className="zindex-button"
+                className="button"
                 onClick={() => {
                   increaseZindex(zindex + 1);
                 }}
@@ -314,10 +302,7 @@ export default function ImageProperty({
           <div id="control-size">
             <div>글자크기</div>
             <div className="button-area">
-              <button
-                className="rotate-button"
-                onClick={() => decreaseTextSize()}
-              >
+              <button className="button" onClick={() => decreaseTextSize()}>
                 -
               </button>
               <input
@@ -329,10 +314,7 @@ export default function ImageProperty({
                   modifyTextSize(Number(e.target.value));
                 }}
               />
-              <button
-                className="rotate-button"
-                onClick={() => increaseTextSize()}
-              >
+              <button className="button" onClick={() => increaseTextSize()}>
                 +
               </button>
             </div>
@@ -340,10 +322,7 @@ export default function ImageProperty({
           <div id="control-rotate">
             <div>회전</div>
             <div className="button-area">
-              <button
-                className="rotate-button"
-                onClick={() => rotateDeClockSide()}
-              >
+              <button className="button" onClick={() => rotateDeClockSide()}>
                 -
               </button>
               <input
@@ -355,10 +334,7 @@ export default function ImageProperty({
                   rotateObject(`rotate(${Number(e.target.value)}deg)`);
                 }}
               />
-              <button
-                className="rotate-button"
-                onClick={() => rotateClockSide()}
-              >
+              <button className="button" onClick={() => rotateClockSide()}>
                 +
               </button>
             </div>
@@ -367,7 +343,7 @@ export default function ImageProperty({
             <div>레이어</div>
             <div id="zindex-buttons">
               <button
-                className="zindex-button"
+                className="button"
                 onClick={() => {
                   if (zindex !== 0) {
                     decreaseZindex(zindex - 1);
@@ -386,7 +362,7 @@ export default function ImageProperty({
                 }}
               />
               <button
-                className="zindex-button"
+                className="button"
                 onClick={() => {
                   increaseZindex(zindex + 1);
                 }}

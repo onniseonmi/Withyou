@@ -1,6 +1,5 @@
 import React from "react";
-import ImageProperty from "../canvas/modals/ImageProperty";
-import Template from "../canvas/modals/Template";
+import BackgroundColor from "../canvas/modals/BackgroundColor";
 import Image from "../canvas/modals/Image";
 import Elements from "../canvas/modals/Elements";
 import Text from "../canvas/modals/Text";
@@ -14,15 +13,17 @@ const EditMenu = ({
   addToItems,
   currentText,
   setCurrentText,
+  handleCanvasColor,
 }) => {
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
         {menuBtnStatus === "menuBar-template" ? (
-          <Template
+          <BackgroundColor
             setMenuBtnOn={setMenuBtnOn}
             addToItems={addToItems}
             makeId={makeId}
+            handleCanvasColor={handleCanvasColor}
           />
         ) : null}
         {menuBtnStatus === "menuBar-elements" ? (

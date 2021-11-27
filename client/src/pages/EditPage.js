@@ -4,7 +4,7 @@ import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
-import ImageProperty from "../components/editpage/canvas/modals/ImageProperty";
+import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage() {
@@ -17,6 +17,9 @@ export default function EditPage() {
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
   const [currentId, setCurrentId] = useState({ id: "" });
+  const [currentCanvasColor, setCurrentCanvasColor] = useState({
+    hex: "#ffffff",
+  });
   const { clientWidth } = document.body;
 
   function onSelect(index) {
@@ -203,6 +206,11 @@ export default function EditPage() {
     }
   };
 
+  // 여기다 색상 바꾸는 함수 만들기
+  function handleCanvasColor(newColor) {
+    setCurrentCanvasColor(newColor);
+  }
+
   return (
     <>
       <div id="EditPage">
@@ -220,6 +228,7 @@ export default function EditPage() {
             menuBtnStatus={menuBtnStatus}
             setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
+            handleCanvasColor={handleCanvasColor}
           />
         </div>
         <div id="canvas">
@@ -228,7 +237,10 @@ export default function EditPage() {
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
-            <div id="canvas-paper">
+            <div
+              id="canvas-paper"
+              style={{ backgroundColor: currentCanvasColor.hex }}
+            >
               {itemStates.map((el, i) => {
                 return (
                   <PrintOnCanvas
@@ -275,7 +287,7 @@ export default function EditPage() {
           </div>
           <div id="edit-footer-menu">
             {selectState ? (
-              <ImageProperty
+              <ObjectProperty
                 type={selectedItem.style.type}
                 width={selectedItem.style.width}
                 resizeWidth={resizeWidth}

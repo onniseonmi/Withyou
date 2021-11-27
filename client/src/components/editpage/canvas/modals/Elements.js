@@ -3,7 +3,7 @@ import "../../../../css/editpage/canvas/modals/ElementsModal.css";
 import addImg from "../../../../images/add_image.png";
 const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export default function Elements() {
+export default function Elements({ addToItems, makeId }) {
   return (
     <div id="elements-modal">
       <div id="elements-modal-nav" className="edit--menu-title">
@@ -14,13 +14,12 @@ export default function Elements() {
       <div id="elements-modal-upload">
         {fakeData.map((el) => (
           <img
+            key={makeId()}
             src={addImg}
             alt={el}
-            onClick={
-              // TODO : 누르면 템플릿 적용되도록 구현
-              // 그 후 닫힘
-              () => console.log("엘리먼트 추가")
-            }
+            onClick={() => {
+              addToItems(addImg, "image");
+            }}
           />
         ))}
       </div>
