@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../../css/editpage/canvas/modals/BackgroundColor.css";
-import templateImg from "../../../../images/template/sample.png";
-const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
-export default function BackgroundColor({ makeId, handleCanvasColor }) {
+import reactCSS from "reactcss";
+import { ChromePicker } from "react-color";
+
+export default function BackgroundColor({
+  currentCanvasColor,
+  handleCanvasColor,
+  clientWidth,
+}) {
+  const [currentTextColor, setCurrentTextColor] = useState(currentCanvasColor);
+
+  function handleCurrentColor(input) {
+    setCurrentTextColor(input);
+    handleCanvasColor(input);
+  }
+
+  const styles = reactCSS({
+    default: {
+      color: {
+        width: "20px",
+        height: "50px",
+        borderRadius: "0.2rem",
+      },
+      palette: {
+        position: "fixed",
+        top: `${clientWidth >= 900 ? "75vh" : "40vh"}`,
+        left: `${clientWidth >= 900 ? "40vw" : "10vw"}`,
+        zIndex: "2",
+      },
+    },
+  });
   return (
     <div id="template-modal">
       <div id="template-modal-nav" className="edit--menu-title">
@@ -10,16 +37,17 @@ export default function BackgroundColor({ makeId, handleCanvasColor }) {
         <div>원하는 배경색을 선택하세요</div>
       </div>
       <div id="template-modal-upload">
-        {fakeData.map((el) => (
-          <img
-            key={makeId()}
-            src={templateImg}
-            alt={el}
-            onClick={() => {
-              handleCanvasColor({ hex: "#000000" });
+        <div className="button-area">
+          <ChromePicker
+            id="bg-color-picker"
+            styles={styles.color}
+            disableAlpha={true}
+            color={currentTextColor}
+            onChange={(color) => {
+              handleCurrentColor(color);
             }}
           />
-        ))}
+        </div>
       </div>
     </div>
   );

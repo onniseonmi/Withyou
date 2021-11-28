@@ -13,6 +13,7 @@ const EditMenu = ({
   addToItems,
   currentText,
   setCurrentText,
+  currentCanvasColor,
   handleCanvasColor,
 }) => {
   return (
@@ -23,6 +24,7 @@ const EditMenu = ({
             setMenuBtnOn={setMenuBtnOn}
             addToItems={addToItems}
             makeId={makeId}
+            currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
         ) : null}

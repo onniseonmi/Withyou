@@ -25,6 +25,11 @@
   object-fit: fill;
   cursor: pointer;
 }
+
+#bg-color-picker {
+  width: 250px;
+}
+
 @media screen and (max-width: 900px) {
   #template-modal-upload {
     height: 15rem;
