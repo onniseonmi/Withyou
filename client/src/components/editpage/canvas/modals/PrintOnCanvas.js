@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import ContentEditable from "react-contenteditable";
+
 export default function PrintOnCanvas({
   key,
   id,
@@ -22,7 +24,7 @@ export default function PrintOnCanvas({
   clientWidth,
   modifyText,
 }) {
-  const [currentText, setCurrentText] = useState(text);
+  const [currentText, setCurrentText] = useState("With you");
   const { left, top } = document
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
@@ -106,13 +108,14 @@ export default function PrintOnCanvas({
     );
   } else if (style.type === "text") {
     return (
-      <input
-        size={currentText ? currentText.length * 2 : 9} // * 문자열 박스크기 조절을 어떻게 할까?
-        value={currentText ? text : "With you"} // * ? 어떻게 처음에만 유지되게 할까?
+      <ContentEditable
+        html={currentText} // innerHTML of the editable div
+        disabled={false} // use true to disable editing
         onChange={(e) => {
           setCurrentText(e.target.value);
           modifyText(e.target.value);
-        }}
+        }} // handle innerHTML change
+        tagName="article" // Use a custom HTML tag (uses a div by default)
         style={{
           ...style,
           display: "inline-block",
@@ -147,7 +150,7 @@ export default function PrintOnCanvas({
           onDragEnd();
           opacityOnObject(e, 1);
         }}
-      ></input>
+      />
     );
   }
 }
