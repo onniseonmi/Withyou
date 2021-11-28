@@ -7,33 +7,18 @@
   text-align: center;
 }
 
-#title {
-  font-size: 2rem;
-  margin: 1rem 0rem;
-}
-#content {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-.text-input {
+#text-input {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
-.text-input > input {
-  width: 90%;
-  height: 1.5rem;
-  border-radius: 0.5rem;
-}
-.text-input > button {
-  margin: 0.5rem 0;
-  width: 50%;
-  height: 1.5rem;
-  line-height: 1.2rem;
+#text-button {
+  font-family: "BinggraeMelona";
 }
 @media screen and (max-width: 900px) {
   #text-modal {
     width: 100%;
     height: 38vh;
+
+    
   }
 }

@@ -3,6 +3,7 @@
   height: 10vh;
   background-color: #fefcff;
   border-top: 0.5px solid gray;
+  font-family: "BinggraeMelona";
 }
 
 #property-title-button {
@@ -56,6 +57,10 @@
 
 #selectList {
   width: 15vh;
+}
+
+#delete-button {
+  font-family: "BinggraeMelona";
 }
 @media screen and (max-width: 900px) {
   #control-zindex {

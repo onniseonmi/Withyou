@@ -10,11 +10,11 @@ export default function Text({ addToItems }) {
         <div id="content">원하는 문구를 입력해주세요.</div>
       </div>
       <div id="text-modal-upload">
-        <div className="text-setting text-input">
-          <button
+        <div id="text-input">
+          <button id='text-button'
             onClick={() => {
               addToItems("", "text");
-            }}
+            }} 
           >
             문구 추가하기
           </button>

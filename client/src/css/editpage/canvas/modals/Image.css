@@ -8,15 +8,6 @@
   text-align: center;
 }
 
-#title {
-  font-size: 2rem;
-  margin: 1rem 0rem;
-}
-#content {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-
 #image-modal-upload {
   display: flex;
   flex-direction: column;
