@@ -28,8 +28,11 @@
   display: flex;
   justify-content: space-around;
 }
-#top-menu-save > a {
+#download:hover,
+#save:hover {
+  font-size: 2vh;
   cursor: pointer;
+  transition: 0.1s;
 }
 
 @media screen and (max-device-width: 450px) {

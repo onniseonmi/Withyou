@@ -4,7 +4,7 @@ import addImg from "../../images/manImage.svg";
 import "../../css/mypage/Myprofile.css";
 // const server_url = 'http://localhost:4000';
 const server_url =
-  "http://ec2-3-26-161-132.ap-southeast-2.compute.amazonaws.com:4000/";
+  "http://ec2-3-26-161-132.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Myprofile = () => {
   const accessToken = sessionStorage.getItem("accessTokenSession");

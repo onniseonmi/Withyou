@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/Footer.css";
-import withyou from "../images/title.png";
 import githubIcon from "../images/github.png";
 const Footer = () => {
   const dev1 = `nick0726`;

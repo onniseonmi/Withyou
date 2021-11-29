@@ -5,23 +5,25 @@
   align-items: center;
   margin-bottom: 3rem;
   cursor: pointer;
+  transition: 0.5s;
 }
 .menubar-btn img {
-  width: 2rem;
-  height: 2rem;
+  width: 2vw;
+  height: 2vw;
   margin: auto;
   cursor: pointer;
 }
 .menubar-btn:hover {
   background-color: #e4e0d6;
+  transition: 0.5s;
 }
 #menuBar-image {
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 2.5vw;
+  height: 2.5vw;
 }
 #menuBar-bg {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.2vw;
+  height: 2.2vw;
 }
 @media screen and (max-width: 900px) {
   #menuBar-container {
@@ -33,6 +35,20 @@
   .menubar-btn {
     width: 3.5rem;
     height: 3.5rem;
+  }
+  #menuBar-image {
+    width: 6vw;
+    height: 6vw;
+  }
+  #menuBar-bg {
+    width: 5vw;
+    height: 5vw;
+  }
+  .menubar-btn img {
+    width: 5vw;
+    height: 5vw;
+    margin: auto;
+    cursor: pointer;
   }
 }
 @media screen and (max-device-width: 450px) {

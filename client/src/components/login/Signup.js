@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import title from "../../images/title.png";
-import loadingImg from "../../images/loading.gif";
 import "../../css/login/Signup.css";
 
 const Signup = ({ signupBtn, setSignupBtn }) => {
