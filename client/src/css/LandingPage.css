@@ -1,5 +1,5 @@
 .ladning-body {
-  font-family: "Gulimn";
+  font-family: 'Gulimn';
   width: 100%;
   height: 100%;
 }
@@ -47,8 +47,8 @@
 }
 
 .landing-title {
-  text-align: right;
-  font-family: "Gulimn";
+  text-align: left;
+  font-family: 'Gulimn';
   font-size: 50px;
   font-weight: 500 !important;
   color: #f9ffff;
@@ -62,8 +62,12 @@
   padding-left: 2rem;
 }
 
+.landing-title > div {
+  text-shadow: 1px 2px #212121;
+}
+
 .main-get-started {
-  font-family: "Gulimn";
+  font-family: 'Gulimn';
   padding: 1rem 8rem;
   font-size: 1.2rem;
   background: transparent;
@@ -171,7 +175,8 @@
   position: relative;
 }
 
-@media all and (min-width: 1440px) and (max-width: 7680px) { /* PC */
+@media all and (min-width: 1440px) and (max-width: 7680px) {
+  /* PC */
   .phone-landing {
     display: none;
   }
@@ -188,7 +193,8 @@
   }
 }
 
-@media all and (min-width: 900px) and (max-width: 1440px) {  /* PC */
+@media all and (min-width: 900px) and (max-width: 1440px) {
+  /* PC */
   .landing-title {
     margin-left: -15rem;
     margin-top: -27rem;
@@ -219,7 +225,8 @@
   }
 }
 
-@media all and (max-width: 900px) { /* Phone */
+@media all and (max-width: 900px) {
+  /* Phone */
   .landing-title {
     font-size: 28px;
     margin-top: 25px;
@@ -239,7 +246,7 @@
 
   .phone-landing {
     display: flex;
-    font-family: "Huglife";
+    font-family: 'Huglife';
     background-color: #f3f5f7;
     height: 100vh;
     justify-content: center;
@@ -317,17 +324,16 @@
     text-decoration-line: none;
     text-decoration: none;
     color: black;
-    font-family: "Gulimn";
-
+    font-family: 'Gulimn';
   }
 
   .second-box-bottom div {
-    font-family: "Huglife";
+    font-family: 'Huglife';
     margin-top: 50px;
     padding: 1rem 9rem;
     font-size: 2.6rem;
     background: transparent;
-    border: 1px solid black);
+    border: 1px solid black;
     color: black;
     border-radius: 5px;
     cursor: pointer;
