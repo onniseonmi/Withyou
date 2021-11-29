@@ -212,6 +212,7 @@ export default function EditPage() {
 
   return (
     <>
+      {console.log(menuBtnStatus)}
       <div id="EditPage">
         <div id="edit-menu">
           <EditMenuBar
