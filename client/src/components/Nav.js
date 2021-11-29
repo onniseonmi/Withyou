@@ -4,6 +4,7 @@ import '../css/Nav.css';
 import '../css/LandingPage.css';
 import Login from './login/Login';
 const client_url = 'http://localhost:3000';
+
 const Nav = ({
   userInfo,
   setUserInfo,
