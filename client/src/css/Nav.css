@@ -51,7 +51,15 @@
   font-size: 2.21rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 900px) and (max-width: 7680px) { /* PC */
+  .nav-container {
+    background:transparent;
+    background-color:transparent;
+    border-color:transparent;
+  }
+}
+
+@media screen and (max-width: 900px) { /* Phone */
   .nav-container {
     display: flex;
     width: 100%;
