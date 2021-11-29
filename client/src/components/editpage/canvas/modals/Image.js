@@ -35,7 +35,7 @@ export default function Image({ addToItems }) {
         <div id="content">원하는 사진을 선택해주세요.</div>
       </div>
       <div id="image-modal-upload">
-        <label typeof="button" for="image-input">
+        <label id="image-selector" typeof="button" for="image-input">
           사진 선택하기
         </label>
         <input

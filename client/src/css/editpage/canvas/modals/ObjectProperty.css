@@ -4,9 +4,13 @@
   background-color: #fefcff;
   border-top: 0.5px solid gray;
   font-family: "BinggraeMelona";
+  display: flex;
+  flex-direction: column;
 }
 
 #property-title-button {
+  margin-top: 1vh;
+  padding: 0rem 2vw;
   display: flex;
   justify-content: space-between;
 }

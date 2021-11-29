@@ -23,7 +23,7 @@ export default function PrintOnCanvas({
   modifyText,
 }) {
   const [currentText, setCurrentText] = useState(text);
-  
+
   const { left, top } = document
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
@@ -69,7 +69,7 @@ export default function PrintOnCanvas({
   function setObjectStyle(style, isSelected) {
     return {
       ...style,
-      border: isSelected ? "solid 1px red" : "solid 1px transparent",
+      border: isSelected ? "dotted 2px gray" : "solid 2px transparent",
     };
   }
   if (style.type === "image") {

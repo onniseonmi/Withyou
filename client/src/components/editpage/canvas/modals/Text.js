@@ -11,10 +11,11 @@ export default function Text({ addToItems }) {
       </div>
       <div id="text-modal-upload">
         <div id="text-input">
-          <button id='text-button'
+          <button
+            id="text-button"
             onClick={() => {
               addToItems("", "text");
-            }} 
+            }}
           >
             문구 추가하기
           </button>

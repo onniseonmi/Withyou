@@ -33,7 +33,7 @@ export default function BackgroundColor({
   return (
     <div id="template-modal">
       <div id="template-modal-nav" className="edit--menu-title">
-        <div id="title"> 배경화면 정하기 </div>
+        <div id="title"> 배경색 정하기 </div>
         <div id="content">원하는 색상을 선택해주세요.</div>
       </div>
       <div id="template-modal-upload">
