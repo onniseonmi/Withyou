@@ -5,14 +5,24 @@
 
 #canvas {
   flex: 1 1 0;
-  background-color: #f1f5ff;
+  background-color: #f5f5f5;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
+#title {
+  font-size: 2rem;
+  margin: 1rem 0rem;
+}
+#content {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
 #edit-menu {
-  background-color: #aaaaaa;
+  background-color: #fefcff;
   display: flex;
 }
 #canvas-container {
@@ -27,14 +37,10 @@
   width: 350px;
   height: 250px;
   transform: scale(2);
-  background-color: #ffffff;
   border: 1px solid gray;
-  box-shadow: 0.2rem 0.2rem 0.1rem gray;
   position: relative;
 }
 
-/*!중간*/
-/*!작을때*/
 @media screen and (max-width: 900px) {
   #EditPage {
     flex-direction: column-reverse;
@@ -47,149 +53,12 @@
     width: 350px;
     height: 250px;
   }
+  #title {
+    font-size: 1.8rem;
+    margin: 0.5rem 0rem;
+  }
+  #content {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
 }
-
-/* body {
-  background-color: #f5f5f5;
-}
-
-#sub-nav {
-  border-bottom: solid 1px grey;
-  display: flex;
-}
-
-.sub-nav-menus {
-  display: flex;
-}
-
-.sub-nav-menu {
-  font-size: 1rem;
-}
-
-#editScreen {
-  display: flex;
-}
-
-#detail-propertys {
-  font-size: 2rem;
-  margin: 0.5rem;
-  border: solid 1px grey;
-}
-
-#canvas {
-  font-size: 2rem;
-  margin: 0.5rem;
-  border: solid 1px gray;
-}
-
-#details {
-  height: 50rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.detail {
-  display: flex;
-  justify-content: space-around;
-}
-
-#edit-tools {
-  display: flex;
-  justify-content: space-around;
-  font-size: 3rem;
-  margin: 0.5rem;
-  border: solid 1px gray;
-}
-
-#buttons {
-  display: flex;
-  justify-content: space-around;
-} */
-
-/* 클때 */
-/* @media screen and (min-width: 900px) {
-  #sub-nav {
-    justify-content: flex-end;
-  }
-
-  .sub-nav-menu {
-    margin: 1rem 1rem;
-    font-weight: 400;
-  }
-
-  #editScreen {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
-
-  #edit-property {
-    width: 87rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #canvas {
-    width: 50rem;
-    height: 23.5rem;
-  }
-
-  #detail-propertys {
-    width: 50rem;
-    height: 10rem;
-  }
-
-  #edit-tools {
-    width: 5rem;
-    height: 25rem;
-  }
-
-  #buttons {
-    flex-direction: column;
-    height: 25rem;
-  }
-  .edit-button {
-    width: 2.5rem;
-  }
-} */
-/* 작을 때 */
-/* @media screen and (max-width: 900px) {
-  #sub-nav {
-    justify-content: space-between;
-  }
-
-  .sub-nav-menu {
-    margin: 0.5rem;
-  }
-
-  #editScreen {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #canvas {
-    width: 27rem;
-    height: 20rem;
-  }
-
-  #detail-propertys {
-    width: 27rem;
-    height: 20rem;
-  }
-
-  #edit-tools {
-    width: 27rem;
-    height: 5rem;
-  }
-
-  #buttons {
-    width: 100%;
-  }
-  .edit-button {
-    width: 2rem;
-    height: 2rem;
-  }
-} */ ;

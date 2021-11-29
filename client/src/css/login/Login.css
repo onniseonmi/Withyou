@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   background-color: white;
-  font-family: 'Gulimn';
+  font-family: "BinggraeMelona";
 }
 .button {
   cursor: pointer;
@@ -22,7 +22,7 @@
   position: relative;
 }
 .login-input > div:first-child {
-  font-size: 22px;
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: left;
@@ -45,7 +45,7 @@
 }
 .login-input-box > input:placeholder-shown + label {
   color: black;
-  font-size: 15px;
+  font-size: 1.2rem;
   top: 15px;
 }
 .login-input-box > input:focus + label,
@@ -92,7 +92,7 @@
   height: 35px;
   border: 1px solid gray;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 1.2rem;
   line-height: 35px;
   background-color: rgb(238, 238, 238);
 }
@@ -103,14 +103,14 @@
 }
 .login-forgot-password > span {
   border-bottom: 1px solid black;
-  font-size: 12px;
+  font-size: 0.9rem;
 }
 .login-signup {
   /* margin: 1rem 0; */
   position: absolute;
   left: 0;
   top: 4.3rem;
-  font-size: 12px;
+  font-size: 0.9rem;
 }
 .login-signup > span:not(:first-child) {
   border-bottom: 1px solid black;
@@ -134,6 +134,7 @@
   border-radius: 5px;
   background-color: rgb(238, 238, 238);
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 .oauth-box > div:first-child {
@@ -143,7 +144,6 @@
   height: 35px;
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: center;
 }
 .oauth-box img {
@@ -158,6 +158,9 @@
   height: 30px;
 }
 #kakao-logo {
+  padding: 0.2rem;
+  border-radius: 5px;
+  background-color: yellow;
   width: 20px;
   height: 20px;
 }

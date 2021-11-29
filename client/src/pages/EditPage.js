@@ -140,7 +140,7 @@ export default function EditPage() {
         text: input,
         textColor: { hex: "#000000" },
         textSize: 20,
-        textStyle: "Gulimn",
+        textStyle: "BinggraeMelona",
         style: {
           type: type,
           position: "absolute",

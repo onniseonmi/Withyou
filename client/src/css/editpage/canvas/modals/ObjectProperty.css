@@ -1,10 +1,16 @@
 #property-modal {
   width: 100%;
   height: 10vh;
-  background-color: rgb(207, 207, 207);
+  background-color: #fefcff;
+  border-top: 0.5px solid lightgray;
+  font-family: "BinggraeMelona";
+  display: flex;
+  flex-direction: column;
 }
 
 #property-title-button {
+  margin-top: 1vh;
+  padding: 0rem 2vw;
   display: flex;
   justify-content: space-between;
 }
@@ -55,6 +61,10 @@
 
 #selectList {
   width: 15vh;
+}
+
+#delete-button {
+  font-family: "BinggraeMelona";
 }
 @media screen and (max-width: 900px) {
   #control-zindex {

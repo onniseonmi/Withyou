@@ -39,7 +39,7 @@ const Oauth = () => {
           ></img>
         </div>
         <div onClick={githubLogin} className='oauth-name button'>
-          깃헙 로그인
+          깃허브 로그인
         </div>
       </div>
       <div className='oauth-box'>

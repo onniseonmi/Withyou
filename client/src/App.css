@@ -28,6 +28,11 @@
   src: url("./fonts/NanumMyeongjo-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "BinggraeMelona";
+  src: url("./fonts/BinggraeMelona.ttf") format("truetype");
+}
+
 html,
 body,
 #root {
