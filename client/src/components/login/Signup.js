@@ -66,7 +66,7 @@ const Signup = ({ signupBtn, setSignupBtn }) => {
           </div>
           <div>
             <div className="signup-login">
-              <span>이미 가입하셨나요?</span>
+              <span id="text">이미 가입하셨나요?</span>
               <span className="button" onClick={(e) => setSignupBtn(false)}>
                 로그인
               </span>

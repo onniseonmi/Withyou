@@ -21,6 +21,7 @@ export default function BackgroundColor({
         width: "20px",
         height: "50px",
         borderRadius: "0.2rem",
+        cursor: "pointer",
       },
       palette: {
         position: "fixed",
@@ -33,8 +34,8 @@ export default function BackgroundColor({
   return (
     <div id="template-modal">
       <div id="template-modal-nav" className="edit--menu-title">
-        <div>BackgroundColor</div>
-        <div>원하는 배경색을 선택하세요</div>
+        <div id="title"> 배경색 정하기 </div>
+        <div id="content">원하는 색상을 선택해주세요.</div>
       </div>
       <div id="template-modal-upload">
         <div className="button-area">

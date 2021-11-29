@@ -24,6 +24,7 @@ export default function ObjectProperty({
   modifyTextStyle,
 }) {
   const fontLIst = [
+    "BinggraeMelona",
     "Gulimn",
     "NanumGothic-Bold",
     "NanumGothic-Regular",
@@ -112,11 +113,6 @@ export default function ObjectProperty({
 
   const styles = reactCSS({
     default: {
-      color: {
-        width: "20px",
-        height: "50px",
-        borderRadius: "0.2rem",
-      },
       swatch: {
         width: "5rem",
         height: "1.5rem",
@@ -126,9 +122,9 @@ export default function ObjectProperty({
         cursor: "pointer",
       },
       palette: {
-        position: "fixed",
-        top: `${clientWidth >= 900 ? "75vh" : "40vh"}`,
-        left: `${clientWidth >= 900 ? "40vw" : "10vw"}`,
+        position: "absolute",
+        top: `${clientWidth >= 900 ? "68vh" : "35vh"}`,
+        left: `${clientWidth >= 900 ? "16vw" : "16vw"}`,
         zIndex: "2",
       },
       selected: {
@@ -290,7 +286,7 @@ export default function ObjectProperty({
                   <ChromePicker
                     disableAlpha={true}
                     color={currentTextColor}
-                    onChangeComplete={(color) => {
+                    onChange={(color) => {
                       setCurrentTextColor(color.hex);
                       modifyTextColor(color.hex);
                     }}

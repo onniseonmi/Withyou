@@ -1,7 +1,7 @@
 #detail-property {
   position: relative;
   width: 99.5%;
-  background-color: #999999;
+  background-color: #e4e0d6;
 }
 #editCloseBtn {
   position: absolute;
@@ -23,7 +23,7 @@
 @media screen and (max-width: 900px) {
   #edit-menu-container {
     /* position: absolute; */
-    height: 22rem;
+    height: 38vh;
     display: flex;
     width: 100%;
   }

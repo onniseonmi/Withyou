@@ -1,10 +1,7 @@
 .nav-container {
   width: 100%;
-  background-color: #f3f5f7;
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
+  background-color: #f2f0ec;
+  height: 8vh;
 }
 
 .title a {
