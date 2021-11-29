@@ -12,7 +12,7 @@ export default function EditPage() {
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-template");
+  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-bg");
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
@@ -21,7 +21,7 @@ export default function EditPage() {
     hex: "#ffffff",
   });
   const { clientWidth } = document.body;
-
+  
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];
@@ -212,7 +212,7 @@ export default function EditPage() {
 
   return (
     <>
-      {console.log(menuBtnStatus)}
+      {/* {console.log(menuBtnStatus)} */}
       <div id="EditPage">
         <div id="edit-menu">
           <EditMenuBar

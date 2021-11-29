@@ -34,18 +34,11 @@
   justify-content: center;
 }
 #canvas-paper {
-  width: 350px;
-  height: 250px;
-  transform: scale(3);
+  width: 455px;
+  height: 325px;
+  transform: scale(2);
   border: 1px solid gray;
   position: relative;
-}
-@media screen and (max-width: 1280px) {
-  #canvas-paper {
-    transform: scale(2);
-    width: 350px;
-    height: 250px;
-  }
 }
 @media screen and (max-width: 900px) {
   #EditPage {
@@ -56,8 +49,8 @@
   }
   #canvas-paper {
     transform: scale(1);
-    width: 350px;
-    height: 250px;
+    width: 455px;
+    height: 325px;
   }
   #title {
     font-size: 1.8rem;
@@ -66,5 +59,28 @@
   #content {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-device-width: 450px) {
+  #canvas-paper {
+    width: 455px;
+    height: 325px;
+    border: 1px solid gray;
+    position: relative;
+  }
+
+  #EditPage {
+    flex-direction: column-reverse;
+  }
+  #edit-menu {
+    flex-direction: column-reverse;
+  }
+  #title {
+    font-size: 4.5rem;
+    margin: 1.5rem 0rem;
+  }
+  #content {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
 }

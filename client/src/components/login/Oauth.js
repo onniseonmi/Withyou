@@ -2,7 +2,9 @@ import React from "react";
 import naver from "../../images/naver.png";
 import kakao from "../../images/kakao.png";
 
-const client_url = "http://localhost:3000";
+// const client_url = "http://localhost:3000";
+const client_url =
+  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/editpage";
 
 const Oauth = () => {
   const naverLogin = (e) => {

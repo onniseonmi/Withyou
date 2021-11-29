@@ -29,3 +29,20 @@
     overflow: auto;
   }
 }
+@media screen and (max-device-width: 450px) {
+  #elements-modal {
+    font-family: "BinggraeMelona";
+    width: 100%;
+    height: 37vh;
+    display: inline-block;
+    text-align: center;
+    overflow: auto;
+  }
+  #elements-modal-upload > img {
+    width: 40vw;
+    height: 20vh;
+    margin: 1rem 0.8rem;
+    object-fit: fill;
+    cursor: pointer;
+  }
+}
