@@ -23,6 +23,16 @@
   background-color: black;
   color: white;
 }
+
+#text-button:hover {
+  background-color: rgb(253, 178, 169);
+  transition: 0.5s;
+}
+#text-button:not(:hover) {
+  background-color: black;
+  transition: 0.5s;
+}
+
 @media screen and (max-width: 900px) {
   #text-modal {
     width: 100%;

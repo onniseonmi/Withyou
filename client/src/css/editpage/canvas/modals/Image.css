@@ -38,6 +38,14 @@
   background-color: black;
   color: white;
 }
+#add-image-button:hover {
+  background-color: rgb(253, 178, 169);
+  transition: 0.5s;
+}
+#add-image-button:not(:hover) {
+  background-color: black;
+  transition: 0.5s;
+}
 
 #error-message {
   margin-top: 2rem;
@@ -53,6 +61,15 @@
   cursor: pointer;
   border-color: lightgray;
   background-color: #f5f5f5;
+}
+
+#image-selector:hover {
+  background-color: rgb(253, 178, 169);
+  transition: 0.5s;
+}
+#image-selector:not(:hover) {
+  background-color: #f5f5f5;
+  transition: 0.5s;
 }
 
 @media screen and (max-width: 900px) {

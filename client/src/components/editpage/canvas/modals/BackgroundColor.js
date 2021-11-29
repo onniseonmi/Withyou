@@ -21,6 +21,7 @@ export default function BackgroundColor({
         width: "20px",
         height: "50px",
         borderRadius: "0.2rem",
+        cursor: "pointer",
       },
       palette: {
         position: "fixed",
