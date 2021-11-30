@@ -19,7 +19,7 @@ const EditMenu = ({
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
-        {menuBtnStatus === "menuBar-template" ? (
+        {menuBtnStatus === "menuBar-bg" ? (
           <BackgroundColor
             setMenuBtnOn={setMenuBtnOn}
             addToItems={addToItems}

@@ -15,13 +15,14 @@ export default function BackgroundColor({
     handleCanvasColor(input);
   }
 
+
   const styles = reactCSS({
     default: {
       color: {
         width: "20px",
         height: "50px",
         borderRadius: "0.2rem",
-        cursor: "pointer",
+        background: "#ffffff",
       },
       palette: {
         position: "fixed",
@@ -31,24 +32,23 @@ export default function BackgroundColor({
       },
     },
   });
+
   return (
-    <div id="template-modal">
-      <div id="template-modal-nav" className="edit--menu-title">
+    <div id="bg-modal">
+      <div id="bg-modal-nav" className="edit--menu-title">
         <div id="title"> 배경색 정하기 </div>
         <div id="content">원하는 색상을 선택해주세요.</div>
       </div>
-      <div id="template-modal-upload">
-        <div className="button-area">
-          <ChromePicker
-            id="bg-color-picker"
-            styles={styles.color}
-            disableAlpha={true}
-            color={currentTextColor}
-            onChange={(color) => {
-              handleCurrentColor(color);
-            }}
-          />
-        </div>
+      <div className="button-area">
+        <ChromePicker
+          styles={styles.color}
+          width={window.outerWidth >= 450 ? "225px" : "550px"}
+          disableAlpha={window.outerWidth >= 450 ? true : false}
+          color={currentTextColor}
+          onChange={(color) => {
+            handleCurrentColor(color);
+          }}
+        />
       </div>
     </div>
   );

@@ -5,7 +5,10 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-const server_url = "http://localhost:4000";
+// const server_url = "http://localhost:4000";
+const server_url =
+  "http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000";
+
 const Login = ({
   isLogin,
   setIsLogin,
@@ -32,7 +35,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: "http://localhost:4000/user/signin",
+        url: `${server_url}/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;
