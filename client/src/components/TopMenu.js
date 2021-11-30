@@ -2,7 +2,9 @@ import React from 'react';
 import '../css/TopMenu.css';
 import html2canvse from 'html2canvas';
 import axios from 'axios';
-require('dotenv').config();
+const server_url = 'http://localhost:4000';
+const ec2_url =
+  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 export default function TopMenu({ deSelectObject }) {
   async function download() {
@@ -48,7 +50,7 @@ export default function TopMenu({ deSelectObject }) {
 
         axios({
           method: 'POST',
-          url: `${process.env.server_url}/mycard/post`,
+          url: `${server_url}/mycard/post`,
           data: formData,
           headers: {
             authorization: `Bearer ${accessTokenSession}`,

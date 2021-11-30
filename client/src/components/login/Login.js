@@ -5,7 +5,9 @@ import title from '../../images/title.png';
 import Signup from '../login/Signup';
 import Oauth from '../login/Oauth';
 import axios from 'axios';
-require('dotenv').config();
+const server_url = 'http://localhost:4000';
+const ec2_url =
+  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 const Login = ({
   isLogin,
@@ -33,7 +35,7 @@ const Login = ({
     try {
       const data = await axios({
         method: 'POST',
-        url: `${process.env.server_url}/user/signin`,
+        url: `${server_url}/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;
@@ -60,7 +62,12 @@ const Login = ({
           X
         </div>
         {signupBtn ? (
-          <Signup signupBtn={signupBtn} setSignupBtn={setSignupBtn} />
+          <Signup
+            setLoginBtn={setLoginBtn}
+            setSignupBtn={setSignupBtn}
+            setIsLogin={setIsLogin}
+            setAccessToken={setAccessToken}
+          />
         ) : (
           <div className='login-left-box'>
             <div className='login-title modal-title'>

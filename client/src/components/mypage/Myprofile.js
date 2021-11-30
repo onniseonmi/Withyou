@@ -2,7 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import addImg from '../../images/manImage.svg';
 import '../../css/mypage/Myprofile.css';
-require('dotenv').config();
+const server_url = 'http://localhost:4000';
+const ec2_url =
+  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 const Myprofile = () => {
   const accessToken = sessionStorage.getItem('accessTokenSession');
@@ -29,7 +31,7 @@ const Myprofile = () => {
       try {
         const data = await axios({
           method: 'POST',
-          url: `${process.env.server_url}/profile`,
+          url: `${server_url}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -71,7 +73,7 @@ const Myprofile = () => {
         if (loginType === 'kakao') {
           axios({
             method: 'GET',
-            url: `${process.env.server_url}/user/kakao`,
+            url: `${server_url}/user/kakao`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -91,7 +93,7 @@ const Myprofile = () => {
         } else if (loginType === 'naver') {
           axios({
             method: 'GET',
-            url: `${process.env.server_url}/user/naver`,
+            url: `${server_url}/user/naver`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -112,7 +114,7 @@ const Myprofile = () => {
         } else if (loginType === 'github') {
           axios({
             method: 'GET',
-            url: `${process.env.server_url}/user/github`,
+            url: `${server_url}/user/github`,
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -131,7 +133,7 @@ const Myprofile = () => {
         } else {
           axios({
             method: 'GET',
-            url: `${process.env.server_url}/profile`,
+            url: `${server_url}/profile`,
             headers: {
               authorization: `Bearer ${accessToken}`,
             },
@@ -164,17 +166,13 @@ const Myprofile = () => {
     formData.append('img', event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem('accessTokenSession');
 
-    const res = await axios.put(
-      `${process.env.server_url}/profile/image`,
-      formData,
-      {
-        headers: {
-          authorization: `Bearer ${accessTokenSession}`,
-          'content-type': 'multipart/form-data boundary=something',
-        },
-        withCredentials: true,
-      }
-    );
+    const res = await axios.put(`${server_url}/profile/image`, formData, {
+      headers: {
+        authorization: `Bearer ${accessTokenSession}`,
+        'content-type': 'multipart/form-data boundary=something',
+      },
+      withCredentials: true,
+    });
     console.log(event.target.files[0]);
     setUserInfo({ ...userInfo, image: res.data.image });
   };

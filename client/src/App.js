@@ -6,6 +6,9 @@ import Mypage from './pages/Mypage';
 import Nav from './components/Nav';
 import axios from 'axios';
 import './App.css';
+const server_url = 'http://localhost:4000';
+const ec2_url =
+  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 export default function App() {
   const [accessToken, setAccessToken] = useState('');
@@ -20,7 +23,7 @@ export default function App() {
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: 'POST',
-      url: 'http://localhost:4000/user/callback',
+      url: `${server_url}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
       const { access_token } = resp.data;
