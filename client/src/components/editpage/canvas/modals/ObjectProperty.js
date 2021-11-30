@@ -151,7 +151,10 @@ export default function ObjectProperty({
           <div id="control-width">
             <div>가로</div>
             <div className="button-area">
-              <button className="button" onClick={() => decreaseWidth()}>
+              <button
+                className="control-button"
+                onClick={() => decreaseWidth()}
+              >
                 -
               </button>
               <input
@@ -163,7 +166,10 @@ export default function ObjectProperty({
                   resizeWidth(Number(e.target.value));
                 }}
               />
-              <button className="button" onClick={() => increaseWidth()}>
+              <button
+                className="control-button"
+                onClick={() => increaseWidth()}
+              >
                 +
               </button>
             </div>
@@ -171,7 +177,10 @@ export default function ObjectProperty({
           <div id="control-height">
             <div>세로</div>
             <div className="button-area">
-              <button className="button" onClick={() => decreaseHeight()}>
+              <button
+                className="control-button"
+                onClick={() => decreaseHeight()}
+              >
                 -
               </button>
               <input
@@ -183,7 +192,10 @@ export default function ObjectProperty({
                   resizeHeight(Number(e.target.value));
                 }}
               />
-              <button className="button" onClick={() => increaseHeight()}>
+              <button
+                className="control-button"
+                onClick={() => increaseHeight()}
+              >
                 +
               </button>
             </div>
@@ -191,7 +203,10 @@ export default function ObjectProperty({
           <div id="control-rotate">
             <div>회전</div>
             <div className="button-area">
-              <button className="button" onClick={() => rotateDeClockSide()}>
+              <button
+                className="control-button"
+                onClick={() => rotateDeClockSide()}
+              >
                 -
               </button>
               <input
@@ -203,7 +218,10 @@ export default function ObjectProperty({
                   rotateObject(`rotate(${Number(e.target.value)}deg)`);
                 }}
               />
-              <button className="button" onClick={() => rotateClockSide()}>
+              <button
+                className="control-button"
+                onClick={() => rotateClockSide()}
+              >
                 +
               </button>
             </div>
@@ -212,7 +230,7 @@ export default function ObjectProperty({
             <div>레이어</div>
             <div id="zindex-buttons">
               <button
-                className="button"
+                className="control-button"
                 onClick={() => {
                   if (zindex !== 0) {
                     decreaseZindex(zindex - 1);
@@ -231,7 +249,7 @@ export default function ObjectProperty({
                 }}
               />
               <button
-                className="button"
+                className="control-button"
                 onClick={() => {
                   increaseZindex(zindex + 1);
                 }}
@@ -298,7 +316,10 @@ export default function ObjectProperty({
           <div id="control-size">
             <div>글자크기</div>
             <div className="button-area">
-              <button className="button" onClick={() => decreaseTextSize()}>
+              <button
+                className="control-button"
+                onClick={() => decreaseTextSize()}
+              >
                 -
               </button>
               <input
@@ -310,7 +331,10 @@ export default function ObjectProperty({
                   modifyTextSize(Number(e.target.value));
                 }}
               />
-              <button className="button" onClick={() => increaseTextSize()}>
+              <button
+                className="control-button"
+                onClick={() => increaseTextSize()}
+              >
                 +
               </button>
             </div>
@@ -318,7 +342,10 @@ export default function ObjectProperty({
           <div id="control-rotate">
             <div>회전</div>
             <div className="button-area">
-              <button className="button" onClick={() => rotateDeClockSide()}>
+              <button
+                className="control-button"
+                onClick={() => rotateDeClockSide()}
+              >
                 -
               </button>
               <input
@@ -330,7 +357,10 @@ export default function ObjectProperty({
                   rotateObject(`rotate(${Number(e.target.value)}deg)`);
                 }}
               />
-              <button className="button" onClick={() => rotateClockSide()}>
+              <button
+                className="control-button"
+                onClick={() => rotateClockSide()}
+              >
                 +
               </button>
             </div>
@@ -339,7 +369,7 @@ export default function ObjectProperty({
             <div>레이어</div>
             <div id="zindex-buttons">
               <button
-                className="button"
+                className="control-button"
                 onClick={() => {
                   if (zindex !== 0) {
                     decreaseZindex(zindex - 1);
@@ -358,7 +388,7 @@ export default function ObjectProperty({
                 }}
               />
               <button
-                className="button"
+                className="control-button"
                 onClick={() => {
                   increaseZindex(zindex + 1);
                 }}

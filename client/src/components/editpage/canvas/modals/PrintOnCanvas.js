@@ -5,7 +5,6 @@ export default function PrintOnCanvas({
   key,
   id,
   src,
-  text,
   textColor,
   textSize,
   textStyle,
@@ -41,7 +40,6 @@ export default function PrintOnCanvas({
     deSelectObject();
     onSelect();
     onDragStart();
-    setMouseInitLocation(e.clientX, e.clientY);
     setMouseCurrentLocation(
       e.target.getBoundingClientRect().left,
       e.target.getBoundingClientRect().top
@@ -67,6 +65,17 @@ export default function PrintOnCanvas({
     }
   }
 
+  function onDragAndDropMobile(e) {
+    const differX = initLocation.x - currentLocation.x;
+    const differY = initLocation.y - currentLocation.y;
+    let x = e.pageX - differX - left;
+    let y = e.pageY - differY - top;
+    onChangeStyle({
+      left: x,
+      top: y,
+    });
+  }
+
   function setObjectStyle(style, isSelected) {
     return {
       ...style,
@@ -85,9 +94,12 @@ export default function PrintOnCanvas({
         // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
         onMouseDown={(e) => {
           onClickObjcet(e);
+          setMouseInitLocation(e.clientX, e.clientY);
         }}
         onTouchStart={(e) => {
+          const target = e.touches[0];
           onClickObjcet(e);
+          setMouseInitLocation(target.clientX, target.clientY);
         }}
         onMouseUp={(e) => {
           controlCursorStyle(e, "grab");
@@ -104,7 +116,7 @@ export default function PrintOnCanvas({
         }}
         onTouchMove={(e) => {
           if (isDragging) {
-            onDragAndDrop(e);
+            onDragAndDropMobile(e.touches[0]);
           }
         }}
         onMouseOver={(e) => {
@@ -120,6 +132,8 @@ export default function PrintOnCanvas({
   } else if (style.type === "text") {
     return (
       <input
+        id={id}
+        key={key}
         size={currentText.length * 2}
         placeholder={currentText} // innerHTML of the editable div
         disabled={false} // use true to disable editing
@@ -140,14 +154,22 @@ export default function PrintOnCanvas({
           color: textColor,
           textAlign: "center",
         }}
-        key={key}
-        id={id}
         className="image-element"
         draggable={false}
         onMouseDown={(e) => {
           onClickObjcet(e);
+          setMouseInitLocation(e.clientX, e.clientY);
+        }}
+        onTouchStart={(e) => {
+          const target = e.touches[0];
+          onClickObjcet(e);
+          setMouseInitLocation(target.clientX, target.clientY);
         }}
         onMouseUp={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+        }}
+        onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
@@ -156,12 +178,17 @@ export default function PrintOnCanvas({
             onDragAndDrop(e);
           }
         }}
+        onTouchMove={(e) => {
+          if (isDragging) {
+            onDragAndDropMobile(e.touches[0]);
+          }
+        }}
         onMouseOver={(e) => {
           controlCursorStyle(e, "grab");
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          // onDragEnd();
+          onDragEnd();
           opacityOnObject(e, 1);
         }}
       />

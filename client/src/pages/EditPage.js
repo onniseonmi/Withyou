@@ -21,7 +21,7 @@ export default function EditPage() {
     hex: "#ffffff",
   });
   const { clientWidth } = document.body;
-  
+  const { outerWidth } = window;
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];
@@ -160,7 +160,15 @@ export default function EditPage() {
       .querySelector("#canvas-paper")
       .getBoundingClientRect();
     setItemStates((prevState) => {
-      if (clientWidth >= 900) {
+      if (outerWidth <= 450) {
+        return [
+          ...prevState,
+          setStyle(input, type, itemStates, {
+            width: canvas.width * 2,
+            height: canvas.height * 2,
+          }),
+        ];
+      } else if (clientWidth >= 900) {
         return [...prevState, setStyle(input, type, itemStates, canvas)];
       } else {
         return [
@@ -289,6 +297,8 @@ export default function EditPage() {
           <div id="edit-footer-menu">
             {selectState ? (
               <ObjectProperty
+                key={selectedItem.id}
+                id={selectedItem.id}
                 type={selectedItem.style.type}
                 width={selectedItem.style.width}
                 resizeWidth={resizeWidth}

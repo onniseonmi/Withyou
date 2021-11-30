@@ -55,8 +55,13 @@
   justify-content: center;
 }
 
-.button {
+.control-button {
   cursor: pointer;
+  background-color: black;
+  color: white;
+  border-radius: 0.3rem;
+  border-color: white;
+  font-size: 1.8vh;
 }
 
 #selectList {
@@ -64,6 +69,11 @@
 }
 
 #delete-button {
+  background-color: white;
+  color: red;
+  border-color: lightgray;
+  border-radius: 0.3rem;
+  padding: 0.2vh 1.5vh;
   font-family: "BinggraeMelona";
 }
 @media screen and (max-width: 900px) {
