@@ -2,10 +2,8 @@ import React, { useState, useRef } from "react";
 import ContentEditable from "react-contenteditable";
 
 export default function PrintOnCanvas({
-  key,
   id,
   src,
-  text,
   textColor,
   textSize,
   textStyle,
@@ -41,7 +39,6 @@ export default function PrintOnCanvas({
     deSelectObject();
     onSelect();
     onDragStart();
-    setMouseInitLocation(e.clientX, e.clientY);
     setMouseCurrentLocation(
       e.target.getBoundingClientRect().left,
       e.target.getBoundingClientRect().top
@@ -67,6 +64,17 @@ export default function PrintOnCanvas({
     }
   }
 
+  function onDragAndDropMobile(e) {
+    const differX = initLocation.x - currentLocation.x;
+    const differY = initLocation.y - currentLocation.y;
+    let x = e.pageX - differX - left;
+    let y = e.pageY - differY - top;
+    onChangeStyle({
+      left: x,
+      top: y,
+    });
+  }
+
   function setObjectStyle(style, isSelected) {
     return {
       ...style,
@@ -76,7 +84,7 @@ export default function PrintOnCanvas({
   if (style.type === "image") {
     return (
       <img
-        key={key}
+        key={id}
         id={id}
         className="image-element"
         draggable={false}
@@ -84,16 +92,33 @@ export default function PrintOnCanvas({
         style={setObjectStyle(style, isSelected)}
         // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
         onMouseDown={(e) => {
-          // 기존 선택을 풀어주고, 현재 선택으로 만들어 준다.
           onClickObjcet(e);
+          setMouseInitLocation(e.clientX, e.clientY);
+        }}
+        onTouchStart={(e) => {
+          const target = e.touches[0];
+          onClickObjcet(e);
+          setMouseInitLocation(target.clientX, target.clientY);
         }}
         onMouseUp={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+          document.body.style.overflow = null;
+        }}
+        onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
         onMouseMove={(e) => {
           if (isDragging) {
             onDragAndDrop(e);
+          }
+        }}
+        onTouchMove={(e) => {
+          document.body.style.overflow = "hidden";
+          document.querySelector("html").scrollTop = window.scrollY;
+          if (isDragging) {
+            onDragAndDropMobile(e.touches[0]);
           }
         }}
         onMouseOver={(e) => {
@@ -108,19 +133,22 @@ export default function PrintOnCanvas({
     );
   } else if (style.type === "text") {
     return (
-      <ContentEditable
-        html={currentText} // innerHTML of the editable div
+      <input
+        key={id}
+        id={id}
+        size={currentText.length * 2}
+        placeholder={currentText} // innerHTML of the editable div
         disabled={false} // use true to disable editing
         onChange={(e) => {
           setCurrentText(e.target.value);
           modifyText(e.target.value);
         }} // handle innerHTML change
-        tagName="article" // Use a custom HTML tag (uses a div by default)
+        tagname="article" // Use a custom HTML tag (uses a div by default)
         style={{
           ...style,
           display: "inline-block",
           border: "none",
-          padding: "auto",
+          padding: "1rem 0.5rem",
           height: "auto",
           fontFamily: textStyle,
           fontSize: textSize,
@@ -128,14 +156,22 @@ export default function PrintOnCanvas({
           color: textColor,
           textAlign: "center",
         }}
-        key={key}
-        id={id}
         className="image-element"
         draggable={false}
         onMouseDown={(e) => {
           onClickObjcet(e);
+          setMouseInitLocation(e.clientX, e.clientY);
+        }}
+        onTouchStart={(e) => {
+          const target = e.touches[0];
+          onClickObjcet(e);
+          setMouseInitLocation(target.clientX, target.clientY);
         }}
         onMouseUp={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+        }}
+        onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
@@ -144,15 +180,20 @@ export default function PrintOnCanvas({
             onDragAndDrop(e);
           }
         }}
+        onTouchMove={(e) => {
+          if (isDragging) {
+            onDragAndDropMobile(e.touches[0]);
+          }
+        }}
         onMouseOver={(e) => {
           controlCursorStyle(e, "grab");
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          // onDragEnd();
+          onDragEnd();
           opacityOnObject(e, 1);
         }}
-      />
+      ></input>
     );
   }
 }

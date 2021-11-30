@@ -1,7 +1,8 @@
 .nav-container {
   width: 100%;
   background-color: #f2f0ec;
-  height: 8vh;
+  height: 7vh;
+  border-bottom: solid 1px lightgray;
 }
 
 .title a {
@@ -34,10 +35,6 @@
   text-decoration: none;
 }
 
-#login {
-  /* font-family: "Huglife"; */
-}
-
 #join {
   margin-top: 0.1rem;
   /* font-family: "Huglife"; */
@@ -51,15 +48,17 @@
   font-size: 2.21rem;
 }
 
-@media screen and (min-width: 900px) and (max-width: 7680px) { /* PC */
+@media screen and (min-width: 900px) and (max-width: 7680px) {
+  /* PC */
   .nav-container {
-    background:transparent;
-    background-color:transparent;
-    border-color:transparent;
+    background: transparent;
+    background-color: transparent;
+    /* border-color: transparent; */
   }
 }
 
-@media screen and (max-width: 900px) { /* Phone */
+@media screen and (max-width: 900px) {
+  /* Phone */
   .nav-container {
     display: flex;
     width: 100%;
@@ -82,5 +81,36 @@
   }
   .nav-right > div {
     font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-device-width: 450px) {
+  /* Phone */
+  .nav-container {
+    display: flex;
+    width: 100%;
+    height: 4.5vh;
+    background-color: F9FFFF;
+    border-bottom: solid 2px lightgray;
+    align-content: center;
+  }
+
+  .title {
+    display: flex;
+  }
+
+  .logo {
+    font-size: 3.6vh;
+  }
+
+  .nav-right {
+    display: flex;
+    height: 3.6vh;
+    right: 0.5rem;
+    top: 0.5rem;
+    align-items: center;
+  }
+  .nav-right > div {
+    font-size: 3rem;
   }
 }

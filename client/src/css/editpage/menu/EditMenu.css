@@ -28,3 +28,12 @@
     width: 100%;
   }
 }
+
+@media screen and (max-device-width: 450px) {
+  #edit-menu-container {
+    /* position: absolute; */
+    height: 38vh;
+    display: flex;
+    width: 100%;
+  }
+}

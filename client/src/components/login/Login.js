@@ -5,9 +5,7 @@ import title from '../../images/title.png';
 import Signup from '../login/Signup';
 import Oauth from '../login/Oauth';
 import axios from 'axios';
-// const server_url = "http://localhost:4000";
-const server_url =
-  'http://ec2-3-26-161-132.ap-southeast-2.compute.amazonaws.com:4000';
+require('dotenv').config();
 
 const Login = ({
   isLogin,
@@ -35,7 +33,7 @@ const Login = ({
     try {
       const data = await axios({
         method: 'POST',
-        url: `${server_url}/user/signin`,
+        url: `${process.env.server_url}/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;

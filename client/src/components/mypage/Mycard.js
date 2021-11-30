@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../css/mypage/Mycard.css';
 import addPage from '../../images/addPage.svg';
 import axios from 'axios';
-import html2canvse from 'html2canvas';
+require('dotenv').config();
 
-// const server_url = 'http://localhost:4000';
-const server_url =
-  'http://ec2-3-26-161-132.ap-southeast-2.compute.amazonaws.com:4000';
 const Mycard = () => {
   const accessToken = sessionStorage.getItem('accessTokenSession');
   const [cards, setCards] = useState([]);
@@ -18,7 +15,7 @@ const Mycard = () => {
       const loginType = sessionStorage.getItem('loginType');
       try {
         if (loginType === null) {
-          const card = await axios.get(`${server_url}/mycard`, {
+          const card = await axios.get(`${process.env.server_url}/mycard`, {
             headers: { Authorization: `Bearer ${accessToken}` },
           });
           const cardImage = card.data;
@@ -34,7 +31,7 @@ const Mycard = () => {
     editBtn ? setEditBtn(false) : setEditBtn(true);
   };
   const deleteCard = (card) => {
-    axios.get(`${server_url}/mycard/delete/${card.id}`);
+    axios.get(`${process.env.server_url}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
 
