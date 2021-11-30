@@ -5,7 +5,9 @@ import addPage from '../../images/addPage.svg';
 import axios from 'axios';
 import html2canvse from 'html2canvas';
 
-const server_url = 'http://localhost:4000';
+// const server_url = 'http://localhost:4000';
+const server_url =
+  'http://ec2-3-26-161-132.ap-southeast-2.compute.amazonaws.com:4000';
 const Mycard = () => {
   const accessToken = sessionStorage.getItem('accessTokenSession');
   const [cards, setCards] = useState([]);
