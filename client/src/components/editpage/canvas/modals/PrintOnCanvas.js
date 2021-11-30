@@ -84,14 +84,25 @@ export default function PrintOnCanvas({
         style={setObjectStyle(style, isSelected)}
         // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
         onMouseDown={(e) => {
-          // 기존 선택을 풀어주고, 현재 선택으로 만들어 준다.
+          onClickObjcet(e);
+        }}
+        onTouchStart={(e) => {
           onClickObjcet(e);
         }}
         onMouseUp={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
+        onTouchEnd={(e) => {
+          controlCursorStyle(e, "grab");
+          onDragEnd();
+        }}
         onMouseMove={(e) => {
+          if (isDragging) {
+            onDragAndDrop(e);
+          }
+        }}
+        onTouchMove={(e) => {
           if (isDragging) {
             onDragAndDrop(e);
           }
@@ -108,8 +119,9 @@ export default function PrintOnCanvas({
     );
   } else if (style.type === "text") {
     return (
-      <ContentEditable
-        html={currentText} // innerHTML of the editable div
+      <input
+        size={currentText.length * 2}
+        placeholder={currentText} // innerHTML of the editable div
         disabled={false} // use true to disable editing
         onChange={(e) => {
           setCurrentText(e.target.value);
@@ -120,7 +132,7 @@ export default function PrintOnCanvas({
           ...style,
           display: "inline-block",
           border: "none",
-          padding: "auto",
+          padding: "1rem 0.5rem",
           height: "auto",
           fontFamily: textStyle,
           fontSize: textSize,
