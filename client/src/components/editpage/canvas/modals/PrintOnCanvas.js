@@ -104,6 +104,7 @@ export default function PrintOnCanvas({
         onMouseUp={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
+          document.body.style.overflow = null;
         }}
         onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
@@ -115,6 +116,8 @@ export default function PrintOnCanvas({
           }
         }}
         onTouchMove={(e) => {
+          document.body.style.overflow = "hidden";
+          document.querySelector("html").scrollTop = window.scrollY;
           if (isDragging) {
             onDragAndDropMobile(e.touches[0]);
           }
