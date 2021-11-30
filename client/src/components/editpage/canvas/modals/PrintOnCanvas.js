@@ -23,6 +23,7 @@ export default function PrintOnCanvas({
   modifyText,
 }) {
   const [currentText, setCurrentText] = useState("With you");
+  const [onMove, setOnMove] = useState(false);
   const { left, top } = document
     .querySelector("#canvas-paper")
     .getBoundingClientRect();
@@ -82,12 +83,6 @@ export default function PrintOnCanvas({
     };
   }
 
-  document.onmousemove = (e) => {
-    if (isDragging) {
-      onDragAndDrop(e);
-    }
-  };
-
   if (style.type === "image") {
     return (
       <img
@@ -98,6 +93,7 @@ export default function PrintOnCanvas({
         src={src}
         style={setObjectStyle(style, isSelected)}
         onMouseDown={(e) => {
+          setOnMove(true);
           onClickObjcet(e);
           setMouseInitLocation(e.clientX, e.clientY);
         }}
@@ -106,7 +102,13 @@ export default function PrintOnCanvas({
           onClickObjcet(e);
           setMouseInitLocation(target.clientX, target.clientY);
         }}
+        onMouseMove={(e) => {
+          if (isDragging) {
+            onDragAndDrop(e);
+          }
+        }}
         onMouseUp={(e) => {
+          setOnMove(false);
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
@@ -127,8 +129,10 @@ export default function PrintOnCanvas({
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          // onDragEnd();
           opacityOnObject(e, 1);
+          if (onMove) {
+            onDragAndDrop(e);
+          }
         }}
       />
     );
@@ -160,6 +164,7 @@ export default function PrintOnCanvas({
         className="image-element"
         draggable={false}
         onMouseDown={(e) => {
+          setOnMove(true);
           onClickObjcet(e);
           setMouseInitLocation(e.clientX, e.clientY);
         }}
@@ -168,7 +173,13 @@ export default function PrintOnCanvas({
           onClickObjcet(e);
           setMouseInitLocation(target.clientX, target.clientY);
         }}
+        onMouseMove={(e) => {
+          if (isDragging) {
+            onDragAndDrop(e);
+          }
+        }}
         onMouseUp={(e) => {
+          setOnMove(false);
           controlCursorStyle(e, "grab");
           onDragEnd();
         }}
@@ -189,8 +200,10 @@ export default function PrintOnCanvas({
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          // onDragEnd();
           opacityOnObject(e, 1);
+          if (onMove) {
+            onDragAndDrop(e);
+          }
         }}
       ></input>
     );
