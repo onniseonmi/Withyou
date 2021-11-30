@@ -1,72 +1,140 @@
-import React, { useState } from "react";
-import title from "../../images/title.png";
-import "../../css/login/Signup.css";
+import React, { useState } from 'react';
+import title from '../../images/title.png';
+import '../../css/login/Signup.css';
+import axios from 'axios';
+const server_url = 'http://localhost:4000';
+const ec2_url =
+  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
-const Signup = ({ signupBtn, setSignupBtn }) => {
+const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
   const [inputErr, setInputErr] = useState(false);
-  const handleChange = (e) => {};
-  const handleClick = (e) => {};
+  const [userInput, setUserInput] = useState({
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+    mobile: '',
+    image: '',
+  });
+  const handleChange = (e) => {
+    if (e.target.name === 'username') {
+      setUserInput({
+        ...userInput,
+        username: e.target.value,
+      });
+    } else if (e.target.name === 'email') {
+      setUserInput({
+        ...userInput,
+        email: e.target.value,
+      });
+    } else if (e.target.name === 'password') {
+      setUserInput({
+        ...userInput,
+        password: e.target.value,
+      });
+    } else if (e.target.name === 'password2') {
+      setUserInput({
+        ...userInput,
+        password2: e.target.value,
+      });
+    }
+  };
+  const handleClick = async (e) => {
+    if (userInput.password !== userInput.password2) {
+      setInputErr(true);
+    } else if (
+      userInput.username.trim() === '' ||
+      userInput.email.trim() === '' ||
+      userInput.password.trim() === ''
+    ) {
+      setInputErr(true);
+    } else {
+      setInputErr(false);
+      try {
+        const data = await axios({
+          method: 'POST',
+          url: `${server_url}/user/signup`,
+          data: userInput,
+        });
+        const tokenData = await axios({
+          method: 'POST',
+          url: `${server_url}/user/signin`,
+          data: { email: userInput.email, password: userInput.password },
+        });
+        const { userInfo, accessToken } = tokenData.data;
+        console.log('data');
+        console.log(data.data);
+        sessionStorage.setItem('isLoginSession', true);
+        sessionStorage.setItem('accessTokenSession', accessToken);
+        setIsLogin(true);
+        setAccessToken(accessToken);
+        setLoginBtn(false);
+      } catch (err) {
+        setInputErr(true);
+      }
+    }
+  };
   return (
-    <div className="signup-left-box">
-      <div className="signup-title">
-        <img src={title} alt="title"></img>
+    <div className='signup-left-box'>
+      <div className='signup-title'>
+        <img src={title} alt='title'></img>
       </div>
-      <div className="signup-input">
+      <div className='signup-input'>
         <div>계정 만들기</div>
-        <div className="signup-input-box">
+        <div className='signup-input-box'>
           <label>이름</label>
           <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="이름"
+            id='username'
+            type='text'
+            name='username'
+            placeholder='이름'
             onChange={handleChange}
           ></input>
         </div>
-        <div className="signup-input-box">
+        <div className='signup-input-box'>
           <label>이메일</label>
           <input
-            id="email"
-            type="text"
-            name="email"
-            placeholder="이메일"
+            id='email'
+            type='text'
+            name='email'
+            placeholder='이메일'
             onChange={handleChange}
           ></input>
         </div>
-        <div className="signup-input-box">
+        <div className='signup-input-box'>
           <label>비밀번호</label>
           <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="비밀번호"
+            id='password'
+            type='password'
+            name='password'
+            placeholder='비밀번호'
             onChange={handleChange}
           ></input>
         </div>
-        <div className="signup-input-box">
+        <div className='signup-input-box'>
           <label>비밀번호 확인</label>
           <input
-            id="password2"
-            type="password"
-            name="password2"
-            placeholder="비밀번호 확인"
+            id='password2'
+            type='password'
+            name='password2'
+            placeholder='비밀번호 확인'
             onChange={handleChange}
           ></input>
         </div>
         {inputErr ? (
-          <div className="signup-errMsg">
+          <div className='signup-errMsg'>
             <div>잘못 입력 되었습니다.</div>
             <div>다시 한번 확인해 주세요.</div>
           </div>
         ) : null}
-        <div className="signup-button-box">
-          <div className="signup-btn button" onClick={handleClick}>
+        <div className='signup-button-box'>
+          <div className='signup-btn button' onClick={handleClick}>
             시작하기
           </div>
           <div>
-            <div className="signup-login">
-              <span id="text">이미 가입하셨나요?</span>
-              <span className="button" onClick={(e) => setSignupBtn(false)}>
+            <div className='signup-login'>
+              <span id='text'>이미 가입하셨나요?</span>
+              <span className='button' onClick={(e) => setSignupBtn(false)}>
                 로그인
               </span>
             </div>
