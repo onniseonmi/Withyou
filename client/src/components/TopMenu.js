@@ -2,10 +2,7 @@ import React from "react";
 import "../css/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
-// const server_url = "http://localhost:4000";
-
-const server_url =
-  "http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000";
+require("dotenv").config();
 
 export default function TopMenu({ deSelectObject }) {
   async function download() {
@@ -51,7 +48,7 @@ export default function TopMenu({ deSelectObject }) {
 
         axios({
           method: "POST",
-          url: `${server_url}/mycard/post`,
+          url: `${process.env.server_url}/mycard/post`,
           data: formData,
           headers: {
             authorization: `Bearer ${accessTokenSession}`,
@@ -70,10 +67,6 @@ export default function TopMenu({ deSelectObject }) {
 
   return (
     <div id="top-menu">
-      {/* <div className="top-menu-box top-menu-left">
-        <div>새 페이지</div>
-        <div>페이지 추가</div>
-      </div> */}
       <div className="top-menu-box top-menu-right">
         <div id="top-menu-save">
           <a id="download" onClick={() => download()}>

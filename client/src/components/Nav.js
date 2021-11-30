@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import "../css/LandingPage.css";
 import Login from "./login/Login";
-// const client_url = "http://localhost:3000";
-const client_url =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/editpage";
 
 const Nav = ({
   userInfo,
@@ -31,7 +28,7 @@ const Nav = ({
       setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url);
+      window.location.assign(process.env.client_url);
     }
   };
   return (
