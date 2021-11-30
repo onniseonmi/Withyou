@@ -22,6 +22,7 @@ export default function EditPage() {
   });
   const { clientWidth } = document.body;
   const { outerWidth } = window;
+  
   function onSelect(index) {
     setSelectState(true);
     const nextState = [...itemStates];

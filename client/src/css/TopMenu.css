@@ -24,13 +24,14 @@
 }
 
 #top-menu-save {
+  font-size: 15px;
   width: 20vh;
   display: flex;
   justify-content: space-around;
 }
 #download:hover,
 #save:hover {
-  font-size: 2vh;
+  font-size: 18px;
   cursor: pointer;
   transition: 0.1s;
 }
