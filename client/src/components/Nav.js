@@ -1,9 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../css/Nav.css';
-import '../css/LandingPage.css';
-import Login from './login/Login';
-const client_url = 'http://localhost:3000';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../css/Nav.css";
+import "../css/LandingPage.css";
+import Login from "./login/Login";
+// const client_url = 'http://localhost:3000';
+const client_url =
+  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+  
 const Nav = ({
   userInfo,
   setUserInfo,
@@ -17,15 +20,15 @@ const Nav = ({
   setSignupBtn,
 }) => {
   const handleClick = (e) => {
-    if (e.target.id === 'login') {
+    if (e.target.id === "login") {
       setLoginBtn(true);
-    } else if (e.target.id === 'join') {
+    } else if (e.target.id === "join") {
       setLoginBtn(true);
       setSignupBtn(true);
     }
-    if (e.target.id === 'logout') {
+    if (e.target.id === "logout") {
       sessionStorage.clear();
-      setAccessToken('');
+      setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
       window.location.assign(client_url);
@@ -33,29 +36,29 @@ const Nav = ({
   };
   return (
     <>
-      <div className='nav-container'>
-        <div className='nav-left'></div>
-        <div className='title'>
-          <a href='/'>
-            <div className='logo'>Withyou</div>
+      <div className="nav-container">
+        <div className="nav-left"></div>
+        <div className="title">
+          <a href="/">
+            <div className="logo">Withyou</div>
           </a>
         </div>
         {!isLogin ? (
-          <div className='nav-box nav-right'>
-            <div id='login' onClick={handleClick}>
+          <div className="nav-box nav-right">
+            <div id="login" onClick={handleClick}>
               Login
             </div>
-            <div id='join' onClick={handleClick}>
+            <div id="join" onClick={handleClick}>
               Join
             </div>
-            <span className='burger_bar'></span>
+            <span className="burger_bar"></span>
           </div>
         ) : (
-          <div className='nav-box nav-right'>
+          <div className="nav-box nav-right">
             <div>
-              <Link to='/mypage'>Mypage</Link>
+              <Link to="/mypage">Mypage</Link>
             </div>
-            <div id='logout' onClick={handleClick}>
+            <div id="logout" onClick={handleClick}>
               Logout
             </div>
           </div>

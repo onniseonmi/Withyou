@@ -6,8 +6,8 @@ import Mypage from './pages/Mypage';
 import Nav from './components/Nav';
 import axios from 'axios';
 import './App.css';
-const server_url = 'http://localhost:4000';
-const ec2_url =
+// const server_url = 'http://localhost:4000';
+const server_url =
   'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 export default function App() {

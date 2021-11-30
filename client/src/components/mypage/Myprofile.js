@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import addImg from '../../images/manImage.svg';
 import '../../css/mypage/Myprofile.css';
-const server_url = 'http://localhost:4000';
-const ec2_url =
+// const server_url = 'http://localhost:4000';
+const server_url =
   'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
 
 const Myprofile = () => {
