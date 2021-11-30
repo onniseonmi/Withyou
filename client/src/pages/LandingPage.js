@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import landingVideo from "../videos/landingVideo.mp4";
 // import landingVideo from "../videos/landingVideo.gif";
 
-const LandingPage = () => {
+const LandingPage = (landingOn, setLandingOn) => {
   return (
     <div className="ladning-body">
       <div className="landing">
@@ -25,7 +25,7 @@ const LandingPage = () => {
               <div>세상에 없던 단 하나뿐인</div>
               <div>청첩장, 쉬운 디자인을 도와드립니다.</div>
               <a className="phone-start" href="/editpage">
-                <div className="main-get-started">시작하기</div>
+                <div className="main-get-started" onClick={() => setLandingOn(false)}>시작하기</div>
               </a>
             </div>
           </div>

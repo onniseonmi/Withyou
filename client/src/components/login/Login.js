@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../../css/login/Login.css";
-import loginModal from "../../images/loginModal.png";
+import loginModal from "../../images/signup.jpg";
 import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-const server_url = "http://localhost:4000";
+require("dotenv").config();
+
 const Login = ({
   isLogin,
   setIsLogin,
@@ -32,7 +33,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: "http://localhost:4000/user/signin",
+        url: `${process.env.server_url}/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;

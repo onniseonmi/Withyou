@@ -1,12 +1,13 @@
 .nav-container {
   width: 100%;
-  background-color: #f3f5f7;
-
+  background-color: #f2f0ec;
+  border-bottom: solid 1px lightgray;
+  line-height: 5.5vh;
+  z-index: 2;
 }
 
-.title a {
+.nav-left a {
   margin-left: 0.5rem;
-  margin-top: 0.5%;
   height: 3rem;
   font-family: "Huglife";
   text-decoration: none;
@@ -17,25 +18,20 @@
 
 .logo {
   margin-left: 8px;
-  margin-bottom: 10px;
-  font-size: 3rem;
+  font-size: 4.8rem;
   display: inline-block;
 }
 
 .nav-box {
   display: flex;
   position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  right: 0rem;
+  top: 0rem;
 }
 
 .nav-box a {
   color: black;
   text-decoration: none;
-}
-
-#login {
-  /* font-family: "Huglife"; */
 }
 
 #join {
@@ -48,24 +44,46 @@
   cursor: pointer;
   color: #212121 !important;
   font-family: "Huglife";
-  font-size: 2.21rem;
+  font-size: 2.6rem;
 }
 
-@media screen and (min-width: 900px) and (max-width: 7680px) { /* PC */
+@media screen and (max-width: 900px) {
+  /* Phone */
   .nav-container {
-    background:transparent;
-    background-color:transparent;
-    border-color:transparent;
+    display: flex;
+    width: 100%;
+    line-height: 5vh;
+    background-color: F9FFFF;
+    border-bottom: black;
+  }
+
+  .title {
+    display: flex;
+  }
+
+  .logo {
+    font-size: 4.6vh;
+  }
+
+  .nav-right {
+    right: 0rem;
+    top: 0rem;
+  }
+  
+  .nav-right > div {
+    font-size: 2rem;
   }
 }
 
-@media screen and (max-width: 900px) { /* Phone */
+@media screen and (max-device-width: 450px) {
+  /* Phone */
   .nav-container {
     display: flex;
     width: 100%;
     height: 4.5vh;
     background-color: F9FFFF;
-    border-bottom: black;
+    border-bottom: solid 2px lightgray;
+    align-content: center;
   }
 
   .title {
@@ -77,10 +95,14 @@
   }
 
   .nav-right {
+    display: flex;
+    height: 3.6vh;
     right: 0.5rem;
     top: 0.5rem;
+    align-items: center;
   }
+
   .nav-right > div {
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
 }

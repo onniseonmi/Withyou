@@ -24,15 +24,35 @@
 }
 
 #top-menu-save {
+  font-size: 15px;
   width: 20vh;
   display: flex;
   justify-content: space-around;
 }
-#top-menu-save > a {
+#download:hover,
+#save:hover {
+  font-size: 18px;
   cursor: pointer;
+  transition: 0.1s;
 }
-#save,
-#download {
-  border-left: 1px solid lightgray;
-  padding-left: 1vw;
+
+@media screen and (max-device-width: 450px) {
+  #top-menu {
+    background-color: #fefcff;
+    width: 100%;
+    height: 3vh;
+    line-height: 2rem;
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    font-family: "BinggraeMelona";
+    align-items: center;
+  }
+  #top-menu-save {
+    font-size: 2rem;
+  }
+  #top-menu-save {
+    width: 15vh;
+    display: flex;
+    justify-content: space-around;
+  }
 }

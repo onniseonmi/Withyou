@@ -14,14 +14,14 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
   return (
     <div id="menuBar-container">
       <div
-        id="menuBar-template-box"
+        id="menuBar-bg-box"
         className="menubar-btn"
         ref={(el) => (imgBoxRef.current[0] = el)}
         onClick={(e) => imgRef.current[0].click()}
       >
         {
           <img
-            id="menuBar-template"
+            id="menuBar-bg"
             className="edit-button"
             src={templateImg}
             ref={(el) => (imgRef.current[0] = el)}

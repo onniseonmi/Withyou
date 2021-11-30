@@ -1,5 +1,5 @@
 .ladning-body {
-  font-family: 'Gulimn';
+  font-family: "Gulimn";
   width: 100%;
   height: 100%;
   display: flex;
@@ -24,10 +24,13 @@
 }
 
 .video-box {
+  z-index: 1;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #landing-video {
@@ -50,7 +53,7 @@
 
 .landing-title {
   text-align: left;
-  font-family: 'Gulimn';
+  font-family: "Gulimn";
   font-size: 50px;
   font-weight: 500 !important;
   color: #f9ffff;
@@ -69,7 +72,7 @@
 }
 
 .main-get-started {
-  font-family: 'Gulimn';
+  font-family: "Gulimn";
   padding: 1rem 8rem;
   font-size: 1.2rem;
   background: transparent;
@@ -249,7 +252,7 @@
 
   .phone-landing {
     display: flex;
-    font-family: 'Huglife';
+    font-family: "Huglife";
     background-color: #f3f5f7;
     height: 100vh;
     justify-content: center;
@@ -328,11 +331,136 @@
     text-decoration-line: none;
     text-decoration: none;
     color: black;
-    font-family: 'Gulimn';
+    font-family: "Gulimn";
   }
 
   .second-box-bottom div {
-    font-family: 'Huglife';
+    font-family: "Huglife";
+    margin-top: 50px;
+    padding: 1rem 9rem;
+    font-size: 2.6rem;
+    background: transparent;
+    border: 1px solid black;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.6s;
+    width: 10.5rem;
+    text-align: center;
+    animation: animate 0.8s infinite alternate;
+    border: 2px solid black;
+  }
+
+  .second-box-bottom div:hover {
+    background-color: gray;
+    box-shadow: 4px 4px gray;
+    color: white;
+  }
+}
+@media all and (max-device-width: 900px) {
+  /* Phone */
+  .landing-title {
+    font-size: 28px;
+    margin-top: 25px;
+    margin-left: 30px;
+  }
+
+  .main-get-started {
+    font-size: 22px;
+    font-weight: 700;
+    width: 400px;
+  }
+
+  .landing {
+    display: none;
+    width: 100%;
+  }
+
+  .phone-landing {
+    display: flex;
+    font-family: "Huglife";
+    background-color: #f3f5f7;
+    height: 95.5vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .phone-landing-logo {
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .first-box {
+    height: 40%;
+    display: flex;
+  }
+
+  .f-left {
+    width: 48%;
+    height: 100%;
+    font-size: 200px;
+  }
+
+  .f-right {
+    width: 100%;
+    position: relative;
+  }
+
+  .sec-top {
+    position: absolute;
+    width: 100%;
+    height: 28%;
+    font-size: 60px;
+    top: 20px;
+    left: 40px;
+  }
+
+  .sec-bot {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    font-size: 150px;
+    top: 50px;
+    left: -10px;
+  }
+
+  .second-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+  }
+
+  .second-box > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .second-box-top {
+    color: black;
+    width: 100%;
+    height: 50%;
+    font-size: 60px;
+  }
+
+  .second-box-bottom {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+  }
+
+  .second-box-bottom > a {
+    text-decoration-line: none;
+    text-decoration: none;
+    color: black;
+    font-family: "Gulimn";
+  }
+
+  .second-box-bottom div {
+    font-family: "Huglife";
     margin-top: 50px;
     padding: 1rem 9rem;
     font-size: 2.6rem;
