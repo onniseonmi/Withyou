@@ -109,14 +109,11 @@ export default function ObjectProperty({
     modifyTextStyle(nextState);
   }
 
-  //! ??????? 물어보기
-  // setTop(0);
-
   const styles = reactCSS({
     default: {
       swatch: {
         width: `${clientWidth >= 900 ? "5vw" : "7vw"}`,
-        height: "2vh",
+        height: `${clientWidth >= 900 ? "2.7vh" : "2.7vh"}`,
         background: currentTextColor,
         borderRadius: "0.5rem",
         display: "inline-block",
