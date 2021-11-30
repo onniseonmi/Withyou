@@ -21,7 +21,7 @@ export default function App() {
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
-      url: `${server_url}/user/callback`,
+      url: `${process.env.server_url}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
       const { access_token } = resp.data;
