@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import ContentEditable from "react-contenteditable";
 
 export default function PrintOnCanvas({
-  key,
   id,
   src,
   textColor,
@@ -85,7 +84,7 @@ export default function PrintOnCanvas({
   if (style.type === "image") {
     return (
       <img
-        key={key}
+        key={id}
         id={id}
         className="image-element"
         draggable={false}
@@ -135,8 +134,8 @@ export default function PrintOnCanvas({
   } else if (style.type === "text") {
     return (
       <input
+        key={id}
         id={id}
-        key={key}
         size={currentText.length * 2}
         placeholder={currentText} // innerHTML of the editable div
         disabled={false} // use true to disable editing
@@ -144,7 +143,7 @@ export default function PrintOnCanvas({
           setCurrentText(e.target.value);
           modifyText(e.target.value);
         }} // handle innerHTML change
-        tagName="article" // Use a custom HTML tag (uses a div by default)
+        tagname="article" // Use a custom HTML tag (uses a div by default)
         style={{
           ...style,
           display: "inline-block",
@@ -194,7 +193,7 @@ export default function PrintOnCanvas({
           onDragEnd();
           opacityOnObject(e, 1);
         }}
-      />
+      ></input>
     );
   }
 }

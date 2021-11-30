@@ -5,6 +5,7 @@ import { ChromePicker } from "react-color";
 import FontList from "./FontList";
 
 export default function ObjectProperty({
+  id,
   type,
   width,
   resizeWidth,
@@ -114,8 +115,8 @@ export default function ObjectProperty({
   const styles = reactCSS({
     default: {
       swatch: {
-        width: "5rem",
-        height: "1.5rem",
+        width: `${clientWidth >= 900 ? "5vw" : "7vw"}`,
+        height: "2vh",
         background: currentTextColor,
         borderRadius: "0.5rem",
         display: "inline-block",
@@ -136,11 +137,30 @@ export default function ObjectProperty({
       },
     },
   });
+
+  const mobileStyle = reactCSS({
+    default: {
+      swatch: {
+        width: "10vw",
+        height: "2vh",
+        background: currentTextColor,
+        borderRadius: "0.5rem",
+        display: "inline-block",
+        cursor: "pointer",
+      },
+      palette: {
+        position: "fixed",
+        top: `48vh`,
+        left: `20vw`,
+        zIndex: "2",
+      },
+    },
+  });
   // ! 회전 크기 에러 잡기
   // TODO : 밑에 반복되는 버튼들을 함수화 하면 좋을것 같은데..
   if (type === "image") {
     return (
-      <div id="property-modal">
+      <div id="property-modal" key={id}>
         <div id="property-title-button">
           <div>Edit Detail</div>
           <button id="delete-button" onClick={() => removeObject()}>
@@ -150,7 +170,7 @@ export default function ObjectProperty({
         <div id="control-box">
           <div id="control-width">
             <div>가로</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <button
                 className="control-button"
                 onClick={() => decreaseWidth()}
@@ -176,7 +196,7 @@ export default function ObjectProperty({
           </div>
           <div id="control-height">
             <div>세로</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <button
                 className="control-button"
                 onClick={() => decreaseHeight()}
@@ -202,7 +222,7 @@ export default function ObjectProperty({
           </div>
           <div id="control-rotate">
             <div>회전</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <button
                 className="control-button"
                 onClick={() => rotateDeClockSide()}
@@ -263,7 +283,7 @@ export default function ObjectProperty({
     );
   } else if (type === "text") {
     return (
-      <div id="property-modal">
+      <div id="property-modal" key={id}>
         <div id="property-title-button">
           <div>Edit Detail</div>
           <button id="delete-button" onClick={() => removeObject()}>
@@ -273,7 +293,7 @@ export default function ObjectProperty({
         <div id="control-box">
           <div id="control-style">
             <div>글꼴</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <select
                 name="selectList"
                 id="selectList"
@@ -290,13 +310,21 @@ export default function ObjectProperty({
           </div>
           <div id="control-color">
             <div>색상</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <div
-                style={styles.swatch}
+                style={
+                  window.outerWidth >= 450 ? styles.swatch : mobileStyle.swatch
+                }
                 onClick={() => setOnColorPicker(!onColorPicker)}
               ></div>
               {onColorPicker && (
-                <div style={styles.palette}>
+                <div
+                  style={
+                    window.outerWidth >= 450
+                      ? styles.palette
+                      : mobileStyle.palette
+                  }
+                >
                   <div
                     style={styles.selected}
                     onClick={() => setOnColorPicker(!onColorPicker)}
@@ -315,7 +343,7 @@ export default function ObjectProperty({
           </div>
           <div id="control-size">
             <div>글자크기</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <button
                 className="control-button"
                 onClick={() => decreaseTextSize()}
@@ -341,7 +369,7 @@ export default function ObjectProperty({
           </div>
           <div id="control-rotate">
             <div>회전</div>
-            <div className="button-area">
+            <div className="object-button-area">
               <button
                 className="control-button"
                 onClick={() => rotateDeClockSide()}
