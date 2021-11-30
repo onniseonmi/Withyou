@@ -13,8 +13,8 @@ const LandingPage = () => {
         <div className="video-box">
           <video
             id="landing-video"
-            autoplay="autoplay"
-            loop="Loop"
+            // autoplay="autoplay"
+            // loop="Loop"
             muted
             volume="0"
           >
@@ -31,7 +31,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <div className="phone-landing">
+      {/* <div className="phone-landing">
         <div className="phone-landing-logo">
           <div className="first-box">
             <div className="f-left">W</div>
@@ -54,7 +54,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="landing-footer">
         <Footer />
       </div>

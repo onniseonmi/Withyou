@@ -36,11 +36,17 @@
 #canvas-paper {
   width: 350px;
   height: 250px;
-  transform: scale(2);
+  transform: scale(3);
   border: 1px solid gray;
   position: relative;
 }
-
+@media screen and (max-width: 1280px) {
+  #canvas-paper {
+    transform: scale(2);
+    width: 350px;
+    height: 250px;
+  }
+}
 @media screen and (max-width: 900px) {
   #EditPage {
     flex-direction: column-reverse;
