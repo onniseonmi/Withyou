@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../css/login/Login.css";
-import loginModal from "../../images/loginModal.png";
+import { Link } from "react-router-dom";
+import loginModal from "../../images/signup.jpg";
 import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
@@ -18,6 +19,7 @@ const Login = ({
   setSignupBtn,
   accessToken,
   setAccessToken,
+  setLandingOn
 }) => {
   const [inputErr, setInputErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -59,6 +61,7 @@ const Login = ({
           onClick={() => {
             setSignupBtn(false);
             setLoginBtn(false);
+            setLandingOn(true);
           }}
         >
           X
@@ -72,9 +75,11 @@ const Login = ({
           />
         ) : (
           <div className="login-left-box">
-            <div className="login-title modal-title">
-              <img src={title} alt="title"></img>
-            </div>
+            <Link to="/">
+              <div className="login-title modal-title" onClick={() => setLoginBtn(false)}>
+                <img src={title} alt="title"></img>
+              </div>
+            </Link>
             <div className="login-input">
               <div>계정 로그인</div>
               <div className="login-input-box">

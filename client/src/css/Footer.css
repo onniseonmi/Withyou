@@ -7,8 +7,9 @@
   justify-content: space-between;
   height: 3rem;
   width: 100%;
-  background-color: #f3f5f7;
+  background-color: #f2f0ec;
   border-top: 1px solid black;
+  z-index: 2;
 }
 
 #footer > div {

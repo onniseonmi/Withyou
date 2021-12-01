@@ -20,6 +20,7 @@ export default function App() {
     email: "",
     mobile: "",
   });
+  const [landingOn, setLandingOn] = useState(true);
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
@@ -63,15 +64,17 @@ export default function App() {
         setIsLogin={setIsLogin}
         accessToken={accessToken}
         setAccessToken={setAccessToken}
+        landingOn={landingOn}
+        setLandingOn={setLandingOn}
       />
 
       <Switch>
         <Route exact={true} path="/">
-          {!loginBtn && <LandingPage />}
+          {!loginBtn && <LandingPage landingOn={landingOn}
+        setLandingOn={setLandingOn}/>}
         </Route>
-        <Route path="/login"></Route>
-        <Route path="/editpage">{!loginBtn && <EditPage />}</Route>
-        <Route path="/mypage">
+        <Route path='/editpage'>{!loginBtn && <EditPage />}</Route>
+        <Route path='/mypage'>
           <Mypage accessToken={accessToken} />
         </Route>
       </Switch>
