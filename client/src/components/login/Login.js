@@ -19,7 +19,7 @@ const Login = ({
   setSignupBtn,
   accessToken,
   setAccessToken,
-  setLandingOn
+  setLandingOn,
 }) => {
   const [inputErr, setInputErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -39,7 +39,7 @@ const Login = ({
         method: "POST",
         url: `${server_url}/user/signin`,
         data: userInput,
-      }).catch((err) => alert(err));
+      }).catch((err) => setInputErr(true));
 
       const { userInfo, accessToken } = data.data;
 
@@ -76,7 +76,10 @@ const Login = ({
         ) : (
           <div className="login-left-box">
             <Link to="/">
-              <div className="login-title modal-title" onClick={() => setLoginBtn(false)}>
+              <div
+                className="login-title modal-title"
+                onClick={() => setLoginBtn(false)}
+              >
                 <img src={title} alt="title"></img>
               </div>
             </Link>
