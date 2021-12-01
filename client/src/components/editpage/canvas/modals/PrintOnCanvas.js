@@ -79,7 +79,7 @@ export default function PrintOnCanvas({
   function setObjectStyle(style, isSelected) {
     return {
       ...style,
-      border: isSelected ? "dotted 2px gray" : "solid 2px transparent",
+      border: isSelected ? "dotted 2px red" : "solid 2px transparent",
     };
   }
 
