@@ -6,9 +6,9 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-const server_url = 'http://localhost:4000';
-// const server_url =
-//   "http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000";
+// const server_url = 'http://localhost:4000';
+const server_url =
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Login = ({
   isLogin,
@@ -39,8 +39,10 @@ const Login = ({
         method: "POST",
         url: `${server_url}/user/signin`,
         data: userInput,
-      });
+      }).catch((err) => alert(err));
+
       const { userInfo, accessToken } = data.data;
+
       sessionStorage.setItem("isLoginSession", true);
       sessionStorage.setItem("accessTokenSession", accessToken);
       setIsLogin(true);

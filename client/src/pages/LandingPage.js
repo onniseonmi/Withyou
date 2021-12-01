@@ -1,10 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
-// import weddingarch from "../videos/weddingarch.mp4";
 import Footer from "../components/Footer";
 import landingVideo from "../videos/landingVideo.mp4";
-// import landingVideo from "../videos/landingVideo.gif";
 
 const LandingPage = ({landingOn, setLandingOn}) => {
   return (
@@ -13,8 +10,8 @@ const LandingPage = ({landingOn, setLandingOn}) => {
         <div className="video-box">
           <video
             id="landing-video"
-            // autoplay="autoplay"
-            // loop="Loop"
+            autoplay="autoplay"
+            loop="Loop"
             muted
             volume="0"
           >
@@ -43,8 +40,8 @@ const LandingPage = ({landingOn, setLandingOn}) => {
           <div className="second-box">
             <div>
               <div className="second-box-top">
-                Make your own wedding invitation
-                Make your own wedding invitation
+                Make your own wedding invitation Make your own wedding
+                invitation
               </div>
               <div className="second-box-bottom">
                 <a href="/editpage">
