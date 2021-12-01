@@ -2,6 +2,7 @@ import React from "react";
 import "../css/LandingPage.css";
 import Footer from "../components/Footer";
 import landingVideo from "../videos/landingVideo.mp4";
+import { Link } from "react-router-dom";
 
 const LandingPage = ({landingOn, setLandingOn}) => {
   return (
@@ -10,8 +11,8 @@ const LandingPage = ({landingOn, setLandingOn}) => {
         <div className="video-box">
           <video
             id="landing-video"
-            autoplay="autoplay"
-            loop="Loop"
+            // autoplay="autoplay"
+            // loop="Loop"
             muted
             volume="0"
           >
@@ -28,30 +29,6 @@ const LandingPage = ({landingOn, setLandingOn}) => {
           </div>
         </div>
       </div>
-      {/* <div className="phone-landing">
-        <div className="phone-landing-logo">
-          <div className="first-box">
-            <div className="f-left">W</div>
-            <div className="f-right">
-              <div className="sec-top">For your wedding</div>
-              <div className="sec-bot">ithyou</div>
-            </div>
-          </div>
-          <div className="second-box">
-            <div>
-              <div className="second-box-top">
-                Make your own wedding invitation Make your own wedding
-                invitation
-              </div>
-              <div className="second-box-bottom">
-                <a href="/editpage">
-                  <div>Start</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="landing-footer"
       style={{
         backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
