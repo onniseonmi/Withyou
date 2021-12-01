@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../../css/mypage/Mycard.css';
-import addPage from '../../images/addPage.svg';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../css/mypage/Mycard.css";
+import addPage from "../../images/addPage.svg";
+import axios from "axios";
 // const server_url = 'http://localhost:4000';
 const server_url =
-  'http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000';
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Mycard = () => {
-  const accessToken = sessionStorage.getItem('accessTokenSession');
+  const accessToken = sessionStorage.getItem("accessTokenSession");
   const [cards, setCards] = useState([]);
   const [editBtn, setEditBtn] = useState(false);
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem('loginType');
+      const loginType = sessionStorage.getItem("loginType");
       try {
         if (loginType === null) {
           const card = await axios.get(`${server_url}/mycard`, {
@@ -39,27 +39,27 @@ const Mycard = () => {
 
   return (
     <div>
-      {console.log(document.querySelector('.cardImg'))}
-      <div className='mypage-title'>⭐️ My Card</div>
+      {console.log(document.querySelector(".cardImg"))}
+      <div className="mypage-title">⭐️ My Card</div>
       {editBtn ? (
         <div>
-          <div className='card-box-container'>
-            <div className='card-box'>
+          <div className="card-box-container">
+            <div className="card-box">
               {cards.map((el, idx) => (
-                <div key={idx} className='card-container'>
+                <div key={idx} className="card-container">
                   <div id={`downloadImg${idx}`}>
                     <img
                       src={el.card}
-                      className='cardImg'
-                      alt='card'
-                      download='card.png'
+                      className="cardImg"
+                      alt="card"
+                      download="card.png"
                     />
                   </div>
-                  <a id={`${idx}`} href={el.card} download='card-download.png'>
+                  <a id={`${idx}`} href={el.card} download="card-download.png">
                     다운로드
                   </a>
                   <button
-                    className='deleteCard'
+                    className="deleteCard"
                     key={idx}
                     onClick={() => {
                       deleteCard(el);
@@ -70,40 +70,40 @@ const Mycard = () => {
                 </div>
               ))}
             </div>
-            <div className='card-page-container'>
-              <Link to='/editpage'>
-                <div className='card-page-box'>
-                  <img id='image' src={addPage} alt='#' />
+            <div className="card-page-container">
+              <Link to="/editpage">
+                <div className="card-page-box">
+                  <img id="image" src={addPage} alt="#" />
                 </div>
               </Link>
             </div>
           </div>
-          <div className='edit-image mypage-button'>
-            <button id='btn-editImg' onClick={editHandler}>
+          <div className="edit-image mypage-button">
+            <button id="btn-editImg" onClick={editHandler}>
               Save
             </button>
           </div>
         </div>
       ) : (
         <div>
-          <div className='card-box-container'>
-            <div className='card-box'>
+          <div className="card-box-container">
+            <div className="card-box">
               {cards.map((el, idx) => (
-                <div key={idx} className='card-container'>
-                  <img src={el.card} className='cardImg' alt='card' />
+                <div key={idx} className="card-container">
+                  <img src={el.card} className="cardImg" alt="card" />
                 </div>
               ))}
             </div>
-            <div className='card-page-container'>
-              <Link to='/editpage'>
-                <div className='card-page-box'>
-                  <img id='image' src={addPage} alt='#' />
+            <div className="card-page-container">
+              <Link to="/editpage">
+                <div className="card-page-box">
+                  <img id="image" src={addPage} alt="#" />
                 </div>
               </Link>
             </div>
           </div>
-          <div className='edit-image mypage-button'>
-            <button id='btn-editImg' onClick={editHandler}>
+          <div className="edit-image mypage-button">
+            <button id="btn-editImg" onClick={editHandler}>
               Edit
             </button>
           </div>

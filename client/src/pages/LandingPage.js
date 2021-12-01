@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
 // import weddingarch from "../videos/weddingarch.mp4";
 import Footer from "../components/Footer";
@@ -43,8 +42,8 @@ const LandingPage = () => {
           <div className="second-box">
             <div>
               <div className="second-box-top">
-                Make your own wedding invitation
-                Make your own wedding invitation
+                Make your own wedding invitation Make your own wedding
+                invitation
               </div>
               <div className="second-box-bottom">
                 <a href="/editpage">

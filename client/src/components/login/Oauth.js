@@ -16,6 +16,7 @@ const Oauth = () => {
     sessionStorage.setItem("loginType", "naver");
     window.location.assign(api_url);
   };
+
   const kakaoLogin = (e) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
     const redirect_uri = client_url;
@@ -25,6 +26,7 @@ const Oauth = () => {
     sessionStorage.setItem("loginType", "kakao");
     window.location.assign(api_url);
   };
+  
   const githubLogin = () => {
     const GITHUB_LOGIN_URL =
       "https://github.com/login/oauth/authorize?client_id=5b0d60296b7af761c5d5";
