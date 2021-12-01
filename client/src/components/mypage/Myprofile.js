@@ -39,7 +39,7 @@ const Myprofile = () => {
           headers: {
             authorization: `Bearer ${accessToken}`,
           },
-        });
+        }).catch((err) => alert(err));
         setUserInfo({
           ...userInfo,
           email: data.data.email,
@@ -173,7 +173,6 @@ const Myprofile = () => {
       },
       withCredentials: true,
     });
-    console.log(event.target.files[0]);
     setUserInfo({ ...userInfo, image: res.data.image });
   };
   return (
