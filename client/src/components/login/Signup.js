@@ -4,7 +4,7 @@ import "../../css/login/Signup.css";
 import axios from "axios";
 // const server_url = 'http://localhost:4000';
 const server_url =
-  "http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000";
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
   const [inputErr, setInputErr] = useState(false);
@@ -58,7 +58,7 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
           url: `${server_url}/user/signup`,
           data: userInput,
         }).catch((err) => alert(err));
-        
+
         const tokenData = await axios({
           method: "POST",
           url: `${server_url}/user/signin`,
