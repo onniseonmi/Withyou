@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import "../css/LandingPage.css";
 import Login from "./login/Login";
-
+const client_url = 'http://localhost:3000';
+// const client_url =
+//   "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+  
 const Nav = ({
   userInfo,
   setUserInfo,
@@ -21,16 +24,18 @@ const Nav = ({
   const handleClick = (e) => {
     if (e.target.id === "login") {
       setLoginBtn(true);
+      setLandingOn(false);
     } else if (e.target.id === "join") {
       setLoginBtn(true);
       setSignupBtn(true);
+      setLandingOn(false);
     }
     if (e.target.id === "logout") {
       sessionStorage.clear();
       setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(process.env.client_url);
+      window.location.assign(client_url);
     }
   };
   return (
@@ -39,6 +44,7 @@ const Nav = ({
         className="nav-container"
         style={{
           backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
+          borderBottom: `${landingOn ? "transparent" : "solid 1px lightgray"}`
         }}
       >
         <div className="nav-left">
@@ -95,6 +101,7 @@ const Nav = ({
           setSignupBtn={setSignupBtn}
           accessToken={accessToken}
           setAccessToken={setAccessToken}
+          setLandingOn={setLandingOn}
         />
       ) : null}
     </>

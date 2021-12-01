@@ -1,13 +1,15 @@
 import React from "react";
 import naver from "../../images/naver.png";
 import kakao from "../../images/kakao.png";
-require("dotenv").config();
+const client_url = 'http://localhost:3000';
+// const client_url =
+//   "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
 
 const Oauth = () => {
   const naverLogin = (e) => {
     const client_id = "uFXw6VGES6r8XT7wm80Q";
     const state = "RANDOM_STATE";
-    const redirect_uri = process.env.client_url;
+    const redirect_uri = client_url;
     const api_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}`;
     // setUserInfo({ ...userInfo, type: "naver" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
@@ -16,7 +18,7 @@ const Oauth = () => {
   };
   const kakaoLogin = (e) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
-    const redirect_uri = process.env.client_url;
+    const redirect_uri = client_url;
     const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     // setUserInfo({ ...userInfo, type: "kakao" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));

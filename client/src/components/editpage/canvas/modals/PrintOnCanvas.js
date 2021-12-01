@@ -81,6 +81,13 @@ export default function PrintOnCanvas({
       border: isSelected ? "dotted 2px gray" : "solid 2px transparent",
     };
   }
+
+  document.onmousemove = (e) => {
+    if (isDragging) {
+      onDragAndDrop(e);
+    }
+  };
+
   if (style.type === "image") {
     return (
       <img
@@ -90,7 +97,6 @@ export default function PrintOnCanvas({
         draggable={false}
         src={src}
         style={setObjectStyle(style, isSelected)}
-        // TODO : 어떻게하면 이거 클릭할때 바로 전환되게 할까?
         onMouseDown={(e) => {
           onClickObjcet(e);
           setMouseInitLocation(e.clientX, e.clientY);
@@ -103,16 +109,11 @@ export default function PrintOnCanvas({
         onMouseUp={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
-          document.body.style.overflow = null;
         }}
         onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
-        }}
-        onMouseMove={(e) => {
-          if (isDragging) {
-            onDragAndDrop(e);
-          }
+          document.body.style.overflow = null;
         }}
         onTouchMove={(e) => {
           document.body.style.overflow = "hidden";
@@ -126,7 +127,7 @@ export default function PrintOnCanvas({
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          onDragEnd();
+          // onDragEnd();
           opacityOnObject(e, 1);
         }}
       />
@@ -174,13 +175,11 @@ export default function PrintOnCanvas({
         onTouchEnd={(e) => {
           controlCursorStyle(e, "grab");
           onDragEnd();
-        }}
-        onMouseMove={(e) => {
-          if (isDragging) {
-            onDragAndDrop(e);
-          }
+          document.body.style.overflow = null;
         }}
         onTouchMove={(e) => {
+          document.body.style.overflow = "hidden";
+          document.querySelector("html").scrollTop = window.scrollY;
           if (isDragging) {
             onDragAndDropMobile(e.touches[0]);
           }
@@ -190,7 +189,7 @@ export default function PrintOnCanvas({
           opacityOnObject(e, 0.5);
         }}
         onMouseOut={(e) => {
-          onDragEnd();
+          // onDragEnd();
           opacityOnObject(e, 1);
         }}
       ></input>

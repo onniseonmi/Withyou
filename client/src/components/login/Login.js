@@ -6,7 +6,9 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-require("dotenv").config();
+const server_url = 'http://localhost:4000';
+// const server_url =
+//   "http://ec2-13-239-146-152.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Login = ({
   isLogin,
@@ -17,6 +19,7 @@ const Login = ({
   setSignupBtn,
   accessToken,
   setAccessToken,
+  setLandingOn
 }) => {
   const [inputErr, setInputErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -34,7 +37,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: `http://localhost:4000/user/signin`,
+        url: `${server_url}/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;
@@ -56,12 +59,18 @@ const Login = ({
           onClick={() => {
             setSignupBtn(false);
             setLoginBtn(false);
+            setLandingOn(true);
           }}
         >
           X
         </div>
         {signupBtn ? (
-          <Signup signupBtn={signupBtn} setSignupBtn={setSignupBtn} />
+          <Signup
+            setLoginBtn={setLoginBtn}
+            setSignupBtn={setSignupBtn}
+            setIsLogin={setIsLogin}
+            setAccessToken={setAccessToken}
+          />
         ) : (
           <div className="login-left-box">
             <Link to="/">
