@@ -37,8 +37,10 @@ const Login = ({
         method: "POST",
         url: `${server_url}/user/signin`,
         data: userInput,
-      });
+      }).catch((err) => alert(err));
+
       const { userInfo, accessToken } = data.data;
+      
       sessionStorage.setItem("isLoginSession", true);
       sessionStorage.setItem("accessTokenSession", accessToken);
       setIsLogin(true);
