@@ -6,7 +6,7 @@ import Mypage from "./pages/Mypage";
 import Nav from "./components/Nav";
 import axios from "axios";
 import "./App.css";
-// const server_url = 'http://localhost:4000';
+// const server_url = "http://localhost:4000";
 const server_url =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
@@ -27,10 +27,10 @@ export default function App() {
       url: `${server_url}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
-      const { access_token } = resp.data;
+      const { accessToken } = resp.data;
       setIsLogin(true);
       sessionStorage.setItem("isLoginSession", isLogin);
-      sessionStorage.setItem("accessTokenSession", access_token);
+      sessionStorage.setItem("accessTokenSession", accessToken);
     });
   };
   useEffect(() => {
@@ -70,11 +70,12 @@ export default function App() {
 
       <Switch>
         <Route exact={true} path="/">
-          {!loginBtn && <LandingPage landingOn={landingOn}
-        setLandingOn={setLandingOn}/>}
+          {!loginBtn && (
+            <LandingPage landingOn={landingOn} setLandingOn={setLandingOn} />
+          )}
         </Route>
-        <Route path='/editpage'>{!loginBtn && <EditPage />}</Route>
-        <Route path='/mypage'>
+        <Route path="/editpage">{!loginBtn && <EditPage />}</Route>
+        <Route path="/mypage">
           <Mypage accessToken={accessToken} />
         </Route>
       </Switch>

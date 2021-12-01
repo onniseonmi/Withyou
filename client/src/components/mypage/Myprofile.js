@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import addImg from "../../images/manImage.svg";
 import "../../css/mypage/Myprofile.css";
-// const server_url = 'http://localhost:4000';
+// const server_url = "http://localhost:4000";
 const server_url =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
@@ -68,89 +68,26 @@ const Myprofile = () => {
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === "kakao") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/kakao`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
+        axios({
+          method: "GET",
+          url: `${server_url}/profile`,
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        }).then((res) => {
+          setUserInfo({
+            username: res.data.username,
+            email: res.data.email,
+            mobile: res.data.mobile,
+            image: res.data.image,
           });
-        } else if (loginType === "naver") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/naver`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-              mobile: res.data.mobile,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
+          setUserInput({
+            username: res.data.username,
+            mobile: res.data.mobile,
+            image: res.data.image,
           });
-        } else if (loginType === "github") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/github`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        } else {
-          axios({
-            method: "GET",
-            url: `${server_url}/profile`,
-            headers: {
-              authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              username: res.data.username,
-              email: res.data.email,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        }
+        });
       } catch (err) {
         console.log(err);
       }
