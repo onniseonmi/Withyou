@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/TopMenu.css";
+import "../../css/editpage/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
 // const server_url = 'http://localhost:4000';
