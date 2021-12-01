@@ -36,13 +36,12 @@
 
 #join {
   margin-top: 0.1rem;
-  /* font-family: "Huglife"; */
 }
 
 .nav-right > div {
   margin-right: 1.2rem;
   cursor: pointer;
-  color: #212121 !important;
+  color: #212121;
   font-family: "Huglife";
   font-size: 2.6rem;
 }

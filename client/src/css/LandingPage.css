@@ -176,10 +176,6 @@
   cursor: pointer;
 }
 
-/* .landing-footer {
-  position: relative;
-} */
-
 @media all and (min-width: 1440px) and (max-width: 7680px) {
   /* PC */
   .phone-landing {
@@ -201,10 +197,10 @@
 @media all and (min-width: 900px) and (max-width: 1440px) {
   /* PC */
   .landing-title {
-    margin-left: -15rem;
+    margin-left: 10rem;
     margin-top: -40rem;
     font-size: 32px;
-    text-align: right;
+    text-align: left;
   }
 
   .main-get-started {
@@ -231,7 +227,6 @@
 }
 
 @media all and (max-width: 900px) {
-
   /* Phone */
   .landing-title {
     font-size: 28px;
@@ -246,7 +241,6 @@
   }
 
   .landing {
-
     width: 100%;
   }
 
@@ -357,6 +351,7 @@
     color: white;
   }
 }
+
 @media all and (max-device-width: 900px) {
   /* Phone */
   .landing-title {
@@ -369,11 +364,6 @@
     font-size: 22px;
     font-weight: 700;
     width: 400px;
-  }
-
-  .landing {
-    display: none;
-    width: 100%;
   }
 
   .phone-landing {

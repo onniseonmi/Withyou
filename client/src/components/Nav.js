@@ -43,17 +43,25 @@ const Nav = ({
       >
         <div className="nav-left">
           <Link to="/">
-            <div className="logo" onClick={() => setLandingOn(true)}>
+            <div className="logo" 
+            style= {{
+              color: `${landingOn ? "#f2f0ec" : 'black'}`,
+            }}
+            onClick={() => setLandingOn(true)}>
               Withyou
             </div>
           </Link>
         </div>
         {!isLogin ? (
           <div className="nav-box nav-right">
-            <div id="login" onClick={handleClick}>
+            <div id="login" onClick={handleClick}             style= {{
+              color: `${landingOn ? "#f2f0ec" : 'black'}`,
+            }}>
               Login
             </div>
-            <div id="join" onClick={handleClick}>
+            <div id="join" onClick={handleClick}             style= {{
+              color: `${landingOn ? "#f2f0ec" : 'black'}`,
+            }}>
               Join
             </div>
             <span className="burger_bar"></span>
@@ -62,10 +70,14 @@ const Nav = ({
           <div className="nav-box nav-right">
             <div>
               <Link to="/mypage">
-                <div onClick={() => setLandingOn(false)}>Mypage</div>
+                <div onClick={() => setLandingOn(false)}             style= {{
+              color: `${landingOn ? "#f2f0ec" : 'black'}`,
+            }}>Mypage</div>
               </Link>
             </div>
-            <div id="logout" onClick={handleClick}>
+            <div id="logout" onClick={handleClick}             style= {{
+              color: `${landingOn ? "#f2f0ec" : 'black'}`,
+            }}>
               Logout
             </div>
           </div>

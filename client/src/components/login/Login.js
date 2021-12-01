@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../css/login/Login.css";
+import { Link } from "react-router-dom";
 import loginModal from "../../images/signup.jpg";
 import title from "../../images/title.png";
 import Signup from "../login/Signup";
@@ -33,7 +34,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: `${process.env.server_url}/user/signin`,
+        url: `http://localhost:4000/user/signin`,
         data: userInput,
       });
       const { userInfo, accessToken } = data.data;
@@ -63,9 +64,11 @@ const Login = ({
           <Signup signupBtn={signupBtn} setSignupBtn={setSignupBtn} />
         ) : (
           <div className="login-left-box">
-            <div className="login-title modal-title">
-              <img src={title} alt="title"></img>
-            </div>
+            <Link to="/">
+              <div className="login-title modal-title" onClick={() => setLoginBtn(false)}>
+                <img src={title} alt="title"></img>
+              </div>
+            </Link>
             <div className="login-input">
               <div>계정 로그인</div>
               <div className="login-input-box">
