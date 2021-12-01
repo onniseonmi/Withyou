@@ -3,7 +3,7 @@ import "../css/EditPage.css";
 import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
-import TopMenu from "../components/TopMenu";
+import TopMenu from "../components/editpage/TopMenu";
 import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
