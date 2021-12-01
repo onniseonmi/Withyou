@@ -44,25 +44,25 @@ export default function ObjectProperty({
   const [currentTextSyle, setCurrentTextSyle] = useState(textStyle);
 
   function increaseWidth() {
-    const nextState = currentWidth + 5;
+    const nextState = currentWidth + 10;
     setCurrentWidth(nextState);
     resizeWidth(nextState);
   }
 
   function decreaseWidth() {
-    const nextState = currentWidth - 5;
+    const nextState = currentWidth - 10;
     setCurrentWidth(nextState);
     resizeWidth(nextState);
   }
 
   function increaseHeight() {
-    const nextState = currentHeight + 5;
+    const nextState = currentHeight + 10;
     setCurrentHeight(nextState);
     resizeHeight(nextState);
   }
 
   function decreaseHeight() {
-    const nextState = currentHeight - 5;
+    const nextState = currentHeight - 10;
     setCurrentHeight(nextState);
     resizeHeight(nextState);
   }
@@ -170,7 +170,11 @@ export default function ObjectProperty({
             <div className="object-button-area">
               <button
                 className="control-button"
-                onClick={() => decreaseWidth()}
+                onClick={() => {
+                  if (currentWidth > 9) {
+                    decreaseWidth();
+                  }
+                }}
               >
                 -
               </button>
@@ -196,7 +200,11 @@ export default function ObjectProperty({
             <div className="object-button-area">
               <button
                 className="control-button"
-                onClick={() => decreaseHeight()}
+                onClick={() => {
+                  if (currentHeight > 9) {
+                    decreaseHeight();
+                  }
+                }}
               >
                 -
               </button>
@@ -343,7 +351,11 @@ export default function ObjectProperty({
             <div className="object-button-area">
               <button
                 className="control-button"
-                onClick={() => decreaseTextSize()}
+                onClick={() => {
+                  if (currentTextSize !== 0) {
+                    decreaseTextSize();
+                  }
+                }}
               >
                 -
               </button>

@@ -22,7 +22,7 @@ export default function PrintOnCanvas({
   clientWidth,
   modifyText,
 }) {
-  const [currentText, setCurrentText] = useState("With you");
+  const [currentText, setCurrentText] = useState("텍스트를 입력해주세요.");
   const [onMove, setOnMove] = useState(false);
   const { left, top } = document
     .querySelector("#canvas-paper")
@@ -153,7 +153,7 @@ export default function PrintOnCanvas({
           ...style,
           display: "inline-block",
           border: "none",
-          padding: "1rem 0.5rem",
+          padding: "auto",
           height: "auto",
           fontFamily: textStyle,
           fontSize: textSize,

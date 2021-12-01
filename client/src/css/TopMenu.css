@@ -25,10 +25,12 @@
 
 #top-menu-save {
   font-size: 15px;
-  width: 20vh;
+  width: 10vw;
   display: flex;
+  border: 1px solid red;
   justify-content: space-around;
 }
+
 #download:hover,
 #save:hover {
   font-size: 18px;
