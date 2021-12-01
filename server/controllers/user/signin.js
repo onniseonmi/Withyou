@@ -1,6 +1,6 @@
-const { User } = require('../../models');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const { User } = require("../../models");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
@@ -12,14 +12,14 @@ module.exports = async (req, res) => {
     where: { email: req.body.email },
   });
   if (!userInfo) {
-    return res.status(401).send({ message: 'Invalid email' });
+    return res.status(401).send({ message: "Invalid email" });
   }
   const isValidPassword = await bcrypt.compare(
     req.body.password,
     userInfo.password
   );
   if (!isValidPassword) {
-    return res.status(401).json({ message: 'Invalid password' });
+    return res.status(401).json({ message: "Invalid password" });
   }
 
   const { id, username, mobile, email, image } = userInfo.dataValues;
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
   const refreshToken = createRefreshToken({ id, email });
   res
     .status(200)
-    .cookie('refreshToken', refreshToken)
+    .cookie("refreshToken", refreshToken)
     .json({ accessToken, userInfo: { id, username, mobile, email, image } });
 };
 
