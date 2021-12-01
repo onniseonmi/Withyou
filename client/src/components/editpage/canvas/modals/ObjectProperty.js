@@ -155,7 +155,7 @@ export default function ObjectProperty({
   });
   // ! 회전 크기 에러 잡기
   // TODO : 밑에 반복되는 버튼들을 함수화 하면 좋을것 같은데..
-  if (type === "image") {
+  if (type === "image" || type === "templates") {
     return (
       <div id="property-modal" key={id}>
         <div id="property-title-button">

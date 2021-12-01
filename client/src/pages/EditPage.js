@@ -135,6 +135,23 @@ export default function EditPage() {
         isSelected: false,
         isDragging: false,
       };
+    } else if (type === "templates") {
+      return {
+        id: makeId(),
+        src: input,
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: 0,
+          width: width / 2,
+          height: height / 2,
+          top: -3,
+          left: -3,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
     } else if (type === "text") {
       return {
         id: makeId(),
