@@ -11,7 +11,11 @@ const Footer = () => {
     <div id="footer">
       <div>
         <div id="footer-title">
-          <a href="https://github.com/codestates/Withyou" target="_blank">
+          <a
+            href="https://github.com/codestates/Withyou"
+            rel="noreferrer"
+            target="_blank"
+          >
             <span>Made by</span>
             <span>Withyou</span>
           </a>
@@ -23,18 +27,34 @@ const Footer = () => {
           </div>
           <div className="footer-developer">
             <div className="footer-row">
-              <a href={`https://github.com/${dev1}`} target="_blank">
+              <a
+                href={`https://github.com/${dev1}`}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <span>김남현</span>
               </a>
-              <a href={`https://github.com/${dev2}`} target="_blank">
+              <a
+                href={`https://github.com/${dev2}`}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <span>박덕원</span>
               </a>
             </div>
             <div className="footer-row">
-              <a href={`https://github.com/${dev3}`} target="_blank">
+              <a
+                href={`https://github.com/${dev3}`}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <span>최선미</span>
               </a>
-              <a href={`https://github.com/${dev4}`} target="_blank">
+              <a
+                href={`https://github.com/${dev4}`}
+                rel="noreferrer"
+                target="_blank"
+              >
                 <span>윤대희</span>
               </a>
             </div>

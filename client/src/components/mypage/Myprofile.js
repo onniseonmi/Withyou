@@ -22,9 +22,9 @@ const Myprofile = () => {
     mobile: "",
     image: "",
   });
-  const { username, email, mobile, image } = userInfo;
+  const { username, email, mobile } = userInfo;
   const handleClick = async (e) => {
-    const loginType = sessionStorage.getItem("loginType");
+    // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
       setEditBtn(true);
@@ -67,7 +67,7 @@ const Myprofile = () => {
     setUserInput({ ...userInput, [e.target.id]: e.target.value });
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (accessToken) {
       try {
         axios({

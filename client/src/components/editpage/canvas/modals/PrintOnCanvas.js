@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import ContentEditable from "react-contenteditable";
+import React, { useState } from "react";
+// import ContentEditable from "react-contenteditable";
 
 export default function PrintOnCanvas({
   id,
@@ -90,6 +90,7 @@ export default function PrintOnCanvas({
         id={id}
         className="image-element"
         draggable={false}
+        alt={id}
         src={src}
         style={setObjectStyle(style, isSelected)}
         onMouseDown={(e) => {
