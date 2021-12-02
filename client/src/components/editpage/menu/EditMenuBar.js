@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import bgImg from "../../../images/bgImg.png";
 import templateImg from "../../../images/template.png";
 import elementsImg from "../../../images/elements.png";
 import imageImg from "../../../images/image.png";
@@ -23,9 +24,26 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
           <img
             id="menuBar-bg"
             className="edit-button"
+            alt="bgImg"
+            src={bgImg}
+            ref={(el) => (imgRef.current[0] = el)}
+            onClick={(e) => handleClick(e)}
+          />
+        }
+      </div>
+      <div
+        id="menuBar-templates-box"
+        className="menubar-btn"
+        ref={(el) => (imgBoxRef.current[1] = el)}
+        onClick={(e) => imgRef.current[1].click()}
+      >
+        {
+          <img
+            id="menuBar-templates"
+            className="edit-button"
             alt="templateImg"
             src={templateImg}
-            ref={(el) => (imgRef.current[0] = el)}
+            ref={(el) => (imgRef.current[1] = el)}
             onClick={(e) => handleClick(e)}
           />
         }
@@ -33,16 +51,15 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
       <div
         id="menuBar-elements-box"
         className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[1] = el)}
-        onClick={(e) => imgRef.current[1].click()}
+        ref={(el) => (imgBoxRef.current[2] = el)}
+        onClick={(e) => imgRef.current[2].click()}
       >
         {
           <img
             id="menuBar-elements"
             className="edit-button"
-            alt="elementsImg"
             src={elementsImg}
-            ref={(el) => (imgRef.current[1] = el)}
+            ref={(el) => (imgRef.current[2] = el)}
             onClick={(e) => handleClick(e)}
           />
         }
@@ -50,8 +67,8 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
       <div
         id="menuBar-image-box"
         className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[2] = el)}
-        onClick={(e) => imgRef.current[2].click()}
+        ref={(el) => (imgBoxRef.current[3] = el)}
+        onClick={(e) => imgRef.current[3].click()}
       >
         {
           <img
@@ -59,7 +76,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
             className="edit-button"
             alt="imageImg"
             src={imageImg}
-            ref={(el) => (imgRef.current[2] = el)}
+            ref={(el) => (imgRef.current[3] = el)}
             onClick={(e) => handleClick(e)}
           />
         }
@@ -68,8 +85,8 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
       <div
         id="menuBar-text-box"
         className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[3] = el)}
-        onClick={(e) => imgRef.current[3].click()}
+        ref={(el) => (imgBoxRef.current[4] = el)}
+        onClick={(e) => imgRef.current[4].click()}
       >
         {
           <img
@@ -77,7 +94,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
             className="edit-button"
             alt="textImg"
             src={textImg}
-            ref={(el) => (imgRef.current[3] = el)}
+            ref={(el) => (imgRef.current[4] = el)}
             onClick={(e) => handleClick(e)}
           />
         }

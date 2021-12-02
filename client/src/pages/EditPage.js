@@ -125,11 +125,28 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
+          zIndex: 1,
           width: width / 6,
           height: height / 6,
           top: (height * 3) / 20,
           left: width / 6,
+          transform: "rotate(0deg)",
+        },
+        isSelected: false,
+        isDragging: false,
+      };
+    } else if (type === "templates") {
+      return {
+        id: makeId(),
+        src: input,
+        style: {
+          type: type,
+          position: "absolute",
+          zIndex: 0,
+          width: width / 2,
+          height: height / 2,
+          top: -3,
+          left: -3,
           transform: "rotate(0deg)",
         },
         isSelected: false,
@@ -145,7 +162,7 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
+          zIndex: 1,
           top: (height * 3) / 20,
           left: width / 6,
           transform: "rotate(0deg)",
@@ -221,7 +238,6 @@ export default function EditPage() {
 
   return (
     <>
-      {/* {console.log(menuBtnStatus)} */}
       <div id="EditPage">
         <div id="edit-menu">
           <EditMenuBar
@@ -231,19 +247,22 @@ export default function EditPage() {
 
           <EditMenu
             makeId={makeId}
-            selectedItem={selectedItem}
-            itemStates={itemStates}
-            setItemStates={setItemStates}
             menuBtnStatus={menuBtnStatus}
-            setMenuBtnStatus={setMenuBtnStatus}
             addToItems={addToItems}
             currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
+            clientWidth={clientWidth}
+            selectedItem={selectedItem}
+            itemStates={itemStates}
+            setItemStates={setItemStates}
           />
         </div>
         <div id="canvas">
           <div id="canvas-top-menu">
-            <TopMenu deSelectObject={deSelectObject} />
+            <TopMenu
+              deSelectObject={deSelectObject}
+              setItemStates={setItemStates}
+            />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
@@ -257,7 +276,6 @@ export default function EditPage() {
                     key={el.id}
                     id={el.id}
                     src={el.src}
-                    text={el.text}
                     textColor={el.style.type === "text" && el.textColor.hex}
                     textSize={el.textSize}
                     textStyle={el.textStyle}
@@ -311,14 +329,14 @@ export default function EditPage() {
                 zindex={contemporaryZIndex}
                 modifyZindex={modifyZindex}
                 clientWidth={clientWidth}
+                textSize={selectedItem.textSize}
                 textColor={
                   selectedItem.style.type === "text" &&
                   selectedItem.textColor.hex
                 }
-                textSize={selectedItem.textSize}
+                textStyle={selectedItem.textStyle}
                 modifyTextSize={modifyTextSize}
                 modifyTextColor={modifyTextColor}
-                textStyle={selectedItem.textStyle}
                 modifyTextStyle={modifyTextStyle}
               />
             ) : (

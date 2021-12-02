@@ -27,6 +27,7 @@
 #text-button:hover {
   background-color: rgb(253, 178, 169);
   transition: 0.5s;
+  color: black;
 }
 #text-button:not(:hover) {
   background-color: black;

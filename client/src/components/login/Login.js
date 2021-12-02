@@ -40,7 +40,7 @@ const Login = ({
         method: "POST",
         url: `${server_url_2}/user/signin`,
         data: userInput,
-      }).catch((err) => alert(err));
+      }).catch((err) => setInputErr(true));
 
       const { accessToken } = data.data;
 

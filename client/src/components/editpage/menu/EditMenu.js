@@ -1,56 +1,43 @@
 import React from "react";
 import BackgroundColor from "../canvas/modals/BackgroundColor";
+import Templates from "../canvas/modals/Templates";
 import Image from "../canvas/modals/Image";
 import Elements from "../canvas/modals/Elements";
 import Text from "../canvas/modals/Text";
 import "../../../css/editpage/menu/EditMenu.css";
 const EditMenu = ({
   makeId,
-  setItemStates,
-  setMenuBtnOn,
   menuBtnStatus,
-  setMenuBtnStatus,
   addToItems,
-  currentText,
-  setCurrentText,
   currentCanvasColor,
   handleCanvasColor,
+  clientWidth,
+  itemStates,
+  setItemStates,
 }) => {
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
-        {menuBtnStatus === "menuBar-bg" ? (
+        {menuBtnStatus === "menuBar-bg" && (
           <BackgroundColor
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
+            clientWidth={clientWidth}
             currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
-        ) : null}
-        {menuBtnStatus === "menuBar-elements" ? (
-          <Elements
-            setMenuBtnOn={setMenuBtnOn}
+        )}
+        {menuBtnStatus === "menuBar-templates" && (
+          <Templates
+            itemStates={itemStates}
             addToItems={addToItems}
             makeId={makeId}
+            setItemStates={setItemStates}
           />
-        ) : null}
-        {menuBtnStatus === "menuBar-image" ? (
-          <Image
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
-          />
-        ) : null}
-        {menuBtnStatus === "menuBar-text" ? (
-          <Text
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
-            currentText={currentText}
-            setCurrentText={setCurrentText}
-          />
-        ) : null}
+        )}
+        {menuBtnStatus === "menuBar-elements" && (
+          <Elements addToItems={addToItems} makeId={makeId} />
+        )}
+        {menuBtnStatus === "menuBar-image" && <Image addToItems={addToItems} />}
+        {menuBtnStatus === "menuBar-text" && <Text addToItems={addToItems} />}
       </div>
     </div>
   );
