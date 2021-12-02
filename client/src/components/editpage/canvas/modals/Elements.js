@@ -16,7 +16,7 @@ export default function Elements({ addToItems, makeId }) {
           <img
             key={makeId()}
             src={addImg}
-            alt={el}
+            alt={addImg}
             onClick={() => {
               addToItems(addImg, "image");
             }}
