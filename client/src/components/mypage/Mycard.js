@@ -17,15 +17,13 @@ const Mycard = () => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === null) {
-          const card = await axios.get(`${server_url_2}/mycard`, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
-          const cardImage = card.data;
-          setCards([...cardImage]);
-        }
+        const card = await axios.get(`${server_url_2}/mycard`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        const cardImage = card.data;
+        setCards([...cardImage]);
       } catch (err) {
         console.log(err);
       }
@@ -42,7 +40,6 @@ const Mycard = () => {
 
   return (
     <div>
-      {console.log(document.querySelector(".cardImg"))}
       <div className="mypage-title">⭐️ My Card</div>
       {editBtn ? (
         <div>

@@ -3,11 +3,11 @@ import "../css/Mypage.css";
 import Footer from "../components/Footer";
 import Myprofile from "../components/mypage/Myprofile";
 import Mycard from "../components/mypage/Mycard";
-const Mypage = ({ userInfo1 }) => {
+const Mypage = () => {
   return (
     <div id="mypage">
       <div id="profile">
-        <Myprofile userInfo1={userInfo1} />
+        <Myprofile />
       </div>
       <div id="cards">
         <Mycard />
