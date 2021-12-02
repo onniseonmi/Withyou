@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import title from "../../images/title.png";
 import "../../css/login/Signup.css";
 import axios from "axios";
-// const server_url = 'http://localhost:4000';
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
@@ -58,14 +58,14 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url}/user/signup`,
+          url: `${server_url_2}/user/signup`,
           data: userInput,
           // * 서버쪽 오류시, 에러 핸들링을 이렇게 가도 되려나?
         }).catch((err) => setInputErr(true));
 
         const tokenData = await axios({
           method: "POST",
-          url: `${server_url}/user/signin`,
+          url: `${server_url_2}/user/signin`,
           data: { email: userInput.email, password: userInput.password },
         }).catch((err) => setInputErr(true));
 
