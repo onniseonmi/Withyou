@@ -202,7 +202,7 @@ module.exports = (req, res) => {
           },
         });
         if (!created) {
-          const _userInfo = await User.findOne({ where: { email } });
+          const _userInfo = await User.findOne({ where: { email: html_url } });
           const _email = _userInfo.dataValues.email;
           const accessToken = sign(
             { email: _email },
