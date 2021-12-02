@@ -125,7 +125,7 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
+          zIndex: 1,
           width: width / 6,
           height: height / 6,
           top: (height * 3) / 20,
@@ -162,7 +162,7 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
+          zIndex: 1,
           top: (height * 3) / 20,
           left: width / 6,
           transform: "rotate(0deg)",
@@ -259,7 +259,10 @@ export default function EditPage() {
         </div>
         <div id="canvas">
           <div id="canvas-top-menu">
-            <TopMenu deSelectObject={deSelectObject} />
+            <TopMenu
+              deSelectObject={deSelectObject}
+              setItemStates={setItemStates}
+            />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>

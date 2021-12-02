@@ -10,15 +10,19 @@
 .top-menu-left {
   display: flex;
 }
+
 .top-menu-left > div {
-  margin: 0 1rem;
+  justify-content: left;
   cursor: pointer;
+  margin-left: 3vw;
 }
+
 .top-menu-right {
   display: flex;
   position: absolute;
   right: 1rem;
 }
+
 .top-menu-right > div {
   margin-left: 1rem;
 }
