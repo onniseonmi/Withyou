@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../css/Nav.css";
-import "../css/LandingPage.css";
-import Login from "./login/Login";
-const client_url_1 = "http://localhost:3000";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../css/Nav.css';
+import '../css/LandingPage.css';
+import Login from './login/Login';
+const client_url_1 = 'http://localhost:3000';
 const client_url_2 =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+  'http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/';
 
 const Nav = ({
   userInfo,
@@ -22,37 +22,37 @@ const Nav = ({
   setLandingOn,
 }) => {
   const handleClick = (e) => {
-    if (e.target.id === "login") {
+    if (e.target.id === 'login') {
       setLoginBtn(true);
       setLandingOn(false);
-    } else if (e.target.id === "join") {
+    } else if (e.target.id === 'join') {
       setLoginBtn(true);
       setSignupBtn(true);
       setLandingOn(false);
     }
-    if (e.target.id === "logout") {
+    if (e.target.id === 'logout') {
       sessionStorage.clear();
-      setAccessToken("");
+      setAccessToken('');
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url_2);
+      window.location.assign(client_url_1);
     }
   };
   return (
     <>
       <div
-        className="nav-container"
+        className='nav-container'
         style={{
-          backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
-          borderBottom: `${landingOn ? "transparent" : "solid 1px lightgray"}`,
+          backgroundColor: `${landingOn ? 'transparent' : '#f2f0ec'}`,
+          borderBottom: `${landingOn ? 'transparent' : 'solid 1px lightgray'}`,
         }}
       >
-        <div className="nav-left">
-          <Link to="/">
+        <div className='nav-left'>
+          <Link to='/'>
             <div
-              className="logo"
+              className='logo'
               style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
+                color: `${landingOn ? '#f2f0ec' : 'black'}`,
               }}
               onClick={() => setLandingOn(true)}
             >
@@ -61,35 +61,35 @@ const Nav = ({
           </Link>
         </div>
         {!isLogin ? (
-          <div className="nav-box nav-right">
+          <div className='nav-box nav-right'>
             <div
-              id="login"
+              id='login'
               onClick={handleClick}
               style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
+                color: `${landingOn ? '#f2f0ec' : 'black'}`,
               }}
             >
               Login
             </div>
             <div
-              id="join"
+              id='join'
               onClick={handleClick}
               style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
+                color: `${landingOn ? '#f2f0ec' : 'black'}`,
               }}
             >
               Join
             </div>
-            <span className="burger_bar"></span>
+            <span className='burger_bar'></span>
           </div>
         ) : (
-          <div className="nav-box nav-right">
+          <div className='nav-box nav-right'>
             <div>
-              <Link to="/mypage">
+              <Link to='/mypage'>
                 <div
                   onClick={() => setLandingOn(false)}
                   style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
+                    color: `${landingOn ? '#f2f0ec' : 'black'}`,
                   }}
                 >
                   Mypage
@@ -97,10 +97,10 @@ const Nav = ({
               </Link>
             </div>
             <div
-              id="logout"
+              id='logout'
               onClick={handleClick}
               style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
+                color: `${landingOn ? '#f2f0ec' : 'black'}`,
               }}
             >
               Logout
