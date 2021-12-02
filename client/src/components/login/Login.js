@@ -73,13 +73,17 @@ const Login = ({
             setSignupBtn={setSignupBtn}
             setIsLogin={setIsLogin}
             setAccessToken={setAccessToken}
+            setLandingOn={setLandingOn}
           />
         ) : (
           <div className="login-left-box">
             <Link to="/">
               <div
                 className="login-title modal-title"
-                onClick={() => setLoginBtn(false)}
+                onClick={() => {
+                  setLandingOn(true);
+                  setLoginBtn(false);
+                }}
               >
                 <img src={title} alt="title"></img>
               </div>

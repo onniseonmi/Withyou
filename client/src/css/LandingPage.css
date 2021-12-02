@@ -1,26 +1,7 @@
-.ladning-body {
+.landing-container {
   font-family: "Gulimn";
   width: 100%;
   height: 100%;
-  display: flex;
-}
-
-.login {
-  color: #212121;
-  display: block;
-}
-
-.join {
-  color: #212121;
-  display: block;
-}
-
-.landing {
-  width: 100%;
-  height: auto;
-  display: flex;
-  resize: both;
-  object-fit: fill;
 }
 
 .video-box {
@@ -36,439 +17,73 @@
 #landing-video {
   width: 100%;
   height: 100%;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   object-fit: fill;
 }
 
-.landing-container {
-  display: inline-block;
-  position: relative;
-  justify-content: left;
-  align-items: left;
-}
-
-.landing-title {
-  text-align: left;
-  font-family: "Gulimn";
-  font-size: 50px;
-  font-weight: 500 !important;
-  color: #f9ffff;
-  /* border: 3px solid violet; */
-  display: block;
+.landing-title-box {
   width: 55rem;
   position: absolute;
-  justify-content: left;
-  align-items: left;
-  margin-top: -42rem;
-  padding-left: 2rem;
-}
-
-.landing-title > div {
+  top: 60vh;
+  left: 5vw;
+  text-align: left;
+  font-family: "Gulimn";
+  font-size: 3rem;
+  color: #f9ffff;
+  z-index: 2;
   text-shadow: 1px 2px #212121;
+  transition: 0.7s ease;
+}
+.landing-title-box > a {
+  text-decoration: none;
 }
 
 .main-get-started {
   font-family: "Gulimn";
-  padding: 1rem 8rem;
-  font-size: 1.2rem;
+  width: 40rem;
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 2rem;
+  text-align: center;
   background: transparent;
-  border: 1px solid rgb(194, 194, 194);
   color: white;
+  border: 1px solid rgb(194, 194, 194);
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.6s;
-  width: 10.5rem;
-  text-align: center;
-  animation: animate 0.8s infinite alternate;
+  margin-top: 2rem;
+  margin-left: 25vw;
+  transition: 0.7s ease;
 }
 
 .main-get-started:hover {
   background: whitesmoke;
-  border: 1px solid whitesmoke;
   color: rgb(92, 92, 92);
-}
-
-.start {
-  text-decoration: none;
-  color: #eef0f6;
-  display: inline-block;
-}
-
-.section1 {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.section2 {
-  width: 100%;
-  height: 100%;
-  background-color: #f3f5f7;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.section3 {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.section4 {
-  width: 100%;
-  height: 100%;
-  background-color: #f3f5f7;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.title {
-  font-size: 2rem;
-  display: inline;
-}
-
-.subtitle5 {
-  border-bottom: solid black;
-}
-
-.content {
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
-.get-started-btn {
-  background-color: #a0a0a0;
-  border-radius: 5px;
-  color: white;
-  width: 140px;
-  height: 32px;
-  top: 539px;
-  left: 131px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 8px 2px;
-  cursor: pointer;
-}
-
-.see-more-btn {
-  background-color: #a0a0a0;
-  border-radius: 5px;
-  color: white;
-  width: 140px;
-  height: 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 8px 2px;
-  cursor: pointer;
-}
-
-@media all and (min-width: 1440px) and (max-width: 7680px) {
-  /* PC */
-  .phone-landing {
-    display: none;
-  }
-  .phone-start {
-    color: #eef0f6;
-    text-decoration-line: none;
-  }
-  .landing-title {
-    padding-bottom: 2%;
-  }
-  .main-get-started {
-    margin-top: 2%;
-    margin-left: 52%;
-  }
+  text-shadow: 1px 1px #c5c5c5;
 }
 
 @media all and (min-width: 900px) and (max-width: 1440px) {
-  /* PC */
-  .landing-title {
-    margin-left: 10rem;
-    margin-top: -40rem;
-    font-size: 32px;
-    text-align: left;
-  }
-
-  .main-get-started {
-    border: 2px solid #eef0f6;
-    border-radius: 5px;
-    width: 110px;
-    font-size: 16px;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 9px;
-    margin-left: 5%;
-  }
-
-  .phone-start {
-    text-decoration: none;
-    text-decoration-line: none;
-    color: #eef0f6;
-    display: inline-block;
-  }
-
-  .phone-landing {
-    display: none;
-  }
 }
 
 @media all and (max-width: 900px) {
-  /* Phone */
-  .landing-title {
-    font-size: 28px;
-    margin-top: 25px;
-    margin-left: 30px;
+  .landing-title-box {
+    width: 55rem;
+    position: absolute;
+    top: 60vh;
+    left: 5vw;
+    text-align: left;
+    font-size: 1.7rem;
+    color: #f9ffff;
+    display: block;
+    text-shadow: 1px 1px #212121;
   }
-
   .main-get-started {
-    font-size: 22px;
-    font-weight: 700;
-    width: 400px;
-  }
-
-  .landing {
-    width: 100%;
-  }
-
-  .phone-landing {
-    display: flex;
-    font-family: "Huglife";
-    background-color: #f3f5f7;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    display: none;
-  }
-
-  .phone-landing-logo {
-    width: 30rem;
-    height: 30rem;
-  }
-
-  .first-box {
-    height: 40%;
-    display: flex;
-  }
-
-  .f-left {
-    width: 48%;
-    height: 100%;
-    font-size: 200px;
-  }
-
-  .f-right {
-    width: 100%;
-    position: relative;
-  }
-
-  .sec-top {
-    position: absolute;
-    width: 100%;
-    height: 28%;
-    font-size: 60px;
-    top: 20px;
-    left: 40px;
-  }
-
-  .sec-bot {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    font-size: 150px;
-    top: 50px;
-    left: -10px;
-  }
-
-  .second-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40%;
-  }
-
-  .second-box > div {
-    width: 100%;
-    height: 100%;
-  }
-
-  .second-box-top {
-    color: black;
-    width: 100%;
-    height: 50%;
-    font-size: 60px;
-  }
-
-  .second-box-bottom {
-    width: 100%;
-    height: 50%;
-    text-align: center;
-  }
-
-  .second-box-bottom > a {
-    text-decoration-line: none;
-    text-decoration: none;
-    color: black;
-    font-family: "Gulimn";
-  }
-
-  .second-box-bottom div {
-    font-family: "Huglife";
-    margin-top: 50px;
-    padding: 1rem 9rem;
-    font-size: 2.6rem;
-    background: transparent;
-    border: 1px solid black;
-    color: black;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.6s;
-    width: 10.5rem;
-    text-align: center;
-    animation: animate 0.8s infinite alternate;
-    border: 2px solid black;
-  }
-
-  .second-box-bottom div:hover {
-    background-color: gray;
-    box-shadow: 4px 4px gray;
-    color: white;
+    font-size: 1.2rem;
+    width: 28rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-left: 0;
   }
 }
 
-@media all and (max-device-width: 900px) {
-  /* Phone */
-  .landing-title {
-    font-size: 28px;
-    margin-top: 25px;
-    margin-left: 30px;
-  }
-
-  .main-get-started {
-    font-size: 22px;
-    font-weight: 700;
-    width: 400px;
-  }
-
-  .phone-landing {
-    display: flex;
-    font-family: "Huglife";
-    background-color: #f3f5f7;
-    height: 95.5vh;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-
-  .phone-landing-logo {
-    width: 30rem;
-    height: 30rem;
-  }
-
-  .first-box {
-    height: 40%;
-    display: flex;
-  }
-
-  .f-left {
-    width: 48%;
-    height: 100%;
-    font-size: 200px;
-  }
-
-  .f-right {
-    width: 100%;
-    position: relative;
-  }
-
-  .sec-top {
-    position: absolute;
-    width: 100%;
-    height: 28%;
-    font-size: 60px;
-    top: 20px;
-    left: 40px;
-  }
-
-  .sec-bot {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    font-size: 150px;
-    top: 50px;
-    left: -10px;
-  }
-
-  .second-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40%;
-  }
-
-  .second-box > div {
-    width: 100%;
-    height: 100%;
-  }
-
-  .second-box-top {
-    color: black;
-    width: 100%;
-    height: 50%;
-    font-size: 60px;
-  }
-
-  .second-box-bottom {
-    width: 100%;
-    height: 50%;
-    text-align: center;
-  }
-
-  .second-box-bottom > a {
-    text-decoration-line: none;
-    text-decoration: none;
-    color: black;
-    font-family: "Gulimn";
-  }
-
-  .second-box-bottom div {
-    font-family: "Huglife";
-    margin-top: 50px;
-    padding: 1rem 9rem;
-    font-size: 2.6rem;
-    background: transparent;
-    border: 1px solid black;
-    color: black;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.6s;
-    width: 10.5rem;
-    text-align: center;
-    animation: animate 0.8s infinite alternate;
-    border: 2px solid black;
-  }
-
-  .second-box-bottom div:hover {
-    background-color: gray;
-    box-shadow: 4px 4px gray;
-    color: white;
-  }
+@media screen and (max-device-width: 450px) {
 }

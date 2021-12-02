@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import title from "../../images/title.png";
 import "../../css/login/Signup.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
+const Signup = ({
+  setLoginBtn,
+  setIsLogin,
+  setAccessToken,
+  setSignupBtn,
+  setLandingOn,
+}) => {
   const [inputErr, setInputErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -86,9 +93,19 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
 
   return (
     <div className="signup-left-box">
-      <div className="signup-title">
-        <img src={title} alt="title"></img>
-      </div>
+      <Link to="/">
+        <div className="signup-title">
+          <img
+            src={title}
+            alt="title"
+            onClick={() => {
+              setLandingOn(true);
+              setLoginBtn(false);
+              setSignupBtn(false);
+            }}
+          ></img>
+        </div>
+      </Link>
       <div className="signup-input">
         <div>계정 만들기</div>
         <div className="signup-input-box">
