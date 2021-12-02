@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Nav.css';
 import '../css/LandingPage.css';
 import Login from './login/Login';
+import axios from 'axios';
 const client_url_1 = 'http://localhost:3000';
 const client_url_2 =
   'http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/';
