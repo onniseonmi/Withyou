@@ -262,6 +262,7 @@ export default function EditPage() {
             <TopMenu
               deSelectObject={deSelectObject}
               setItemStates={setItemStates}
+              setCurrentCanvasColor={setCurrentCanvasColor}
             />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>

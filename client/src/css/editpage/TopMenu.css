@@ -15,12 +15,14 @@
   justify-content: left;
   cursor: pointer;
   margin-left: 3vw;
+  text-align: center;
 }
 
 .top-menu-right {
   display: flex;
   position: absolute;
   right: 1rem;
+  font-size: 15px;
 }
 
 .top-menu-right > div {
@@ -34,6 +36,11 @@
   justify-content: space-around;
 }
 
+.top-menu-left > div:hover {
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.1s;
+}
 #download:hover,
 #save:hover {
   font-size: 18px;
@@ -63,8 +70,6 @@
   }
   #top-menu-save {
     font-size: 2rem;
-  }
-  #top-menu-save {
     width: 15vh;
     display: flex;
     justify-content: space-around;
