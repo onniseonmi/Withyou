@@ -1,5 +1,7 @@
-import React, { useState, useRef } from "react";
-import ContentEditable from "react-contenteditable";
+import React, { useState } from "react";
+import ImageOnCanvas from "./ImageOnCanvas";
+import TemplateOnCanvas from "./TemplateOnCanvas";
+import TextOnCanvas from "./TextOnCanvas";
 
 export default function PrintOnCanvas({
   id,
@@ -85,160 +87,57 @@ export default function PrintOnCanvas({
 
   if (style.type === "image") {
     return (
-      <img
-        key={id}
+      <ImageOnCanvas
         id={id}
-        className="image-element"
-        draggable={false}
         src={src}
-        style={setObjectStyle(style, isSelected)}
-        onMouseDown={(e) => {
-          setOnMove(true);
-          onClickObjcet(e);
-          setMouseInitLocation(e.clientX, e.clientY);
-        }}
-        onTouchStart={(e) => {
-          const target = e.touches[0];
-          onClickObjcet(e);
-          setMouseInitLocation(target.clientX, target.clientY);
-        }}
-        onMouseMove={(e) => {
-          if (isDragging) {
-            onDragAndDrop(e);
-          }
-        }}
-        onMouseUp={(e) => {
-          setOnMove(false);
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-        }}
-        onTouchEnd={(e) => {
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-          document.body.style.overflow = null;
-        }}
-        onTouchMove={(e) => {
-          document.body.style.overflow = "hidden";
-          document.querySelector("html").scrollTop = window.scrollY;
-          if (isDragging) {
-            onDragAndDropMobile(e.touches[0]);
-          }
-        }}
-        onMouseOver={(e) => {
-          controlCursorStyle(e, "grab");
-          opacityOnObject(e, 0.5);
-        }}
-        onMouseOut={(e) => {
-          opacityOnObject(e, 1);
-          if (onMove) {
-            onDragAndDrop(e);
-          }
-        }}
+        style={style}
+        isSelected={isSelected}
+        isDragging={isDragging}
+        onMove={onMove}
+        setOnMove={setOnMove}
+        setObjectStyle={setObjectStyle}
+        onClickObjcet={onClickObjcet}
+        setMouseInitLocation={setMouseInitLocation}
+        onDragAndDrop={onDragAndDrop}
+        controlCursorStyle={controlCursorStyle}
+        onDragEnd={onDragEnd}
+        onDragAndDropMobile={onDragAndDropMobile}
+        opacityOnObject={opacityOnObject}
       />
     );
   } else if (style.type === "text") {
     return (
-      <input
-        key={id}
+      <TextOnCanvas
         id={id}
-        size={currentText.length * 2}
-        placeholder={currentText} // innerHTML of the editable div
-        disabled={false} // use true to disable editing
-        onChange={(e) => {
-          setCurrentText(e.target.value);
-          modifyText(e.target.value);
-        }} // handle innerHTML change
-        tagname="article" // Use a custom HTML tag (uses a div by default)
-        style={{
-          ...style,
-          display: "inline-block",
-          border: "none",
-          padding: "auto",
-          height: "auto",
-          fontFamily: textStyle,
-          fontSize: textSize,
-          background: "transparent",
-          color: textColor,
-          textAlign: "center",
-        }}
-        className="image-element"
-        draggable={false}
-        onMouseDown={(e) => {
-          setOnMove(true);
-          onClickObjcet(e);
-          setMouseInitLocation(e.clientX, e.clientY);
-        }}
-        onTouchStart={(e) => {
-          const target = e.touches[0];
-          onClickObjcet(e);
-          setMouseInitLocation(target.clientX, target.clientY);
-        }}
-        onMouseMove={(e) => {
-          if (isDragging) {
-            onDragAndDrop(e);
-          }
-        }}
-        onMouseUp={(e) => {
-          setOnMove(false);
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-        }}
-        onTouchEnd={(e) => {
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-          document.body.style.overflow = null;
-        }}
-        onTouchMove={(e) => {
-          document.body.style.overflow = "hidden";
-          document.querySelector("html").scrollTop = window.scrollY;
-          if (isDragging) {
-            onDragAndDropMobile(e.touches[0]);
-          }
-        }}
-        onMouseOver={(e) => {
-          controlCursorStyle(e, "grab");
-          opacityOnObject(e, 0.5);
-        }}
-        onMouseOut={(e) => {
-          opacityOnObject(e, 1);
-          if (onMove) {
-            onDragAndDrop(e);
-          }
-        }}
-      ></input>
+        currentText={currentText}
+        setCurrentText={setCurrentText}
+        modifyText={modifyText}
+        style={style}
+        textStyle={textStyle}
+        textSize={textSize}
+        textColor={textColor}
+        isDragging={isDragging}
+        onMove={onMove}
+        setOnMove={setOnMove}
+        onClickObjcet={onClickObjcet}
+        setMouseInitLocation={setMouseInitLocation}
+        onDragAndDrop={onDragAndDrop}
+        controlCursorStyle={controlCursorStyle}
+        onDragEnd={onDragEnd}
+        onDragAndDropMobile={onDragAndDropMobile}
+        opacityOnObject={opacityOnObject}
+      />
     );
   } else if (style.type === "templates") {
     return (
-      <img
-        key={id}
+      <TemplateOnCanvas
         id={id}
-        className="image-element"
-        draggable={false}
         src={src}
-        style={setObjectStyle(style, isSelected)}
-        onMouseDown={(e) => {
-          setOnMove(true);
-          onClickObjcet(e);
-          setMouseInitLocation(e.clientX, e.clientY);
-        }}
-        onTouchStart={(e) => {
-          const target = e.touches[0];
-          onClickObjcet(e);
-          setMouseInitLocation(target.clientX, target.clientY);
-        }}
-        onMouseUp={(e) => {
-          setOnMove(false);
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-        }}
-        onTouchEnd={(e) => {
-          controlCursorStyle(e, "grab");
-          onDragEnd();
-          document.body.style.overflow = null;
-        }}
-        onMouseOver={(e) => {
-          controlCursorStyle(e, "grab");
-        }}
+        style={style}
+        isSelected={isSelected}
+        setObjectStyle={setObjectStyle}
+        onClickObjcet={onClickObjcet}
+        controlCursorStyle={controlCursorStyle}
       />
     );
   }
