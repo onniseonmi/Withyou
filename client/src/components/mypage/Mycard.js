@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../css/mypage/Mycard.css";
 import addPage from "../../images/addPage.svg";
+import Footer from "../Footer";
 import axios from "axios";
 // const server_url = 'http://localhost:4000';
 const server_url =
@@ -109,6 +110,7 @@ const Mycard = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

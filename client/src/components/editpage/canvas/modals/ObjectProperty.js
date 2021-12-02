@@ -3,6 +3,7 @@ import "../../../../css/editpage/canvas/modals/ObjectProperty.css";
 import reactCSS from "reactcss";
 import { ChromePicker } from "react-color";
 import FontList from "./FontList";
+import Footer from "../../../Footer";
 
 export default function ObjectProperty({
   id,

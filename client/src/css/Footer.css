@@ -104,6 +104,9 @@
 }
 
 @media screen and (max-width: 900px) {
+  #footer {
+    display: none;
+  }
   .footer-contact {
     margin: 0.3rem 0;
   }

@@ -6,6 +6,7 @@ import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/TopMenu";
 import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
+import Footer from "../components/Footer";
 
 export default function EditPage() {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
@@ -324,6 +325,7 @@ export default function EditPage() {
             ) : (
               <PropertyBlank />
             )}
+            <Footer/>
           </div>
         </div>
       </div>
