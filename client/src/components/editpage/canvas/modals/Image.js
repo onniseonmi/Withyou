@@ -9,7 +9,13 @@ export default function Image({ addToItems }) {
     const file = document.querySelector("input[type=file]").files[0];
     const reader = new FileReader();
     const fileType = file.name.split(".")[1].toUpperCase();
-    if (fileType === "JPG" || fileType === "PNG" || fileType === "JPEG") {
+    if (
+      fileType === "JPG" ||
+      fileType === "PNG" ||
+      fileType === "JPEG" ||
+      fileType === "SVG" ||
+      fileType === "BMP"
+    ) {
       reader.readAsDataURL(file);
       reader.addEventListener("load", () => {
         setPreviewImg(reader.result);
