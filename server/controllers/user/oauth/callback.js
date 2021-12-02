@@ -1,41 +1,41 @@
-require("dotenv").config();
-const axios = require("axios");
-const { User } = require("../../../models");
-const { sign } = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+require('dotenv').config();
+const axios = require('axios');
+const { User } = require('../../../models');
+const { sign } = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const bcryptSaltRounds = 12;
 
 module.exports = (req, res) => {
   const { authorizationCode, type } = req.body;
-  let url = "";
-  let client_id = "";
-  let client_secret = "";
-  let state = "";
-  const redirect_uri = "http://localhost:3000";
+  let url = '';
+  let client_id = '';
+  let client_secret = '';
+  let state = '';
+  const redirect_uri = 'http://localhost:3000';
   const redirect_uri_S3 =
-    "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
-  if (type === "naver") {
+    'http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/';
+  if (type === 'naver') {
     client_id = process.env.NAVER_CLIENT_ID;
     client_secret = process.env.NAVER_CLIENT_SECRET;
-    state = "RANDOM_STATE";
+    state = 'RANDOM_STATE';
     url = `https://nid.naver.com/oauth2.0/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=authorization_code&state=${state}&code=${authorizationCode}`;
-    axios({ method: "GET", url }).then((resp) => {
+    axios({ method: 'GET', url }).then((resp) => {
       axios({
-        method: "GET",
-        url: "https://openapi.naver.com/v1/nid/me",
+        method: 'GET',
+        url: 'https://openapi.naver.com/v1/nid/me',
         headers: {
           Authorization: `Bearer ${resp.data.access_token}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }).then(async (response) => {
         const { name, image, email } = response.data.response;
-        const hashed = await bcrypt.hash("password", bcryptSaltRounds);
+        const hashed = await bcrypt.hash('password', bcryptSaltRounds);
         const [userInfo, created] = await User.findOrCreate({
           where: { email },
           defaults: {
             username: name,
             password: hashed,
-            mobile: "",
+            mobile: '',
             image: image,
           },
         });
@@ -54,7 +54,7 @@ module.exports = (req, res) => {
           );
           res
             .status(200)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
@@ -78,7 +78,7 @@ module.exports = (req, res) => {
           );
           res
             .status(201)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
@@ -92,27 +92,27 @@ module.exports = (req, res) => {
         }
       });
     });
-  } else if (type === "kakao") {
+  } else if (type === 'kakao') {
     client_id = process.env.KAKAO_CLIENT_ID;
     client_secret = process.env.KAKAO_CLIENT_SECRET;
-    url = `https://kauth.kakao.com/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirect_uri_S3}`;
-    axios({ method: "GET", url }).then((resp) => {
+    url = `https://kauth.kakao.com/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirect_uri}`;
+    axios({ method: 'GET', url }).then((resp) => {
       axios({
-        method: "GET",
-        url: "https://kapi.kakao.com/v2/user/me",
+        method: 'GET',
+        url: 'https://kapi.kakao.com/v2/user/me',
         headers: {
           Authorization: `Bearer ${resp.data.access_token}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }).then(async (response) => {
         const { profile, email } = response.data.kakao_account;
-        const hashed = await bcrypt.hash("password", bcryptSaltRounds);
+        const hashed = await bcrypt.hash('password', bcryptSaltRounds);
         const [userInfo, created] = await User.findOrCreate({
           where: { email },
           defaults: {
             username: profile.nickname,
             password: hashed,
-            mobile: "",
+            mobile: '',
             image: profile.profile_image_url,
           },
         });
@@ -132,7 +132,7 @@ module.exports = (req, res) => {
           );
           res
             .status(200)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
@@ -156,7 +156,7 @@ module.exports = (req, res) => {
           );
           res
             .status(201)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
@@ -170,37 +170,37 @@ module.exports = (req, res) => {
         }
       });
     });
-  } else if (type === "github") {
+  } else if (type === 'github') {
     const postData = {
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: authorizationCode,
     };
     axios({
-      method: "POST",
-      url: "https://github.com/login/oauth/access_token",
+      method: 'POST',
+      url: 'https://github.com/login/oauth/access_token',
       headers: {
-        accept: "application/json",
+        accept: 'application/json',
       },
       data: postData,
       withCredentials: true,
     }).then((resp) => {
       axios({
-        method: "GET",
-        url: "https://api.github.com/user",
+        method: 'GET',
+        url: 'https://api.github.com/user',
         headers: {
           Authorization: `token ${resp.data.access_token}`,
         },
       }).then(async (response) => {
         const { name, html_url } = response.data;
-        const hashed = await bcrypt.hash("password", bcryptSaltRounds);
+        const hashed = await bcrypt.hash('password', bcryptSaltRounds);
         const [userInfo, created] = await User.findOrCreate({
           where: { email: html_url },
           defaults: {
             username: name,
             password: hashed,
-            mobile: "",
-            image: "",
+            mobile: '',
+            image: '',
           },
         });
         if (!created) {
@@ -218,7 +218,7 @@ module.exports = (req, res) => {
           );
           res
             .status(200)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
@@ -242,7 +242,7 @@ module.exports = (req, res) => {
           );
           res
             .status(201)
-            .cookie("refreshToken", refreshToken)
+            .cookie('refreshToken', refreshToken)
             .json({
               accessToken,
               userInfo: {
