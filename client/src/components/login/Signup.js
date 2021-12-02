@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import title from "../../images/title.png";
 import "../../css/login/Signup.css";
 import axios from "axios";
-// const server_url = 'http://localhost:4000';
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
   const [inputErr, setInputErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
   const [userInput, setUserInput] = useState({
     username: "",
     email: "",
@@ -42,8 +43,10 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
   };
 
   const handleClick = async (e) => {
+    setPasswordErr(false);
+    setInputErr(false);
     if (userInput.password !== userInput.password2) {
-      setInputErr(true);
+      setPasswordErr(true);
     } else if (
       userInput.username.trim() === "" ||
       userInput.email.trim() === "" ||
@@ -55,15 +58,16 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url}/user/signup`,
+          url: `${server_url_2}/user/signup`,
           data: userInput,
-        }).catch((err) => alert(err));
+          // * 서버쪽 오류시, 에러 핸들링을 이렇게 가도 되려나?
+        }).catch((err) => setInputErr(true));
 
         const tokenData = await axios({
           method: "POST",
-          url: `${server_url}/user/signin`,
+          url: `${server_url_2}/user/signin`,
           data: { email: userInput.email, password: userInput.password },
-        }).catch((err) => alert(err));
+        }).catch((err) => setInputErr(true));
 
         const { userInfo, accessToken } = tokenData.data;
         console.log("data");
@@ -126,12 +130,18 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
             onChange={handleChange}
           ></input>
         </div>
-        {inputErr ? (
+        {inputErr && (
           <div className="signup-errMsg">
             <div>잘못 입력 되었습니다.</div>
             <div>다시 한번 확인해 주세요.</div>
           </div>
-        ) : null}
+        )}
+        {passwordErr && (
+          <div className="signup-errMsg">
+            <div>비밀번호가 일치하지 않습니다.</div>
+            <div>다시 한번 확인해 주세요.</div>
+          </div>
+        )}
         <div className="signup-button-box">
           <div className="signup-btn button" onClick={handleClick}>
             시작하기

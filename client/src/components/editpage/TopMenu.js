@@ -1,9 +1,9 @@
 import React from "react";
-import "../css/TopMenu.css";
+import "../../css/editpage/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
-// const server_url = 'http://localhost:4000';
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 export default function TopMenu({ deSelectObject }) {
   async function download() {
@@ -49,7 +49,7 @@ export default function TopMenu({ deSelectObject }) {
 
         axios({
           method: "POST",
-          url: `${server_url}/mycard/post`,
+          url: `${server_url_2}/mycard/post`,
           data: formData,
           headers: {
             authorization: `Bearer ${accessTokenSession}`,

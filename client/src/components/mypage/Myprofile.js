@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import addImg from "../../images/manImage.svg";
 import "../../css/mypage/Myprofile.css";
-// const server_url = 'http://localhost:4000';
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Myprofile = () => {
@@ -25,13 +25,13 @@ const Myprofile = () => {
   const handleClick = async (e) => {
     const loginType = sessionStorage.getItem("loginType");
 
-    if (e.target.id === "btn-edit" && loginType === null) {
+    if (e.target.id === "btn-edit") {
       setEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url}/profile`,
+          url: `${server_url_2}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -68,89 +68,26 @@ const Myprofile = () => {
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === "kakao") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/kakao`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
+        axios({
+          method: "GET",
+          url: `${server_url_2}/profile`,
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        }).then((res) => {
+          setUserInfo({
+            username: res.data.username,
+            email: res.data.email,
+            mobile: res.data.mobile,
+            image: res.data.image,
           });
-        } else if (loginType === "naver") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/naver`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-              image: res.data.image,
-              mobile: res.data.mobile,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
+          setUserInput({
+            username: res.data.username,
+            mobile: res.data.mobile,
+            image: res.data.image,
           });
-        } else if (loginType === "github") {
-          axios({
-            method: "GET",
-            url: `${server_url}/user/github`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              ...userInfo,
-              username: res.data.username,
-              email: res.data.email,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        } else {
-          axios({
-            method: "GET",
-            url: `${server_url}/profile`,
-            headers: {
-              authorization: `Bearer ${accessToken}`,
-            },
-          }).then((res) => {
-            setUserInfo({
-              username: res.data.username,
-              email: res.data.email,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-            setUserInput({
-              username: res.data.username,
-              mobile: res.data.mobile,
-              image: res.data.image,
-            });
-          });
-        }
+        });
       } catch (err) {
         console.log(err);
       }
@@ -166,7 +103,7 @@ const Myprofile = () => {
     formData.append("img", event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
-    const res = await axios.put(`${server_url}/profile/image`, formData, {
+    const res = await axios.put(`${server_url_2}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",

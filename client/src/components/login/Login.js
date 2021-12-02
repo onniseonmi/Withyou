@@ -6,8 +6,8 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-// const server_url = 'http://localhost:4000';
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Login = ({
@@ -19,7 +19,7 @@ const Login = ({
   setSignupBtn,
   accessToken,
   setAccessToken,
-  setLandingOn
+  setLandingOn,
 }) => {
   const [inputErr, setInputErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -37,9 +37,9 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: `${server_url}/user/signin`,
+        url: `${server_url_2}/user/signin`,
         data: userInput,
-      }).catch((err) => alert(err));
+      }).catch((err) => setInputErr(true));
 
       const { userInfo, accessToken } = data.data;
 
@@ -76,7 +76,10 @@ const Login = ({
         ) : (
           <div className="login-left-box">
             <Link to="/">
-              <div className="login-title modal-title" onClick={() => setLoginBtn(false)}>
+              <div
+                className="login-title modal-title"
+                onClick={() => setLoginBtn(false)}
+              >
                 <img src={title} alt="title"></img>
               </div>
             </Link>

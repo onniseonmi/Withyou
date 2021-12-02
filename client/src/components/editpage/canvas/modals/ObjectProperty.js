@@ -156,7 +156,7 @@ export default function ObjectProperty({
   });
   // ! 회전 크기 에러 잡기
   // TODO : 밑에 반복되는 버튼들을 함수화 하면 좋을것 같은데..
-  if (type === "image") {
+  if (type === "image" || type === "templates") {
     return (
       <div id="property-modal" key={id}>
         <div id="property-title-button">
@@ -181,11 +181,13 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={Math.floor(currentWidth)}
                 onChange={(e) => {
-                  setCurrentWidth(Number(e.target.value));
-                  resizeWidth(Number(e.target.value));
+                  if (e.target.value >= 0) {
+                    setCurrentWidth(Number(e.target.value));
+                    resizeWidth(Number(e.target.value));
+                  }
                 }}
               />
               <button
@@ -211,11 +213,13 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={Math.floor(currentHeight)}
                 onChange={(e) => {
-                  setCurrentHeight(Number(e.target.value));
-                  resizeHeight(Number(e.target.value));
+                  if (e.target.value >= 0) {
+                    setCurrentHeight(Number(e.target.value));
+                    resizeHeight(Number(e.target.value));
+                  }
                 }}
               />
               <button
@@ -237,11 +241,12 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={Math.floor(currentRotate)}
                 onChange={(e) => {
-                  setCurrentRotate(Number(e.target.value));
-                  rotateObject(`rotate(${Number(e.target.value)}deg)`);
+                  let current = e.target.value % 360;
+                  setCurrentRotate(Number(current));
+                  rotateObject(`rotate(${Number(current)}deg)`);
                 }}
               />
               <button
@@ -259,7 +264,7 @@ export default function ObjectProperty({
                 className="control-button"
                 onClick={() => {
                   if (zindex !== 0) {
-                    decreaseZindex(zindex - 1);
+                    decreaseZindex(Number(zindex - 2));
                   }
                 }}
               >
@@ -267,17 +272,20 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={currentZindex}
                 onChange={(e) => {
-                  setCurrentZindex(e.target.value);
-                  modifyZindex(e.target.value);
+                  const current = Number(e.target.value);
+                  if (current >= 0) {
+                    setCurrentZindex(current);
+                    modifyZindex(current);
+                  }
                 }}
               />
               <button
                 className="control-button"
                 onClick={() => {
-                  increaseZindex(zindex + 1);
+                  increaseZindex(Number(zindex + 2));
                 }}
               >
                 +
@@ -362,11 +370,13 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={Math.floor(currentTextSize)}
                 onChange={(e) => {
-                  setCurrentTextSize(Number(e.target.value));
-                  modifyTextSize(Number(e.target.value));
+                  if (e.target.value >= 0) {
+                    setCurrentTextSize(Number(e.target.value));
+                    modifyTextSize(Number(e.target.value));
+                  }
                 }}
               />
               <button
@@ -388,11 +398,12 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={Math.floor(currentRotate)}
                 onChange={(e) => {
-                  setCurrentRotate(Number(e.target.value));
-                  rotateObject(`rotate(${Number(e.target.value)}deg)`);
+                  let current = e.target.value % 360;
+                  setCurrentRotate(Number(current));
+                  rotateObject(`rotate(${Number(current)}deg)`);
                 }}
               />
               <button
@@ -410,7 +421,7 @@ export default function ObjectProperty({
                 className="control-button"
                 onClick={() => {
                   if (zindex !== 0) {
-                    decreaseZindex(zindex - 1);
+                    decreaseZindex(Number(zindex - 2));
                   }
                 }}
               >
@@ -418,17 +429,20 @@ export default function ObjectProperty({
               </button>
               <input
                 className="input-area"
-                type="text"
+                type="number"
                 value={currentZindex}
                 onChange={(e) => {
-                  setCurrentZindex(e.target.value);
-                  modifyZindex(e.target.value);
+                  const current = Number(e.target.value);
+                  if (current >= 0) {
+                    setCurrentZindex(current);
+                    modifyZindex(current);
+                  }
                 }}
               />
               <button
                 className="control-button"
                 onClick={() => {
-                  increaseZindex(zindex + 1);
+                  increaseZindex(Number(zindex + 2));
                 }}
               >
                 +
