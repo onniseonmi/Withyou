@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('cards', [
+    await queryInterface.bulkInsert('Cards', [
       {
         id: 1,
         card: 'https://images.unsplash.com/photo-1617796993472-7c1a483d3e39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VkZGluZyUyMGludml0YXRpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
@@ -35,6 +35,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('cards', null, {});
+    await queryInterface.bulkDelete('Cards', null, {});
   },
 };
