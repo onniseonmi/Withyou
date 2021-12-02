@@ -6,8 +6,8 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
-// const server_url = "http://localhost:4000";
-const server_url =
+const server_url_1 = "http://localhost:4000";
+const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Login = ({
@@ -37,7 +37,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: `${server_url}/user/signin`,
+        url: `${server_url_2}/user/signin`,
         data: userInput,
       }).catch((err) => alert(err));
 
