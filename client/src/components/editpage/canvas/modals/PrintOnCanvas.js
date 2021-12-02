@@ -52,8 +52,8 @@ export default function PrintOnCanvas({
   function onDragAndDrop(e) {
     const differX = initLocation.x - currentLocation.x;
     const differY = initLocation.y - currentLocation.y;
-    let x = e.pageX - differX - left;
-    let y = e.pageY - differY - top;
+    let x = e.clientX - differX - left;
+    let y = e.clientY - differY - top;
     if (clientWidth >= 900) {
       onChangeStyle({
         left: x / 2,
@@ -70,8 +70,8 @@ export default function PrintOnCanvas({
   function onDragAndDropMobile(e) {
     const differX = initLocation.x - currentLocation.x;
     const differY = initLocation.y - currentLocation.y;
-    let x = e.pageX - differX - left;
-    let y = e.pageY - differY - top;
+    let x = e.clientX - differX - left;
+    let y = e.clientY - differY - top;
     onChangeStyle({
       left: x,
       top: y,
