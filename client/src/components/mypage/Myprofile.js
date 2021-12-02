@@ -25,7 +25,7 @@ const Myprofile = () => {
   const handleClick = async (e) => {
     const loginType = sessionStorage.getItem("loginType");
 
-    if (e.target.id === "btn-edit" && loginType === null) {
+    if (e.target.id === "btn-edit") {
       setEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
