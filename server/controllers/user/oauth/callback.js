@@ -41,9 +41,10 @@ module.exports = (req, res) => {
         });
         if (!created) {
           const _userInfo = await User.findOne({ where: { email } });
+          const _id = _userInfo.dataValues.id;
           const _email = _userInfo.dataValues.email;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
@@ -66,13 +67,16 @@ module.exports = (req, res) => {
               },
             });
         } else {
+          const _userInfo = await User.findOne({ where: { email } });
+          const _id = _userInfo.dataValues.id;
+          const _email = _userInfo.dataValues.email;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
           const refreshToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.REFRESH_SECRET,
             { expiresIn: process.env.REFRESHEXPIREINDAYS }
           );
@@ -118,15 +122,15 @@ module.exports = (req, res) => {
         });
         if (!created) {
           const _userInfo = await User.findOne({ where: { email } });
+          const _id = _userInfo.dataValues.id;
           const _email = _userInfo.dataValues.email;
-          // const { id, username, mobile, email, image } = userInfo.dataValues;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
           const refreshToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.REFRESH_SECRET,
             { expiresIn: process.env.REFRESHEXPIREINDAYS }
           );
@@ -144,13 +148,16 @@ module.exports = (req, res) => {
               },
             });
         } else {
+          const _userInfo = await User.findOne({ where: { email } });
+          const _id = _userInfo.dataValues.id;
+          const _email = _userInfo.dataValues.email;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
           const refreshToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.REFRESH_SECRET,
             { expiresIn: process.env.REFRESHEXPIREINDAYS }
           );
@@ -205,14 +212,15 @@ module.exports = (req, res) => {
         });
         if (!created) {
           const _userInfo = await User.findOne({ where: { email: html_url } });
+          const _id = _userInfo.dataValues.id;
           const _email = _userInfo.dataValues.email;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
           const refreshToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.REFRESH_SECRET,
             { expiresIn: process.env.REFRESHEXPIREINDAYS }
           );
@@ -230,13 +238,16 @@ module.exports = (req, res) => {
               },
             });
         } else {
+          const _userInfo = await User.findOne({ where: { email: html_url } });
+          const _id = _userInfo.dataValues.id;
+          const _email = _userInfo.dataValues.email;
           const accessToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.ACCESS_SECRET,
             { expiresIn: process.env.ACCESSEXPIREINDAYS }
           );
           const refreshToken = sign(
-            { email: _email },
+            { id: _id, email: _email },
             process.env.REFRESH_SECRET,
             { expiresIn: process.env.REFRESHEXPIREINDAYS }
           );
