@@ -70,7 +70,7 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
           data: { email: userInput.email, password: userInput.password },
         }).catch((err) => setInputErr(true));
 
-        const { userInfo, accessToken } = tokenData.data;
+        const { accessToken } = tokenData.data;
         console.log("data");
         console.log(data.data);
         sessionStorage.setItem("isLoginSession", true);

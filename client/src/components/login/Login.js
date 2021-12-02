@@ -42,7 +42,7 @@ const Login = ({
         data: userInput,
       }).catch((err) => setInputErr(true));
 
-      const { userInfo, accessToken } = data.data;
+      const { accessToken } = data.data;
 
       sessionStorage.setItem("isLoginSession", true);
       sessionStorage.setItem("accessTokenSession", accessToken);

@@ -76,12 +76,12 @@ export default function TopMenu({ deSelectObject, setItemStates }) {
       </div>
       <div className="top-menu-box top-menu-right">
         <div id="top-menu-save">
-          <a id="download" onClick={() => download()}>
+          <div id="download" onClick={() => download()}>
             다운로드
-          </a>
-          <a id="save" onClick={() => saveToServer()}>
+          </div>
+          <div id="save" onClick={() => saveToServer()}>
             저장하기
-          </a>
+          </div>
         </div>
       </div>
     </div>

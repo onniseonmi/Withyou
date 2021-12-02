@@ -44,7 +44,7 @@ export default function Image({ addToItems }) {
           style={{ opacity: 0 }}
           onChange={() => getFile()}
         />
-        {previewImg && <img id="preview" src={previewImg} />}
+        {previewImg && <img id="preview" src={previewImg} alt="preview" />}
         <button
           id="add-image-button"
           onClick={() => {
