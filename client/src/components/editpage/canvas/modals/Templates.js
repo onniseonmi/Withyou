@@ -19,7 +19,16 @@ const samples = [
   { src: sample_8 },
 ];
 
-export default function Templates({ addToItems, makeId }) {
+export default function Templates({
+  itemStates,
+  addToItems,
+  makeId,
+  setItemStates,
+}) {
+  const templateIndex = itemStates.findIndex(
+    (el) => el.style.type === "templates"
+  );
+
   return (
     <div id="templates-modal">
       <div id="templates-modal-nav" className="edit--menu-title">
@@ -33,7 +42,13 @@ export default function Templates({ addToItems, makeId }) {
             src={el.src}
             alt={el.src}
             onClick={() => {
-              addToItems(el.src, "templates");
+              if (templateIndex >= 0) {
+                const nextState = [...itemStates];
+                nextState[templateIndex].src = el.src;
+                setItemStates(nextState);
+              } else {
+                addToItems(el.src, "templates");
+              }
             }}
           />
         ))}

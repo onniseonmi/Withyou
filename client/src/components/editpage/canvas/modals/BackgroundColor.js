@@ -15,7 +15,6 @@ export default function BackgroundColor({
     handleCanvasColor(input);
   }
 
-
   const styles = reactCSS({
     default: {
       color: {

@@ -7,58 +7,37 @@ import Text from "../canvas/modals/Text";
 import "../../../css/editpage/menu/EditMenu.css";
 const EditMenu = ({
   makeId,
-  setMenuBtnOn,
   menuBtnStatus,
   addToItems,
-  currentText,
-  setCurrentText,
   currentCanvasColor,
   handleCanvasColor,
-  setCurrentTemplate,
+  clientWidth,
+  itemStates,
+  setItemStates,
 }) => {
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
         {menuBtnStatus === "menuBar-bg" && (
           <BackgroundColor
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
+            clientWidth={clientWidth}
             currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
         )}
         {menuBtnStatus === "menuBar-templates" && (
           <Templates
-            setMenuBtnOn={setMenuBtnOn}
+            itemStates={itemStates}
             addToItems={addToItems}
             makeId={makeId}
-            setCurrentTemplate={setCurrentTemplate}
+            setItemStates={setItemStates}
           />
         )}
         {menuBtnStatus === "menuBar-elements" && (
-          <Elements
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
-          />
+          <Elements addToItems={addToItems} makeId={makeId} />
         )}
-        {menuBtnStatus === "menuBar-image" && (
-          <Image
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
-          />
-        )}
-        {menuBtnStatus === "menuBar-text" && (
-          <Text
-            setMenuBtnOn={setMenuBtnOn}
-            addToItems={addToItems}
-            makeId={makeId}
-            currentText={currentText}
-            setCurrentText={setCurrentText}
-          />
-        )}
+        {menuBtnStatus === "menuBar-image" && <Image addToItems={addToItems} />}
+        {menuBtnStatus === "menuBar-text" && <Text addToItems={addToItems} />}
       </div>
     </div>
   );

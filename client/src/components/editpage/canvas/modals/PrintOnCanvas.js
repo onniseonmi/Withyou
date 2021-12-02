@@ -134,10 +134,7 @@ export default function PrintOnCanvas({
         id={id}
         src={src}
         style={style}
-        isSelected={isSelected}
         setObjectStyle={setObjectStyle}
-        onClickObjcet={onClickObjcet}
-        controlCursorStyle={controlCursorStyle}
       />
     );
   }

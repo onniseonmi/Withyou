@@ -1,12 +1,4 @@
-export default function TemplateOnCanvas({
-  id,
-  src,
-  style,
-  isSelected,
-  setObjectStyle,
-  onClickObjcet,
-  controlCursorStyle,
-}) {
+export default function TemplateOnCanvas({ id, src, style, setObjectStyle }) {
   return (
     <img
       key={id}
@@ -14,23 +6,7 @@ export default function TemplateOnCanvas({
       className="image-element"
       draggable={false}
       src={src}
-      style={setObjectStyle(style, isSelected)}
-      onMouseDown={(e) => {
-        onClickObjcet(e);
-      }}
-      onTouchStart={(e) => {
-        onClickObjcet(e);
-      }}
-      onMouseUp={(e) => {
-        controlCursorStyle(e, "grab");
-      }}
-      onTouchEnd={(e) => {
-        controlCursorStyle(e, "grab");
-        document.body.style.overflow = null;
-      }}
-      onMouseOver={(e) => {
-        controlCursorStyle(e, "grab");
-      }}
+      style={setObjectStyle(style)}
     />
   );
 }
