@@ -12,13 +12,23 @@
 #templates-modal-upload {
   padding-left: 0.3rem;
 }
+
 #templates-modal-upload > img {
   width: 8rem;
   height: 6rem;
   margin: 1rem 0.8rem;
   object-fit: fill;
   cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 1;
 }
+
+#templates-modal-upload > img:hover {
+  transition: 0.1s;
+  border: 2px solid white;
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 900px) {
   #templates-modal {
     font-family: "BinggraeMelona";

@@ -26,7 +26,6 @@ export default function Templates({ addToItems, makeId }) {
         <div id="title">템플릿</div>
         <div id="content">원하는 템플릿을 선택해주세요.</div>
       </div>
-
       <div id="templates-modal-upload">
         {samples.map((el) => (
           <img
