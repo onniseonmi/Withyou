@@ -13,7 +13,7 @@ const server_url_2 =
 
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [loginBtn, setLoginBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({

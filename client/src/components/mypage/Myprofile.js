@@ -180,7 +180,7 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
               <div id="mobile" className="row">
                 {clientWidth >= 900 ? (
                   <div>
-                    (<span>💫 mobile : </span>
+                    <span>💫 mobile : </span>
                     <input
                       id="mobile"
                       type="text"
