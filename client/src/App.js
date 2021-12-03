@@ -77,7 +77,7 @@ export default function App() {
         </Route>
         <Route path="/editpage">{!loginBtn && <EditPage />}</Route>
         <Route path="/mypage">
-          <Mypage accessToken={accessToken} />
+          <Mypage accessToken={accessToken} setLandingOn={setLandingOn} />
         </Route>
       </Switch>
     </Router>
