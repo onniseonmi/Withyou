@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../css/mypage/Mycard.css";
+import Footer from "../Footer";
 import addPage from "../../images/Add NewImg.png";
 import axios from "axios";
 axios.default.withCredentials = true;
@@ -130,6 +131,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

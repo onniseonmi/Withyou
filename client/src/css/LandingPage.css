@@ -24,7 +24,7 @@
 .landing-title-box {
   width: 55rem;
   position: absolute;
-  top: 60vh;
+  top: 40vh;
   left: 5vw;
   text-align: left;
   font-family: "Gulimn";
@@ -34,24 +34,29 @@
   text-shadow: 1px 2px #212121;
   transition: 0.7s ease;
 }
+
+.landing-title-box div {
+  margin-bottom: 0.25rem;
+}
+
 .landing-title-box > a {
   text-decoration: none;
 }
 
 .main-get-started {
   font-family: "Gulimn";
-  width: 40rem;
-  height: 4rem;
-  line-height: 4rem;
-  font-size: 2rem;
+  width: 51rem;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 2.5rem;
   text-align: center;
   background: transparent;
   color: white;
   border: 1px solid rgb(194, 194, 194);
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 2rem;
-  margin-left: 25vw;
+  margin-top: 0.8rem;
+  margin-left: 0.2vw;
   transition: 0.7s ease;
 }
 
@@ -61,14 +66,29 @@
   text-shadow: 1px 1px #c5c5c5;
 }
 
-@media all and (min-width: 900px) and (max-width: 1440px) {
+@media screen and (max-device-width: 450px) {
+  .main-get-started {
+    width: 52rem;
+    margin-left: 0.2vw;
+    height: 7rem;
+    line-height: 7rem;
+  }
+
+  .landing-title-box div{
+    margin-bottom: 1rem;
+    font-size: 3rem;
+  }
+
+  .landing-title-box div:not(:first-child){
+    font-size: 3.1rem;
+  }
 }
 
 @media all and (max-width: 900px) {
   .landing-title-box {
     width: 55rem;
     position: absolute;
-    top: 60vh;
+    top: 42vh;
     left: 5vw;
     text-align: left;
     font-size: 1.7rem;
@@ -83,7 +103,4 @@
     line-height: 2.5rem;
     margin-left: 0;
   }
-}
-
-@media screen and (max-device-width: 450px) {
 }
