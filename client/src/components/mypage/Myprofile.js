@@ -8,6 +8,7 @@ const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
 const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
+  const { clientWidth } = document.body;
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
   const [userInfo, setUserInfo] = useState({
@@ -141,34 +142,63 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
             </div>
             <div className="userinfo">
               <div id="e-mail" className="row">
-                <span>💫 email : </span>
-                <span>{email}</span>
+                {clientWidth >= 900 ? (
+                  <div>
+                    <span>💫 email : </span>
+                    <span>{email}</span>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 email : </div>
+                    <div>{email}</div>
+                  </div>
+                )}
               </div>
               <div id="username" className="row">
-                <span>💫 username : </span>
-                <input
-                  id="username"
-                  type="text"
-                  style={{
-                    width: "15rem",
-                    height: "1.5rem",
-                  }}
-                  value={userInput.username}
-                  onChange={handleChange}
-                ></input>
+                {clientWidth >= 900 ? (
+                  <div>
+                    <span>💫 username : </span>
+                    <input
+                      id="username"
+                      type="text"
+                      value={userInput.username}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 username : </div>
+                    <input
+                      id="username"
+                      type="text"
+                      value={userInput.username}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                )}
               </div>
               <div id="mobile" className="row">
-                <span>💫 mobile : </span>
-                <input
-                  id="mobile"
-                  type="text"
-                  style={{
-                    width: "15rem",
-                    height: "1.5rem",
-                  }}
-                  value={userInput.mobile}
-                  onChange={handleChange}
-                ></input>
+                {clientWidth >= 900 ? (
+                  <div>
+                    (<span>💫 mobile : </span>
+                    <input
+                      id="mobile"
+                      type="text"
+                      value={userInput.mobile}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 mobile : </div>
+                    <input
+                      id="mobile"
+                      type="text"
+                      value={userInput.mobile}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -178,7 +208,7 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
                 id="img-add-button"
                 onClick={() => imgInputRef.current.click()}
               >
-                Image +
+                Add Image
               </button>
             </div>
             <div className="button-box-edit">
