@@ -1,9 +1,10 @@
 #mypage {
-  font-family: "Gulimn";
+  font-family: "BinggraeMelona";
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 2vh;
   align-items: center;
+  background-color: #fefcff;
 }
 
 /* 클때 */

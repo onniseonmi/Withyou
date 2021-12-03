@@ -1,13 +1,14 @@
 #profile {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 34vh;
-  padding-bottom: 0.5rem;
-  /* border-bottom: solid 0.1rem gray; */
+  width: 70%;
+  height: 38vh;
+  border-bottom: 2px solid lightgray;
+  margin-bottom: 4vh;
 }
 .mypage-title {
-  font-size: 1.2rem;
+  font-size: 3vh;
+  margin-bottom: 0.5rem;
 }
 
 #profile-content {
@@ -16,58 +17,32 @@
   padding-left: 3rem;
 }
 
-.profile-image {
-  /* border: 3px groove gray; */
-  border-radius: 50%;
-  width: 10rem;
-  height: 10rem;
-  margin-top: 1.5rem;
-  text-align: center;
-  box-shadow: 4px 4px 0 0 rgb(224, 224, 224);
-}
 .profile-image-box {
-  width: 10rem;
-  height: 10rem;
+  width: 15vw;
+  height: 28vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .profile-image-box img {
-  width: 10rem;
-  height: 10rem;
-  object-fit: contain;
-  cursor: pointer;
-}
-.profile-image button {
-  margin-top: 1rem;
-  font-size: 16px;
-  color: #747474;
-  border: none;
-  box-shadow: 1px 2px 1px 1px gray;
-  cursor: pointer;
-}
-
-.profile-image button:hover {
-  margin-top: 1rem;
-  font-size: 16px;
-  color: #a8a8a8;
-  border: none;
-  box-shadow: 1px 2px 1px 1px gray;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
   cursor: pointer;
 }
 
 .userinfo {
-  /* border: 1px solid rgb(234, 236, 239); */
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  /* -webkit-box-pack: center; */
   padding: 0.5rem 0rem;
   font-size: 1.5rem;
   width: 60%;
   padding-left: 1rem;
   margin-left: 3rem;
 }
+
 .userinfo input {
   font-size: 1.5rem;
   width: 30%;
@@ -77,81 +52,69 @@
   padding-left: 1rem;
 }
 
-.mypage-button {
-  position: relative;
+.button-box {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.mypage-button > button {
-  position: absolute;
-  bottom: -4vh;
-  right: 0;
-  cursor: pointer;
-}
-#btn-edit {
-  width: 6vw;
-  height: 5vh;
-  line-height: 50px;
-  border: none;
-  /* border-radius: 15%; */
-  font-size: 16px;
-  color: #747474;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
-}
-#btn-edit:hover {
-  width: 6vw;
-  height: 5vh;
-  line-height: 50px;
-  border: none;
-  font-size: 16px;
-  color: #a8a8a8;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
-}
-.edit-profile {
-  display: flex;
 
-  padding-top: 0.5rem;
-  margin-right: 3rem;
+#img-add-button {
+  width: 5vw;
+  height: 2vw;
+  font-size: 17px;
+  border: 2px solid black;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  margin-left: 8vw;
 }
-#btn-save {
-  width: 10%;
-  height: 50px;
-  line-height: 50px;
-  border: none;
-  font-size: 16px;
-  color: #747474;
-  margin-right: 230px;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
+
+#img-add-button:hover {
+  background-color: rgb(253, 178, 169);
+  transition: 0.5s;
 }
-#btn-save:hover {
-  width: 10%;
-  height: 50px;
-  line-height: 50px;
-  border: none;
-  font-size: 16px;
-  color: #a8a8a8;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
+
+#img-add-button:not(:hover) {
+  background-color: #f5f5f5;
 }
-#btn-cancel {
-  width: 10%;
-  height: 50px;
-  line-height: 50px;
-  border: none;
-  font-size: 16px;
-  color: #747474;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
+
+.mypage-button {
+  width: 20vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-#btn-cancel:hover {
-  width: 10%;
-  height: 50px;
-  line-height: 50px;
-  border: none;
-  font-size: 16px;
-  color: #a8a8a8;
-  text-align: center;
-  box-shadow: 1px 2px 1px 1px gray;
+
+#btn-save,
+#btn-cancel,
+#btn-edit {
+  width: 5vw;
+  height: 2.1vw;
+  font-size: 18px;
+  border-radius: 0.5rem;
+  font-family: "BinggraeMelona";
+  cursor: pointer;
+  border: 2px solid #f2f0ec;
+  background-color: black;
+  color: white;
+}
+
+.button-box-edit {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 5vh;
+}
+
+#btn-save:hover,
+#btn-cancel:hover,
+#btn-edit:hover {
+  background-color: rgb(253, 178, 169);
+  transition: 0.5s;
+  color: black;
+}
+#btn-save:not(:hover),
+#btn-cancel:not(:hover),
+#btn-edit:not(:hover) {
+  background-color: black;
 }

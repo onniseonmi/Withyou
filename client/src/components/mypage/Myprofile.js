@@ -7,10 +7,9 @@ const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Myprofile = () => {
+const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
-  const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -24,15 +23,16 @@ const Myprofile = () => {
   });
   const { username, email, mobile } = userInfo;
   const handleClick = async (e) => {
+    setCardEditBtn(false);
     // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
-      setEditBtn(true);
+      setProfileEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_1}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -53,14 +53,14 @@ const Myprofile = () => {
           mobile: data.data.mobile,
         });
       } catch (err) {}
-      setEditBtn(false);
+      setProfileEditBtn(false);
     } else if (e.target.id === "btn-cancel") {
       setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
         image: userInfo.image,
       });
-      setEditBtn(false);
+      setProfileEditBtn(false);
     }
   };
   const handleChange = (e) => {
@@ -72,7 +72,7 @@ const Myprofile = () => {
       try {
         axios({
           method: "GET",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_1}/profile`,
           headers: {
             authorization: `Bearer ${accessToken}`,
           },
@@ -104,7 +104,7 @@ const Myprofile = () => {
     formData.append("img", event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
-    const res = await axios.put(`${server_url_2}/profile/image`, formData, {
+    const res = await axios.put(`${server_url_1}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",
@@ -115,7 +115,7 @@ const Myprofile = () => {
   return (
     <div>
       <div className="mypage-title">⭐️ My Profile</div>
-      {editBtn ? (
+      {editProfileBtn ? (
         <div>
           <div id="profile-content">
             <div className="profile-image">
@@ -127,9 +127,6 @@ const Myprofile = () => {
                   style={{ pointerEvents: "none" }}
                 />
               </div>
-              <button onClick={() => imgInputRef.current.click()}>
-                Image +
-              </button>
 
               <input
                 ref={imgInputRef}
@@ -152,6 +149,10 @@ const Myprofile = () => {
                 <input
                   id="username"
                   type="text"
+                  style={{
+                    width: "15rem",
+                    height: "1.5rem",
+                  }}
                   value={userInput.username}
                   onChange={handleChange}
                 ></input>
@@ -161,20 +162,35 @@ const Myprofile = () => {
                 <input
                   id="mobile"
                   type="text"
+                  style={{
+                    width: "15rem",
+                    height: "1.5rem",
+                  }}
                   value={userInput.mobile}
                   onChange={handleChange}
                 ></input>
               </div>
             </div>
           </div>
-
-          <div className="edit-profile mypage-button">
-            <button id="btn-save" onClick={handleClick}>
-              save
-            </button>
-            <button id="btn-cancel" onClick={handleClick}>
-              cancel
-            </button>
+          <div className="button-box">
+            <div className="mypage-button-left">
+              <button
+                id="img-add-button"
+                onClick={() => imgInputRef.current.click()}
+              >
+                Image +
+              </button>
+            </div>
+            <div className="button-box-edit">
+              <div className="edit-profile mypage-button">
+                <button id="btn-save" onClick={handleClick}>
+                  save
+                </button>
+                <button id="btn-cancel" onClick={handleClick}>
+                  cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -206,10 +222,12 @@ const Myprofile = () => {
             </div>
           </div>
 
-          <div className="edit-profile mypage-button">
-            <button id="btn-edit" onClick={handleClick}>
-              Edit
-            </button>
+          <div className="button-box-edit">
+            <div className="edit-profile mypage-button">
+              <button id="btn-edit" onClick={handleClick}>
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       )}

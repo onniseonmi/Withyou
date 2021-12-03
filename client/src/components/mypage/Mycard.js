@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../css/mypage/Mycard.css";
-import addPage from "../../images/addPage.svg";
+import addPage from "../../images/AddIcon 1.png";
 import axios from "axios";
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Mycard = () => {
+const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const [cards, setCards] = useState([]);
-  const [editBtn, setEditBtn] = useState(false);
 
   useEffect(async () => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_1}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -31,17 +30,18 @@ const Mycard = () => {
   }, []);
 
   const editHandler = () => {
-    editBtn ? setEditBtn(false) : setEditBtn(true);
+    editCardBtn ? setCardEditBtn(false) : setCardEditBtn(true);
+    setProfileEditBtn(false);
   };
   const deleteCard = (card) => {
-    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_1}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
 
   return (
     <div>
       <div className="mypage-title">⭐️ My Card</div>
-      {editBtn ? (
+      {editCardBtn ? (
         <div>
           <div className="card-box-container">
             <div className="card-box">
@@ -78,10 +78,12 @@ const Mycard = () => {
               </Link>
             </div>
           </div>
-          <div className="edit-image mypage-button">
-            <button id="btn-editImg" onClick={editHandler}>
-              Save
-            </button>
+          <div className="button-box-edit">
+            <div className="edit-image mypage-button">
+              <button id="btn-edit" onClick={editHandler}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
       ) : (
@@ -97,15 +99,17 @@ const Mycard = () => {
             <div className="card-page-container">
               <Link to="/editpage">
                 <div className="card-page-box">
-                  <img id="image" src={addPage} alt="#" />
+                  <img id="add-icon" src={addPage} alt="#" />
                 </div>
               </Link>
             </div>
           </div>
-          <div className="edit-image mypage-button">
-            <button id="btn-editImg" onClick={editHandler}>
-              Edit
-            </button>
+          <div className="button-box-edit">
+            <div className="edit-image mypage-button">
+              <button id="btn-edit" onClick={editHandler}>
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       )}
