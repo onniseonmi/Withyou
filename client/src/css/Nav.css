@@ -80,9 +80,8 @@
   .nav-container {
     display: flex;
     width: 100%;
-    height: 4.5vh;
+    height: 6.5vh;
     background-color: F9FFFF;
-    border-bottom: solid 2px lightgray;
     align-content: center;
   }
 
@@ -91,18 +90,20 @@
   }
 
   .logo {
-    font-size: 3.6vh;
+    font-size: 5vh;
   }
 
   .nav-right {
     display: flex;
-    height: 3.6vh;
+    height: 5vh;
     right: 0.5rem;
     top: 0.5rem;
     align-items: center;
+    
   }
 
   .nav-right > div {
-    font-size: 3rem;
+    font-size: 5rem;
+    margin-left: 1rem;
   }
 }

@@ -38,10 +38,12 @@
   height: 1.5rem;
   margin: 0.5rem 0.5rem;
 }
+
 #footer-title span {
   line-height: 2.5rem;
   margin-right: 1rem;
 }
+
 #footer-title span:not(:first-child) {
   font-family: "Huglife";
   font-size: 2rem;
@@ -86,6 +88,7 @@
   font-weight: 700;
   margin-left: 0.3rem;
 }
+
 .footer-developer {
   padding-top: 0.2rem;
 }
@@ -94,9 +97,11 @@
   .footer-developer {
     display: flex;
   }
+
   .footer-row {
     margin-top: 0.2rem;
   }
+
   .footer-row span {
     margin: 0 1rem;
     font-size: 1rem;
@@ -107,16 +112,60 @@
   .footer-contact {
     margin: 0.3rem 0;
   }
+
   .footer-contact > div:first-child {
     margin: 0.5rem;
   }
+
   #footer-title span:first-child {
     display: none;
   }
-  .footer-developer {
-  }
+  
   .footer-row span {
     margin: 0 0.5rem;
     font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-device-width: 450px) {
+  #footer {
+    height: 7rem;
+    line-height: 4rem;
+  }
+
+  #footer-title {
+    display: none;
+  }
+
+  .footer-contact {
+    display: flex;
+    position: absolute;
+    left: 0.5rem;
+  }
+
+  .footer-contact > div:first-child {
+    display: flex;
+  }
+
+  #githubIcon {
+    width: 5rem;
+  }
+
+  #githubTitle {
+    font-size: 2rem;
+  }
+
+  .footer-developer {
+    display: flex;
+  }
+
+  .footer-row {
+    margin-top: 1rem;
+  }
+  
+  .footer-row span {
+    font-size: 2.5rem;
+    margin: 1.3rem;
+    line-height: 3rem;
   }
 }

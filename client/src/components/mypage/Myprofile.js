@@ -7,10 +7,10 @@ const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Myprofile = () => {
+const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
+  const { clientWidth } = document.body;
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
-  const [editBtn, setEditBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -24,10 +24,11 @@ const Myprofile = () => {
   });
   const { username, email, mobile } = userInfo;
   const handleClick = async (e) => {
+    setCardEditBtn(false);
     // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
-      setEditBtn(true);
+      setProfileEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
@@ -53,14 +54,14 @@ const Myprofile = () => {
           mobile: data.data.mobile,
         });
       } catch (err) {}
-      setEditBtn(false);
+      setProfileEditBtn(false);
     } else if (e.target.id === "btn-cancel") {
       setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
         image: userInfo.image,
       });
-      setEditBtn(false);
+      setProfileEditBtn(false);
     }
   };
   const handleChange = (e) => {
@@ -115,7 +116,7 @@ const Myprofile = () => {
   return (
     <div>
       <div className="mypage-title">⭐️ My Profile</div>
-      {editBtn ? (
+      {editProfileBtn ? (
         <div>
           <div id="profile-content">
             <div className="profile-image">
@@ -127,9 +128,6 @@ const Myprofile = () => {
                   style={{ pointerEvents: "none" }}
                 />
               </div>
-              <button onClick={() => imgInputRef.current.click()}>
-                Image +
-              </button>
 
               <input
                 ref={imgInputRef}
@@ -144,37 +142,85 @@ const Myprofile = () => {
             </div>
             <div className="userinfo">
               <div id="e-mail" className="row">
-                <span>💫 email : </span>
-                <span>{email}</span>
+                {clientWidth >= 900 ? (
+                  <div>
+                    <span>💫 email : </span>
+                    <span>{email}</span>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 email : </div>
+                    <div>{email}</div>
+                  </div>
+                )}
               </div>
               <div id="username" className="row">
-                <span>💫 username : </span>
-                <input
-                  id="username"
-                  type="text"
-                  value={userInput.username}
-                  onChange={handleChange}
-                ></input>
+                {clientWidth >= 900 ? (
+                  <div>
+                    <span>💫 username : </span>
+                    <input
+                      id="username"
+                      type="text"
+                      value={userInput.username}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 username : </div>
+                    <input
+                      id="username"
+                      type="text"
+                      value={userInput.username}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                )}
               </div>
               <div id="mobile" className="row">
-                <span>💫 mobile : </span>
-                <input
-                  id="mobile"
-                  type="text"
-                  value={userInput.mobile}
-                  onChange={handleChange}
-                ></input>
+                {clientWidth >= 900 ? (
+                  <div>
+                    <span>💫 mobile : </span>
+                    <input
+                      id="mobile"
+                      type="text"
+                      value={userInput.mobile}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                ) : (
+                  <div>
+                    <div>💫 mobile : </div>
+                    <input
+                      id="mobile"
+                      type="text"
+                      value={userInput.mobile}
+                      onChange={handleChange}
+                    ></input>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-
-          <div className="edit-profile mypage-button">
-            <button id="btn-save" onClick={handleClick}>
-              save
-            </button>
-            <button id="btn-cancel" onClick={handleClick}>
-              cancel
-            </button>
+          <div className="button-box">
+            <div className="mypage-button-left">
+              <button
+                id="img-add-button"
+                onClick={() => imgInputRef.current.click()}
+              >
+                Add Image
+              </button>
+            </div>
+            <div className="button-box-edit">
+              <div className="edit-profile mypage-button">
+                <button id="btn-save" onClick={handleClick}>
+                  save
+                </button>
+                <button id="btn-cancel" onClick={handleClick}>
+                  cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -206,10 +252,12 @@ const Myprofile = () => {
             </div>
           </div>
 
-          <div className="edit-profile mypage-button">
-            <button id="btn-edit" onClick={handleClick}>
-              Edit
-            </button>
+          <div className="button-box-edit">
+            <div className="edit-profile mypage-button">
+              <button id="btn-edit" onClick={handleClick}>
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       )}
