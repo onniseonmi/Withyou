@@ -17,7 +17,7 @@ const Mycard = () => {
     if (accessToken) {
       const loginType = sessionStorage.getItem('loginType');
       try {
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_1}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

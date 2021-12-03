@@ -89,7 +89,7 @@ const Login = ({
               <div className='login-input-box'>
                 <input
                   id='email'
-                  type='text'
+                  type='email'
                   name='email'
                   placeholder='이메일'
                   onChange={handleChange}
