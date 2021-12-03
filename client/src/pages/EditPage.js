@@ -340,7 +340,6 @@ export default function EditPage() {
             ) : (
               <PropertyBlank />
             )}
-            <Footer/>
           </div>
         </div>
       </div>

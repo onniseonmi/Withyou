@@ -10,8 +10,8 @@ const LandingPage = ({ landingOn, setLandingOn }) => {
       <div className="landing">
         <div className="video-box">
           <video
-            id="landing-video"
-            autoplay="autoplay"
+            // id="landing-video"
+            // autoplay="autoplay"
             loop="Loop"
             muted
             volume="0"
