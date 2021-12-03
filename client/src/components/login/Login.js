@@ -35,7 +35,7 @@ const Login = ({
     try {
       const data = await axios({
         method: "POST",
-        url: `${server_url_1}/user/signin`,
+        url: `${server_url_2}/user/signin`,
         data: userInput,
       }).catch((err) => setInputErr(true));
 

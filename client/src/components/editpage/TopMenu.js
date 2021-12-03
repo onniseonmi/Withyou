@@ -54,7 +54,7 @@ export default function TopMenu({
 
         axios({
           method: "POST",
-          url: `${server_url_1}/mycard/post`,
+          url: `${server_url_2}/mycard/post`,
           data: formData,
           headers: {
             authorization: `Bearer ${accessTokenSession}`,

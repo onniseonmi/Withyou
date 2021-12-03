@@ -13,7 +13,7 @@ const server_url_2 =
 
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -25,7 +25,7 @@ export default function App() {
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
-      url: `${server_url_1}/user/callback`,
+      url: `${server_url_2}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
       const { accessToken } = resp.data;
