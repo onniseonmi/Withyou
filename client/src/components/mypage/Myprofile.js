@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import addImg from "../../images/manImage.svg";
 import "../../css/mypage/Myprofile.css";
+axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
@@ -21,9 +22,9 @@ const Myprofile = () => {
     mobile: "",
     image: "",
   });
-  const { username, email, mobile, image } = userInfo;
+  const { username, email, mobile } = userInfo;
   const handleClick = async (e) => {
-    const loginType = sessionStorage.getItem("loginType");
+    // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
       setEditBtn(true);
@@ -66,7 +67,7 @@ const Myprofile = () => {
     setUserInput({ ...userInput, [e.target.id]: e.target.value });
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (accessToken) {
       try {
         axios({
@@ -108,7 +109,6 @@ const Myprofile = () => {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",
       },
-      withCredentials: true,
     });
     setUserInfo({ ...userInfo, image: res.data.image });
   };

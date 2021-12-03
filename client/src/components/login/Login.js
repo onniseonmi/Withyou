@@ -6,6 +6,7 @@ import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
+axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
@@ -41,7 +42,7 @@ const Login = ({
         data: userInput,
       }).catch((err) => setInputErr(true));
 
-      const { userInfo, accessToken } = data.data;
+      const { accessToken } = data.data;
 
       sessionStorage.setItem("isLoginSession", true);
       sessionStorage.setItem("accessTokenSession", accessToken);
@@ -72,13 +73,17 @@ const Login = ({
             setSignupBtn={setSignupBtn}
             setIsLogin={setIsLogin}
             setAccessToken={setAccessToken}
+            setLandingOn={setLandingOn}
           />
         ) : (
           <div className="login-left-box">
             <Link to="/">
               <div
                 className="login-title modal-title"
-                onClick={() => setLoginBtn(false)}
+                onClick={() => {
+                  setLandingOn(true);
+                  setLoginBtn(false);
+                }}
               >
                 <img src={title} alt="title"></img>
               </div>

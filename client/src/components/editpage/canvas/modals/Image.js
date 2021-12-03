@@ -9,7 +9,13 @@ export default function Image({ addToItems }) {
     const file = document.querySelector("input[type=file]").files[0];
     const reader = new FileReader();
     const fileType = file.name.split(".")[1].toUpperCase();
-    if (fileType === "JPG" || fileType === "PNG" || fileType === "JPEG") {
+    if (
+      fileType === "JPG" ||
+      fileType === "PNG" ||
+      fileType === "JPEG" ||
+      fileType === "SVG" ||
+      fileType === "BMP"
+    ) {
       reader.readAsDataURL(file);
       reader.addEventListener("load", () => {
         setPreviewImg(reader.result);
@@ -44,7 +50,7 @@ export default function Image({ addToItems }) {
           style={{ opacity: 0 }}
           onChange={() => getFile()}
         />
-        {previewImg && <img id="preview" src={previewImg} />}
+        {previewImg && <img id="preview" src={previewImg} alt="preview" />}
         <button
           id="add-image-button"
           onClick={() => {
@@ -58,6 +64,8 @@ export default function Image({ addToItems }) {
             선택한 사진이 올바르지 않습니다.
             <br />
             다시 선택해주세요.
+            <br />
+            (지원 형식 : JPG, JPEG, PNG, BMP)
           </div>
         )}
       </div>

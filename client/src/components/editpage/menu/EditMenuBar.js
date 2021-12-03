@@ -24,6 +24,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
           <img
             id="menuBar-bg"
             className="edit-button"
+            alt="bgImg"
             src={bgImg}
             ref={(el) => (imgRef.current[0] = el)}
             onClick={(e) => handleClick(e)}
@@ -40,6 +41,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
           <img
             id="menuBar-templates"
             className="edit-button"
+            alt="templateImg"
             src={templateImg}
             ref={(el) => (imgRef.current[1] = el)}
             onClick={(e) => handleClick(e)}
@@ -72,6 +74,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
           <img
             id="menuBar-image"
             className="edit-button"
+            alt="imageImg"
             src={imageImg}
             ref={(el) => (imgRef.current[3] = el)}
             onClick={(e) => handleClick(e)}
@@ -89,6 +92,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
           <img
             id="menuBar-text"
             className="edit-button"
+            alt="textImg"
             src={textImg}
             ref={(el) => (imgRef.current[4] = el)}
             onClick={(e) => handleClick(e)}

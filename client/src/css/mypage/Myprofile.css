@@ -14,7 +14,6 @@
   display: flex;
   height: 28vh;
   padding-left: 3rem;
-  justify-content: start;
 }
 
 .profile-image {
@@ -29,10 +28,13 @@
 .profile-image-box {
   width: 10rem;
   height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .profile-image-box img {
-  /* width: 7rem;
-  height: 7rem; */
+  width: 10rem;
+  height: 10rem;
   object-fit: contain;
   cursor: pointer;
 }

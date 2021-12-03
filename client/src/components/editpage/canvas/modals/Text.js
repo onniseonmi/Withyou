@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/Text.css";
-const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
+// const fakeData = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function Text({ addToItems }) {
   return (

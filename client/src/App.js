@@ -6,6 +6,7 @@ import Mypage from "./pages/Mypage";
 import Nav from "./components/Nav";
 import axios from "axios";
 import "./App.css";
+axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
@@ -74,7 +75,7 @@ export default function App() {
             <LandingPage landingOn={landingOn} setLandingOn={setLandingOn} />
           )}
         </Route>
-        <Route path="/editpage">{!loginBtn && <EditPage />}</Route>
+        <Route path="/editpage">{!loginBtn && <EditPage setLandingOn={setLandingOn} />}</Route>
         <Route path="/mypage">
           <Mypage accessToken={accessToken} />
         </Route>

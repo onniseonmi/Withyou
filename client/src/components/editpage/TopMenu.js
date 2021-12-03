@@ -2,10 +2,15 @@ import React from "react";
 import "../../css/editpage/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
+axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
-export default function TopMenu({ deSelectObject }) {
+export default function TopMenu({
+  deSelectObject,
+  setItemStates,
+  setCurrentCanvasColor,
+}) {
   async function download() {
     await deSelectObject();
     await html2canvse(document.querySelector("#canvas-paper")).then(
@@ -68,14 +73,25 @@ export default function TopMenu({ deSelectObject }) {
 
   return (
     <div id="top-menu">
+      <div className="top-menu-box top-menu-left">
+        <div
+          id="delete-all-object"
+          onClick={() => {
+            setCurrentCanvasColor({ hex: "#ffffff" });
+            setItemStates([]);
+          }}
+        >
+          전체 삭제
+        </div>
+      </div>
       <div className="top-menu-box top-menu-right">
         <div id="top-menu-save">
-          <a id="download" onClick={() => download()}>
+          <div id="download" onClick={() => download()}>
             다운로드
-          </a>
-          <a id="save" onClick={() => saveToServer()}>
+          </div>
+          <div id="save" onClick={() => saveToServer()}>
             저장하기
-          </a>
+          </div>
         </div>
       </div>
     </div>

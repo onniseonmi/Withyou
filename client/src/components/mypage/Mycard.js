@@ -4,6 +4,7 @@ import "../../css/mypage/Mycard.css";
 import addPage from "../../images/addPage.svg";
 import Footer from "../Footer";
 import axios from "axios";
+axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
@@ -17,13 +18,13 @@ const Mycard = () => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
-        if (loginType === null) {
-          const card = await axios.get(`${server_url_2}/mycard`, {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          });
-          const cardImage = card.data;
-          setCards([...cardImage]);
-        }
+        const card = await axios.get(`${server_url_2}/mycard`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        const cardImage = card.data;
+        setCards([...cardImage]);
       } catch (err) {
         console.log(err);
       }
@@ -40,7 +41,6 @@ const Mycard = () => {
 
   return (
     <div>
-      {console.log(document.querySelector(".cardImg"))}
       <div className="mypage-title">⭐️ My Card</div>
       {editBtn ? (
         <div>

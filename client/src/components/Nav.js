@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import "../css/LandingPage.css";
 import Login from "./login/Login";
-const client_url = "http://localhost:3000";
-// const client_url =
-//   "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+import axios from "axios";
+const client_url_1 = "http://localhost:3000";
+const client_url_2 = "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
 
 const Nav = ({
   userInfo,
@@ -35,7 +35,7 @@ const Nav = ({
       setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url);
+      window.location.assign(client_url_2);
     }
   };
   return (
@@ -54,7 +54,10 @@ const Nav = ({
               style={{
                 color: `${landingOn ? "#f2f0ec" : "black"}`,
               }}
-              onClick={() => setLandingOn(true)}
+              onClick={() => {
+                setLandingOn(true);
+                setLoginBtn(false);
+              }}
             >
               Withyou
             </div>

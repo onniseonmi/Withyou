@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/EditPage.css";
 import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
@@ -8,7 +8,7 @@ import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty"
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 import Footer from "../components/Footer";
 
-export default function EditPage() {
+export default function EditPage({setLandingOn}) {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
@@ -126,11 +126,11 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
-          width: width / 6,
-          height: height / 6,
-          top: (height * 3) / 20,
-          left: width / 6,
+          zIndex: 1,
+          width: width / 12,
+          height: height / 12,
+          top: (height * 3) / 15,
+          left: width / 5,
           transform: "rotate(0deg)",
         },
         isSelected: false,
@@ -163,7 +163,7 @@ export default function EditPage() {
         style: {
           type: type,
           position: "absolute",
-          zIndex: states.length,
+          zIndex: 1,
           top: (height * 3) / 20,
           left: width / 6,
           transform: "rotate(0deg)",
@@ -237,6 +237,10 @@ export default function EditPage() {
     setCurrentCanvasColor(newColor);
   }
 
+  useEffect(() => {
+    setLandingOn(false);
+  }, [])
+
   return (
     <>
       <div id="EditPage">
@@ -260,7 +264,11 @@ export default function EditPage() {
         </div>
         <div id="canvas">
           <div id="canvas-top-menu">
-            <TopMenu deSelectObject={deSelectObject} />
+            <TopMenu
+              deSelectObject={deSelectObject}
+              setItemStates={setItemStates}
+              setCurrentCanvasColor={setCurrentCanvasColor}
+            />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>
             <div id="content"></div>
