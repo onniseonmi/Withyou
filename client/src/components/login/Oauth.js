@@ -18,7 +18,7 @@ const Oauth = () => {
 
   const kakaoLogin = (e) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
-    const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${client_url_2}&response_type=code`;
+    const api_url = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${client_url_2}`;
     // setUserInfo({ ...userInfo, type: "kakao" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
     sessionStorage.setItem("loginType", "kakao");
