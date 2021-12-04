@@ -57,8 +57,9 @@ export default function TopMenu({
           let formData = new FormData(); // formData 생성
           formData.append("img", file); // file data 추가
 
-          const accessTokenSession =
-            sessionStorage.getItem("accessTokenSession");
+          const accessTokenSession = sessionStorage.getItem(
+            "accessTokenSession"
+          );
 
           axios({
             method: "POST",
