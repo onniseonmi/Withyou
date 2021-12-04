@@ -239,7 +239,7 @@
   }
   .close-btn {
     position: absolute;
-    top: 0;
+    top: 3.4rem;
     right: 0;
     font-size: 20px;
     border: 1px solid gray;
@@ -262,4 +262,8 @@
   .login-right-box {
     display: none;
   }
+}
+
+/*! phone */
+@media screen and (max-device-width: 450px) {
 }

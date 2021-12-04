@@ -1,5 +1,5 @@
 #EditPage {
-  height: 93vh;
+  flex: 1 1 0;
   display: flex;
 }
 #canvas {

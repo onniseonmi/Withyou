@@ -7,7 +7,7 @@ const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
+const Myprofile = () => {
   const { clientWidth } = document.body;
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
@@ -23,17 +23,17 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
     image: "",
   });
   const { username, email, mobile } = userInfo;
+  const [editProfileBtn, setEditProfileBtn] = useState(false);
   const handleClick = async (e) => {
-    setCardEditBtn(false);
     // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
-      setProfileEditBtn(true);
+      setEditProfileBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_1}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -53,15 +53,15 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
           username: data.data.username,
           mobile: data.data.mobile,
         });
+        setEditProfileBtn(false);
       } catch (err) {}
-      setProfileEditBtn(false);
     } else if (e.target.id === "btn-cancel") {
       setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
         image: userInfo.image,
       });
-      setProfileEditBtn(false);
+      setEditProfileBtn(false);
     }
   };
   const handleChange = (e) => {
@@ -73,7 +73,7 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
       try {
         axios({
           method: "GET",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_1}/profile`,
           headers: {
             authorization: `Bearer ${accessToken}`,
           },
@@ -105,7 +105,7 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
     formData.append("img", event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
-    const res = await axios.put(`${server_url_2}/profile/image`, formData, {
+    const res = await axios.put(`${server_url_1}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",
@@ -139,71 +139,6 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
                 }}
                 onChange={pofileImgHandler}
               ></input>
-            </div>
-            <div className="userinfo">
-              <div id="e-mail" className="row">
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 email : </span>
-                    <span>{email}</span>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 email : </div>
-                    <div>{email}</div>
-                  </div>
-                )}
-              </div>
-              <div id="username" className="row">
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 username : </span>
-                    <input
-                      id="username"
-                      type="text"
-                      value={userInput.username}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 username : </div>
-                    <input
-                      id="username"
-                      type="text"
-                      value={userInput.username}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                )}
-              </div>
-              <div id="mobile" className="row">
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 mobile : </span>
-                    <input
-                      id="mobile"
-                      type="text"
-                      value={userInput.mobile}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 mobile : </div>
-                    <input
-                      id="mobile"
-                      type="text"
-                      value={userInput.mobile}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="button-box">
-            <div className="mypage-button-left">
               <button
                 id="img-add-button"
                 onClick={() => imgInputRef.current.click()}
@@ -211,15 +146,41 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
                 Add Image
               </button>
             </div>
-            <div className="button-box-edit">
-              <div className="edit-profile mypage-button">
-                <button id="btn-save" onClick={handleClick}>
-                  save
-                </button>
-                <button id="btn-cancel" onClick={handleClick}>
-                  cancel
-                </button>
+            <div className="userinfo">
+              <div id="e-mail" className="uerInfo-row">
+                <span>💫 email : </span>
+                <span>{email}</span>
               </div>
+              <div id="username" className="uerInfo-row">
+                <div>
+                  <span>💫 username : </span>
+                  <input
+                    id="username"
+                    type="text"
+                    value={userInput.username}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+              </div>
+              <div id="mobile" className="uerInfo-row">
+                <div>
+                  <span>💫 mobile : </span>
+                  <input
+                    id="mobile"
+                    type="text"
+                    value={userInput.mobile}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div className="button-box">
+              <button id="btn-save" onClick={handleClick}>
+                Save
+              </button>
+              <button id="btn-cancel" onClick={handleClick}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>
@@ -237,27 +198,24 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
               </div>
             </div>
             <div className="userinfo">
-              <div id="e-mail" className="row">
+              <div id="e-mail" className="uerInfo-row">
                 <span>💫 email : </span>
                 <span>{email}</span>
               </div>
-              <div id="username" className="row">
+              <div id="username" className="uerInfo-row">
                 <span>💫 username : </span>
                 <span>{username}</span>
               </div>
-              <div id="mobile" className="row">
+              <div id="mobile" className="uerInfo-row">
                 <span>💫 mobile : </span>
                 <span>{mobile}</span>
               </div>
             </div>
           </div>
-
-          <div className="button-box-edit">
-            <div className="edit-profile mypage-button">
-              <button id="btn-edit" onClick={handleClick}>
-                Edit
-              </button>
-            </div>
+          <div className="button-box">
+            <button id="btn-edit" onClick={handleClick}>
+              Edit
+            </button>
           </div>
         </div>
       )}

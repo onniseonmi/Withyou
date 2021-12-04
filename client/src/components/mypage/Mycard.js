@@ -17,7 +17,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_1}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -35,102 +35,57 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     setProfileEditBtn(false);
   };
   const deleteCard = (card) => {
-    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_1}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
 
   return (
     <div>
       <div className="mypage-title">⭐️ My Card</div>
-      {editCardBtn ? (
-        <div>
-          <div className="card-box-container">
-            <div className="card-box">
-              <div className="card-container">
-                <Link to="/editpage">
-                  <img
-                    id="move-to-editpage"
-                    src={addPage}
-                    alt="card"
-                    download="card.png"
-                  />
-                </Link>
-              </div>
-              {cards.map((el, idx) => (
-                <div key={idx} className="card-container">
-                  <div id={`downloadImg${idx}`}>
-                    <img
-                      src={el.card}
-                      className="cardImg"
-                      alt="card"
-                      download="card.png"
-                    />
-                  </div>
-                  <div id="delete-box">
-                    <a
-                      id={`${idx}`}
-                      href={el.card}
-                      download="card-download.png"
-                    >
-                      다운로드
-                    </a>
-                    <button
-                      className="deleteCard"
-                      key={idx}
-                      onClick={() => {
-                        deleteCard(el);
-                      }}
-                    >
-                      X
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="button-box-edit">
-            <div className="edit-image mypage-button">
-              <button id="btn-edit" onClick={editHandler}>
-                Save
-              </button>
-            </div>
-          </div>
+
+      <div className="card-box-container">
+        <div className="card-container">
+          <Link to="/editpage">
+            <img
+              id="move-to-editpage"
+              src={addPage}
+              alt="card"
+              download="card.png"
+            />
+          </Link>
         </div>
-      ) : (
-        <div>
-          <div className="card-box-container">
-            <div className="card-box">
-              <div className="card-container">
-                <Link to="/editpage">
-                  <img
-                    id="move-to-editpage"
-                    src={addPage}
-                    alt="card"
-                    download="card.png"
-                  />
-                </Link>
+        {cards.map((el, idx) => (
+          <div key={idx} className="card-container">
+            <div id={`downloadImg${idx}`}>
+              <img
+                src={el.card}
+                className="cardImg"
+                alt="card"
+                download="card.png"
+              />
+            </div>
+            <div id="card-menu">
+              <div className="card-download">
+                <a id={`${idx}`} href={el.card} download="card-download.png">
+                  다운로드
+                </a>
               </div>
-              {cards.map((el, idx) => (
-                <div key={idx} className="card-container">
-                  <img
-                    src={el.card}
-                    className="cardImg"
-                    alt="card"
-                    draggable={false}
-                  />
+              <div className="card-delete">
+                <div
+                  className="deleteCard"
+                  key={idx}
+                  onClick={() => {
+                    deleteCard(el);
+                  }}
+                >
+                  삭제
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-          <div className="button-box-edit">
-            <div className="edit-image mypage-button">
-              <button id="btn-edit" onClick={editHandler}>
-                Edit
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        ))}
+      </div>
+
       <Footer />
     </div>
   );

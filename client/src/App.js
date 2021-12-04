@@ -25,7 +25,7 @@ export default function App() {
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
-      url: `${server_url_2}/user/callback`,
+      url: `${server_url_1}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
       const { accessToken } = resp.data;
@@ -75,7 +75,9 @@ export default function App() {
             <LandingPage landingOn={landingOn} setLandingOn={setLandingOn} />
           )}
         </Route>
-        <Route path="/editpage">{!loginBtn && <EditPage setLandingOn={setLandingOn} />}</Route>
+        <Route path="/editpage">
+          {!loginBtn && <EditPage setLandingOn={setLandingOn} />}
+        </Route>
         <Route path="/mypage">
           <Mypage accessToken={accessToken} setLandingOn={setLandingOn} />
         </Route>
