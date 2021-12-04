@@ -114,15 +114,15 @@ const Signup = ({
     <div className='signup-left-box'>
       <Link to='/'>
         <div className='signup-title'>
-          <img
-            src={title}
-            alt='title'
+          <div
             onClick={() => {
               setLandingOn(true);
               setLoginBtn(false);
               setSignupBtn(false);
             }}
-          ></img>
+          >
+            Withyou
+          </div>
         </div>
       </Link>
       <div className='signup-input'>

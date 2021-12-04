@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-const server_url_2 = 'http://localhost:4000';
+const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
   'http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000';
 
