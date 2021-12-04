@@ -83,8 +83,20 @@
   transition: 0.5s;
   color: black;
 }
-
-/*! 작을 때 */
+.delete-account-container > button {
+  width: 70px;
+  height: 35px;
+  font-size: 14px;
+  margin-top: 0.5rem;
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+  opacity: 50%;
+}
+.delete-account-container > button:hover {
+  opacity: 100%;
+}
+/* 작을 때 */
 @media screen and (max-width: 900px) {
   #cards {
     flex: 1 1 0;

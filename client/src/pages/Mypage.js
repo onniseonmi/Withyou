@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "../css/Mypage.css";
-import Footer from "../components/Footer";
-import Myprofile from "../components/mypage/Myprofile";
-import Mycard from "../components/mypage/Mycard";
+import React, { useEffect } from 'react';
+import '../css/Mypage.css';
+import Footer from '../components/Footer';
+import Myprofile from '../components/mypage/Myprofile';
+import Mycard from '../components/mypage/Mycard';
+import { DeleteAccount } from '../components/mypage/DeleteAccount';
 const Mypage = ({ setLandingOn }) => {
   useEffect(() => {
     setLandingOn(false);
   }, []);
   return (
-    <div id="mypage">
-      <div id="profile">
+    <div id='mypage'>
+      <div id='profile'>
         <Myprofile />
       </div>
-      <div id="cards">
+      <div id='cards'>
         <Mycard />
+        {/* <DeleteAccount /> */}
       </div>
       <Footer />
     </div>
