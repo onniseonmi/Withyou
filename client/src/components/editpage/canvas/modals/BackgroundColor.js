@@ -48,7 +48,7 @@ export default function BackgroundColor({
                 : "200px"
               : "550px"
           }
-          disableAlpha={window.outerWidth >= 450 ? true : false}
+          disableAlpha={true}
           color={currentTextColor}
           onChange={(color) => {
             handleCurrentColor(color);
