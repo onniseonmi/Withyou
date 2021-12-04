@@ -1,7 +1,8 @@
-import React from 'react';
-import '../../css/editpage/TopMenu.css';
-import html2canvse from 'html2canvas';
-import axios from 'axios';
+import React, { useState } from "react";
+import "../../css/editpage/TopMenu.css";
+import html2canvse from "html2canvas";
+import axios from "axios";
+import SaveMessage from "./SaveMessage";
 axios.default.withCredentials = true;
 const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
@@ -11,6 +12,8 @@ export default function TopMenu({
   setItemStates,
   setCurrentCanvasColor,
 }) {
+  const [isSave, setIsSave] = useState(false);
+
   async function download() {
     await deSelectObject();
     await html2canvse(document.querySelector('#canvas-paper')).then(
@@ -64,7 +67,10 @@ export default function TopMenu({
           },
         })
           .then(() => {
-            alert('전송되었습니다.');
+            setIsSave(true);
+            setTimeout(() => {
+              setIsSave(false);
+            }, 2000);
           })
           .catch((err) => alert(err));
       }
@@ -94,6 +100,7 @@ export default function TopMenu({
           </div>
         </div>
       </div>
+      {isSave && <SaveMessage setIsSave={setIsSave} />}
     </div>
   );
 }

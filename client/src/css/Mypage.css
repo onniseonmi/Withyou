@@ -2,9 +2,9 @@
   font-family: "BinggraeMelona";
   display: flex;
   flex-direction: column;
-  padding-top: 2vh;
   align-items: center;
   background-color: #fefcff;
+  flex: 1 1 0;
 }
 
 /* 클때 */

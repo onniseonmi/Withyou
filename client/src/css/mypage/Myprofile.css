@@ -1,29 +1,37 @@
 #profile {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  height: 38vh;
+  width: 70vw;
+  height: 22rem;
   border-bottom: 2px solid lightgray;
-  margin-bottom: 4vh;
+}
+#profile > div {
+  margin-top: 1rem;
+  position: relative;
+  height: 20rem;
 }
 .mypage-title {
-  font-size: 3vh;
+  font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
 #profile-content {
   display: flex;
-  height: 28vh;
-  padding-left: 3rem;
+  padding-left: 2rem;
+  height: 15rem;
 }
-
-.profile-image-box {
-  width: 15vw;
-  height: 28vh;
+.profile-image {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.profile-image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .profile-image-box img {
   border-radius: 50%;
@@ -31,33 +39,6 @@
   height: 200px;
   cursor: pointer;
 }
-
-.userinfo {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  padding: 0.5rem 0rem;
-  font-size: 1.5rem;
-  width: 60%;
-  padding-left: 1rem;
-  margin-left: 3rem;
-}
-
-.userinfo input {
-  font-size: 1.5rem;
-  width: 15rem;
-  height: 1.5rem;
-  border: 1px solid rgb(234, 236, 239);
-  border-radius: 12px;
-  padding-left: 1rem;
-}
-
-.button-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 #img-add-button {
   width: 100px;
   height: 33px;
@@ -66,7 +47,8 @@
   border-radius: 0.3rem;
   cursor: pointer;
   background-color: #f5f5f5;
-  margin-left: 7.5vw;
+  position: absolute;
+  bottom: 0;
 }
 
 #img-add-button:hover {
@@ -78,10 +60,38 @@
   background-color: #f5f5f5;
 }
 
-.mypage-button {
-  width: 20vw;
+.userinfo {
+  flex: 1 1 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  height: 13rem;
+}
+
+.userinfo input {
+  font-size: 1.5rem;
+  width: 12rem;
+  height: 1.5rem;
+  border: 1px solid rgb(234, 236, 239);
+  border-radius: 12px;
+  padding-left: 1rem;
+}
+
+.button-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mypage-button {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -97,13 +107,7 @@
   border: 2px solid #f2f0ec;
   background-color: black;
   color: white;
-}
-
-.button-box-edit {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  height: 5vh;
+  margin-left: 1rem;
 }
 
 #btn-save:hover,
@@ -119,39 +123,47 @@
   background-color: black;
 }
 
+/*! 900px */
+
 @media screen and (max-width: 900px) {
   #profile {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 38vh;
-    border-bottom: 2px solid lightgray;
-    margin-bottom: 4vh;
+    height: 17rem;
+    width: 90vw;
+    padding-bottom: 1rem;
   }
   .mypage-title {
-    font-size: 2.5vh;
+    font-size: 1.3rem;
+  }
+  #profile-content {
+    /* padding: 0; */
+  }
+  .profile-image {
+    display: unset;
+    align-items: unset;
+    justify-content: unset;
+  }
+  .profile-image-box {
+    margin-top: 2rem;
+    align-items: unset;
+    justify-content: unset;
+    position: relative;
   }
   .profile-image-box img {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
+    width: 100px;
+    height: 100px;
+  }
+  #profile-content {
+    height: 10rem;
   }
   .userinfo {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: 0.5rem 0rem;
-    font-size: 1.3rem;
-    width: 50vw;
-    padding-left: 1rem;
-    margin-left: 3rem;
-    border: 1px solid red;
+    font-size: 3vw;
+    height: 10rem;
   }
 
   .userinfo input {
-    font-size: 1.3rem;
-    width: 13rem;
+    font-size: 3vw;
+    width: 25vw;
     height: 1.3rem;
     border: 1px solid rgb(234, 236, 239);
     border-radius: 12px;
@@ -159,9 +171,111 @@
   }
 
   .mypage-button {
-    width: 30vw;
+    /* width: 30vw;
     display: flex;
     justify-content: space-around;
+    align-items: center; */
+  }
+  #img-add-button {
+    width: 6rem;
+    height: 2rem;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+  }
+  #btn-save,
+  #btn-cancel,
+  #btn-edit {
+    width: 6rem;
+    height: 2rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+}
+/*! phone */
+@media screen and (max-device-width: 450px) {
+  #profile {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 30rem;
+    border-bottom: 2px solid lightgray;
+  }
+  #profile > div {
+    margin-top: 3rem;
+    position: relative;
+    height: 25rem;
+  }
+  .mypage-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #profile-content {
+    display: flex;
+    height: 15rem;
+    padding: 0;
+  }
+  .profile-image {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .profile-image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .profile-image-box img {
+    border-radius: 50%;
+    width: 16rem;
+    height: 16rem;
+    cursor: pointer;
+  }
+  #img-add-button {
+    width: 7rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .userinfo {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 2.2rem;
+    margin-left: 2rem;
+    height: 17rem;
+  }
+
+  .userinfo input {
+    font-size: 2.2rem;
+    width: 15rem;
+    height: 2.5rem;
+    border: 1px solid rgb(234, 236, 239);
+    border-radius: 12px;
+    padding-left: 1rem;
+  }
+  #btn-save,
+  #btn-cancel,
+  #btn-edit {
+    width: 7rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    margin-left: 1rem;
   }
 }

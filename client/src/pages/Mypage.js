@@ -4,26 +4,16 @@ import Footer from '../components/Footer';
 import Myprofile from '../components/mypage/Myprofile';
 import Mycard from '../components/mypage/Mycard';
 const Mypage = ({ setLandingOn }) => {
-  const [editCardBtn, setCardEditBtn] = useState(false);
-  const [editProfileBtn, setProfileEditBtn] = useState(false);
   useEffect(() => {
     setLandingOn(false);
   }, []);
   return (
     <div id='mypage'>
       <div id='profile'>
-        <Myprofile
-          editProfileBtn={editProfileBtn}
-          setCardEditBtn={setCardEditBtn}
-          setProfileEditBtn={setProfileEditBtn}
-        />
+        <Myprofile />
       </div>
       <div id='cards'>
-        <Mycard
-          editCardBtn={editCardBtn}
-          setCardEditBtn={setCardEditBtn}
-          setProfileEditBtn={setProfileEditBtn}
-        />
+        <Mycard />
       </div>
       <Footer />
     </div>

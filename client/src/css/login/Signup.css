@@ -132,3 +132,7 @@
     height: 620px;
   }
 }
+
+/*! phone */
+@media screen and (max-device-width: 450px) {
+}

@@ -1,38 +1,37 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import addImg from '../../images/manImage.svg';
-import '../../css/mypage/Myprofile.css';
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import addImg from "../../images/manImage.svg";
+import "../../css/mypage/Myprofile.css";
 axios.default.withCredentials = true;
-const server_url_1 = 'http://localhost:4000';
+const server_url_1 = "http://localhost:4000";
 const server_url_2 =
-  'http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000';
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
+const Myprofile = () => {
   const { clientWidth } = document.body;
-  const accessToken = sessionStorage.getItem('accessTokenSession');
+  const accessToken = sessionStorage.getItem("accessTokenSession");
   const imgInputRef = useRef();
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    email: '',
-    mobile: '',
-    image: '',
+    username: "",
+    email: "",
+    mobile: "",
+    image: "",
   });
   const [userInput, setUserInput] = useState({
-    username: '',
-    mobile: '',
-    image: '',
+    username: "",
+    mobile: "",
+    image: "",
   });
   const { username, email, mobile } = userInfo;
+  const [editProfileBtn, setEditProfileBtn] = useState(false);
   const handleClick = async (e) => {
-    setCardEditBtn(false);
     // const loginType = sessionStorage.getItem("loginType");
 
-    if (e.target.id === 'btn-edit') {
-      setProfileEditBtn(true);
-    } else if (e.target.id === 'btn-save') {
+    if (e.target.id === "btn-edit") {
+    } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
-          method: 'POST',
+          method: "POST",
           url: `${server_url_2}/profile`,
           data: {
             username: userInput.username,
@@ -53,15 +52,15 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
           username: data.data.username,
           mobile: data.data.mobile,
         });
+        setEditProfileBtn(false);
       } catch (err) {}
-      setProfileEditBtn(false);
-    } else if (e.target.id === 'btn-cancel') {
+    } else if (e.target.id === "btn-cancel") {
       setUserInput({
         username: userInfo.username,
         mobile: userInfo.mobile,
         image: userInfo.image,
       });
-      setProfileEditBtn(false);
+      setEditProfileBtn(false);
     }
   };
   const handleChange = (e) => {
@@ -72,7 +71,7 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
     if (accessToken) {
       try {
         axios({
-          method: 'GET',
+          method: "GET",
           url: `${server_url_2}/profile`,
           headers: {
             authorization: `Bearer ${accessToken}`,
@@ -102,162 +101,120 @@ const Myprofile = ({ editProfileBtn, setCardEditBtn, setProfileEditBtn }) => {
       reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
     }
     const formData = new FormData();
-    formData.append('img', event.target.files[0]);
-    const accessTokenSession = sessionStorage.getItem('accessTokenSession');
+    formData.append("img", event.target.files[0]);
+    const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
     const res = await axios.put(`${server_url_2}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
-        'content-type': 'multipart/form-data boundary=something',
+        "content-type": "multipart/form-data boundary=something",
       },
     });
     setUserInfo({ ...userInfo, image: res.data.image });
   };
   return (
     <div>
-      <div className='mypage-title'>⭐️ My Profile</div>
+      <div className="mypage-title">⭐️ My Profile</div>
       {editProfileBtn ? (
         <div>
-          <div id='profile-content'>
-            <div className='profile-image'>
-              <div className='profile-image-box'>
+          <div id="profile-content">
+            <div className="profile-image">
+              <div className="profile-image-box">
                 <img
-                  id='image'
+                  id="image"
                   src={userInfo.image ? userInfo.image : addImg}
-                  alt='#'
-                  style={{ pointerEvents: 'none' }}
+                  alt="#"
+                  style={{ pointerEvents: "none" }}
                 />
               </div>
 
               <input
                 ref={imgInputRef}
-                type='file'
-                id='add-image'
+                type="file"
+                id="add-image"
                 // accept='image/png, image/jpeg, image/svg'
                 style={{
-                  display: 'none',
+                  display: "none",
                 }}
                 onChange={pofileImgHandler}
               ></input>
-            </div>
-            <div className='userinfo'>
-              <div id='e-mail' className='row'>
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 email : </span>
-                    <span>{email}</span>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 email : </div>
-                    <div>{email}</div>
-                  </div>
-                )}
-              </div>
-              <div id='username' className='row'>
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 username : </span>
-                    <input
-                      id='username'
-                      type='text'
-                      value={userInput.username}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 username : </div>
-                    <input
-                      id='username'
-                      type='text'
-                      value={userInput.username}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                )}
-              </div>
-              <div id='mobile' className='row'>
-                {clientWidth >= 900 ? (
-                  <div>
-                    <span>💫 mobile : </span>
-                    <input
-                      id='mobile'
-                      type='text'
-                      value={userInput.mobile}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                ) : (
-                  <div>
-                    <div>💫 mobile : </div>
-                    <input
-                      id='mobile'
-                      type='text'
-                      value={userInput.mobile}
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className='button-box'>
-            <div className='mypage-button-left'>
               <button
-                id='img-add-button'
+                id="img-add-button"
                 onClick={() => imgInputRef.current.click()}
               >
                 Add Image
               </button>
             </div>
-            <div className='button-box-edit'>
-              <div className='edit-profile mypage-button'>
-                <button id='btn-save' onClick={handleClick}>
-                  save
-                </button>
-                <button id='btn-cancel' onClick={handleClick}>
-                  cancel
-                </button>
+            <div className="userinfo">
+              <div id="e-mail" className="uerInfo-row">
+                <span>💫 email : </span>
+                <span>{email}</span>
               </div>
+              <div id="username" className="uerInfo-row">
+                <div>
+                  <span>💫 username : </span>
+                  <input
+                    id="username"
+                    type="text"
+                    value={userInput.username}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+              </div>
+              <div id="mobile" className="uerInfo-row">
+                <div>
+                  <span>💫 mobile : </span>
+                  <input
+                    id="mobile"
+                    type="text"
+                    value={userInput.mobile}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div className="button-box">
+              <button id="btn-save" onClick={handleClick}>
+                Save
+              </button>
+              <button id="btn-cancel" onClick={handleClick}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>
       ) : (
         <div>
-          <div id='profile-content'>
-            <div className='profile-image'>
-              <div className='profile-image-box'>
+          <div id="profile-content">
+            <div className="profile-image">
+              <div className="profile-image-box">
                 <img
-                  id='image'
+                  id="image"
                   src={userInfo.image ? userInfo.image : addImg}
-                  alt='#'
-                  style={{ pointerEvents: 'none' }}
+                  alt="#"
+                  style={{ pointerEvents: "none" }}
                 />
               </div>
             </div>
-            <div className='userinfo'>
-              <div id='e-mail' className='row'>
+            <div className="userinfo">
+              <div id="e-mail" className="uerInfo-row">
                 <span>💫 email : </span>
                 <span>{email}</span>
               </div>
-              <div id='username' className='row'>
+              <div id="username" className="uerInfo-row">
                 <span>💫 username : </span>
                 <span>{username}</span>
               </div>
-              <div id='mobile' className='row'>
+              <div id="mobile" className="uerInfo-row">
                 <span>💫 mobile : </span>
                 <span>{mobile}</span>
               </div>
             </div>
           </div>
-
-          <div className='button-box-edit'>
-            <div className='edit-profile mypage-button'>
-              <button id='btn-edit' onClick={handleClick}>
-                Edit
-              </button>
-            </div>
+          <div className="button-box">
+            <button id="btn-edit" onClick={handleClick}>
+              Edit
+            </button>
           </div>
         </div>
       )}
