@@ -23,7 +23,7 @@
 }
 
 .landing-title-box {
-  width: 55rem;
+  width: 80vw;
   position: absolute;
   top: 40vh;
   left: 5vw;
@@ -111,12 +111,11 @@
   }
   
   .landing-title-box {
-    width: 55rem;
     position: absolute;
     top: 42vh;
     left: 5vw;
     text-align: left;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     color: #f9ffff;
     display: block;
     text-shadow: 1px 1px #212121;

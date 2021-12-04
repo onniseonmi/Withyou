@@ -51,23 +51,25 @@ export default function Image({ addToItems }) {
           onChange={() => getFile()}
         />
         {previewImg && <img id="preview" src={previewImg} alt="preview" />}
-        <button
-          id="add-image-button"
-          onClick={() => {
-            uploadFile();
-          }}
-        >
-          캔버스에 추가하기
-        </button>
-        {onError && (
-          <div id="error-message">
-            선택한 사진이 올바르지 않습니다.
-            <br />
-            다시 선택해주세요.
-            <br />
-            (지원 형식 : JPG, JPEG, PNG, BMP)
-          </div>
-        )}
+        <div id="image-footer">
+          <button
+            id="add-image-button"
+            onClick={() => {
+              uploadFile();
+            }}
+          >
+            캔버스에 추가하기
+          </button>
+          {onError && (
+            <div id="error-message">
+              선택한 사진이 올바르지 않습니다.
+              <br />
+              다시 선택해주세요.
+              <br />
+              (지원 형식 : JPG, JPEG, PNG, BMP)
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
