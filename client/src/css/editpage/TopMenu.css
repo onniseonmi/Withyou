@@ -68,8 +68,11 @@
     font-family: "BinggraeMelona";
     align-items: center;
   }
+  .top-menu-left {
+    font-size: 35px;
+  }
   #top-menu-save {
-    font-size: 2rem;
+    font-size: 35px;
     width: 15vh;
     display: flex;
     justify-content: space-around;
