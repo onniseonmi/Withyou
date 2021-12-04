@@ -33,7 +33,7 @@ const Myprofile = () => {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url_1}/profile`,
+          url: `${server_url_2}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -73,7 +73,7 @@ const Myprofile = () => {
       try {
         axios({
           method: "GET",
-          url: `${server_url_1}/profile`,
+          url: `${server_url_2}/profile`,
           headers: {
             authorization: `Bearer ${accessToken}`,
           },
@@ -105,7 +105,7 @@ const Myprofile = () => {
     formData.append("img", event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
-    const res = await axios.put(`${server_url_1}/profile/image`, formData, {
+    const res = await axios.put(`${server_url_2}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",

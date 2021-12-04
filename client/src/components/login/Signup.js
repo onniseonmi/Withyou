@@ -66,14 +66,14 @@ const Signup = ({
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url_1}/user/signup`,
+          url: `${server_url_2}/user/signup`,
           data: userInput,
           // * 서버쪽 오류시, 에러 핸들링을 이렇게 가도 되려나?
         }).catch((err) => setInputErr(true));
 
         const tokenData = await axios({
           method: "POST",
-          url: `${server_url_1}/user/signin`,
+          url: `${server_url_2}/user/signin`,
           data: { email: userInput.email, password: userInput.password },
         }).catch((err) => setInputErr(true));
 
