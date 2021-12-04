@@ -17,7 +17,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
-        const card = await axios.get(`${server_url_1}/mycard`, {
+        const card = await axios.get(`${server_url_2}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -35,7 +35,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     setProfileEditBtn(false);
   };
   const deleteCard = (card) => {
-    axios.get(`${server_url_1}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
 

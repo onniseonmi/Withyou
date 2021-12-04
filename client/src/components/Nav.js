@@ -36,7 +36,7 @@ const Nav = ({
       setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url_1);
+      window.location.assign(client_url_2);
     }
   };
   return (
