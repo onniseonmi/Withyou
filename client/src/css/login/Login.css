@@ -277,7 +277,6 @@
   .login-right-box {
     display: none;
   }
-
   .close-btn {
     position: absolute;
     top: 0;
@@ -289,6 +288,6 @@
     text-align: center;
     line-height: 33px;
     border-radius: 10px;
-    margin-top: 1-%;
+    /* margin-top: 1; */
   }
 }

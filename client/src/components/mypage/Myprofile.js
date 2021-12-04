@@ -28,7 +28,6 @@ const Myprofile = () => {
     // const loginType = sessionStorage.getItem("loginType");
 
     if (e.target.id === "btn-edit") {
-      setProfileEditBtn(true);
     } else if (e.target.id === "btn-save") {
       try {
         const data = await axios({
