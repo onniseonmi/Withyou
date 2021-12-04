@@ -239,7 +239,7 @@
   }
   .close-btn {
     position: absolute;
-    top: 0;
+    top: 3.4rem;
     right: 0;
     font-size: 20px;
     border: 1px solid gray;
@@ -264,7 +264,7 @@
   }
 }
 
-@media screen and (max-device-width:450px) {
+@media screen and (max-device-width: 450px) {
   .login-left-box {
     position: absolute;
     left: 50%;
@@ -272,9 +272,8 @@
     transform: translateX(-50%);
     width: 600px;
     height: 1200px;
-    
   }
-  
+
   .login-right-box {
     display: none;
   }

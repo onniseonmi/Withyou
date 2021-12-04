@@ -75,10 +75,17 @@ export default function App() {
             <LandingPage landingOn={landingOn} setLandingOn={setLandingOn} />
           )}
         </Route>
+<<<<<<< HEAD
+        <Route path="/editpage">
+          {!loginBtn && <EditPage setLandingOn={setLandingOn} />}
+        </Route>
+        <Route path="/mypage">
+=======
         <Route path='/editpage'>
           {!loginBtn && <EditPage setLandingOn={setLandingOn} />}
         </Route>
         <Route path='/mypage'>
+>>>>>>> 5540ec47f30ea4e6cdfa8745acc1f2bdf972ce60
           <Mypage accessToken={accessToken} setLandingOn={setLandingOn} />
         </Route>
       </Switch>
