@@ -148,6 +148,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
           top: -3,
           left: -3,
           transform: "rotate(0deg)",
+          opacity: "0.75",
         },
         isSelected: false,
         isDragging: false,
