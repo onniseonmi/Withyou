@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     where: { email },
   });
   if (found) {
-    return res.status(409).send({ message: `${email} already exists` });
+    return res.send({ data: email, message: `${email} already exists` });
   }
   const hashed = await bcrypt.hash(password, bcryptSaltRounds);
   const userInfo = await User.create({
@@ -19,5 +19,5 @@ module.exports = async (req, res) => {
     email,
     mobile,
   });
-  res.status(201).json(userInfo);
+  res.status(201).json({ userInfo, message: 'ok' });
 };
