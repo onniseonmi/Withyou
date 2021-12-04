@@ -7,7 +7,7 @@ import TopMenu from "../components/editpage/TopMenu";
 import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
-export default function EditPage({ setLandingOn }) {
+export default function EditPage({ setLandingOn, isLogin }) {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
@@ -264,6 +264,7 @@ export default function EditPage({ setLandingOn }) {
         <div id="canvas">
           <div id="canvas-top-menu">
             <TopMenu
+              isLogin={isLogin}
               deSelectObject={deSelectObject}
               setItemStates={setItemStates}
               setCurrentCanvasColor={setCurrentCanvasColor}
