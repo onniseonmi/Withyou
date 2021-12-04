@@ -129,6 +129,9 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
               </button>
             </div>
           </div>
+          <div className='delete-account-container'>
+            <button>회원탈퇴</button>
+          </div>
         </div>
       )}
       <Footer />
