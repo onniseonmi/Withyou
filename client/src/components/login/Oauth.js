@@ -1,16 +1,15 @@
 import React from "react";
 import naver from "../../images/naver.png";
 import kakao from "../../images/kakao.png";
-const client_url = 'http://localhost:3000';
-// const client_url =
-//   "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+// const client_url_1 = 'http://localhost:3000';
+const client_url_2 =
+  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
 
 const Oauth = () => {
   const naverLogin = (e) => {
     const client_id = "uFXw6VGES6r8XT7wm80Q";
     const state = "RANDOM_STATE";
-    const redirect_uri = client_url;
-    const api_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}`;
+    const api_url = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=${client_url_2}&state=${state}`;
     // setUserInfo({ ...userInfo, type: "naver" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
     sessionStorage.setItem("loginType", "naver");
@@ -19,14 +18,13 @@ const Oauth = () => {
 
   const kakaoLogin = (e) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
-    const redirect_uri = client_url;
-    const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
+    const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${client_url_2}&response_type=code`;
     // setUserInfo({ ...userInfo, type: "kakao" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
     sessionStorage.setItem("loginType", "kakao");
     window.location.assign(api_url);
   };
-  
+
   const githubLogin = () => {
     const GITHUB_LOGIN_URL =
       "https://github.com/login/oauth/authorize?client_id=5b0d60296b7af761c5d5";
