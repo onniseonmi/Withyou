@@ -1,6 +1,6 @@
 #EditPage {
-  flex: 1 1 0;
   display: flex;
+  flex: 1;
 }
 #canvas {
   flex: 1 1 0;
@@ -48,9 +48,11 @@
 @media screen and (max-width: 900px) {
   #EditPage {
     flex-direction: column-reverse;
+    flex: 1;
   }
   #edit-menu {
     flex-direction: column-reverse;
+    flex: 1;
   }
   #canvas-paper {
     transform: scale(1);
@@ -75,8 +77,6 @@
   }
 
   #canvas-paper {
-    width: 84vw;
-    height: 60vw;
     position: relative;
   }
 

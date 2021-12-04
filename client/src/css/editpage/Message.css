@@ -1,0 +1,41 @@
+#massage-modal {
+  font-size: 20px;
+  position: absolute;
+  z-index: 1000;
+  top: 25vh;
+  left: 15vw;
+  width: 350px;
+  height: 150px;
+  text-align: center;
+  transition: 1s;
+  background-color: #e4e0d6;
+  border: 2px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 1rem;
+  transition: all 1s ease-in-out;
+}
+
+#close-massage-modal {
+  font-size: 15px;
+  border-radius: 0.9rem;
+  padding: 5px 10px;
+  margin-top: 15px;
+  font-family: 'BinggraeMelona';
+  cursor: pointer;
+  border: 2px solid #f2f0ec;
+  background-color: black;
+  color: white;
+}
+#close-massage-modal:hover {
+  background-color: rgb(253, 178, 169);
+  border-color: black;
+  transition: 0.5s;
+  color: black;
+}
+#close-massage-modal:not(:hover) {
+  background-color: black;
+  transition: 0.5s;
+}

@@ -76,7 +76,9 @@ export default function App() {
           )}
         </Route>
         <Route path='/editpage'>
-          {!loginBtn && <EditPage setLandingOn={setLandingOn} />}
+          {!loginBtn && (
+            <EditPage setLandingOn={setLandingOn} isLogin={isLogin} />
+          )}
         </Route>
         <Route path='/mypage'>
           <Mypage

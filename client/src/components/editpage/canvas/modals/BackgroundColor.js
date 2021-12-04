@@ -41,8 +41,14 @@ export default function BackgroundColor({
       <div className="button-area">
         <ChromePicker
           styles={styles.color}
-          width={window.outerWidth >= 450 ? "225px" : "550px"}
-          disableAlpha={window.outerWidth >= 450 ? true : false}
+          width={
+            window.outerWidth >= 450
+              ? clientWidth >= 900
+                ? "225px"
+                : "200px"
+              : "550px"
+          }
+          disableAlpha={true}
           color={currentTextColor}
           onChange={(color) => {
             handleCurrentColor(color);

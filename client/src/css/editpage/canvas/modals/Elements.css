@@ -1,48 +1,49 @@
 #elements-modal {
+  display: flex;
+  flex-direction: column;
   padding-top: 0.5rem;
   font-family: "BinggraeMelona";
-  width: 100%;
-  height: 92vh;
-}
-
-#elements-modal-nav {
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-#elements-modal-upload {
-  padding-left: 0.3rem;
-}
 #elements-modal-upload > img {
-  width: 8rem;
-  height: 6rem;
-  margin: 1rem 0.8rem;
-  object-fit: fill;
+  width: 140px;
+  height: 100px;
+  margin: 5px 5px;
   cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 1;
 }
+
+#elements-modal-upload > img:hover {
+  transition: 0.1s;
+  border: 2px solid black;
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 900px) {
   #elements-modal {
-    font-family: "BinggraeMelona";
-    width: 100%;
-    height: 38vh;
-    display: inline-block;
-    text-align: center;
+    flex-wrap: row wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  #elements-modal-upload {
     overflow: auto;
   }
 }
 @media screen and (max-device-width: 450px) {
-  #elements-modal {
-    font-family: "BinggraeMelona";
-    width: 100%;
-    height: 37vh;
-    display: inline-block;
-    text-align: center;
+  #elements-modal-upload {
     overflow: auto;
   }
   #elements-modal-upload > img {
-    width: 40vw;
-    height: 20vh;
+    width: 280px;
+    height: 200px;
     margin: 1rem 0.8rem;
-    object-fit: fill;
-    cursor: pointer;
   }
 }

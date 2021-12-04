@@ -73,8 +73,8 @@ export default function PrintOnCanvas({
     let x = e.clientX - differX - left;
     let y = e.clientY - differY - top;
     onChangeStyle({
-      left: x,
-      top: y,
+      left: x / 2,
+      top: y / 2,
     });
   }
 
