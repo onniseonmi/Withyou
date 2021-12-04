@@ -8,8 +8,8 @@
   transition: 0.5s;
 }
 .menubar-btn img {
-  width: 2vw;
-  height: 2vw;
+  width: 35px;
+  height: 35px;
   margin: auto;
   cursor: pointer;
 }
@@ -18,12 +18,12 @@
   transition: 0.5s;
 }
 #menuBar-image {
-  width: 2.5vw;
-  height: 2.5vw;
+  width: 35px;
+  height: 35px;
 }
 #menuBar-bg {
-  width: 2.2vw;
-  height: 2.2vw;
+  width: 35px;
+  height: 35px;
 }
 @media screen and (max-width: 900px) {
   #menuBar-container {
@@ -37,16 +37,16 @@
     height: 3.5rem;
   }
   #menuBar-image {
-    width: 6vw;
-    height: 6vw;
+    width: 30px;
+    height: 30px;
   }
   #menuBar-bg {
-    width: 5vw;
-    height: 5vw;
+    width: 30px;
+    height: 30px;
   }
   .menubar-btn img {
-    width: 5vw;
-    height: 5vw;
+    width: 30px;
+    height: 30px;
     margin: auto;
     cursor: pointer;
   }

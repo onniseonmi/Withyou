@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/EditPage.css";
 import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
@@ -6,8 +6,9 @@ import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/editpage/TopMenu";
 import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
+import Footer from "../components/Footer";
 
-export default function EditPage() {
+export default function EditPage({setLandingOn}) {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
@@ -236,6 +237,10 @@ export default function EditPage() {
     setCurrentCanvasColor(newColor);
   }
 
+  useEffect(() => {
+    setLandingOn(false);
+  }, [])
+
   return (
     <>
       <div id="EditPage">
@@ -262,6 +267,7 @@ export default function EditPage() {
             <TopMenu
               deSelectObject={deSelectObject}
               setItemStates={setItemStates}
+              setCurrentCanvasColor={setCurrentCanvasColor}
             />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>

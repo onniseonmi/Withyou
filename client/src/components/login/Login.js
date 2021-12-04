@@ -12,13 +12,10 @@ const server_url_2 =
   'http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000';
 
 const Login = ({
-  isLogin,
   setIsLogin,
-  loginBtn,
   setLoginBtn,
   signupBtn,
   setSignupBtn,
-  accessToken,
   setAccessToken,
   setLandingOn,
 }) => {
@@ -38,7 +35,7 @@ const Login = ({
     try {
       const data = await axios({
         method: 'POST',
-        url: `${server_url_1}/user/signin`,
+        url: `${server_url_2}/user/signin`,
         data: userInput,
       }).catch((err) => setInputErr(true));
 
@@ -46,9 +43,9 @@ const Login = ({
 
       sessionStorage.setItem('isLoginSession', true);
       sessionStorage.setItem('accessTokenSession', accessToken);
-      setIsLogin(true);
       setAccessToken(accessToken);
       setLoginBtn(false);
+      setIsLogin(true);
     } catch (err) {
       setInputErr(true);
     }
@@ -73,13 +70,17 @@ const Login = ({
             setSignupBtn={setSignupBtn}
             setIsLogin={setIsLogin}
             setAccessToken={setAccessToken}
+            setLandingOn={setLandingOn}
           />
         ) : (
           <div className='login-left-box'>
             <Link to='/'>
               <div
                 className='login-title modal-title'
-                onClick={() => setLoginBtn(false)}
+                onClick={() => {
+                  setLandingOn(true);
+                  setLoginBtn(false);
+                }}
               >
                 <img src={title} alt='title'></img>
               </div>

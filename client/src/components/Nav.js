@@ -36,7 +36,7 @@ const Nav = ({
       setAccessToken('');
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url_1);
+      window.location.assign(client_url_2);
     }
   };
   return (
@@ -55,7 +55,10 @@ const Nav = ({
               style={{
                 color: `${landingOn ? '#f2f0ec' : 'black'}`,
               }}
-              onClick={() => setLandingOn(true)}
+              onClick={() => {
+                setLandingOn(true);
+                setLoginBtn(false);
+              }}
             >
               Withyou
             </div>

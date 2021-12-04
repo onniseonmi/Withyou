@@ -64,6 +64,8 @@ export default function Image({ addToItems }) {
             선택한 사진이 올바르지 않습니다.
             <br />
             다시 선택해주세요.
+            <br />
+            (지원 형식 : JPG, JPEG, PNG, BMP)
           </div>
         )}
       </div>

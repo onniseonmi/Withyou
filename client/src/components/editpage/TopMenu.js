@@ -6,7 +6,11 @@ axios.default.withCredentials = true;
 const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
   'http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000';
-export default function TopMenu({ deSelectObject, setItemStates }) {
+export default function TopMenu({
+  deSelectObject,
+  setItemStates,
+  setCurrentCanvasColor,
+}) {
   async function download() {
     await deSelectObject();
     await html2canvse(document.querySelector('#canvas-paper')).then(
@@ -50,7 +54,7 @@ export default function TopMenu({ deSelectObject, setItemStates }) {
 
         axios({
           method: 'POST',
-          url: `${server_url_1}/mycard/post`,
+          url: `${server_url_2}/mycard/post`,
           data: formData,
           headers: {
             authorization: `Bearer ${accessTokenSession}`,
@@ -70,7 +74,13 @@ export default function TopMenu({ deSelectObject, setItemStates }) {
   return (
     <div id='top-menu'>
       <div className='top-menu-box top-menu-left'>
-        <div id='delete-all-object' onClick={() => setItemStates([])}>
+        <div
+          id='delete-all-object'
+          onClick={() => {
+            setCurrentCanvasColor({ hex: '#ffffff' });
+            setItemStates([]);
+          }}
+        >
           전체 삭제
         </div>
       </div>

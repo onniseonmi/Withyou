@@ -3,13 +3,20 @@ import title from '../../images/title.png';
 import '../../css/login/Signup.css';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 axios.default.withCredentials = true;
 const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
   'http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000';
 
-const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
+const Signup = ({
+  setLoginBtn,
+  setIsLogin,
+  setAccessToken,
+  setSignupBtn,
+  setLandingOn,
+}) => {
   const {
     register,
     formState: { errors },
@@ -75,7 +82,7 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
       try {
         const data = await axios({
           method: 'POST',
-          url: `${server_url_1}/user/signup`,
+          url: `${server_url_2}/user/signup`,
           data: userInput,
         });
 
@@ -94,7 +101,7 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
         } else {
           const tokenData = await axios({
             method: 'POST',
-            url: `${server_url_1}/user/signin`,
+            url: `${server_url_2}/user/signin`,
             data: { email: userInput.email, password: userInput.password },
           });
 
@@ -139,9 +146,19 @@ const Signup = ({ setLoginBtn, setIsLogin, setAccessToken, setSignupBtn }) => {
 
   return (
     <div className='signup-left-box'>
-      <div className='signup-title'>
-        <img src={title} alt='title'></img>
-      </div>
+      <Link to='/'>
+        <div className='signup-title'>
+          <img
+            src={title}
+            alt='title'
+            onClick={() => {
+              setLandingOn(true);
+              setLoginBtn(false);
+              setSignupBtn(false);
+            }}
+          ></img>
+        </div>
+      </Link>
       <div className='signup-input'>
         <div>계정 만들기</div>
         <form method='POST' onClick={handleSubmit(handleClick)}>
