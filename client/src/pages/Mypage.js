@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import '../css/Mypage.css';
 import Footer from '../components/Footer';
 import Myprofile from '../components/mypage/Myprofile';
 import Mycard from '../components/mypage/Mycard';
+import { DeleteAccount } from '../components/mypage/DeleteAccount';
 const Mypage = ({ setLandingOn }) => {
   useEffect(() => {
     setLandingOn(false);
@@ -14,6 +15,7 @@ const Mypage = ({ setLandingOn }) => {
       </div>
       <div id='cards'>
         <Mycard />
+        {/* <DeleteAccount /> */}
       </div>
       <Footer />
     </div>

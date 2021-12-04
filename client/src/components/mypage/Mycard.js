@@ -30,10 +30,10 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     }
   }, []);
 
-  const editHandler = () => {
-    editCardBtn ? setCardEditBtn(false) : setCardEditBtn(true);
-    setProfileEditBtn(false);
-  };
+  // const editHandler = () => {
+  //   editCardBtn ? setCardEditBtn(false) : setCardEditBtn(true);
+  //   setProfileEditBtn(false);
+  // };
   const deleteCard = (card) => {
     axios.get(`${server_url_2}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
@@ -84,9 +84,6 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
             </div>
           </div>
         ))}
-      </div>
-      <div className='delete-account-container'>
-        <button>회원탈퇴</button>
       </div>
       <Footer />
     </div>
