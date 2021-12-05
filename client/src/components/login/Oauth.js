@@ -1,9 +1,9 @@
 import React from "react";
 import naver from "../../images/naver.png";
 import kakao from "../../images/kakao.png";
-// const client_url_1 = 'http://localhost:3000';
+const client_url_1 = "http://localhost:3000";
 const client_url_2 =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
+  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com";
 
 const Oauth = () => {
   const naverLogin = (e) => {
@@ -18,7 +18,7 @@ const Oauth = () => {
 
   const kakaoLogin = (e) => {
     const client_id = "590eb89ea8da97055898d61a832ed657";
-    const api_url = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${client_url_2}&response_type=code`;
+    const api_url = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${client_url_2}`;
     // setUserInfo({ ...userInfo, type: "kakao" });
     // sessionStorage.setItem("userInfoSession", JSON.stringify(userInfo));
     sessionStorage.setItem("loginType", "kakao");

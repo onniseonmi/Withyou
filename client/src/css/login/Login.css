@@ -378,25 +378,18 @@
     outline: none;
   }
   .login-oauth {
-    flex: 1 1 0;
+    flex: 0 1 30rem;
     display: flex;
     flex-direction: column;
-    /* height: 35px; */
-    /* border: 1px solid gray; */
-    border-radius: 5px;
-    /* font-size: 5rem; */
-    /* line-height: 5rem; */
-    /* background-color: rgb(238, 238, 238); */
     justify-content: space-between;
     padding: 5rem 0;
   }
   .oauth-box {
     flex: 0 1 7rem;
   }
-  .login-btn,
+
   .oauth-box {
     width: 100%;
-    height: 15px;
     border: 1px solid gray;
     border-radius: 5px;
     font-size: 19px;
