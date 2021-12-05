@@ -131,9 +131,9 @@ const Login = ({
                   로그인
                 </div>
                 <div id="text" className="login-text">
-                  <div className="login-forgot-password login-text-box">
+                  {/* <div className="login-forgot-password login-text-box">
                     <span className="button">암호를 잊어버리셨나요?</span>
-                  </div>
+                  </div> */}
                   <div className="login-signup login-text-box">
                     <span>처음 오셨나요?</span>
                     <span
