@@ -135,10 +135,10 @@
   font-size: 0.9rem;
 }
 .login-signup {
-  /* margin: 1rem 0; */
   position: absolute;
   left: 0;
-  top: 4.3rem;
+  /* top: 4.3rem; */
+  top: 2.5rem;
   font-size: 0.9rem;
 }
 .login-signup > span:not(:first-child) {
