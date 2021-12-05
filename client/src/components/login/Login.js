@@ -94,6 +94,11 @@ const Login = ({
                   name='email'
                   placeholder='이메일'
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleClick();
+                    }
+                  }}
                 ></input>
                 <label>이메일</label>
               </div>
@@ -104,6 +109,11 @@ const Login = ({
                   name='password'
                   placeholder='비밀번호'
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleClick();
+                    }
+                  }}
                 ></input>
                 <label>비밀번호</label>
               </div>

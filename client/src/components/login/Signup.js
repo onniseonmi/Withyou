@@ -164,7 +164,6 @@ const Signup = ({
         </div>
         <div className="signup-input-box">
           <label>비밀번호 확인</label>
-
           <input
             onFocus={() => setErrModal(false)}
             id="password2"
@@ -173,6 +172,11 @@ const Signup = ({
             value={userInput.password2}
             onChange={handleChange}
             placeholder="다시 한번 더 입력하세요"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleClick();
+              }
+            }}
           />
         </div>
         {errModal && (

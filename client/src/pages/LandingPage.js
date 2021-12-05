@@ -19,8 +19,8 @@ const LandingPage = ({ landingOn, setLandingOn }) => {
         <img id="landing2-video" src={landingVideo2} alt={landingVideo2}/>
       </div>
       <div className="landing-box landing-title-box">
-        <div>세상에 없던 단 하나뿐인</div>
-        <div>청첩장, 쉬운 디자인을 도와드립니다.</div>
+        <div>세상에 없던 단 하나뿐인 청첩장</div>
+        <div>쉬운 디자인을 도와드립니다.</div>
         <Link to="/editpage" className="phone-start">
           <div className="main-get-started" onClick={() => setLandingOn(false)}>
             시작하기

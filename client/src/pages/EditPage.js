@@ -4,7 +4,7 @@ import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/editpage/TopMenu";
-import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
+import PrintProperty from "../components/editpage/canvas/modals/PrintProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage({ setLandingOn, isLogin }) {
@@ -12,7 +12,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-bg");
+  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-templates");
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
@@ -148,6 +148,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
           top: -3,
           left: -3,
           transform: "rotate(0deg)",
+          opacity: "0.75",
         },
         isSelected: false,
         isDragging: false,
@@ -321,7 +322,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
           </div>
           <div id="edit-footer-menu">
             {selectState ? (
-              <ObjectProperty
+              <PrintProperty
                 key={selectedItem.id}
                 id={selectedItem.id}
                 type={selectedItem.style.type}

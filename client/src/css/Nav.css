@@ -4,7 +4,7 @@
   border-bottom: solid 1px lightgray;
   z-index: 2;
   font-family: "Huglife";
-  height: 60px;
+  height: 40px;
   padding: 0.5rem 0;
 }
 
@@ -16,7 +16,7 @@
 
 .logo {
   margin-left: 8px;
-  font-size: 3.5rem;
+  font-size: 40px;
   display: inline-block;
 }
 
@@ -40,7 +40,7 @@
   cursor: pointer;
   color: #212121;
   font-family: "Huglife";
-  font-size: 2.6rem;
+  font-size: 35px;
 }
 
 @media screen and (max-width: 900px) {
@@ -75,7 +75,7 @@
     width: 100%;
     height: 100px;
     padding-bottom: 1.5rem;
-    background-color: F9FFFF;
+    background-color: #F9FFFF;
     align-content: center;
   }
 

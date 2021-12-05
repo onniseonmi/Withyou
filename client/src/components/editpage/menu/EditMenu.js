@@ -18,13 +18,13 @@ const EditMenu = ({
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
-        {menuBtnStatus === "menuBar-bg" && (
+        {/* {menuBtnStatus === "menuBar-bg" && (
           <BackgroundColor
             clientWidth={clientWidth}
             currentCanvasColor={currentCanvasColor}
             handleCanvasColor={handleCanvasColor}
           />
-        )}
+        )} */}
         {menuBtnStatus === "menuBar-templates" && (
           <Templates
             itemStates={itemStates}

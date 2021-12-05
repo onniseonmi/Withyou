@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import '../../css/editpage/TopMenu.css';
-import html2canvse from 'html2canvas';
-import axios from 'axios';
-import SaveMessage from './SaveMessage';
-import ErrorMessage from './ErrorMessage';
+import React, { useState } from "react";
+import "../../css/editpage/TopMenu.css";
+import html2canvse from "html2canvas";
+import axios from "axios";
 axios.default.withCredentials = true;
 const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
@@ -108,8 +106,6 @@ export default function TopMenu({
           </div>
         </div>
       </div>
-      {isSave && <SaveMessage setIsSave={setIsSave} />}
-      {isError && <ErrorMessage setIsError={setIsError} />}
     </div>
   );
 }

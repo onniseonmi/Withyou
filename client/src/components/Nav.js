@@ -25,6 +25,7 @@ const Nav = ({
   const handleClick = (e) => {
     if (e.target.id === "login") {
       setLoginBtn(true);
+      setSignupBtn(false);
       setLandingOn(false);
     } else if (e.target.id === "join") {
       setLoginBtn(true);

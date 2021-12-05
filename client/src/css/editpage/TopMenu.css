@@ -77,4 +77,9 @@
     display: flex;
     justify-content: space-around;
   }
+  .top-menu-left > div:hover,
+  #download:hover,
+  #save:hover {
+    font-size: 35px;
+  }
 }
