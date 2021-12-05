@@ -101,6 +101,7 @@ const Signup = ({
             setIsLogin(true);
             setAccessToken(accessToken);
             setLoginBtn(false);
+            window.location.assign(`${client_url_2}/editpage`);
           }
         } catch (err) {
           setErrModal(true);
