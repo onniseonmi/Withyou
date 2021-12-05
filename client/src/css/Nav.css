@@ -45,6 +45,7 @@
 
 @media screen and (max-width: 900px) {
   /* Phone */
+  /*nav 변경없이 똑같이 했습니다 12.05 */
   .nav-container {
     flex: 0 1 2.2rem;
     padding-bottom: 0.5rem;
@@ -57,14 +58,13 @@
   .logo {
     font-size: 2.2rem;
   }
-
   .nav-right {
-    right: 0rem;
-    top: 0.5rem;
+    /* right: 0rem;
+    top: 0.5rem; */
   }
 
   .nav-right > div {
-    font-size: 2rem;
+    /* font-size: 2rem; */
   }
 }
 
@@ -75,7 +75,7 @@
     width: 100%;
     height: 100px;
     padding-bottom: 1.5rem;
-    background-color: #F9FFFF;
+    background-color: #f9ffff;
     align-content: center;
   }
 
