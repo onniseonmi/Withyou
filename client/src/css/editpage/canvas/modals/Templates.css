@@ -4,15 +4,17 @@
   padding-top: 0.5rem;
   font-family: "BinggraeMelona";
   justify-content: center;
-  align-items: center;
   text-align: center;
-  overflow: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
-#templates-modal-upload,
-#element-modal-upload {
-  height: 50rem;
-  overflow-y: scroll;
+#templates-modal-upload {
+  display: flex;
+  flex-flow: wrap;
+  flex: 1;
+  overflow-y: auto;
 }
 #templates-modal-upload > img {
   width: 140px;
