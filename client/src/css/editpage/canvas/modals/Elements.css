@@ -15,7 +15,6 @@
   cursor: pointer;
   border: 2px solid transparent;
   opacity: 1;
-  overflow: scroll; /*edit here */
   display: inline-block;
 }
 
