@@ -12,9 +12,6 @@ import template1 from "../../../../images/templates/template.svg";
 import template2 from "../../../../images/templates/template2.svg";
 import template3 from "../../../../images/templates/template3.svg";
 
-
-
-
 const samples = [
   { src: sample_1 },
   { src: sample_2 },
