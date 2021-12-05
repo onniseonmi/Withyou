@@ -9,10 +9,15 @@
   overflow: auto;
 }
 
+#templates-modal-upload,
+#element-modal-upload {
+  height: 50rem;
+  overflow-y: scroll;
+}
 #templates-modal-upload > img {
   width: 140px;
   height: 100px;
-  margin: 5px 5px;
+  margin: 4px;
   cursor: pointer;
   border: 2px solid transparent;
   opacity: 1;
