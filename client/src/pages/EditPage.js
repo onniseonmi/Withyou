@@ -4,7 +4,7 @@ import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
 import TopMenu from "../components/editpage/TopMenu";
-import ObjectProperty from "../components/editpage/canvas/modals/ObjectProperty";
+import PrintProperty from "../components/editpage/canvas/modals/PrintProperty";
 import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage({ setLandingOn, isLogin }) {
@@ -322,7 +322,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
           </div>
           <div id="edit-footer-menu">
             {selectState ? (
-              <ObjectProperty
+              <PrintProperty
                 key={selectedItem.id}
                 id={selectedItem.id}
                 type={selectedItem.style.type}
