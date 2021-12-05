@@ -11,6 +11,7 @@ export const DeleteAccountModal = ({
   setIsLogin,
   setLoginBtn,
   setDeleteBtn,
+  setLoadingSpinner,
 }) => {
   const accessToken = sessionStorage.getItem('accessTokenSession');
 
@@ -25,6 +26,7 @@ export const DeleteAccountModal = ({
     setIsLogin(false);
     setLoginBtn(false);
     window.location.assign(client_url_2);
+    setLoadingSpinner(false);
   };
   return (
     <div className='delete-modal-container'>

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { DeleteAccountModal } from './DeleteAccountModal';
 
 export const DeleteAccount = ({ setDeleteBtn }) => {
   return (
