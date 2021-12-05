@@ -14,7 +14,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
   };
   return (
     <div id="menuBar-container">
-      <div
+      {/* <div
         id="menuBar-bg-box"
         className="menubar-btn"
         ref={(el) => (imgBoxRef.current[0] = el)}
@@ -30,7 +30,7 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
             onClick={(e) => handleClick(e)}
           />
         }
-      </div>
+      </div> */}
       <div
         id="menuBar-templates-box"
         className="menubar-btn"

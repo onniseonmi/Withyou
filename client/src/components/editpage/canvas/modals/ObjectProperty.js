@@ -3,7 +3,6 @@ import "../../../../css/editpage/canvas/modals/ObjectProperty.css";
 import reactCSS from "reactcss";
 import { ChromePicker } from "react-color";
 import FontList from "./FontList";
-import Footer from "../../../Footer";
 
 export default function ObjectProperty({
   id,
@@ -43,6 +42,7 @@ export default function ObjectProperty({
   const [currentTextColor, setCurrentTextColor] = useState(textColor);
   const [onColorPicker, setOnColorPicker] = useState(false);
   const [currentTextSyle, setCurrentTextSyle] = useState(textStyle);
+  const [currentLocation, setCurrentLocation] = useState({ top: 0, left: 0 });
 
   function increaseWidth() {
     const nextState = currentWidth + 10;
@@ -109,6 +109,9 @@ export default function ObjectProperty({
     setCurrentTextSyle(nextState);
     modifyTextStyle(nextState);
   }
+  const { top, left } = document
+    .querySelector("#property-modal")
+    .getBoundingClientRect();
 
   const styles = reactCSS({
     default: {
@@ -122,9 +125,9 @@ export default function ObjectProperty({
       },
       palette: {
         position: "absolute",
-        top: `${clientWidth >= 900 ? "68vh" : "35vh"}`,
-        left: `${clientWidth >= 900 ? "16vw" : "16vw"}`,
-        zIndex: "2",
+        top: clientWidth >= 900 ? "60vh" : "30vh",
+        left: "20vw",
+        zIndex: "1000",
       },
       selected: {
         position: "fixed",
@@ -329,7 +332,10 @@ export default function ObjectProperty({
                 style={
                   window.outerWidth >= 450 ? styles.swatch : mobileStyle.swatch
                 }
-                onClick={() => setOnColorPicker(!onColorPicker)}
+                onClick={(e) => {
+                  setOnColorPicker(!onColorPicker);
+                  setCurrentLocation({ top: e.pageX, left: e.pageY });
+                }}
               ></div>
               {onColorPicker && (
                 <div

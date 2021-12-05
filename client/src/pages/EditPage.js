@@ -12,7 +12,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
   const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-bg");
+  const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-templates");
   const [contemporaryZIndex, setcontemporaryZIndex] = useState(0);
   const [initLocation, setInitLocation] = useState({ x: 0, y: 0 });
   const [currentLocation, setCurrentLocation] = useState({ x: 0, y: 0 });
