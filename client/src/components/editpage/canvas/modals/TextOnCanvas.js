@@ -19,7 +19,8 @@ export default function TextOnCanvas({
   opacityOnObject,
 }) {
   return (
-    <input
+    <div
+      contentEditable={true}
       key={id}
       id={id}
       size={currentText.length * 2}
@@ -83,6 +84,8 @@ export default function TextOnCanvas({
           onDragAndDrop(e);
         }
       }}
-    ></input>
+    >
+      {currentText}
+    </div>
   );
 }
