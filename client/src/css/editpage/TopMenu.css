@@ -53,6 +53,10 @@
   font-size: 20px;
 }
 
+#delete-all-object:hover {
+  transition: 0.1s;
+  font-size: 18px;
+}
 @media screen and (max-width: 900px) {
   #top-menu-save {
     font-size: 18px;
