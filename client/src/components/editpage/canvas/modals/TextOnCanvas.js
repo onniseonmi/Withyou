@@ -29,20 +29,20 @@ export default function TextOnCanvas({
         setCurrentText(e.target.value);
         modifyText(e.target.value);
       }} // handle innerHTML change
-      tagname="article" // Use a custom HTML tag (uses a div by default)
+      tagname='article' // Use a custom HTML tag (uses a div by default)
       style={{
         ...style,
-        display: "inline-block",
-        border: "none",
-        padding: "auto",
-        height: "auto",
+        display: 'inline-block',
+        border: 'none',
+        padding: 'auto',
+        height: 'auto',
         fontFamily: textStyle,
         fontSize: textSize,
-        background: "transparent",
+        background: 'transparent',
         color: textColor,
-        textAlign: "center",
+        textAlign: 'center',
       }}
-      className="image-element"
+      className='image-element'
       draggable={false}
       onMouseDown={(e) => {
         setOnMove(true);
@@ -61,23 +61,23 @@ export default function TextOnCanvas({
       }}
       onMouseUp={(e) => {
         setOnMove(false);
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
       }}
       onTouchEnd={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
         document.body.style.overflow = null;
       }}
       onTouchMove={(e) => {
-        document.body.style.overflow = "hidden";
-        document.querySelector("html").scrollTop = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        document.querySelector('html').scrollTop = window.scrollY;
         if (isDragging) {
           onDragAndDropMobile(e.touches[0]);
         }
       }}
       onMouseOver={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         opacityOnObject(e, 0.5);
       }}
       onMouseOut={(e) => {
