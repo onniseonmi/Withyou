@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/Message.css";
-export default function ErrorMessage({ setIsClientError }) {
+export default function ClientErrorMessage({ setIsClientError }) {
   return (
     <div id="message-modal">
       로그인 후 이용해주세요

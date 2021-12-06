@@ -9,7 +9,9 @@ export default function ServerErrorMessage({ setIsServerError }) {
       <div className="save-modal-container">
         <button
           id="close-message-modal"
-          onClick={() => setIsServerError(false)}
+          onClick={() => {
+            setIsServerError(false);
+          }}
         >
           Close
         </button>
