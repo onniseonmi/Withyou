@@ -6,7 +6,7 @@ import Login from "./login/Login";
 import axios from "axios";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com";
+  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/";
 
 const Nav = ({
   userInfo,
@@ -47,6 +47,7 @@ const Nav = ({
         style={{
           backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
           borderBottom: `${landingOn ? "transparent" : "solid 1px lightgray"}`,
+          textShadow: `${landingOn ? "1px 1px 5px #212121" : "none"}`,
         }}
       >
         <div className="nav-left">

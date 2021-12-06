@@ -6,7 +6,7 @@
   font-family: "Huglife";
   height: 70px;
   padding: 0.5rem 0;
-  text-shadow: 1px 1px 5px #212121;
+  /* text-shadow: 1px 1px 3px #212121; */
 }
 
 .nav-left a {
