@@ -1,12 +1,13 @@
 #top-menu {
   background-color: #fefcff;
   width: 100%;
-  height: 2rem;
-  line-height: 2rem;
+  height: 3rem;
+  line-height: 3rem;
   border-bottom: 1px solid lightgray;
   display: flex;
   font-family: "BinggraeMelona";
 }
+
 .top-menu-left {
   display: flex;
 }
@@ -30,8 +31,8 @@
 }
 
 #top-menu-save {
-  font-size: 15px;
-  width: 15vw;
+  font-size: 20px;
+  width: 14rem;
   display: flex;
   justify-content: space-around;
 }
@@ -48,9 +49,13 @@
   transition: 0.1s;
 }
 
+#delete-all-object {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 900px) {
   #top-menu-save {
-    font-size: 15px;
+    font-size: 18px;
     width: 30vw;
     display: flex;
     justify-content: space-around;
