@@ -3,7 +3,8 @@ import "../../css/editpage/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
 import SaveMessage from "./canvas/modals/SaveMessage";
-import ErrorMessage from "./canvas/modals/ErrorMessage";
+import ClientErrorMessage from "./canvas/modals/ClientErrorMessage";
+import ServerErrorMessage from "./canvas/modals/ServerErrorMessage";
 
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
@@ -17,12 +18,13 @@ export default function TopMenu({
   setCurrentCanvasColor,
 }) {
   const [isSave, setIsSave] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isClientError, setIsClientError] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
 
   async function download() {
     await deSelectObject();
-    await html2canvse(document.querySelector("#canvas-paper")).then(
-      (canvas) => {
+    await html2canvse(document.querySelector("#canvas-paper"))
+      .then((canvas) => {
         const myImage = canvas.toDataURL("image/png");
         if (document.body.clientWidth < 900) {
           canvas.width = canvas.width * 2;
@@ -33,8 +35,8 @@ export default function TopMenu({
         el.download = "My Card.png";
         el.click();
         el.remove();
-      }
-    );
+      })
+      .catch((err) => setIsServerError(true));
   }
 
   async function saveToServer() {
@@ -79,11 +81,11 @@ export default function TopMenu({
                 setIsSave(false);
               }, 2000);
             })
-            .catch((err) => alert(err));
+            .catch((err) => setIsServerError(true));
         }
       );
     } else {
-      setIsError(true);
+      setIsClientError(true);
     }
   }
 
@@ -111,7 +113,12 @@ export default function TopMenu({
         </div>
       </div>
       {isSave && <SaveMessage setIsSave={setIsSave} />}
-      {isError && <ErrorMessage setIsError={setIsError} />}
+      {isClientError && (
+        <ClientErrorMessage setIsClientError={setIsClientError} />
+      )}
+      {isServerError && (
+        <ServerErrorMessage setIsServerError={setIsServerError} />
+      )}
     </div>
   );
 }
