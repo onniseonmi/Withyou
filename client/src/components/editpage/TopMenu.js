@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "../../css/editpage/TopMenu.css";
 import html2canvse from "html2canvas";
 import axios from "axios";
-import SaveMessage from "./canvas/modals/SaveMessage";
-import ErrorMessage from "./canvas/modals/ErrorMessage";
+import SuccessMessage from "./canvas/modals/SuccessMessage";
+import ClientErrorMessage from "./canvas/modals/ClientErrorMessage";
+import ServerErrorMessage from "./canvas/modals/ServerErrorMessage";
 
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
@@ -16,8 +17,9 @@ export default function TopMenu({
   setItemStates,
   setCurrentCanvasColor,
 }) {
-  const [isSave, setIsSave] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+  const [isClientError, setIsClientError] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
 
   async function download() {
     await deSelectObject();
@@ -40,8 +42,8 @@ export default function TopMenu({
   async function saveToServer() {
     if (isLogin) {
       await deSelectObject();
-      await html2canvse(document.querySelector("#canvas-paper")).then(
-        (canvas) => {
+      await html2canvse(document.querySelector("#canvas-paper"))
+        .then((canvas) => {
           const myImage = canvas.toDataURL("image/png");
           if (document.body.clientWidth < 900) {
             canvas.width = canvas.width * 2;
@@ -74,16 +76,16 @@ export default function TopMenu({
             },
           })
             .then(() => {
-              setIsSave(true);
+              setIsSuccessMessage(true);
               setTimeout(() => {
-                setIsSave(false);
+                setIsSuccessMessage(false);
               }, 2000);
             })
-            .catch((err) => alert(err));
-        }
-      );
+            .catch((err) => setIsServerError(true));
+        })
+        .catch((err) => setIsServerError(true));
     } else {
-      setIsError(true);
+      setIsClientError(true);
     }
   }
 
@@ -110,8 +112,15 @@ export default function TopMenu({
           </div>
         </div>
       </div>
-      {isSave && <SaveMessage setIsSave={setIsSave} />}
-      {isError && <ErrorMessage setIsError={setIsError} />}
+      {isSuccessMessage && (
+        <SuccessMessage setIsSuccessMessage={setIsSuccessMessage} />
+      )}
+      {isClientError && (
+        <ClientErrorMessage setIsClientError={setIsClientError} />
+      )}
+      {isServerError && (
+        <ServerErrorMessage setIsServerError={setIsServerError} />
+      )}
     </div>
   );
 }

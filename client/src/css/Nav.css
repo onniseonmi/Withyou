@@ -4,8 +4,9 @@
   border-bottom: solid 1px lightgray;
   z-index: 2;
   font-family: "Huglife";
-  height: 40px;
+  height: 70px;
   padding: 0.5rem 0;
+  text-shadow: 1px 1px 5px #212121;
 }
 
 .nav-left a {
@@ -15,8 +16,8 @@
 }
 
 .logo {
-  margin-left: 8px;
-  font-size: 40px;
+  margin-left: 15px;
+  font-size: 62px;
   display: inline-block;
 }
 
@@ -35,12 +36,13 @@
 #join {
   margin-top: 0.1rem;
 }
+
 .nav-right > div {
   margin-right: 1.2rem;
   cursor: pointer;
   color: #212121;
   font-family: "Huglife";
-  font-size: 35px;
+  font-size: 50px;
 }
 
 @media screen and (max-width: 900px) {
@@ -48,23 +50,21 @@
   /*nav 변경없이 똑같이 했습니다 12.05 */
   .nav-container {
     flex: 0 1 2.2rem;
-    padding-bottom: 0.5rem;
+    padding: 0rem;
+    height: 80px;
+    padding: 0.9rem 0;
   }
 
-  .title {
-    display: flex;
+  .nav-left {
+    position: relative;
   }
 
   .logo {
-    font-size: 2.2rem;
-  }
-  .nav-right {
-    /* right: 0rem;
-    top: 0.5rem; */
+    font-size: 3.5rem;
   }
 
   .nav-right > div {
-    /* font-size: 2rem; */
+    font-size: 3rem;
   }
 }
 
@@ -77,10 +77,6 @@
     padding-bottom: 1.5rem;
     background-color: #f9ffff;
     align-content: center;
-  }
-
-  .title {
-    display: flex;
   }
 
   .logo {
