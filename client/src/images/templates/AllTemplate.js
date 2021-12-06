@@ -6,9 +6,10 @@ import sample_5 from "../../images/templates/sample 5.png";
 import sample_6 from "../../images/templates/sample 6.png";
 import sample_7 from "../../images/templates/sample 7.png";
 import sample_8 from "../../images/templates/sample 8.png";
-import template1 from "../../images/templates/template.svg";
-import template2 from "../../images/templates/template2.svg";
-import template3 from "../../images/templates/template3.svg";
+import sample_9 from "../../images/templates/sample 9.png";
+import sample_10 from "../../images/templates/sample 10.png";
+import sample_11 from "../../images/templates/sample 11.png";
+import sample_12 from "../../images/templates/sample 12.png";
 
 const samples = [
   { src: sample_1 },
@@ -19,24 +20,10 @@ const samples = [
   { src: sample_6 },
   { src: sample_7 },
   { src: sample_8 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
-  { src: template1 },
-  { src: template2 },
-  { src: template3 },
+  { src: sample_9 },
+  { src: sample_10 },
+  { src: sample_11 },
+  { src: sample_12 },
 ];
 
 export default samples;

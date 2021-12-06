@@ -29,16 +29,13 @@ export default function TextOnCanvas({
         setCurrentText(e.target.value);
         modifyText(e.target.value);
       }} // handle innerHTML change
-      tagname="article" // Use a custom HTML tag (uses a div by default)
       style={{
         ...style,
-        display: "inline-block",
         border: "none",
-        padding: "auto",
-        height: "auto",
         fontFamily: textStyle,
         fontSize: textSize,
         background: "transparent",
+        height: "auto",
         color: textColor,
         textAlign: "center",
       }}
