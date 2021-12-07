@@ -6,6 +6,10 @@ import sample_5 from "../../images/templates/sample 5.png";
 import sample_6 from "../../images/templates/sample 6.png";
 import sample_7 from "../../images/templates/sample 7.png";
 import sample_8 from "../../images/templates/sample 8.png";
+import sample_9 from "../../images/templates/sample 9.png";
+import sample_10 from "../../images/templates/sample 10.png";
+import sample_11 from "../../images/templates/sample 11.png";
+import sample_12 from "../../images/templates/sample 12.png";
 import background_1 from "../../images/templates/background_1.png";
 import background_2 from "../../images/templates/background_2.png";
 import background_3 from "../../images/templates/background_3.png";
@@ -33,6 +37,10 @@ const samples = [
   { src: sample_6 },
   { src: sample_7 },
   { src: sample_8 },
+  { src: sample_9 },
+  { src: sample_10 },
+  { src: sample_11 },
+  { src: sample_12 },
   { src: background_1 },
   { src: background_2 },
   { src: background_3 },

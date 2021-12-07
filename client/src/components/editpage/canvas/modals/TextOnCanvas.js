@@ -19,30 +19,22 @@ export default function TextOnCanvas({
   opacityOnObject,
 }) {
   return (
-    <input
+    <div
       key={id}
       id={id}
-      size={currentText.length * 2}
-      placeholder={currentText} // innerHTML of the editable div
-      disabled={false} // use true to disable editing
+      contentEditable={true}
+      placeholder={currentText}
       onChange={(e) => {
         setCurrentText(e.target.value);
         modifyText(e.target.value);
-      }} // handle innerHTML change
-      tagname='article' // Use a custom HTML tag (uses a div by default)
+      }}
       style={{
         ...style,
-        display: 'inline-block',
-        border: 'none',
-        padding: 'auto',
-        height: 'auto',
         fontFamily: textStyle,
         fontSize: textSize,
-        background: 'transparent',
         color: textColor,
-        textAlign: 'center',
       }}
-      className='image-element'
+      className='text-element'
       draggable={false}
       onMouseDown={(e) => {
         setOnMove(true);
@@ -86,6 +78,8 @@ export default function TextOnCanvas({
           onDragAndDrop(e);
         }
       }}
-    ></input>
+    >
+      {currentText}
+    </div>
   );
 }
