@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundColor from "../canvas/modals/BackgroundColor";
 import Templates from "../canvas/modals/Templates";
 import Image from "../canvas/modals/Image";
 import Elements from "../canvas/modals/Elements";
@@ -9,22 +8,12 @@ const EditMenu = ({
   makeId,
   menuBtnStatus,
   addToItems,
-  currentCanvasColor,
-  handleCanvasColor,
-  clientWidth,
   itemStates,
   setItemStates,
 }) => {
   return (
     <div id="detail-property">
       <div id="edit-menu-container">
-        {/* {menuBtnStatus === "menuBar-bg" && (
-          <BackgroundColor
-            clientWidth={clientWidth}
-            currentCanvasColor={currentCanvasColor}
-            handleCanvasColor={handleCanvasColor}
-          />
-        )} */}
         {menuBtnStatus === "menuBar-templates" && (
           <Templates
             itemStates={itemStates}
