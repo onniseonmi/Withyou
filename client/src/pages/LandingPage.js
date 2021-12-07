@@ -9,11 +9,11 @@ const LandingPage = ({ landingOn, setLandingOn }) => {
     <div className='landing-container'>
       <div className='landing-box video-box'>
         <video
-          id="landing-video"
-          autoplay="autoplay"
-          loop="Loop"
-          volume="0.2"
-          muted="false"
+          id='landing-video'
+          autoPlay='autoplay'
+          loop='Loop'
+          volume='0.2'
+          muted='false'
         >
           <source src={landingVideo} type='video/mp4' alt={landingVideo} />
         </video>

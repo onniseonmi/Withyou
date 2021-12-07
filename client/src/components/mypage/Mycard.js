@@ -4,6 +4,7 @@ import '../../css/mypage/Mycard.css';
 import Footer from '../Footer';
 import addPage from '../../images/Add NewImg.png';
 import axios from 'axios';
+
 axios.default.withCredentials = true;
 const server_url_1 = 'http://localhost:4000';
 const server_url_2 =
@@ -61,7 +62,13 @@ const Mycard = () => {
             </div>
             <div id='card-menu'>
               <div className='card-download'>
-                <a id={`${idx}`} href={el.card} download='card-download.png'>
+                <a
+                  id={`${idx}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href={el.card}
+                  download='card-download.png'
+                >
                   다운로드
                 </a>
               </div>
