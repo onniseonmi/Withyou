@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../../css/login/Login.css";
 import { Link } from "react-router-dom";
 import loginModal from "../../images/signup.jpg";
-import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
@@ -11,7 +10,7 @@ const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 const client_url_2 =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com";
+  "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
 
 const Login = ({
   setIsLogin,

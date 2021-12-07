@@ -3,9 +3,8 @@ import "../css/EditPage.css";
 import PrintOnCanvas from "../components/editpage/canvas/modals/PrintOnCanvas";
 import EditMenu from "../components/editpage/menu/EditMenu";
 import EditMenuBar from "../components/editpage/menu/EditMenuBar";
-import TopMenu from "../components/editpage/TopMenu";
+import TopMenu from "../components/editpage/menu/TopMenu";
 import PrintProperty from "../components/editpage/canvas/modals/PrintProperty";
-import PropertyBlank from "../components/editpage/canvas/modals/PropertyBlank";
 
 export default function EditPage({ setLandingOn, isLogin }) {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
@@ -347,7 +346,7 @@ export default function EditPage({ setLandingOn, isLogin }) {
                 modifyTextStyle={modifyTextStyle}
               />
             ) : (
-              <PropertyBlank />
+              <div id="property-modal"></div>
             )}
           </div>
         </div>
