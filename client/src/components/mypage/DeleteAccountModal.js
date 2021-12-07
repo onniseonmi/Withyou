@@ -5,12 +5,13 @@ const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
-  "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com";
+  "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
 export const DeleteAccountModal = ({
   setAccessToken,
   setIsLogin,
   setLoginBtn,
   setDeleteBtn,
+  setLoadingSpinner,
 }) => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
 
@@ -25,6 +26,7 @@ export const DeleteAccountModal = ({
     setIsLogin(false);
     setLoginBtn(false);
     window.location.assign(client_url_2);
+    setLoadingSpinner(false);
   };
   return (
     <div className="delete-modal-container">

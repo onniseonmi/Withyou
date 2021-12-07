@@ -19,30 +19,22 @@ export default function TextOnCanvas({
   opacityOnObject,
 }) {
   return (
-    <input
+    <div
       key={id}
       id={id}
-      size={currentText.length * 2}
-      placeholder={currentText} // innerHTML of the editable div
-      disabled={false} // use true to disable editing
+      contentEditable={true}
+      placeholder={currentText}
       onChange={(e) => {
         setCurrentText(e.target.value);
         modifyText(e.target.value);
-      }} // handle innerHTML change
-      tagname="article" // Use a custom HTML tag (uses a div by default)
+      }}
       style={{
         ...style,
-        display: "inline-block",
-        border: "none",
-        padding: "auto",
-        height: "auto",
         fontFamily: textStyle,
         fontSize: textSize,
-        background: "transparent",
         color: textColor,
-        textAlign: "center",
       }}
-      className="image-element"
+      className='text-element'
       draggable={false}
       onMouseDown={(e) => {
         setOnMove(true);
@@ -61,23 +53,23 @@ export default function TextOnCanvas({
       }}
       onMouseUp={(e) => {
         setOnMove(false);
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
       }}
       onTouchEnd={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
         document.body.style.overflow = null;
       }}
       onTouchMove={(e) => {
-        document.body.style.overflow = "hidden";
-        document.querySelector("html").scrollTop = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        document.querySelector('html').scrollTop = window.scrollY;
         if (isDragging) {
           onDragAndDropMobile(e.touches[0]);
         }
       }}
       onMouseOver={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         opacityOnObject(e, 0.5);
       }}
       onMouseOut={(e) => {
@@ -86,6 +78,8 @@ export default function TextOnCanvas({
           onDragAndDrop(e);
         }
       }}
-    ></input>
+    >
+      {currentText}
+    </div>
   );
 }

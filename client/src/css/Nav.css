@@ -6,7 +6,7 @@
   font-family: "Huglife";
   height: 70px;
   padding: 0.5rem 0;
-  text-shadow: 1px 1px 5px #212121;
+  /* text-shadow: 1px 1px 3px #212121; */
 }
 
 .nav-left a {
@@ -14,7 +14,9 @@
   cursor: pointer;
   color: black;
 }
-
+.nav-left a:hover {
+  text-shadow: 1px 1px 6px black;
+}
 .logo {
   margin-left: 15px;
   font-size: 62px;
@@ -43,6 +45,9 @@
   color: #212121;
   font-family: "Huglife";
   font-size: 50px;
+}
+.nav-right > div:hover {
+  text-shadow: 1px 1px 6px black;
 }
 
 @media screen and (max-width: 900px) {

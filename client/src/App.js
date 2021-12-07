@@ -68,7 +68,6 @@ export default function App() {
         landingOn={landingOn}
         setLandingOn={setLandingOn}
       />
-
       <Switch>
         <Route exact={true} path="/">
           {!loginBtn && (
