@@ -39,6 +39,10 @@ const Nav = ({
       window.location.assign(client_url_2);
     }
   };
+
+  const navStyle = {
+    color: `${landingOn ? "#f2f0ec" : "black"}`,
+  };
   return (
     <>
       <div
@@ -52,9 +56,7 @@ const Nav = ({
           <Link to="/">
             <div
               className="logo"
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
+              style={navStyle}
               onClick={() => {
                 setLandingOn(true);
                 setLoginBtn(false);
@@ -66,22 +68,10 @@ const Nav = ({
         </div>
         {!isLogin ? (
           <div className="nav-box nav-right">
-            <div
-              id="login"
-              onClick={handleClick}
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
+            <div id="login" onClick={handleClick} style={navStyle}>
               Login
             </div>
-            <div
-              id="join"
-              onClick={handleClick}
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
+            <div id="join" onClick={handleClick} style={navStyle}>
               Join
             </div>
             <span className="burger_bar"></span>
@@ -90,23 +80,12 @@ const Nav = ({
           <div className="nav-box nav-right">
             <div>
               <Link to="/mypage">
-                <div
-                  onClick={() => setLandingOn(false)}
-                  style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
-                  }}
-                >
+                <div onClick={() => setLandingOn(false)} style={navStyle}>
                   Mypage
                 </div>
               </Link>
             </div>
-            <div
-              id="logout"
-              onClick={handleClick}
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
+            <div id="logout" onClick={handleClick} style={navStyle}>
               Logout
             </div>
           </div>

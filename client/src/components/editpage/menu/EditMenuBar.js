@@ -32,9 +32,10 @@ export default function EditMenuBar({ setMenuBtnStatus, setSelectState }) {
 
   return (
     <div id="menuBar-container">
-      {menus.map((el) => (
+      {menus.map((el, index) => (
         <MenuBarElement
           id={el.id}
+          key={index}
           className={className}
           imgId={el.imgId}
           imgClassName={imgClassName}
