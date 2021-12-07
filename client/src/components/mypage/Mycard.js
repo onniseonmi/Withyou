@@ -23,7 +23,7 @@ const Mycard = ({
     if (accessToken) {
       try {
         await loadingOn(setLoading);
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_1}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -38,10 +38,39 @@ const Mycard = ({
   }, []);
 
   const deleteCard = (card) => {
-    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_1}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
-
+  function toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.send();
+  }
+  const handleClick = (idx, cardUrl) => {
+    toDataURL(cardUrl, function (dataUrl) {
+      let blobBin = atob(dataUrl.split(",")[1]);
+      let array = [];
+      for (let i = 0; i < blobBin.length; i++) {
+        array.push(blobBin.charCodeAt(i));
+      }
+      const blob = new Blob([new Uint8Array(array)], { type: "image/png" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "My card";
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    });
+  };
   return (
     <div>
       <div className="mypage-title">⭐️ My Card</div>
@@ -61,6 +90,7 @@ const Mycard = ({
           <div key={idx} className="card-container">
             <div id={`downloadImg${idx}`}>
               <img
+                id={`myCard${idx}`}
                 src={el.card}
                 className="cardImg"
                 alt="card"
@@ -68,16 +98,11 @@ const Mycard = ({
               />
             </div>
             <div id="card-menu">
-              <div className="card-download">
-                <a
-                  id={`${idx}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={el.card}
-                  download="card-download.png"
-                >
-                  다운로드
-                </a>
+              <div
+                className="card-download"
+                onClick={() => handleClick(idx, el.card)}
+              >
+                다운로드
               </div>
               <div className="card-delete">
                 <div
