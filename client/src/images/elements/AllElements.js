@@ -48,16 +48,11 @@ const samples = [
   { src: element_7},
   { src: element_8},
   { src: element_9},
-  { src: element_10},
-  { src: element_11},
-  { src: element_13},
   { src: element_14},
   { src: element_15},
   { src: element_16},
   { src: element_17},
   { src: element_18},
-  { src: element_20},
-  { src: element_21},
 ];
 
 export default samples;
