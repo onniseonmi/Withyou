@@ -6,7 +6,7 @@ import imageImg from "../../../images/image.png";
 import textImg from "../../../images/text.png";
 import MenuBarElement from "./MenuBarElement";
 
-const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
+export default function EditMenuBar({ setMenuBtnStatus, setSelectState }) {
   const handleClick = (id) => {
     setMenuBtnStatus(id);
     setSelectState(false);
@@ -45,6 +45,4 @@ const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
       ))}
     </div>
   );
-};
-
-export default EditMenuBar;
+}
