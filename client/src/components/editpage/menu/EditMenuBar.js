@@ -7,8 +7,8 @@ import textImg from "../../../images/text.png";
 import MenuBarElement from "./MenuBarElement";
 
 const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
-  const handleClick = (e) => {
-    setMenuBtnStatus(e.target.id);
+  const handleClick = (id) => {
+    setMenuBtnStatus(id);
     setSelectState(false);
   };
 

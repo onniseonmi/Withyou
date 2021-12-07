@@ -10,16 +10,8 @@ export default function MenuBarElement({
   handleClick,
 }) {
   return (
-    <div id={id} className={className}>
-      {
-        <img
-          id={imgId}
-          className={imgClassName}
-          alt={imgAlt}
-          src={src}
-          onClick={(e) => handleClick(e)}
-        />
-      }
+    <div id={id} className={className} onClick={() => handleClick(imgId)}>
+      {<img id={imgId} className={imgClassName} alt={imgAlt} src={src} />}
     </div>
   );
 }
