@@ -13,7 +13,7 @@ module.exports = (req, res) => {
   let state = '';
   const redirect_uri = 'http://localhost:3000';
   const redirect_uri_S3 =
-    'http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com/';
+    'http://withyou-final.s3-website.ap-northeast-2.amazonaws.com';
   if (type === 'naver') {
     client_id = process.env.NAVER_CLIENT_ID;
     client_secret = process.env.NAVER_CLIENT_SECRET;

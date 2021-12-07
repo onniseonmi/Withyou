@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com',
+      'http://withyou-final.s3-website.ap-northeast-2.amazonaws.com',
     ],
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
