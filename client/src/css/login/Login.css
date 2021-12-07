@@ -385,7 +385,7 @@
     padding: 5rem 0;
   }
   .oauth-box {
-    flex: 0 1 7rem;
+    height: 7rem;
   }
 
   .oauth-box {
@@ -397,23 +397,23 @@
     background-color: rgb(238, 238, 238);
   }
   #github-logo {
-    width: 85px;
-    height: 85px;
+    width: 5rem;
+    height: 5rem;
     position: absolute;
     left: 0.5rem;
   }
   #naver-logo {
-    width: 100px;
-    height: 100px;
+    width: 5rem;
+    height: 5rem;
     position: absolute;
     left: 0;
   }
   #kakao-logo {
     padding: 0.2rem;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     background-color: yellow;
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
     position: absolute;
     left: 0.5rem;
   }
@@ -436,7 +436,7 @@
   .login-right-box {
     display: none;
   }
-  
+
   .close-btn {
     position: absolute;
     top: 0;
