@@ -21,7 +21,6 @@ const Mycard = ({
 
   useEffect(async () => {
     if (accessToken) {
-      const loginType = sessionStorage.getItem("loginType");
       try {
         await loadingOn(setLoading);
         const card = await axios.get(`${server_url_2}/mycard`, {
@@ -38,10 +37,6 @@ const Mycard = ({
     }
   }, []);
 
-  // const editHandler = () => {
-  //   editCardBtn ? setCardEditBtn(false) : setCardEditBtn(true);
-  //   setProfileEditBtn(false);
-  // };
   const deleteCard = (card) => {
     axios.get(`${server_url_2}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));

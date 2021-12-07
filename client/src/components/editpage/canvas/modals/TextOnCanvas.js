@@ -34,7 +34,7 @@ export default function TextOnCanvas({
         fontSize: textSize,
         color: textColor,
       }}
-      className="text-element"
+      className='text-element'
       draggable={false}
       onMouseDown={(e) => {
         setOnMove(true);
@@ -53,23 +53,23 @@ export default function TextOnCanvas({
       }}
       onMouseUp={(e) => {
         setOnMove(false);
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
       }}
       onTouchEnd={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         onDragEnd();
         document.body.style.overflow = null;
       }}
       onTouchMove={(e) => {
-        document.body.style.overflow = "hidden";
-        document.querySelector("html").scrollTop = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        document.querySelector('html').scrollTop = window.scrollY;
         if (isDragging) {
           onDragAndDropMobile(e.touches[0]);
         }
       }}
       onMouseOver={(e) => {
-        controlCursorStyle(e, "grab");
+        controlCursorStyle(e, 'grab');
         opacityOnObject(e, 0.5);
       }}
       onMouseOut={(e) => {

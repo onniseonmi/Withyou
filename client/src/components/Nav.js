@@ -24,8 +24,6 @@ const Nav = ({
 }) => {
   const handleClick = (e) => {
     if (e.target.id === "login") {
-      // loadingOn(setLoading);
-      // setTimeout(() => loadingOff(setLoading), 1500);
       setLoginBtn(true);
       setSignupBtn(false);
       setLandingOn(false);
