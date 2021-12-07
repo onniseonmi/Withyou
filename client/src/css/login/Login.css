@@ -147,12 +147,19 @@
 .login-oauth {
   width: 100%;
   position: relative;
+  height: 9rem;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
 }
 .oauth-box {
   margin: 0.7rem 0;
   display: flex;
   align-items: center;
   cursor: pointer;
+  height: 50px;
+  width: 180px;
+  font-size: 22px;
 }
 .oauth-box > div:first-child {
   position: relative;
@@ -165,19 +172,21 @@
 .oauth-box img {
 }
 #github-logo {
+  width: 32px;
+  height: 32px;
+  margin-left: 5px;
+}
+/* #naver-logo {
   width: 30px;
   height: 30px;
-}
-#naver-logo {
-  width: 30px;
-  height: 30px;
-}
+} */
 #kakao-logo {
   padding: 0.2rem;
   border-radius: 5px;
   background-color: yellow;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
 }
 .oauth-name {
   margin: 0 auto;
@@ -313,7 +322,7 @@
     height: 12rem;
   }
   .login-button-box > div:first-child {
-    height: 5.5rem;
+    height: 5rem;
     line-height: 5.5rem;
     font-size: 2rem;
   }
@@ -373,44 +382,47 @@
   .login-oauth {
     flex: 0 1 7rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     padding: 5rem 0;
   }
 
   .oauth-box {
-    width: 100%;
+    width: 24rem;
     border: 1px solid gray;
-    height: 5.5rem;
+    height: 6rem;
     border-radius: 5px;
-    font-size: 19px;
+    font-size: 25px;
     line-height: 35px;
     background-color: rgb(238, 238, 238);
   }
-  #github-logo {
-    width: 5rem;
-    height: 5rem;
-    position: absolute;
-    left: 0.5rem;
+  .oauth-box > div:last-child {
+    font-size: 3rem;
   }
-  #naver-logo {
+  #github-logo {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    left: 0.1rem;
+  }
+  /* #naver-logo {
     width: 5rem;
     height: 5rem;
     position: absolute;
     left: 0;
-  }
+  } */
   #kakao-logo {
     padding: 0.2rem;
     border-radius: 0.5rem;
     background-color: yellow;
-    width: 5rem;
-    height: 5rem;
+    width: 3.7rem;
+    height: 3.7rem;
     position: absolute;
-    left: 0.5rem;
+    left: -0.5rem;
   }
-  .oauth-box > div:last-child {
-    font-size: 2rem;
+  .oauth-name {
+    margin-left: 4rem;
   }
+
   .login-btn:hover,
   .oauth-box:hover {
     border: 1px solid black;
