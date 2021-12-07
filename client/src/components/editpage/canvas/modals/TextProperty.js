@@ -38,7 +38,7 @@ export default function TextProperty({
 
   return (
     <div id="property-modal" key={id}>
-      <PropertyTitle removeObjec={removeObject} />
+      <PropertyTitle removeObject={removeObject} />
       <div id="control-box">
         <TextStyle
           currentTextSyle={currentTextSyle}
