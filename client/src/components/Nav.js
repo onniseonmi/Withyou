@@ -20,9 +20,12 @@ const Nav = ({
   setSignupBtn,
   landingOn,
   setLandingOn,
+  setLoading,
 }) => {
   const handleClick = (e) => {
     if (e.target.id === "login") {
+      // loadingOn(setLoading);
+      // setTimeout(() => loadingOff(setLoading), 1500);
       setLoginBtn(true);
       setSignupBtn(false);
       setLandingOn(false);
@@ -105,6 +108,7 @@ const Nav = ({
           accessToken={accessToken}
           setAccessToken={setAccessToken}
           setLandingOn={setLandingOn}
+          setLoading={setLoading}
         />
       ) : null}
     </>

@@ -6,6 +6,8 @@ import Mypage from "./pages/Mypage";
 import Nav from "./components/Nav";
 import axios from "axios";
 import "./App.css";
+import Spinner from "./components/loading/Spinner";
+import { loadingOn, loadingOff } from "./components/loading/Loading";
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
@@ -22,6 +24,7 @@ export default function App() {
     mobile: "",
   });
   const [landingOn, setLandingOn] = useState(true);
+  const [loading, setLoading] = useState(false);
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
@@ -34,7 +37,7 @@ export default function App() {
       sessionStorage.setItem("accessTokenSession", accessToken);
     });
   };
-  useEffect(() => {
+  useEffect(async () => {
     const isLoginSession = sessionStorage.getItem("isLoginSession");
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
     if (isLoginSession) {
@@ -46,9 +49,11 @@ export default function App() {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get("code");
     if (authorizationCode) {
+      await loadingOn(setLoading);
       const loginType = sessionStorage.getItem("loginType");
       getAccessToken(authorizationCode, loginType);
       // window.location.assign("http://localhost:3000");
+      await loadingOff(setLoading);
     }
   }, []);
 
@@ -67,8 +72,12 @@ export default function App() {
         setAccessToken={setAccessToken}
         landingOn={landingOn}
         setLandingOn={setLandingOn}
+        setLoading={setLoading}
       />
 
+      <div className="spinner" style={{ zIndex: "1000" }}>
+        {loading ? <Spinner /> : null}
+      </div>
       <Switch>
         <Route exact={true} path="/">
           {!loginBtn && (
@@ -77,7 +86,12 @@ export default function App() {
         </Route>
         <Route path="/editpage">
           {!loginBtn && (
-            <EditPage setLandingOn={setLandingOn} isLogin={isLogin} />
+            <EditPage
+              setLandingOn={setLandingOn}
+              isLogin={isLogin}
+              loading={loading}
+              setLoading={setLoading}
+            />
           )}
         </Route>
         <Route path="/mypage">
@@ -86,6 +100,8 @@ export default function App() {
             setAccessToken={setAccessToken}
             setIsLogin={setIsLogin}
             setLoginBtn={setLoginBtn}
+            loading={loading}
+            setLoading={setLoading}
           />
         </Route>
       </Switch>

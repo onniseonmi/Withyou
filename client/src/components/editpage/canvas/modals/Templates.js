@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/Templates.css";
 import samples from "../../../../images/templates/AllTemplate";
-
+import { loadingOn, loadingOff } from "../../../loading/Loading";
 const data = samples;
 
 export default function Templates({
@@ -13,7 +13,6 @@ export default function Templates({
   const templateIndex = itemStates.findIndex(
     (el) => el.style.type === "templates"
   );
-
   return (
     <div id="templates-modal">
       <div id="templates-modal-nav" className="edit--menu-title">

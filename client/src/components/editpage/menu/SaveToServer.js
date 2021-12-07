@@ -1,6 +1,7 @@
 import React from "react";
 import html2canvse from "html2canvas";
 import axios from "axios";
+import { loadingOn, loadingOff } from "../../loading/Loading";
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
@@ -13,9 +14,11 @@ export default function SaveToServer({
   setIsSuccessMessage,
   setIsClientError,
   setIsServerError,
+  setLoading,
 }) {
   async function saveToServer() {
     if (isLogin) {
+      await loadingOn(setLoading);
       await deSelectObject();
       await html2canvse(document.querySelector("#canvas-paper"))
         .then((canvas) => {
@@ -36,8 +39,9 @@ export default function SaveToServer({
           let formData = new FormData();
           formData.append("img", file);
 
-          const accessTokenSession =
-            sessionStorage.getItem("accessTokenSession");
+          const accessTokenSession = sessionStorage.getItem(
+            "accessTokenSession"
+          );
 
           axios({
             method: "POST",
@@ -48,11 +52,12 @@ export default function SaveToServer({
               "content-type": "multipart/form-data boundary=something",
             },
           })
-            .then(() => {
+            .then(async () => {
               setIsSuccessMessage(true);
               setTimeout(() => {
                 setIsSuccessMessage(false);
               }, 2000);
+              await loadingOff(setLoading);
             })
             .catch((err) => setIsServerError(true));
         })

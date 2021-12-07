@@ -5,10 +5,12 @@ import loginModal from "../../images/signup.jpg";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";
+import { loadingOn, loadingOff } from "../loading/Loading";
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
 
@@ -19,6 +21,7 @@ const Login = ({
   setSignupBtn,
   setAccessToken,
   setLandingOn,
+  setLoading,
 }) => {
   const [inputErr, setInputErr] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -34,6 +37,7 @@ const Login = ({
   };
   const handleClick = async (e) => {
     try {
+      await loadingOff(setLoading);
       const data = await axios({
         method: "POST",
         url: `${server_url_2}/user/signin`,
@@ -47,7 +51,8 @@ const Login = ({
       setAccessToken(accessToken);
       setLoginBtn(false);
       setIsLogin(true);
-      window.location.assign(`${client_url_2}/editpage`);
+      await loadingOff(setLoading);
+      window.location.assign(`${client_url_2}`);
     } catch (err) {
       setInputErr(true);
     }

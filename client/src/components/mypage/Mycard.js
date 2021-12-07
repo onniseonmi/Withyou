@@ -4,12 +4,18 @@ import "../../css/mypage/Mycard.css";
 import Footer from "../Footer";
 import addPage from "../../images/Add NewImg.png";
 import axios from "axios";
+import { loadingOn, loadingOff } from "../loading/Loading";
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
 
-const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
+const Mycard = ({
+  editCardBtn,
+  setCardEditBtn,
+  setProfileEditBtn,
+  setLoading,
+}) => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const [cards, setCards] = useState([]);
 
@@ -17,6 +23,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
     if (accessToken) {
       const loginType = sessionStorage.getItem("loginType");
       try {
+        await loadingOn(setLoading);
         const card = await axios.get(`${server_url_2}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -24,6 +31,7 @@ const Mycard = ({ editCardBtn, setCardEditBtn, setProfileEditBtn }) => {
         });
         const cardImage = card.data;
         setCards([...cardImage]);
+        await loadingOff(setLoading);
       } catch (err) {
         console.log(err);
       }

@@ -11,6 +11,7 @@ export default function TopMenu({
   deSelectObject,
   setItemStates,
   setCurrentCanvasColor,
+  setLoading,
 }) {
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [isClientError, setIsClientError] = useState(false);
@@ -41,6 +42,7 @@ export default function TopMenu({
             setIsSuccessMessage={setIsSuccessMessage}
             setIsClientError={setIsClientError}
             setIsServerError={setIsServerError}
+            setLoading={setLoading}
           />
         </div>
       </div>
