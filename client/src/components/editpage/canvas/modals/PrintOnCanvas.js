@@ -24,7 +24,6 @@ export default function PrintOnCanvas({
   clientWidth,
   modifyText,
 }) {
-  const [currentText, setCurrentText] = useState("텍스트를 입력해주세요.");
   const [onMove, setOnMove] = useState(false);
   const { left, top } = document
     .querySelector("#canvas-paper")
@@ -109,8 +108,6 @@ export default function PrintOnCanvas({
     return (
       <TextOnCanvas
         id={id}
-        currentText={currentText}
-        setCurrentText={setCurrentText}
         modifyText={modifyText}
         style={style}
         textStyle={textStyle}

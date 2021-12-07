@@ -1,7 +1,7 @@
+import React, { useState } from "react";
+
 export default function TextOnCanvas({
   id,
-  currentText,
-  setCurrentText,
   modifyText,
   style,
   textStyle,
@@ -18,6 +18,7 @@ export default function TextOnCanvas({
   onDragAndDropMobile,
   opacityOnObject,
 }) {
+  const [currentText, setCurrentText] = useState("텍스트를 입력해주세요.");
   return (
     <div
       key={id}

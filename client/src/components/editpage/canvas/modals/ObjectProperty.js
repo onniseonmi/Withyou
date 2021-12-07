@@ -26,7 +26,7 @@ export default function ObjectProperty({
 }) {
   return (
     <div id="property-modal" key={id}>
-      <PropertyTitle removeObjec={removeObject} />
+      <PropertyTitle removeObject={removeObject} />
       <div id="control-box">
         <ObjectWidth width={width} resizeWidth={resizeWidth} />
         <ObjectHeight height={height} resizeHeight={resizeHeight} />
