@@ -136,8 +136,8 @@
 }
 .login-signup {
   position: absolute;
-  left: 0;
-  top: 2.5rem;
+  right: 0;
+  top: 3rem;
   font-size: 0.9rem;
 }
 .login-signup > span:not(:first-child) {
@@ -339,7 +339,9 @@
     position: unset;
   }
   .login-signup {
-    position: unset;
+    position: absolute;
+    right: 0;
+    top: 7rem;
   }
   .login-input-box > input {
     background: transparent;
