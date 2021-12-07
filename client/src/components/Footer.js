@@ -1,11 +1,20 @@
 import React from "react";
 import "../css/Footer.css";
 import githubIcon from "../images/github.png";
+import LinkToGitHub from "./LinkToGitHub";
 const Footer = ({ landingOn }) => {
-  const dev1 = `nick0726`;
-  const dev2 = `Melona0105`;
-  const dev3 = `onniseonmi`;
-  const dev4 = `allendy11`;
+  const front = [
+    { github: "nick0726", name: "김남현" },
+    { github: "Melona0105", name: "박덕원" },
+  ];
+  const back = [
+    { github: "onniseonmi", name: "최선미" },
+    { github: "allendy11", name: "윤대희" },
+  ];
+
+  const footerStyle = {
+    color: `${landingOn ? "#f2f0ec" : "black"}`,
+  };
 
   return (
     <div
@@ -22,90 +31,35 @@ const Footer = ({ landingOn }) => {
             rel="noreferrer"
             target="_blank"
           >
-            <span
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
-              Made by
-            </span>
-            <span
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
-              Withyou
-            </span>
+            <span style={footerStyle}>Made by</span>
+            <span style={footerStyle}>Withyou</span>
           </a>
         </div>
         <div className="footer-contact">
           <div>
             <img id="githubIcon" src={githubIcon} alt="github"></img>
-            <div
-              id="githubTitle"
-              style={{
-                color: `${landingOn ? "#f2f0ec" : "black"}`,
-              }}
-            >
+            <div id="githubTitle" style={footerStyle}>
               GITHUB
             </div>
           </div>
           <div className="footer-developer">
             <div className="footer-row">
-              <a
-                href={`https://github.com/${dev1}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span
-                  style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
-                  }}
-                >
-                  김남현
-                </span>
-              </a>
-              <a
-                href={`https://github.com/${dev2}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span
-                  style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
-                  }}
-                >
-                  박덕원
-                </span>
-              </a>
+              {front.map((el) => (
+                <LinkToGitHub
+                  github={el.github}
+                  name={el.name}
+                  landingOn={landingOn}
+                />
+              ))}
             </div>
             <div className="footer-row">
-              <a
-                href={`https://github.com/${dev3}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span
-                  style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
-                  }}
-                >
-                  최선미
-                </span>
-              </a>
-              <a
-                href={`https://github.com/${dev4}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span
-                  style={{
-                    color: `${landingOn ? "#f2f0ec" : "black"}`,
-                  }}
-                >
-                  윤대희
-                </span>
-              </a>
+              {back.map((el) => (
+                <LinkToGitHub
+                  github={el.github}
+                  name={el.name}
+                  landingOn={landingOn}
+                />
+              ))}
             </div>
           </div>
         </div>

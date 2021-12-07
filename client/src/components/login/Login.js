@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../../css/login/Login.css";
 import { Link } from "react-router-dom";
 import loginModal from "../../images/signup.jpg";
-import title from "../../images/title.png";
 import Signup from "../login/Signup";
 import Oauth from "../login/Oauth";
 import axios from "axios";

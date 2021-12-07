@@ -49,17 +49,17 @@ export default function TopMenu({
             canvas.width = canvas.width * 2;
             canvas.height = canvas.height * 2;
           }
-          let blobBin = atob(myImage.split(",")[1]); // base64 데이터 디코딩
+          let blobBin = atob(myImage.split(",")[1]);
           let array = [];
           for (let i = 0; i < blobBin.length; i++) {
             array.push(blobBin.charCodeAt(i));
           }
-          let blob = new Blob([new Uint8Array(array)], { type: "image/png" }); // Blob 생성
+          let blob = new Blob([new Uint8Array(array)], { type: "image/png" });
           let file = new File([blob], "My card.png", {
             type: "image/png",
           });
-          let formData = new FormData(); // formData 생성
-          formData.append("img", file); // file data 추가
+          let formData = new FormData();
+          formData.append("img", file);
 
           const accessTokenSession =
             sessionStorage.getItem("accessTokenSession");
@@ -70,8 +70,6 @@ export default function TopMenu({
             data: formData,
             headers: {
               authorization: `Bearer ${accessTokenSession}`,
-              // processData: false,
-              // "content-type": false,
               "content-type": "multipart/form-data boundary=something",
             },
           })

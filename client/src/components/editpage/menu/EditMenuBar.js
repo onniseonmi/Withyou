@@ -1,104 +1,48 @@
-import React, { useRef } from "react";
-import bgImg from "../../../images/bgImg.png";
+import React from "react";
+import "../../../css/editpage/menu/EditMenuBar.css";
 import templateImg from "../../../images/template.png";
 import elementsImg from "../../../images/elements.png";
 import imageImg from "../../../images/image.png";
 import textImg from "../../../images/text.png";
-import "../../../css/editpage/menu/EditMenuBar.css";
+import MenuBarElement from "./MenuBarElement";
+
 const EditMenuBar = ({ setMenuBtnStatus, setSelectState }) => {
-  const imgBoxRef = useRef([]);
-  const imgRef = useRef([]);
   const handleClick = (e) => {
     setMenuBtnStatus(e.target.id);
     setSelectState(false);
   };
+
+  const content = [
+    { name: "templates", src: templateImg },
+    { name: "elements", src: elementsImg },
+    { name: "image", src: imageImg },
+    { name: "text", src: textImg },
+  ];
+
+  const menus = content.map((el) => {
+    return {
+      id: `menuBar-${el.name}-box`,
+      imgId: `menuBar-${el.name}`,
+      imgAlt: `${el.name}Img`,
+      src: el.src,
+    };
+  });
+  const className = "menubar-btn";
+  const imgClassName = "edit-button";
+
   return (
     <div id="menuBar-container">
-      {/* <div
-        id="menuBar-bg-box"
-        className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[0] = el)}
-        onClick={(e) => imgRef.current[0].click()}
-      >
-        {
-          <img
-            id="menuBar-bg"
-            className="edit-button"
-            alt="bgImg"
-            src={bgImg}
-            ref={(el) => (imgRef.current[0] = el)}
-            onClick={(e) => handleClick(e)}
-          />
-        }
-      </div> */}
-      <div
-        id="menuBar-templates-box"
-        className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[1] = el)}
-        onClick={(e) => imgRef.current[1].click()}
-      >
-        {
-          <img
-            id="menuBar-templates"
-            className="edit-button"
-            alt="templateImg"
-            src={templateImg}
-            ref={(el) => (imgRef.current[1] = el)}
-            onClick={(e) => handleClick(e)}
-          />
-        }
-      </div>
-      <div
-        id="menuBar-elements-box"
-        className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[2] = el)}
-        onClick={(e) => imgRef.current[2].click()}
-      >
-        {
-          <img
-            id="menuBar-elements"
-            className="edit-button"
-            src={elementsImg}
-            ref={(el) => (imgRef.current[2] = el)}
-            onClick={(e) => handleClick(e)}
-          />
-        }
-      </div>
-      <div
-        id="menuBar-image-box"
-        className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[3] = el)}
-        onClick={(e) => imgRef.current[3].click()}
-      >
-        {
-          <img
-            id="menuBar-image"
-            className="edit-button"
-            alt="imageImg"
-            src={imageImg}
-            ref={(el) => (imgRef.current[3] = el)}
-            onClick={(e) => handleClick(e)}
-          />
-        }
-      </div>
-
-      <div
-        id="menuBar-text-box"
-        className="menubar-btn"
-        ref={(el) => (imgBoxRef.current[4] = el)}
-        onClick={(e) => imgRef.current[4].click()}
-      >
-        {
-          <img
-            id="menuBar-text"
-            className="edit-button"
-            alt="textImg"
-            src={textImg}
-            ref={(el) => (imgRef.current[4] = el)}
-            onClick={(e) => handleClick(e)}
-          />
-        }
-      </div>
+      {menus.map((el) => (
+        <MenuBarElement
+          id={el.id}
+          className={className}
+          imgId={el.imgId}
+          imgClassName={imgClassName}
+          imgAlt={el.imgAlt}
+          src={el.src}
+          handleClick={handleClick}
+        />
+      ))}
     </div>
   );
 };

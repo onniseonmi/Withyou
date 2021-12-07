@@ -8,6 +8,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-bucket-test1.s3-website.ap-northeast-2.amazonaws.com";
 
