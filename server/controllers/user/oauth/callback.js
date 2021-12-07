@@ -99,7 +99,7 @@ module.exports = (req, res) => {
   } else if (type === 'kakao') {
     client_id = process.env.KAKAO_CLIENT_ID;
     client_secret = process.env.KAKAO_CLIENT_SECRET;
-    url = `https://kauth.kakao.com/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirect_uri}`;
+    url = `https://kauth.kakao.com/oauth/token?client_id=${client_id}&client_secret=${client_secret}&grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirect_uri_S3}`;
     axios({ method: 'GET', url }).then((resp) => {
       axios({
         method: 'GET',
