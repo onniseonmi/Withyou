@@ -14,8 +14,7 @@ const LandingPage = ({ landingOn, setLandingOn }) => {
           autoplay="autoplay"
           loop="Loop"
           volume="0.2"
-          controls="controls autoplay"
-          muted="muted"
+          muted="false"
         >
           <source src={landingVideo} type="video/mp4" alt={landingVideo} />
         </video>
