@@ -137,7 +137,6 @@
 .login-signup {
   position: absolute;
   left: 0;
-  /* top: 4.3rem; */
   top: 2.5rem;
   font-size: 0.9rem;
 }
@@ -147,10 +146,7 @@
 }
 .login-oauth {
   width: 100%;
-  height: 150px;
-  /* border: 1px solid blue; */
   position: relative;
-  /* margin: 2rem 0; */
 }
 .oauth-box {
   margin: 0.7rem 0;
@@ -160,7 +156,6 @@
 }
 .oauth-box > div:first-child {
   position: relative;
-  /* border: 1px solid red; */
   width: 35px;
   height: 35px;
   display: flex;
@@ -168,7 +163,6 @@
   justify-content: center;
 }
 .oauth-box img {
-  /* margin: auto; */
 }
 #github-logo {
   width: 30px;
@@ -199,7 +193,6 @@
     text-align: center;
     display: flex;
     justify-content: center;
-    /* border: 1px solid black; */
     padding: 1rem;
   }
   .close-btn {
@@ -378,19 +371,17 @@
     outline: none;
   }
   .login-oauth {
-    flex: 0 1 30rem;
+    flex: 0 1 7rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 5rem 0;
   }
-  .oauth-box {
-    height: 5.5rem;
-  }
 
   .oauth-box {
     width: 100%;
     border: 1px solid gray;
+    height: 5.5rem;
     border-radius: 5px;
     font-size: 19px;
     line-height: 35px;
