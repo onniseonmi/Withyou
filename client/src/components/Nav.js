@@ -50,6 +50,7 @@ const Nav = ({
         style={{
           backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
           borderBottom: `${landingOn ? "transparent" : "solid 1px lightgray"}`,
+          textShadow: `${landingOn ? "1px 1px 5px #212121" : "none"}`,
         }}
       >
         <div className="nav-left">

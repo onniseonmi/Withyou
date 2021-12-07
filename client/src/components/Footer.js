@@ -22,6 +22,7 @@ const Footer = ({ landingOn }) => {
       style={{
         backgroundColor: `${landingOn ? "transparent" : "#f2f0ec"}`,
         borderTop: `${landingOn ? "transparent" : "solid 1px lightgray"}`,
+        textShadow: `${landingOn ? "1px 1px 5px #212121" : "none"}`,
       }}
     >
       <div>
