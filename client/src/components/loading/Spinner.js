@@ -6,7 +6,7 @@ const Spinner = () => {
   return (
     <div className="spinner-container">
       <div className="spinner-box" ref={spinnerRef}>
-        <SyncLoader size="25" margin="5" color="#36D7B7" />
+        <SyncLoader size="15" margin="5" color="salmon" />
       </div>
     </div>
   );
