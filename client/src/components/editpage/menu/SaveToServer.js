@@ -40,8 +40,9 @@ export default function SaveToServer({
           let formData = new FormData();
           formData.append("img", file);
 
-          const accessTokenSession =
-            sessionStorage.getItem("accessTokenSession");
+          const accessTokenSession = sessionStorage.getItem(
+            "accessTokenSession"
+          );
 
           axios({
             method: "POST",
