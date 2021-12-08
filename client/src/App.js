@@ -50,20 +50,22 @@ export default function App() {
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
     if (isLoginSession) {
       setIsLogin(isLoginSession);
+      await loadingOff(setLoading);
     }
     if (accessTokenSession) {
       setAccessToken(accessTokenSession);
     }
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get("code");
-    if (authorizationCode) {
+
+    if (!isLoginSession && authorizationCode) {
       await loadingOn(setLoading);
+
       const loginType = sessionStorage.getItem("loginType");
       getAccessToken(authorizationCode, loginType);
       // window.location.assign("http://localhost:3000");
-      await loadingOff(setLoading);
     }
-  }, []);
+  }, [isLogin]);
 
   return (
     <Router>
