@@ -10,6 +10,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const server_url_3 = "https://with-you.site";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
@@ -40,7 +41,7 @@ const Login = ({
       await loadingOn(setLoading);
       const data = await axios({
         method: "POST",
-        url: `${server_url_2}/user/signin`,
+        url: `${server_url_3}/user/signin`,
         data: userInput,
         // 여기서 then을 걸어서, 정상적으로 받아오면, 다음 작업을 들어가는 식이 맞지 않나...? 잘 모르겠음
       }).catch(async (err) => {

@@ -5,6 +5,7 @@ import { loadingOn, loadingOff } from "../../loading/Loading";
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const server_url_3 = "https://with-you.site";
 
 axios.default.withCredentials = true;
 
@@ -46,7 +47,7 @@ export default function SaveToServer({
 
           axios({
             method: "POST",
-            url: `${server_url_2}/mycard/post`,
+            url: `${server_url_3}/mycard/post`,
             data: formData,
             headers: {
               authorization: `Bearer ${accessTokenSession}`,

@@ -3,6 +3,7 @@ import axios from "axios";
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const server_url_3 = "https://with-you.site";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
@@ -18,7 +19,7 @@ export const DeleteAccountModal = ({
   const accessToken = sessionStorage.getItem("accessTokenSession");
 
   const deleteAccount = async (accessToken) => {
-    await axios.get(`${server_url_2}/user/delete`, {
+    await axios.get(`${server_url_3}/user/delete`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

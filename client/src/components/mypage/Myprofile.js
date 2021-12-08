@@ -6,7 +6,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
-
+const server_url_3 = "https://with-you.site";
 const Myprofile = () => {
   const { clientWidth } = document.body;
   const accessToken = sessionStorage.getItem("accessTokenSession");
@@ -33,7 +33,7 @@ const Myprofile = () => {
       try {
         const data = await axios({
           method: "POST",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_3}/profile`,
           data: {
             username: userInput.username,
             mobile: userInput.mobile,
@@ -73,7 +73,7 @@ const Myprofile = () => {
       try {
         axios({
           method: "GET",
-          url: `${server_url_2}/profile`,
+          url: `${server_url_3}/profile`,
           headers: {
             authorization: `Bearer ${accessToken}`,
           },
@@ -105,7 +105,7 @@ const Myprofile = () => {
     formData.append("img", event.target.files[0]);
     const accessTokenSession = sessionStorage.getItem("accessTokenSession");
 
-    const res = await axios.put(`${server_url_2}/profile/image`, formData, {
+    const res = await axios.put(`${server_url_3}/profile/image`, formData, {
       headers: {
         authorization: `Bearer ${accessTokenSession}`,
         "content-type": "multipart/form-data boundary=something",

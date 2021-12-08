@@ -16,7 +16,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
-
+const server_url_3 = "https://with-you.site";
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [isLogin, setIsLogin] = useState(false);
@@ -36,7 +36,7 @@ export default function App() {
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
-      url: `${server_url_2}/user/callback`,
+      url: `${server_url_3}/user/callback`,
       data: { authorizationCode: authorizationCode, type: loginType },
     }).then((resp) => {
       const { accessToken } = resp.data;
