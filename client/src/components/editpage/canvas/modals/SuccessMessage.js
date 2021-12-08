@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/Message.css";
-export default function SuccessMessage({ setIsSuccessMessage }) {
+export default function SuccessMessage({ setIsSuccessMessage, setIsMessage }) {
   return (
     <div id="message-modal">
       서버에 저장하였습니다.
@@ -9,7 +9,10 @@ export default function SuccessMessage({ setIsSuccessMessage }) {
       <div className="save-modal-container">
         <button
           id="close-message-modal"
-          onClick={() => setIsSuccessMessage(false)}
+          onClick={() => {
+            setIsMessage(false);
+            setIsSuccessMessage(false);
+          }}
         >
           Close
         </button>

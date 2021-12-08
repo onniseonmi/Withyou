@@ -10,6 +10,7 @@ export default function EditPage({
   isLogin,
   loading,
   setLoading,
+  setIsMessage,
 }) {
   // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
   const [itemStates, setItemStates] = useState([]);
@@ -273,6 +274,7 @@ export default function EditPage({
               setItemStates={setItemStates}
               setCurrentCanvasColor={setCurrentCanvasColor}
               setLoading={setLoading}
+              setIsMessage={setIsMessage}
             />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>

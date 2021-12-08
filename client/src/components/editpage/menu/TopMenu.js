@@ -12,6 +12,7 @@ export default function TopMenu({
   setItemStates,
   setCurrentCanvasColor,
   setLoading,
+  setIsMessage,
 }) {
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [isClientError, setIsClientError] = useState(false);
@@ -35,10 +36,12 @@ export default function TopMenu({
           <DownLoad
             deSelectObject={deSelectObject}
             setIsClientError={setIsClientError}
+            setIsMessage={setIsMessage}
           />
           <SaveToServer
             isLogin={isLogin}
             deSelectObject={deSelectObject}
+            setIsMessage={setIsMessage}
             setIsSuccessMessage={setIsSuccessMessage}
             setIsClientError={setIsClientError}
             setIsServerError={setIsServerError}
@@ -47,13 +50,22 @@ export default function TopMenu({
         </div>
       </div>
       {isSuccessMessage && (
-        <SuccessMessage setIsSuccessMessage={setIsSuccessMessage} />
+        <SuccessMessage
+          setIsSuccessMessage={setIsSuccessMessage}
+          setIsMessage={setIsMessage}
+        />
       )}
       {isClientError && (
-        <ClientErrorMessage setIsClientError={setIsClientError} />
+        <ClientErrorMessage
+          setIsClientError={setIsClientError}
+          setIsMessage={setIsMessage}
+        />
       )}
       {isServerError && (
-        <ServerErrorMessage setIsServerError={setIsServerError} />
+        <ServerErrorMessage
+          setIsServerError={setIsServerError}
+          setIsMessage={setIsMessage}
+        />
       )}
     </div>
   );

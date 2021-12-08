@@ -18,6 +18,7 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
+  const [isMessage, setIsMessage] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -76,7 +77,7 @@ export default function App() {
       />
 
       <div className="spinner" style={{ zIndex: "1000" }}>
-        {loading ? <Spinner /> : null}
+        {loading || isMessage ? <Spinner /> : null}
       </div>
       <Switch>
         <Route exact={true} path="/">
@@ -91,6 +92,7 @@ export default function App() {
               isLogin={isLogin}
               loading={loading}
               setLoading={setLoading}
+              setIsMessage={setIsMessage}
             />
           )}
         </Route>
