@@ -7,7 +7,7 @@ import Login from "./login/Login";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
-
+const client_url_3 = "https://with-you.co.kr";
 const Nav = ({
   userInfo,
   setUserInfo,
@@ -38,7 +38,7 @@ const Nav = ({
       setAccessToken("");
       setIsLogin(false);
       setLoginBtn(false);
-      window.location.assign(client_url_2);
+      window.location.assign(client_url_3);
     }
   };
 
