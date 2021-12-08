@@ -9,6 +9,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+const server_url_3 = "https://with-you.site";
 
 const Mycard = ({
   editCardBtn,
@@ -23,7 +24,7 @@ const Mycard = ({
     if (accessToken) {
       try {
         await loadingOn(setLoading);
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_3}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -38,7 +39,7 @@ const Mycard = ({
   }, []);
 
   const deleteCard = (card) => {
-    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_3}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
   function toDataURL(url, callback) {
