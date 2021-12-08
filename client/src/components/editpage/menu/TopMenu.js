@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import "../../../css/editpage/TopMenu.css";
-import SuccessMessage from "../canvas/modals/SuccessMessage";
-import ClientErrorMessage from "../canvas/modals/ClientErrorMessage";
-import ServerErrorMessage from "../canvas/modals/ServerErrorMessage";
 import DownLoad from "./DownLoad";
 import SaveToServer from "./SaveToServer";
 
@@ -12,11 +9,11 @@ export default function TopMenu({
   setItemStates,
   setCurrentCanvasColor,
   setLoading,
+  setIsMessage,
+  setIsClientError,
+  setIsSuccessMessage,
+  setIsServerError,
 }) {
-  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
-  const [isClientError, setIsClientError] = useState(false);
-  const [isServerError, setIsServerError] = useState(false);
-
   return (
     <div id="top-menu">
       <div className="top-menu-box top-menu-left">
@@ -35,10 +32,12 @@ export default function TopMenu({
           <DownLoad
             deSelectObject={deSelectObject}
             setIsClientError={setIsClientError}
+            setIsMessage={setIsMessage}
           />
           <SaveToServer
             isLogin={isLogin}
             deSelectObject={deSelectObject}
+            setIsMessage={setIsMessage}
             setIsSuccessMessage={setIsSuccessMessage}
             setIsClientError={setIsClientError}
             setIsServerError={setIsServerError}
@@ -46,15 +45,6 @@ export default function TopMenu({
           />
         </div>
       </div>
-      {isSuccessMessage && (
-        <SuccessMessage setIsSuccessMessage={setIsSuccessMessage} />
-      )}
-      {isClientError && (
-        <ClientErrorMessage setIsClientError={setIsClientError} />
-      )}
-      {isServerError && (
-        <ServerErrorMessage setIsServerError={setIsServerError} />
-      )}
     </div>
   );
 }

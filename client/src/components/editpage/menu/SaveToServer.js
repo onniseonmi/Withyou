@@ -15,6 +15,7 @@ export default function SaveToServer({
   setIsClientError,
   setIsServerError,
   setLoading,
+  setIsMessage,
 }) {
   async function saveToServer() {
     if (isLogin) {
@@ -39,9 +40,8 @@ export default function SaveToServer({
           let formData = new FormData();
           formData.append("img", file);
 
-          const accessTokenSession = sessionStorage.getItem(
-            "accessTokenSession"
-          );
+          const accessTokenSession =
+            sessionStorage.getItem("accessTokenSession");
 
           axios({
             method: "POST",
@@ -53,16 +53,21 @@ export default function SaveToServer({
             },
           })
             .then(async () => {
+              setIsMessage(true);
               setIsSuccessMessage(true);
-              setTimeout(() => {
-                setIsSuccessMessage(false);
-              }, 2000);
               await loadingOff(setLoading);
             })
-            .catch((err) => setIsServerError(true));
+            .catch((err) => {
+              setIsMessage(true);
+              setIsServerError(true);
+            });
         })
-        .catch((err) => setIsServerError(true));
+        .catch((err) => {
+          setIsMessage(true);
+          setIsServerError(true);
+        });
     } else {
+      setIsMessage(true);
       setIsClientError(true);
     }
   }

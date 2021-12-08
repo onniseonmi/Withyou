@@ -1,7 +1,11 @@
 import React from "react";
 import html2canvse from "html2canvas";
 
-export default function DownLoad({ deSelectObject, setIsClientError }) {
+export default function DownLoad({
+  deSelectObject,
+  setIsClientError,
+  setIsMessage,
+}) {
   async function download() {
     await deSelectObject();
     try {
@@ -18,8 +22,12 @@ export default function DownLoad({ deSelectObject, setIsClientError }) {
           el.click();
           el.remove();
         })
-        .catch((err) => setIsClientError(true));
+        .catch((err) => {
+          setIsMessage(true);
+          setIsClientError(true);
+        });
     } catch {
+      setIsMessage(true);
       setIsClientError(true);
     }
   }

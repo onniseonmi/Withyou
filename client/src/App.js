@@ -8,6 +8,10 @@ import axios from "axios";
 import "./App.css";
 import Spinner from "./components/loading/Spinner";
 import { loadingOn, loadingOff } from "./components/loading/Loading";
+import SuccessMessage from "../src/components/editpage/canvas/modals/SuccessMessage";
+import ClientErrorMessage from "../src/components/editpage/canvas/modals/ClientErrorMessage";
+import ServerErrorMessage from "../src/components/editpage/canvas/modals/ServerErrorMessage";
+
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:4000";
 const server_url_2 =
@@ -18,6 +22,7 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
+  const [isMessage, setIsMessage] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
@@ -25,6 +30,9 @@ export default function App() {
   });
   const [landingOn, setLandingOn] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+  const [isClientError, setIsClientError] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
@@ -74,9 +82,27 @@ export default function App() {
         setLandingOn={setLandingOn}
         setLoading={setLoading}
       />
+      {isSuccessMessage && (
+        <SuccessMessage
+          setIsSuccessMessage={setIsSuccessMessage}
+          setIsMessage={setIsMessage}
+        />
+      )}
+      {isClientError && (
+        <ClientErrorMessage
+          setIsClientError={setIsClientError}
+          setIsMessage={setIsMessage}
+        />
+      )}
+      {isServerError && (
+        <ServerErrorMessage
+          setIsServerError={setIsServerError}
+          setIsMessage={setIsMessage}
+        />
+      )}
 
       <div className="spinner" style={{ zIndex: "1000" }}>
-        {loading ? <Spinner /> : null}
+        {loading || isMessage ? <Spinner /> : null}
       </div>
       <Switch>
         <Route exact={true} path="/">
@@ -91,6 +117,10 @@ export default function App() {
               isLogin={isLogin}
               loading={loading}
               setLoading={setLoading}
+              setIsMessage={setIsMessage}
+              setIsClientError={setIsClientError}
+              setIsSuccessMessage={setIsSuccessMessage}
+              setIsServerError={setIsServerError}
             />
           )}
         </Route>

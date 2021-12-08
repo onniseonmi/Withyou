@@ -1,6 +1,9 @@
 import React from "react";
 import "../../../../css/editpage/canvas/modals/Message.css";
-export default function ServerErrorMessage({ setIsServerError }) {
+export default function ServerErrorMessage({
+  setIsServerError,
+  setIsMessage,
+}) {
   return (
     <div id="message-modal">
       죄송합니다. 오류가 발생했어요.
@@ -10,6 +13,7 @@ export default function ServerErrorMessage({ setIsServerError }) {
         <button
           id="close-message-modal"
           onClick={() => {
+            setIsMessage(false);
             setIsServerError(false);
           }}
         >

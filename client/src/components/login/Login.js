@@ -37,12 +37,16 @@ const Login = ({
   };
   const handleClick = async (e) => {
     try {
-      await loadingOff(setLoading);
+      await loadingOn(setLoading);
       const data = await axios({
         method: "POST",
         url: `${server_url_2}/user/signin`,
         data: userInput,
-      }).catch((err) => setInputErr(true));
+        // 여기서 then을 걸어서, 정상적으로 받아오면, 다음 작업을 들어가는 식이 맞지 않나...? 잘 모르겠음
+      }).catch(async (err) => {
+        await loadingOff(setLoading);
+        setInputErr(true);
+      });
 
       const { accessToken } = data.data;
 
@@ -151,7 +155,7 @@ const Login = ({
                   </div>
                 </div>
               </div>
-              <Oauth />
+              <Oauth setLoading={setLoading} />
             </div>
           </div>
         )}
