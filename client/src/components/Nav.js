@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../css/Nav.css";
 import "../css/LandingPage.css";
 import Login from "./login/Login";
+
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
@@ -44,6 +45,7 @@ const Nav = ({
   const navStyle = {
     color: `${landingOn ? "#f2f0ec" : "black"}`,
   };
+
   return (
     <>
       <div
