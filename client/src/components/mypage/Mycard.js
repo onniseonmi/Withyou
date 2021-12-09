@@ -6,9 +6,9 @@ import addPage from "../../images/Add NewImg.png";
 import axios from "axios";
 import { loadingOn, loadingOff } from "../loading/Loading";
 axios.default.withCredentials = true;
-const server_url_1 = "http://localhost:4000";
+const server_url_1 = "http://localhost:8080";
 const server_url_2 =
-  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:8080";
 const server_url_3 = "https://with-you.site:8080";
 
 const Mycard = ({
@@ -24,7 +24,7 @@ const Mycard = ({
     if (accessToken) {
       try {
         await loadingOn(setLoading);
-        const card = await axios.get(`${server_url_3}/mycard`, {
+        const card = await axios.get(`${server_url_2}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -39,7 +39,7 @@ const Mycard = ({
   }, []);
 
   const deleteCard = (card) => {
-    axios.get(`${server_url_3}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
   function toDataURL(url, callback) {

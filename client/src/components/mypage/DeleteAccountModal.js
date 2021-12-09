@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-const server_url_1 = "http://localhost:4000";
+const server_url_1 = "http://localhost:8080";
 const server_url_2 =
-  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:4000";
+  "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:8080";
 const server_url_3 = "https://with-you.site:8080";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
@@ -19,7 +19,7 @@ export const DeleteAccountModal = ({
   const accessToken = sessionStorage.getItem("accessTokenSession");
 
   const deleteAccount = async (accessToken) => {
-    await axios.get(`${server_url_3}/user/delete`, {
+    await axios.get(`${server_url_2}/user/delete`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -28,7 +28,7 @@ export const DeleteAccountModal = ({
     setAccessToken("");
     setIsLogin(false);
     setLoginBtn(false);
-    window.location.assign(client_url_3);
+    window.location.assign(client_url_2);
     setLoadingSpinner(false);
   };
   return (
