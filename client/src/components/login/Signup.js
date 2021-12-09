@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react";
-import title from "../../images/title.png";
+import React, { useState } from "react";
 import "../../css/login/Signup.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
