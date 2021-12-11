@@ -7,7 +7,7 @@ axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:8080";
 const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:8080";
-const server_url_3 = "https://with-you.site:8080";
+const server_url_3 = "https://with-you.site";
 const client_url_1 = "http://localhost:3000";
 const client_url_2 =
   "http://withyou-final.s3-website.ap-northeast-2.amazonaws.com";
@@ -74,7 +74,7 @@ const Signup = ({
         try {
           const data = await axios({
             method: "POST",
-            url: `${server_url_2}/user/signup`,
+            url: `${server_url_3}/user/signup`,
             data: userInput,
           });
 
@@ -93,7 +93,7 @@ const Signup = ({
           } else {
             const tokenData = await axios({
               method: "POST",
-              url: `${server_url_2}/user/signin`,
+              url: `${server_url_3}/user/signin`,
               data: { email: userInput.email, password: userInput.password },
             });
 
@@ -104,7 +104,7 @@ const Signup = ({
             setIsLogin(true);
             setAccessToken(accessToken);
             setLoginBtn(false);
-            window.location.assign(`${client_url_2}`);
+            window.location.assign(`${client_url_3}`);
           }
         } catch (err) {
           setErrModal(true);

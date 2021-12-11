@@ -19,7 +19,7 @@ const Mycard = ({ setLoading }) => {
     if (accessToken) {
       try {
         await loadingOn(setLoading);
-        const card = await axios.get(`${server_url_2}/mycard`, {
+        const card = await axios.get(`${server_url_3}/mycard`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -34,7 +34,7 @@ const Mycard = ({ setLoading }) => {
   }, []);
 
   const deleteCard = (card) => {
-    axios.get(`${server_url_2}/mycard/delete/${card.id}`);
+    axios.get(`${server_url_3}/mycard/delete/${card.id}`);
     setCards(cards.filter((el) => el.id !== card.id));
   };
   function toDataURL(url, callback) {
