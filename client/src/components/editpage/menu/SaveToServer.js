@@ -41,12 +41,13 @@ export default function SaveToServer({
           let formData = new FormData();
           formData.append("img", file);
 
-          const accessTokenSession =
-            sessionStorage.getItem("accessTokenSession");
+          const accessTokenSession = sessionStorage.getItem(
+            "accessTokenSession"
+          );
 
           axios({
             method: "POST",
-            url: `${server_url_2}/mycard/post`,
+            url: `${server_url_3}/mycard/post`,
             data: formData,
             headers: {
               authorization: `Bearer ${accessTokenSession}`,

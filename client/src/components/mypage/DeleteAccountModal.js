@@ -19,7 +19,7 @@ export const DeleteAccountModal = ({
   const accessToken = sessionStorage.getItem("accessTokenSession");
 
   const deleteAccount = async (accessToken) => {
-    await axios.get(`${server_url_2}/user/delete`, {
+    await axios.get(`${server_url_3}/user/delete`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -28,7 +28,7 @@ export const DeleteAccountModal = ({
     setAccessToken("");
     setIsLogin(false);
     setLoginBtn(false);
-    window.location.assign(client_url_2);
+    window.location.assign(client_url_3);
     setLoadingSpinner(false);
   };
   return (
