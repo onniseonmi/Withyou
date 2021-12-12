@@ -15,14 +15,19 @@ export default function ImageOnCanvas({
   onDragAndDropMobile,
   opacityOnObject,
 }) {
+  const { width, height } = style;
+  // const newWitdh = width >= height ? width : height;
+  const newWitdh = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) * 0.8;
+  const newStyle = {
+    ...style,
+    width: newWitdh,
+    height: newWitdh,
+    display: "flex",
+    alignItems: "center",
+  };
   return (
-    <img
-      key={id}
-      id={id}
-      className="image-element"
-      draggable={false}
-      src={src}
-      style={setObjectStyle(style, isSelected)}
+    <div
+      style={setObjectStyle(newStyle, isSelected)}
       onMouseDown={(e) => {
         setOnMove(true);
         onClickObjcet(e);
@@ -65,6 +70,19 @@ export default function ImageOnCanvas({
           onDragAndDrop(e);
         }
       }}
-    />
+    >
+      <img
+        key={id}
+        id={id}
+        className="image-element"
+        draggable={false}
+        src={src}
+        style={{
+          width: style.width,
+          height: style.height,
+          transform: style.transform,
+        }}
+      />
+    </div>
   );
 }

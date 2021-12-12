@@ -7,9 +7,9 @@ export default function SuccessMessage({ setIsSuccessMessage, setIsMessage }) {
         서버에 저장하였습니다.
         <br /> MyPage에서 확인해주세요.
         <br />
-        <div className="save-modal-container">
+        <div id="message-modal-container">
           <button
-            id="close-message-modal"
+            className="close-message-modal"
             onClick={() => {
               setIsMessage(false);
               setIsSuccessMessage(false);

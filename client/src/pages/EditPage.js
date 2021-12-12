@@ -13,8 +13,10 @@ export default function EditPage({
   setIsClientError,
   setIsSuccessMessage,
   setIsServerError,
+  setIsConfirmMessage,
+  itemStates,
+  setItemStates,
 }) {
-  const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-templates");
@@ -279,6 +281,7 @@ export default function EditPage({
               setIsClientError={setIsClientError}
               setIsSuccessMessage={setIsSuccessMessage}
               setIsServerError={setIsServerError}
+              setIsConfirmMessage={setIsConfirmMessage}
             />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>

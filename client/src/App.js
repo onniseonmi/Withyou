@@ -11,6 +11,7 @@ import { loadingOn, loadingOff } from "./components/loading/Loading";
 import SuccessMessage from "../src/components/editpage/canvas/modals/SuccessMessage";
 import ClientErrorMessage from "../src/components/editpage/canvas/modals/ClientErrorMessage";
 import ServerErrorMessage from "../src/components/editpage/canvas/modals/ServerErrorMessage";
+import ConfirmMessage from "./components/editpage/canvas/modals/ConfirmMessage";
 
 axios.default.withCredentials = true;
 const server_url_1 = "http://localhost:8080";
@@ -33,6 +34,8 @@ export default function App() {
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [isClientError, setIsClientError] = useState(false);
   const [isServerError, setIsServerError] = useState(false);
+  const [isConfirmMessage, setIsConfirmMessage] = useState(false);
+  const [itemStates, setItemStates] = useState([]);
   const getAccessToken = (authorizationCode, loginType) => {
     axios({
       method: "POST",
@@ -102,6 +105,13 @@ export default function App() {
           setIsMessage={setIsMessage}
         />
       )}
+      {isConfirmMessage && (
+        <ConfirmMessage
+          setIsConfirmMessage={setIsConfirmMessage}
+          setIsMessage={setIsMessage}
+          setItemStates={setItemStates}
+        />
+      )}
 
       <div className="spinner" style={{ zIndex: "1000" }}>
         {loading || isMessage ? <Spinner /> : null}
@@ -123,6 +133,9 @@ export default function App() {
               setIsClientError={setIsClientError}
               setIsSuccessMessage={setIsSuccessMessage}
               setIsServerError={setIsServerError}
+              setIsConfirmMessage={setIsConfirmMessage}
+              itemStates={itemStates}
+              setItemStates={setItemStates}
             />
           )}
         </Route>

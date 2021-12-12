@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../../css/editpage/TopMenu.css";
 import DownLoad from "./DownLoad";
 import SaveToServer from "./SaveToServer";
@@ -6,13 +6,12 @@ import SaveToServer from "./SaveToServer";
 export default function TopMenu({
   isLogin,
   deSelectObject,
-  setItemStates,
-  setCurrentCanvasColor,
   setLoading,
   setIsMessage,
   setIsClientError,
   setIsSuccessMessage,
   setIsServerError,
+  setIsConfirmMessage,
 }) {
   return (
     <div id="top-menu">
@@ -20,8 +19,8 @@ export default function TopMenu({
         <div
           id="delete-all-object"
           onClick={() => {
-            setCurrentCanvasColor({ hex: "#ffffff" });
-            setItemStates([]);
+            setIsMessage(true);
+            setIsConfirmMessage(true);
           }}
         >
           전체 삭제
