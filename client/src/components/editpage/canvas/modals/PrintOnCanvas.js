@@ -76,10 +76,12 @@ export default function PrintOnCanvas({
       top: y / 2,
     });
   }
-
   function setObjectStyle(style, isSelected) {
+    const deleteRotateStyle = { ...style };
+    delete deleteRotateStyle.transform;
+
     return {
-      ...style,
+      ...deleteRotateStyle,
       border: isSelected ? "dotted 2px red" : "solid 2px transparent",
     };
   }

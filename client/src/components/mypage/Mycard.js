@@ -11,12 +11,7 @@ const server_url_2 =
   "http://ec2-3-24-168-238.ap-southeast-2.compute.amazonaws.com:8080";
 const server_url_3 = "https://with-you.site:8080";
 
-const Mycard = ({
-  editCardBtn,
-  setCardEditBtn,
-  setProfileEditBtn,
-  setLoading,
-}) => {
+const Mycard = ({ setLoading }) => {
   const accessToken = sessionStorage.getItem("accessTokenSession");
   const [cards, setCards] = useState([]);
 

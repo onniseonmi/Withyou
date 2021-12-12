@@ -7,9 +7,9 @@ export default function ServerErrorMessage({ setIsServerError, setIsMessage }) {
         죄송합니다. 오류가 발생했어요.
         <br />
         문제를 수정중이에요.
-        <div className="save-modal-container">
+        <div id="message-modal-container">
           <button
-            id="close-message-modal"
+            className="close-message-modal"
             onClick={() => {
               setIsMessage(false);
               setIsServerError(false);

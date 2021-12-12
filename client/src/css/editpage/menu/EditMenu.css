@@ -1,7 +1,9 @@
 #detail-property {
   display: flex;
   position: relative;
-  background-color: #e4e0d6;
+  background-color: #f8eee7;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
   flex: 1;
 }
 #edit-menu-container {

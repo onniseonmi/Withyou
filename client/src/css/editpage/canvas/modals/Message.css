@@ -24,7 +24,13 @@
   border-radius: 1rem;
 }
 
-#close-message-modal {
+#message-modal-container {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.close-message-modal {
   font-size: 15px;
   border-radius: 0.6rem;
   width: 70px;
@@ -32,11 +38,11 @@
   transition: 0.3s;
   cursor: pointer;
 }
-#close-message-modal:hover {
+.close-message-modal:hover {
   background-color: salmon;
   color: black;
 }
-#close-message-modal:not(:hover) {
+.close-message-modal:not(:hover) {
   background-color: black;
   color: white;
 }
