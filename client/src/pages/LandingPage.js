@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/LandingPage.css';
 import Footer from '../components/Footer';
 import landingVideo from '../videos/landingVideo.mp4';
+import phoneLanding from '../videos/phoneLanding.gif';
 import { Link } from 'react-router-dom';
 
 const LandingPage = ({ landingOn, setLandingOn }) => {
@@ -17,6 +18,7 @@ const LandingPage = ({ landingOn, setLandingOn }) => {
         >
           <source src={landingVideo} type='video/mp4' alt={landingVideo} />
         </video>
+        <img id="phone-landing" src={phoneLanding} alt={phoneLanding}></img>
       </div>
       <div className='landing-box landing-title-box'>
         <div>세상에 없던 단 하나뿐인</div>

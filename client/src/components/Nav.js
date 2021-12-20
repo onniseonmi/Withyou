@@ -51,9 +51,15 @@ const Nav = ({
       <div
         className='nav-container'
         style={{
+<<<<<<< HEAD
           backgroundColor: `${landingOn ? 'transparent' : '#f2f0ec'}`,
           borderBottom: `${landingOn ? 'transparent' : 'solid 1px lightgray'}`,
           textShadow: `${landingOn ? '1px 1px 5px #212121' : 'none'}`,
+=======
+          backgroundColor: `${landingOn ? "transparent" : "#f8eee7"}`,
+          borderBottom: `${landingOn ? "transparent" : "solid 1px lightgray"}`,
+          textShadow: `${landingOn ? "1px 1px 5px #212121" : "none"}`,
+>>>>>>> 40e3d5ca1eb134fa5913e9cef18133ac2cb0aa77
         }}
       >
         <div className='nav-left'>

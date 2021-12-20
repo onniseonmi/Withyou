@@ -8,15 +8,15 @@ import PrintProperty from "../components/editpage/canvas/modals/PrintProperty";
 export default function EditPage({
   setLandingOn,
   isLogin,
-  loading,
   setLoading,
   setIsMessage,
   setIsClientError,
   setIsSuccessMessage,
   setIsServerError,
+  setIsConfirmMessage,
+  itemStates,
+  setItemStates,
 }) {
-  // * 상태들 이름 정리한번 싹 하기 --> 직관적으로 알 수 있도록
-  const [itemStates, setItemStates] = useState([]);
   const [selectState, setSelectState] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [menuBtnStatus, setMenuBtnStatus] = useState("menuBar-templates");
@@ -281,6 +281,7 @@ export default function EditPage({
               setIsClientError={setIsClientError}
               setIsSuccessMessage={setIsSuccessMessage}
               setIsServerError={setIsServerError}
+              setIsConfirmMessage={setIsConfirmMessage}
             />
           </div>
           <div id="canvas-container" onClick={(e) => onclickToDeselect(e)}>

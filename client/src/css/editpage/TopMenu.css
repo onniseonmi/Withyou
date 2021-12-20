@@ -6,12 +6,13 @@
   display: flex;
   font-family: "BinggraeMelona";
   align-items: center;
+  justify-content: space-between;
 }
 
 .top-menu-left {
   display: flex;
-  position: absolute;
-  left: 1.5rem;
+  width: 120px;
+  justify-content: center;
 }
 
 .top-menu-left > div {
@@ -19,9 +20,8 @@
 }
 
 .top-menu-right {
+  width: 250px;
   display: flex;
-  position: absolute;
-  right: 1rem;
 }
 
 .top-menu-right > div {
@@ -57,10 +57,17 @@
 }
 @media screen and (max-width: 900px) {
   #top-menu-save {
-    font-size: 18px;
-    width: 30vw;
+    width: 170px;
     display: flex;
     justify-content: space-around;
+  }
+
+  .top-menu-left {
+    width: 100px;
+  }
+
+  .top-menu-right {
+    width: 170px;
   }
 }
 

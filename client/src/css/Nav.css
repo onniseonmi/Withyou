@@ -1,6 +1,6 @@
 .nav-container {
   width: 100%;
-  background-color: #f2f0ec;
+  background-color: #f8eee7;
   border-bottom: solid 1px lightgray;
   z-index: 2;
   font-family: "Huglife";
@@ -80,7 +80,6 @@
     width: 100%;
     height: 100px;
     padding-bottom: 1.5rem;
-    background-color: #f9ffff;
     align-content: center;
   }
 

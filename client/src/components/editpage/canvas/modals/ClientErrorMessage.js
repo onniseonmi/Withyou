@@ -5,9 +5,9 @@ export default function ClientErrorMessage({ setIsClientError, setIsMessage }) {
     <div id="message-contaniner">
       <div id="message-modal">
         로그인 후 이용해주세요
-        <div className="save-modal-container">
+        <div id="message-modal-container">
           <button
-            id="close-message-modal"
+            className="close-message-modal"
             onClick={() => {
               setIsMessage(false);
               setIsClientError(false);
